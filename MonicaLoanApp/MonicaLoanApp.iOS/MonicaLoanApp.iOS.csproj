@@ -64,6 +64,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renders\CustomButtonRenderer.cs" />
+    <Compile Include="Renders\CustomEntryRenderer.cs" />
+    <Compile Include="Renders\CustomFrameForOpacityRenderer.cs" />
+    <Compile Include="Renders\CustomPickerRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,6 +176,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dependencies\" />
-    <Folder Include="Renders\" />
   </ItemGroup>
 </Project>

@@ -27,12 +27,10 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Controls\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Helpers\" />
     <Folder Include="Providers\" />
     <Folder Include="Services\" />
     <Folder Include="Views\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

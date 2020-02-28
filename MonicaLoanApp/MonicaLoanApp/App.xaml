@@ -13,12 +13,11 @@
             <!--White-->
             <Color x:Key="AppWhiteColor">#FFFFFF</Color>
             <Color x:Key="HeaderColor">#FFFFFF</Color>
-            <Color x:Key="LgnframeColour">#4D2090</Color>
+            <Color x:Key="LgnFrameColor">#4D2090</Color>
             <Color x:Key="BtnColor">#04cac3</Color>
-            <Color x:Key="WhiteFrmPlaceHolderColour">#B0B0B1</Color>
-            <Color x:Key="LargeLblColour">#5a3f96</Color>
-            <Color x:Key="MediumLblColour">#5a3f96</Color>
-            <Color x:Key="SmallLblColour">#848386</Color>
+            <Color x:Key="LargeLblColor">#5a3f96</Color>
+            <Color x:Key="MediumLblColor">#5a3f96</Color>
+            <Color x:Key="SmallLblColor">#848386</Color>
             <Color x:Key="LoanLblColour">#c7caca</Color>
             <!--#endregion-->
 
@@ -39,7 +38,7 @@
 
             <!--Round login frame -->
             <Style x:Key="LoginFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="{StaticResource LgnframeColour}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LgnFrameColor}"/>
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="10" />
@@ -48,7 +47,6 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
-
             <!--#endregion-->
 
             <!--#region Buttons -->
@@ -66,16 +64,7 @@
             </Style>
             <!--#endregion-->
 
-            <!--#region Image-->
-            <Style x:Key="PrimaryImg" TargetType="Image">
-                <Setter Property="HeightRequest" Value="15" />
-                <Setter Property="WidthRequest" Value="15" />
-            </Style>
-
-            <!--#endregion-->
-
             <!--#region Entrys -->
-
             <!--Primary Login Entry-->
             <Style x:Key="PrimaryEntry" TargetType="Entry">
                 <Setter Property="FontSize" Value="15" />
@@ -87,10 +76,10 @@
             </Style>
 
             <!--Secondry Entries-->
-            <Style x:Key="PrimaryEntry" TargetType="Entry">
+            <Style x:Key="SecondryEntry" TargetType="Entry">
                 <Setter Property="FontSize" Value="15" />
-                <Setter Property="TextColor" Value="{StaticResource SmallLblColour}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource SmallLblColour}" />
+                <Setter Property="TextColor" Value="{StaticResource SmallLblColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource SmallLblColor}" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="TranslationY" Value="3" />
@@ -102,28 +91,23 @@
             <Style x:Key="PrimaryLable" TargetType="Label">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontFamily" Value="{DynamicResource Boldfont }" />
-                <!--<Setter Property="FontAttributes" Value="Bold" />-->
-                <Setter Property="TextColor" Value="{StaticResource LargeLblColour}" />
+                <Setter Property="TextColor" Value="{StaticResource LargeLblColor}" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-
             <!--Medium Font -->
             <Style x:Key="SecondryLable" TargetType="Label">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
-                <!--<Setter Property="FontAttributes" Value="None" />-->
-                <Setter Property="TextColor" Value="{StaticResource MediumLblColour}" />
+                <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-
-            <!--Medium Font -->
+            <!--Small Font -->
             <Style x:Key="SmallestLable" TargetType="Label">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
-                <!--<Setter Property="FontAttributes" Value="" />-->
-                <Setter Property="TextColor" Value="{StaticResource MediumLblColour}" />
+                <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
@@ -138,7 +122,7 @@
                 <On Platform="iOS" Value="refsanb"/>
                 <On Platform="Android" Value="refsanb.ttf#refsanb"/>
             </OnPlatform>           
-
+            <!--#endregion-->
             <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>

@@ -91,6 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renders\CustomButtonRenderer.cs" />
+    <Compile Include="Renders\CustomEntryRenderer.cs" />
+    <Compile Include="Renders\CustomFrameRenderer.cs" />
+    <Compile Include="Renders\CustomPickerRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dependencies\" />
-    <Folder Include="Renders\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>

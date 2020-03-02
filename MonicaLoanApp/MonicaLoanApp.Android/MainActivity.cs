@@ -20,7 +20,7 @@ namespace MonicaLoanApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+           
             #region Initializing Packages   
             UserDialogs.Init(this); 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -32,6 +32,13 @@ namespace MonicaLoanApp.Droid
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;   
             #endregion
             LoadApplication(new App());
+            #region Status Bar
+            //To set Status Bar Color :
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#0984e3"));
+
+            #endregion
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

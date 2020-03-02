@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Login
@@ -18,6 +19,8 @@ namespace MonicaLoanApp.Views.Login
         public LoginPage()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             loginPageVm = new LoginPageVM(this.Navigation);
             this.BindingContext = loginPageVm;
         }

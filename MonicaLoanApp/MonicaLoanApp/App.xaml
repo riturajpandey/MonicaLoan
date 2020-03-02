@@ -37,6 +37,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BorderColor" Value="#6d5297" />
             </Style>
 
 
@@ -49,6 +50,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BorderColor" Value="#6d5297" />
             </Style>
             <!--#endregion-->
 

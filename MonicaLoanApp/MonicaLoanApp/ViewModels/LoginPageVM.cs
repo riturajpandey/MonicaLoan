@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels
 {
     public class LoginPageVM : BaseViewModel
-    {   
+    {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-        
+
         #region CONSTRUCTOR
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginPageVM"/> class.
@@ -31,7 +32,7 @@ namespace MonicaLoanApp.ViewModels
             get { return _Email; }
             set
             {
-                if(_Email != value)
+                if (_Email != value)
                 {
                     _Email = value;
                     OnPropertyChanged("Email");
@@ -44,7 +45,7 @@ namespace MonicaLoanApp.ViewModels
             get { return _Password; }
             set
             {
-                if(_Password!= value)
+                if (_Password != value)
                 {
                     _Password = value;
                     OnPropertyChanged("Password");
@@ -63,21 +64,42 @@ namespace MonicaLoanApp.ViewModels
         #region Methods
 
         //Login method Method
-        private void LoginAsync(object obj)
+        private async void LoginAsync(object obj)
         {
-            
+            //Apply LoginValidations...
+            if (!await Validate()) return;
+
         }
         //Forgot Password Method
         private void ForgotPasswordAasync(object obj)
         {
-            
+
         }
-       // Register Method
+        // Register Method
         private void RegisterAsync(object obj)
         {
-          
+
         }
         #endregion
 
+        /// <summary>
+        /// TODO : To Validate User Login Fields...
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> Validate()
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                UserDialog.Alert("Please enter your email.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(Password))
+            {
+                UserDialog.Alert("Please enter your password.");
+                return false;
+            }
+
+            return true;
+        }
     }
 }

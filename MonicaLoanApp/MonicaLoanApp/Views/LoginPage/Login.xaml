@@ -10,12 +10,35 @@
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <magic:GradientView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
                 <magic:GradientView.GradientSource >
-                    <magic:LinearGradient Angle="45">
+                    <magic:LinearGradient Angle="0">
                         <magic:GradientStop Color="#48049c" Offset="0" />
                         <magic:GradientStop Color="#8350f6" Offset="1" />
                     </magic:LinearGradient>
                 </magic:GradientView.GradientSource>
             </magic:GradientView>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="logo.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+
+                </Grid>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

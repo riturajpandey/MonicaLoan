@@ -15,14 +15,14 @@ namespace MonicaLoanApp.Views.Login
     public partial class LoginPage : ContentPage
     { 
         //TODO : To Define class Level Variables...
-        protected LoginPageVM loginPageVm;
+        protected LoginPageVM LoginVm;
         public LoginPage()
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            loginPageVm = new LoginPageVM(this.Navigation);
-            this.BindingContext = loginPageVm;
+            LoginVm = new LoginPageVM(this.Navigation);
+            this.BindingContext = LoginVm;
         }
     }
 }

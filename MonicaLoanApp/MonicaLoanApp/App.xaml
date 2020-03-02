@@ -21,7 +21,6 @@
             <Color x:Key="SmallLblColor">#848386</Color>
             <Color x:Key="LoanLblColour">#c7caca</Color>
             <Color x:Key="ForgotPasswordTxtClr">#498AD7</Color>
-
             <Color x:Key="DarkGradientColour">#48049c</Color>
             <Color x:Key="LightGradientColour">#8350f6</Color>
             <!--#endregion-->
@@ -95,24 +94,18 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontFamily" Value="{DynamicResource Boldfont }" />
                 <Setter Property="TextColor" Value="{StaticResource LargeLblColor}" />
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <!--Medium Font -->
             <Style x:Key="SecondryLable" TargetType="Label">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
                 <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <!--Small Font -->
             <Style x:Key="SmallestLable" TargetType="Label">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
                 <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <!--#endregion-->
 

@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="MonicaLoanApp.Views.Login.LoginPage">
     <ContentPage.Content>
-    <!--Main Grid-->
+        <!--Main Grid-->
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!--GradientColor Section-->
             <magic:GradientView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
@@ -31,10 +31,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
@@ -54,7 +55,7 @@
                         </Grid>
                     </Frame>
                     <!--Password Section-->
-                    <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
+                    <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
@@ -64,12 +65,12 @@
                             <local:CustomEntry Text="{Binding Password}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
                     </Frame>
-                     <!--LoginButton Section-->
-                    <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="5"/>
+                    <!--LoginButton Section-->
+                    <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="6"/>
                     <!--ForgotPasswordButton-->
-                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forget Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" Grid.Row="7" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
+                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forget Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" Grid.Row="8" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
                     <!--RegisterButton-->
-                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding Register}" Grid.Row="8" TextColor="{StaticResource AppWhiteColor}"/>
+                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding Register}" Grid.Row="9" TextColor="{StaticResource AppWhiteColor}"/>
                 </Grid>
             </Grid>
         </Grid>

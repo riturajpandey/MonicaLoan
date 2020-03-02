@@ -11,7 +11,7 @@ namespace MonicaLoanApp.ViewModels
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
 
-        #region CONSTRUCTOR
+        #region  Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginPageVM"/> class.
         /// </summary>
@@ -20,7 +20,7 @@ namespace MonicaLoanApp.ViewModels
         {
             Navigation = nav;
             LoginCommand = new Command(LoginAsync);
-            ForgotCommand = new Command(ForgotPasswordAasync);
+            ForgotCommand = new Command(ForgotPasswordAsync);
             Register = new Command(RegisterAsync);
         }
         #endregion
@@ -55,7 +55,7 @@ namespace MonicaLoanApp.ViewModels
 
         #endregion
 
-        #region COMMANDS  
+        #region Commands 
         public Command LoginCommand { get; set; }
         public Command ForgotCommand { get; set; }
         public Command Register { get; set; }
@@ -71,17 +71,15 @@ namespace MonicaLoanApp.ViewModels
 
         }
         //Forgot Password Method
-        private void ForgotPasswordAasync(object obj)
+        private async void ForgotPasswordAsync(object obj)
         {
-
+            await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
         }
         // Register Method
         private void RegisterAsync(object obj)
         {
 
         }
-        #endregion
-
         /// <summary>
         /// TODO : To Validate User Login Fields...
         /// </summary>
@@ -101,5 +99,7 @@ namespace MonicaLoanApp.ViewModels
 
             return true;
         }
+        #endregion
+
     }
 }

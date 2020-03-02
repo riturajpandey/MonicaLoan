@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -8,6 +10,9 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
 {
     public class EmailResetPageVM : BaseViewModel
     {
+        //TODO : To Define Local Class Level Variables..
+        private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        
         #region Constructor
         // <summary>
         /// Initializes a new instance of the <see cref="EmailResetPageVM"/> class.
@@ -44,7 +49,8 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         #region Methods
         //Submit Command
         private async void SubmitCommandAsync(object obj)
-        {if (!await Validate()) return;
+        {
+            if (!await Validate()) return;
             //await Navigation.PushModalAsync(new Views);
         }
 
@@ -57,6 +63,12 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
             if (string.IsNullOrEmpty(Email))
             {
                 UserDialog.Alert("Please enter your email address.");
+                return false;
+            }
+            bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid3)
+            {
+                UserDialogs.Instance.Alert("Invalid email", "Alert", "Ok");
                 return false;
             }
             return true;

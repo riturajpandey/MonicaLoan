@@ -26,6 +26,11 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer: RituRaj Pandey (4AFBH5KPC8)</CodesignKey>
+    <CodesignProvision>NewMotorConnectProvisioningProfile</CodesignProvision>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
+    <CodesignEntitlements />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

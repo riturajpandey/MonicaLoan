@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -89,6 +91,12 @@ namespace MonicaLoanApp.ViewModels
             if (string.IsNullOrEmpty(Email))
             {
                 UserDialog.Alert("Please enter your email.");
+                return false;
+            }
+            bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid3)
+            {
+                UserDialogs.Instance.Alert("Invalid email", "Alert", "Ok");
                 return false;
             }
             if (string.IsNullOrEmpty(Password))

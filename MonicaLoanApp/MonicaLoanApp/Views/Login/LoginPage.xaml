@@ -51,7 +51,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="mail.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <local:CustomEntry Text="{Binding Email}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                            <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
                     </Frame>
                     <!--Password Section-->
@@ -62,7 +62,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <local:CustomEntry Text="{Binding Password}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                            <local:CustomEntry Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
                     </Frame>
                     <!--LoginButton Section-->

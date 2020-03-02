@@ -83,7 +83,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding Email}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
                             </Frame>
                             <!--LoginButton Section-->

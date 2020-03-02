@@ -51,7 +51,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         private async void SubmitCommandAsync(object obj)
         {
             if (!await Validate()) return;
-            //await Navigation.PushModalAsync(new Views);
+            await Navigation.PushModalAsync(new Views.ResetPassword.UpdatePasswordPage());
         }
 
         /// <summary>

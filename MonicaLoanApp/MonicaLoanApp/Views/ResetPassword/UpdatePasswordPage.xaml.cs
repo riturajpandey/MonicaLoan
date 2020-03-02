@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonicaLoanApp.ViewModels.ResetPassword;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,19 @@ namespace MonicaLoanApp.Views.ResetPassword
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdatePasswordPage : ContentPage
     {
+        protected UpdatePasswordPageVm NewPasswordVM;
         public UpdatePasswordPage()
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            NewPasswordVM = new UpdatePasswordPageVm(this.Navigation);
+            this.BindingContext = NewPasswordVM;
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }

@@ -203,4 +203,40 @@
   <ItemGroup>
     <BundleResource Include="Resources\active_count.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lock%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lock%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circlee%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\one_circle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circle%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circlee%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\one_circle%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circlee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\one_circle.png" />
+  </ItemGroup>
 </Project>

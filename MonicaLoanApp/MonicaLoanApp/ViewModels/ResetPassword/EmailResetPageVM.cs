@@ -49,7 +49,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         }
 
         /// <summary>
-        /// TODO : To Validate User Login Fields...
+        /// TODO : To Validate reset password Fields...
         /// </summary>
         /// <returns></returns>
         public async Task<bool> Validate()

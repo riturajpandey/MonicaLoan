@@ -65,22 +65,33 @@ namespace MonicaLoanApp.ViewModels
 
         #region Methods
 
-        //Login method Method
+        //
+        /// <summary>
+        /// TODO: To validate Login Command...
+        /// </summary>
+        /// <param name="obj"></param>
         private async void LoginAsync(object obj)
         {
             //Apply LoginValidations...
             if (!await Validate()) return;
 
         }
-        //Forgot Password Method
+        /// <summary>
+        /// TODO: To validate Forgot Password Command..
+        /// </summary>
+        /// <param name="obj"></param>
         private async void ForgotPasswordAsync(object obj)
         {
             await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
         }
-        // Register Method
-        private void RegisterAsync(object obj)
+        // 
+        /// <summary>
+        /// TODO: To validate Register Command...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void RegisterAsync(object obj)
         {
-
+            await Navigation.PushModalAsync(new Views.Register.Register_One());
         }
         /// <summary>
         /// TODO : To Validate User Login Fields...
@@ -96,7 +107,7 @@ namespace MonicaLoanApp.ViewModels
             bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {
-                UserDialogs.Instance.Alert("Invalid email", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please enter valid email", "Alert", "Ok");
                 return false;
             }
             if (string.IsNullOrEmpty(Password))

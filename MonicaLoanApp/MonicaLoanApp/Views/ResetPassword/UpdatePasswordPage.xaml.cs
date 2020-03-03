@@ -14,13 +14,13 @@ namespace MonicaLoanApp.Views.ResetPassword
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdatePasswordPage : ContentPage
     {
-        protected UpdatePasswordPageVm NewPasswordVM;
+        protected UpdatePasswordPageVM NewPasswordVM;
         public UpdatePasswordPage()
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            NewPasswordVM = new UpdatePasswordPageVm(this.Navigation);
+            NewPasswordVM = new UpdatePasswordPageVM(this.Navigation);
             this.BindingContext = NewPasswordVM;
         }
 

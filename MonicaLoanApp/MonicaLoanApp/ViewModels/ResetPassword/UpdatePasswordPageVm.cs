@@ -6,16 +6,14 @@ using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.ResetPassword
 {
-    public class UpdatePasswordPageVm : BaseViewModel
+    public class UpdatePasswordPageVM : BaseViewModel
     {
         #region Constructor
-        public UpdatePasswordPageVm(INavigation nav)
+        public UpdatePasswordPageVM(INavigation nav)
         {
             Navigation = nav;
             NewPasswordCommand = new Command(NewPasswordCommandAsync);
         }
-
-        
         #endregion
 
         #region Properties
@@ -54,10 +52,13 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         #endregion
 
         #region Methods
-        //NewPasswordCommand
+        /// <summary>
+        ///  TODO : To Validate NewPasswordCommand...
+        /// </summary>
+        /// <param name="obj"></param>
         private async void NewPasswordCommandAsync(object obj)
         {
-            if (!await Validate());
+            if (!await Validate()) ;
         }
 
         /// <summary>
@@ -79,6 +80,6 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
             return true;
         }
         #endregion
-        
+
     }
 }

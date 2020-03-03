@@ -51,7 +51,7 @@ namespace MonicaLoanApp.Droid.Renders
                     Control.Background = null;
                     Element.BackgroundColor = System.Drawing.Color.Transparent;
                     Control.Gravity = GravityFlags.Start;
-                    Control.TextSize = 12;
+                    Control.TextSize = 16;
                 }
 
             }

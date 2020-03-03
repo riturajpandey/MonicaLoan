@@ -47,7 +47,11 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         #endregion
 
         #region Methods
-        //Submit Command
+      
+        /// <summary>
+        /// TODO : To Validate Submit Command...
+        /// </summary>
+        /// <param name="obj"></param>
         private async void SubmitCommandAsync(object obj)
         {
             if (!await Validate()) return;
@@ -68,7 +72,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
             bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {
-                UserDialogs.Instance.Alert("Invalid email", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please enter valid email", "Alert", "Ok");
                 return false;
             }
             return true;

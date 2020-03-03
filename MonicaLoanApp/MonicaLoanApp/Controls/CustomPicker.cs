@@ -12,7 +12,7 @@ namespace MonicaLoanApp.Controls
 
         }
         public static readonly BindableProperty FontSizeProperty =
-        BindableProperty.Create(nameof(FontSize), typeof(Int32), typeof(CustomPicker), 8, BindingMode.TwoWay);
+        BindableProperty.Create(nameof(FontSize), typeof(Int32), typeof(CustomPicker), 15, BindingMode.TwoWay);
 
         public Int32 FontSize
         {

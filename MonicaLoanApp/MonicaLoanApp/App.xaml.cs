@@ -6,6 +6,9 @@ namespace MonicaLoanApp
 {
     public partial class App : Application
     {
+        //TODO : To Declare Global Variables.. 
+        public static MasterDetailPage masterDetailPage = new MasterDetailPage();
+
         public App()
         {
             InitializeComponent();

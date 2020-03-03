@@ -1,4 +1,4 @@
-﻿using MonicaLoanApp.ViewModels.Menu;
+﻿using MonicaLoanApp.ViewModels.Loans;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,20 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MonicaLoanApp.Views.Menu
+namespace MonicaLoanApp.Views.Loans
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuPage : ContentPage
+    public partial class LoanApplicationPage : ContentPage
     {
-        //TODO : To Define Class Level Variables...
-        private MenuPageVM MenuVM;
-        public MenuPage()
+        //TODO : To Define class Level Variables...
+        protected LoanApplicationPageVM LoanApplicationVM;
+        public LoanApplicationPage()
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
-            MenuVM = new MenuPageVM(this.Navigation);
-            this.BindingContext = MenuVM;
+            LoanApplicationVM = new LoanApplicationPageVM(this.Navigation);
+            this.BindingContext = LoanApplicationVM;
         }
     }
 }

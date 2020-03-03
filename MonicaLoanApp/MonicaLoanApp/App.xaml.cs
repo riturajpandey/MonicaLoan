@@ -13,8 +13,8 @@ namespace MonicaLoanApp
         {
             InitializeComponent();
 
-            //  MainPage = new Views.Login.LoginPage();
-            MainPage = new Views.Loans.LoanPage();
+            MainPage = new Views.Login.LoginPage();
+           
             
         }
 

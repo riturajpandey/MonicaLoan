@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MonicaLoanApp.ViewModels.Loans;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Loans
@@ -12,9 +8,15 @@ namespace MonicaLoanApp.Views.Loans
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoanPage : ContentPage
     {
+        //TODO : To Define class Level Variables...
+        protected LoanPageVM LoanVM;
         public LoanPage()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            LoanVM = new LoanPageVM(this.Navigation);
+            this.BindingContext = LoanVM;
         }
     }
 }

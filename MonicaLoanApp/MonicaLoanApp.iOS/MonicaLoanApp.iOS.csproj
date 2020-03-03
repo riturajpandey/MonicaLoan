@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renders\CustomBorderlessDatePickerRenderer.cs" />
     <Compile Include="Renders\CustomButtonRenderer.cs" />
     <Compile Include="Renders\CustomEntryRenderer.cs" />
     <Compile Include="Renders\CustomFrameForOpacityRenderer.cs" />
@@ -340,5 +341,32 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\down%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bvn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bank%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bvn%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bank%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bvn%403x.png" />
   </ItemGroup>
 </Project>

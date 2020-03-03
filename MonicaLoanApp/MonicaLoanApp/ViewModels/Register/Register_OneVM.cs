@@ -18,9 +18,12 @@ namespace MonicaLoanApp.ViewModels.Register
         {
             Navigation = nav;
             NextCommand = new Command(NextCommandAsync);
+            SecondNextCommand = new Command(SecondNextCommandAsync);
+            FinishCommand = new Command(FinishCommandAsync);
+            BckCommand = new Command(BckCommandAsync);
         }
 
-       
+        
         #endregion
 
         #region Properties
@@ -90,16 +93,186 @@ namespace MonicaLoanApp.ViewModels.Register
                 }
             }
         }
+        private bool _FirstGrid = true;
+        public bool FirstGrid
+        {
+            get { return _FirstGrid; }
+            set
+            {
+                if (_FirstGrid != value)
+                {
+                    _FirstGrid = value;
+                    OnPropertyChanged("FirstGrid");
+                }
+            }
+        }
+
+        private bool _SecondGrid = false;
+        public bool SecondGrid
+        {
+            get { return _SecondGrid; }
+            set
+            {
+                if (_SecondGrid != value)
+                {
+                    _SecondGrid = value;
+                    OnPropertyChanged("SecondGrid");
+                }
+            }
+        }
+        private bool _FinalGrid = false;
+        public bool FinalGrid
+        {
+            get { return _FinalGrid; }
+            set
+            {
+                if (_FinalGrid != value)
+                {
+                    _FinalGrid = value;
+                    OnPropertyChanged("FinalGrid");
+                }
+            }
+        }
+        private string _DateOfBirth = "Date of birth";
+        public string DateOfBirth
+        {
+            get { return _DateOfBirth; }
+            set
+            {
+                if (_DateOfBirth != value)
+                {
+                    _DateOfBirth = value;
+                    OnPropertyChanged("DateOfBirth");
+                }
+            }
+        }
+
+
+
+        private string _Number;
+        public string Number
+        {
+            get { return _Number; }
+            set
+            {
+                if (_Number != value)
+                {
+                    _Number = value;
+                    OnPropertyChanged("Number");
+                }
+            }
+        }
+        private string _Gender;
+        public string Gender
+        {
+            get { return _Gender; }
+            set
+            {
+                if (_Gender != value)
+                {
+                    _Gender = value;
+                    OnPropertyChanged("Gender");
+                }
+            }
+        }
+        private string _MaritalStatus;
+        public string MaritalStatus
+        {
+            get { return _MaritalStatus; }
+            set
+            {
+                if (_MaritalStatus != value)
+                {
+                    _MaritalStatus = value;
+                    OnPropertyChanged("MaritalStatus");
+                }
+            }
+        }
+
+        private string _BusinessNumber;
+        public string BusinessNumber
+        {
+            get { return _BusinessNumber; }
+            set
+            {
+                if (_BusinessNumber != value)
+                {
+                    _BusinessNumber = value;
+                    OnPropertyChanged("BusinessNumber");
+                }
+            }
+        }
+
+        private string _BankPicker;
+        public string BankPicker
+        {
+            get { return _BankPicker; }
+            set
+            {
+                if (_BankPicker != value)
+                {
+                    _BankPicker = value;
+                    OnPropertyChanged("BankPicker");
+                }
+            }
+        }
+
+        private string _AccountNumber;
+        public string AccountNumber
+        {
+            get { return _AccountNumber; }
+            set
+            {
+                if (_AccountNumber != value)
+                {
+                    _AccountNumber = value;
+                    OnPropertyChanged("AccountNumber");
+                }
+            }
+        }
+
+
+
+
         #endregion
 
         #region Commands 
         public Command NextCommand { get; set; }
+        public Command SecondNextCommand { get; set; }
+        public Command FinishCommand { get; set; }
+        public Command BckCommand { get; set; }
 
         #endregion
 
         #region Method
         /// <summary>
-        /// TODO: Define NextCommand validation
+        /// TODO: Define BackCommand validation...
+        /// </summary>
+        /// <param name="obj"></param>
+        private void BckCommandAsync(object obj)
+        {
+
+            if (FinalGrid == true)
+            {
+                SecondGrid = true;
+                FirstGrid = false;
+                FinalGrid = false;
+            }
+            else if (SecondGrid == true)
+            {
+                FirstGrid = true;
+                SecondGrid = false;
+                FinalGrid = false;
+            }
+            else if (FirstGrid == true)
+            {
+                Navigation.PopModalAsync();
+            }
+
+        }
+
+        /// <summary>
+        /// TODO: Define NextCommand validation...
         /// </summary>
         /// <param name="obj"></param>
         private async void NextCommandAsync(object obj)
@@ -110,8 +283,39 @@ namespace MonicaLoanApp.ViewModels.Register
             }
             else
             {
-                await Navigation.PushModalAsync(new Views.Register.Register_Second());
+                FirstGrid = false;
+                SecondGrid = true;
+                FinalGrid = false;
             }
+        }
+        /// <summary>
+        /// TODO: Define NextCommand validation...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void SecondNextCommandAsync(object obj)
+        {
+            if (!await SecondSignValidate())
+            {
+                return;
+            }
+            else
+            {
+                FirstGrid = false;
+                SecondGrid = false;
+                FinalGrid = true;
+            }
+        }
+        /// <summary>
+        /// TODO: Define FinishCommand validation...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void FinishCommandAsync(object obj)
+        {
+            if (!await FinishSignUpValidate())
+            {
+                BusinessNumber = string.Empty;
+                AccountNumber = string.Empty;
+            };
         }
         #region Check Validate All Fields
         /// <summary>
@@ -162,6 +366,34 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert("Please enter password.");
+                return false;
+            }
+            UserDialogs.Instance.HideLoading();
+            return true;
+        }
+        private async Task<bool> SecondSignValidate()
+        {
+            if (string.IsNullOrEmpty(Number))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter Number.");
+                return false;
+            }
+            UserDialogs.Instance.HideLoading();
+            return true;
+        }
+        private async Task<bool> FinishSignUpValidate()
+        {
+            if (string.IsNullOrEmpty(BusinessNumber))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter Bvn Number.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(AccountNumber))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter Account Number.");
                 return false;
             }
             UserDialogs.Instance.HideLoading();

@@ -29,9 +29,47 @@ namespace MonicaLoanApp.Views.Register
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //  //  Navigation.PopModalAsync();
+        //}
+
+        /// <summary>
+        /// If User Click On Date Of Birth Picker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DtPckDOB_Tapped(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            DtPckDOB.Focus();
+        }
+        /// <summary>
+        /// If User Click On Date Of Birth Picker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+            
+        }
+        /// <summary>
+        /// If User Click On Date Of Birth Picker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (DtPckDOB.Date != null)
+            {
+                RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+                
+            }
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Bank.Focus();
         }
     }
 }

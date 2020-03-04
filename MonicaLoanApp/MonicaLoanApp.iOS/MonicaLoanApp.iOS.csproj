@@ -406,9 +406,6 @@
     <BundleResource Include="Resources\purple_circle_c%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Ellipse 3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -427,9 +424,6 @@
     <BundleResource Include="Resources\userblue.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Ellipse3%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\help%403x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -446,5 +440,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\userblue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circleenew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home_background.png" />
   </ItemGroup>
 </Project>

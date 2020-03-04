@@ -1,6 +1,8 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Views.Loans;
 using MonicaLoanApp.Views.Menu;
+using MonicaLoanApp.Views.Popup.LoanApplication;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +16,7 @@ namespace MonicaLoanApp.ViewModels
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
 
         #region  Constructor
         /// <summary>
@@ -75,12 +78,15 @@ namespace MonicaLoanApp.ViewModels
         private async void LoginAsync(object obj)
         {
             //Apply LoginValidations...
-         //   if (!await Validate()) return;
+            //   if (!await Validate()) return;
 
             //To Set The First Page...
-            App.masterDetailPage.Master = new MenuPage();
-            App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
-            App.Current.MainPage = App.masterDetailPage;
+            //App.masterDetailPage.Master = new MenuPage();
+            //App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
+            //App.Current.MainPage = App.masterDetailPage;
+
+            SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
+            await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
         }
         /// <summary>
         /// TODO: To validate Forgot Password Command..

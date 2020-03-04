@@ -70,6 +70,7 @@ namespace MonicaLoanApp.ViewModels
 
             }
         }
+
         /// <summary>
         /// TODO : To Navigate To MasterDetail Page...
         /// </summary>

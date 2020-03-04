@@ -37,6 +37,7 @@
 
             <!--Purple Color-->
             <Color x:Key="LightPurpleColor">#8B87A0</Color>
+            <Color x:Key="PurpleColor">#413067</Color>
 
             <!--Sky Blue Color-->
             <Color x:Key="SkyBlueColor">#06DED6</Color>

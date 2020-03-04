@@ -17,7 +17,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!--Header Section-->
-                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="{StaticResource AppWhiteColor}" >
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
@@ -30,11 +30,11 @@
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                        <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                     </Grid>
                     <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                         <Grid.GestureRecognizers>
-                            <!--<TapGestureRecognizer Command="{Binding MenuCommand}"/>-->
+                            <TapGestureRecognizer Command="{Binding MenuCommand}"/>
                         </Grid.GestureRecognizers>
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
@@ -51,7 +51,7 @@
                         <Control:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="15,10">
+                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,10">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="LoanDetail_Tapped"/>
                                         </Grid.GestureRecognizers>
@@ -60,11 +60,11 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="5"/>
                                         </Grid.RowDefinitions>
-                                        <Label Grid.Row="0" Text="{Binding Amount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
+                                        <Label Grid.Row="0" Text="{Binding Amount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"/>
                                         <Label Grid.Row="0" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
-                                        <Label Grid.Row="1" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
+                                        <Label Grid.Row="1" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" Margin="10,0"/>
                                         <!--Separator-->
-                                        <Grid Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="Black" Opacity="0.5"/>
+                                        <Grid Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{StaticResource BlackColour}" Opacity="0.5"/>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

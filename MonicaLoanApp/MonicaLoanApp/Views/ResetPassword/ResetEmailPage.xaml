@@ -76,7 +76,7 @@
                                 </Grid>
                             </Grid>
                             <!--Email Section-->
-                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>

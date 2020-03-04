@@ -574,9 +574,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\home_background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Ellipse 3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -593,9 +590,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\userblue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\Ellipse 3.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\help.png" />
@@ -616,9 +610,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\userblue.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\Ellipse 3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -637,9 +628,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\userblue.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\Ellipse 3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -656,9 +644,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\userblue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\Ellipse 3.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\help.png" />

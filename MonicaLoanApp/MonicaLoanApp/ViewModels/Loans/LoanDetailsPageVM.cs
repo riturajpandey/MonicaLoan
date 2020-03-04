@@ -21,10 +21,10 @@ namespace MonicaLoanApp.ViewModels.Loans
             //TODO : Dummy Data in list
             LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             {
-                 new LoanDetailsModel{Id="0", Amount="N500,000",Status="Pending approval",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020"},
+                 new LoanDetailsModel{Id="0", Amount="N500,000",Status="Pending approval",AmtDate="1 Feb 2020" , SelectBackColor="F1EDED"},
+                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
+                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
+                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
             };
         }
       

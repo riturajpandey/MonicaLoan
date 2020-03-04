@@ -13,9 +13,9 @@ namespace MonicaLoanApp
         {
             InitializeComponent();
             
-            MainPage = new Views.Loans.LoanApplicationForm();
-           
-            
+          //  MainPage = new Views.Loans.LoanApplicationForm();
+            MainPage = new Views.Loans.LoanPage();
+
         }
 
         protected override void OnStart()

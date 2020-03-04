@@ -27,6 +27,10 @@
             <Color x:Key="ForgotPasswordTxtClr">#498AD7</Color>
             <Color x:Key="DarkGradientColour">#48049c</Color>
             <Color x:Key="LightGradientColour">#8350f6</Color>
+            <Color x:Key="SeparatorGrayColour">#BCBCBC</Color>
+           
+            
+            
             <!--#endregion-->
 
             <!--#region Controls -->
@@ -92,7 +96,7 @@
                 <Setter Property="TextColor" Value="{StaticResource AppWhiteColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="FontFamily" Value="{DynamicResource Regularfont}" />
+                <Setter Property="FontFamily" Value="{DynamicResource Boldfont}" />
             </Style>
             <!--#endregion-->
             <!--#region Entrys -->

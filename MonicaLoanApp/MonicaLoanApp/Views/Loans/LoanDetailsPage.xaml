@@ -51,7 +51,7 @@
                         <Control:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,10">
+                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,10" >
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="LoanDetail_Tapped"/>
                                         </Grid.GestureRecognizers>
@@ -60,7 +60,7 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="5"/>
                                         </Grid.RowDefinitions>
-                                        <Label Grid.Row="0" Text="{Binding Amount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"/>
+                                        <Label Grid.Row="0" Text="{Binding Amount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}"  Margin="10,0"/>
                                         <Label Grid.Row="0" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
                                         <Label Grid.Row="1" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" Margin="10,0"/>
                                         <!--Separator-->

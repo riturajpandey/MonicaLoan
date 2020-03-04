@@ -12,5 +12,18 @@ namespace MonicaLoanApp.Models
         public string Status { get; set; }
         public string AmtDate { get; set; }
 
+
+        //public string MyListBackColor
+        //{
+        //    get
+        //    {
+        //        if (Status == "")
+        //        {
+
+        //        }
+        //        return;
+        //    }
+        //}
+
     }
 }

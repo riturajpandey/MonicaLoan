@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MonicaLoanApp.Views.Menu.MenuPage"
+             Title="Menu">
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource AppWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True" BackgroundColor="Transparent">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <!--Main Grid-->
+                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Margin="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Menu Options-->
+
+                        <!--Profile Name-->
+                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <!--<TapGestureRecognizer Command="{Binding ProfileCommand}"/>-->
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                                <Label Text="Joe Bloggs" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                                <Label Text="87447197" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            </StackLayout>
+                            
+                        </Grid>
+
+                        <!--Home-->
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HomeCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Home" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+
+                        <!--Loans-->
+                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LoansCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+
+                        <!--Payments-->
+                        <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PaymentsCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Payments" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+
+                        <!--My Account-->
+                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MyAccountCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="My Account" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+
+                        <!--Help-->
+                        <Grid Grid.Row="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HelpCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Help" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+
+                        <!--Sign out-->
+                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SignOutCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="disable_three.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Sign out" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Control="clr-namespace:MonicaLoanApp.Controls"
+             mc:Ignorable="d"
+             x:Class="MonicaLoanApp.Views.Loans.LoanDetailsPage" NavigationPage.HasNavigationBar="False"
+             Title="Loan Details Page">
+
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <!--Main Grid-->
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Header Section-->
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="{StaticResource AppWhiteColor}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                    </Grid>
+                    <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                        <Grid.GestureRecognizers>
+                            <!--<TapGestureRecognizer Command="{Binding MenuCommand}"/>-->
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </Grid>
+
+                <!--Middle grid-->
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+
+                    <Control:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvLoanDetails" ItemsSource="{Binding LoanDetailsList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                        <Control:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="15,10">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="LoanDetail_Tapped"/>
+                                        </Grid.GestureRecognizers>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Text="{Binding Amount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
+                                        <Label Grid.Row="0" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
+                                        <Label Grid.Row="1" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
+                                        <!--Separator-->
+                                        <Grid Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="Black" Opacity="0.5"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </Control:RepeaterView.ItemTemplate>
+                    </Control:RepeaterView>
+
+                    <Grid  Grid.Row="1" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" Margin="20,0">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PlusCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="disable_three.png" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

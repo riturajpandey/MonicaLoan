@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using MonicaLoanApp.Views.Loans;
+using MonicaLoanApp.Views.Menu;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -74,6 +76,11 @@ namespace MonicaLoanApp.ViewModels
         {
             //Apply LoginValidations...
             if (!await Validate()) return;
+
+            //To Set The First Page...
+            App.masterDetailPage.Master = new MenuPage();
+            App.masterDetailPage.Detail = new NavigationPage(new LoanPage());
+            App.Current.MainPage = App.masterDetailPage;
 
         }
         /// <summary>

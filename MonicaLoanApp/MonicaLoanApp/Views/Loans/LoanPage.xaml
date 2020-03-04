@@ -29,7 +29,7 @@
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                        <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                     </Grid>
                 </Grid>
                 <!--Middle grid-->
@@ -47,10 +47,10 @@
                         </Grid.RowDefinitions>
                         <Image Grid.Row="0" Source="disable_three.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="You Don't have any loans" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                            <Label Text="You don't have any loans" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
                         <Grid Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Margin="20,5">
-                            <Label Text="Here we show you every loan you have applied for and its status, or you may start a new loan application" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                            <Label Text="Here we show you every loan you have applied for and its status, or you may start a new loan application" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource SecondryGrayLable}" Margin="10,0"></Label>
                         </Grid>
                     </Grid>
 

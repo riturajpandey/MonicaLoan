@@ -58,15 +58,12 @@ namespace MonicaLoanApp.ViewModels.Loans
 
         #region Methods
         /// <summary>
-        /// TODO : To Open Menu Page...
+        /// TODO : To back Page...
         /// </summary>
         /// <param name="obj"></param>
         private async void OnMenuAsync(object obj)
         {
-            if (App.Current.MainPage is MasterDetailPage mdp)
-            {
-                mdp.IsPresented = true;
-            }
+            await Navigation.PopModalAsync();
         }
        
         /// <summary>

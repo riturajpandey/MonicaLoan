@@ -11,13 +11,13 @@
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!--Main Grid-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!--Header Section-->
-                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="{StaticResource AppWhiteColor}" >
+                <Grid Grid.Row="0" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
@@ -25,12 +25,12 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding MenuCommand}"/>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
                         </Grid.GestureRecognizers>
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                     </Grid>
                     <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                         <Grid.GestureRecognizers>
@@ -41,7 +41,7 @@
                 </Grid>
 
                 <!--Middle grid-->
-                <Grid Grid.Row="1" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid Grid.Row="1" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,15,10,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -50,36 +50,36 @@
                     </Grid.RowDefinitions>
 
                     <!--Status Section-->
-                    <Frame Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F8F8F8">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="Status" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="0" Text="Date" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="1" Text="Active" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="1" Text="1 Dec 2019" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="0" Text="Status" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
+                            <Label Grid.Row="0" Text="Date" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
+                            <Label Grid.Row="1" Text="Active" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                            <Label Grid.Row="1" Text="1 Dec 2019" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
                     </Frame>
 
                     <!--Amount Section-->
-                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F8F8F8">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="Loan amount" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="0" Text="Balance" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="1" Text="N500,000" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                            <Label Grid.Row="1" Text="N200,000" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="0" Text="Loan amount" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
+                            <Label Grid.Row="0" Text="Balance" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
+                            <Label Grid.Row="1" Text="N500,000" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                            <Label Grid.Row="1" Text="N200,000" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
                     </Frame>
 
                     <!--Employment Section-->
-                    <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F8F8F8">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -91,26 +91,26 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
                             <Image Grid.Row="1" Grid.Column="0" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="Coca Cola Limited" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="Coca Cola Limited" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                             <Image Grid.Row="1" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="1" Grid.Column="3" Text="N100,000" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="1" Grid.Column="3" Text="N100,000" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                             <Image Grid.Row="2" Grid.Column="0" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="12 Dec 2018" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="12 Dec 2018" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                             <Image Grid.Row="2" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="3" Text="ABC 12345" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="2" Grid.Column="3" Text="ABC 12345" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
                     </Frame>
 
                     <!--Loan schedule Section-->
-                    <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F8F8F8">
-                        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="Loan schedule" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                            <Label Grid.Row="0" Text="Loan schedule" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
                             <local:RepeaterView  Grid.Row="1" x:Name="lvLoanDetails" ItemsSource="{Binding LoanDetailsList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                                 <local:RepeaterView.ItemTemplate>
                                     <DataTemplate>
@@ -121,9 +121,9 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                                                <Label Grid.Column="1" Text="{Binding Amount}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}"/>
-                                                <Label Grid.Column="2" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                                                <Label Grid.Column="0" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                                                <Label Grid.Column="1" Text="{Binding Amount}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
+                                                <Label Grid.Column="2" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                             </Grid>
                                         </ViewCell>
                                     </DataTemplate>

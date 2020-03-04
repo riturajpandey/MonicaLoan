@@ -600,4 +600,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\currencyblue%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\location%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\location%403x.png" />
+  </ItemGroup>
 </Project>

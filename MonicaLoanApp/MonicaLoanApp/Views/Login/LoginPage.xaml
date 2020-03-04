@@ -62,7 +62,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <local:CustomEntry Text="{Binding Password}" Keyboard="Numeric" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                            <local:CustomEntry Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
                     </Frame>
                     <!--LoginButton Section-->

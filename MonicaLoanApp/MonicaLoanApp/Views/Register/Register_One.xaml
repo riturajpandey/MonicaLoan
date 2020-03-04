@@ -148,6 +148,7 @@
                             <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Next" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" Grid.Row="12"></local:CustomButton>
                         </Grid>
                     </Grid>
+                    
                     <!-- Second grid-->
                     <Grid Grid.Row="1" IsVisible="{Binding SecondGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>

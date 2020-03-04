@@ -25,22 +25,25 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <!--Header Section-->
-                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BckCommand}"/>
-                            </Grid.GestureRecognizers>
-                            <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Frame Grid.Row="0" Padding="0">
+                        <!--Header Section-->
+                        <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                            <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
-                        </Grid>
-                    </Grid>
+                    </Frame>
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="Black" HeightRequest="1" Opacity="0.2"></Grid>
                     <!--First Grid-->
                     <Grid Grid.Row="1" IsVisible="{Binding GridOne}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
@@ -219,7 +222,7 @@
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="userbluebold.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                         <local:CustomPicker x:Name="Employee" ItemsSource="{Binding }" Title="Select Employer"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
@@ -244,7 +247,7 @@
                                     </Grid.ColumnDefinitions>
                                     <!--Calender Image-->
                                     <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                        <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <Image Source="dateblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                         <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
                                     </Grid>
                                     <!--Date Section-->
@@ -269,7 +272,7 @@
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="employee_numberblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <local:CustomEntry Text="{Binding EnterEmployeeNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter employee Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
                             </Frame>
@@ -280,15 +283,15 @@
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                    <Image Source="id_cardblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
                                         <Label Text="Upload id card" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Image Source="upload.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                     </StackLayout>                                    
                                 </Grid>
                             </Frame>
                             <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="7"></local:CustomButton>
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit Application" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="7"></local:CustomButton>
                         </Grid>
                     </Grid>
                 </Grid>

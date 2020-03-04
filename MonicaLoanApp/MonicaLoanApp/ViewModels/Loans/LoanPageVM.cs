@@ -12,7 +12,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         public LoanPageVM(INavigation nav)
         {
             Navigation = nav;
-            MenuCommand = new Command(OnMenuAsync);
+         //   MenuCommand = new Command(OnMenuAsync);
             PlusCommand = new Command(OnPlusAsync);
         }
         #endregion
@@ -31,17 +31,17 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region Methods
-        /// <summary>
-        /// TODO : To Open Menu Page...
-        /// </summary>
-        /// <param name="obj"></param>
-        private async void OnMenuAsync(object obj)
-        {
-            if (App.Current.MainPage is MasterDetailPage mdp)
-            {
-                mdp.IsPresented = true;
-            }
-        }
+        ///// <summary>
+        ///// TODO : To Open Menu Page...
+        ///// </summary>
+        ///// <param name="obj"></param>
+        //private async void OnMenuAsync(object obj)
+        //{
+        //    if (App.Current.MainPage is MasterDetailPage mdp)
+        //    {
+        //        mdp.IsPresented = true;
+        //    }
+        //}
 
         /// <summary>
         /// TODO: To validate Forgot Password Command..

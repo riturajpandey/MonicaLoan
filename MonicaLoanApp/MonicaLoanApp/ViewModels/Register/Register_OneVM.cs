@@ -22,8 +22,6 @@ namespace MonicaLoanApp.ViewModels.Register
             FinishCommand = new Command(FinishCommandAsync);
             BckCommand = new Command(BckCommandAsync);
         }
-
-        
         #endregion
 
         #region Properties

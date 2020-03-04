@@ -28,8 +28,18 @@
             <Color x:Key="DarkGradientColour">#48049c</Color>
             <Color x:Key="LightGradientColour">#8350f6</Color>
             <Color x:Key="SeparatorGrayColour">#BCBCBC</Color>
-           
-            
+
+            <!--Gray Color-->
+            <Color x:Key="LightGrayColor">#899ca3</Color>
+
+            <!--Black Color-->
+            <Color x:Key="LightBlackColor">#1e1937</Color>
+
+            <!--Purple Color-->
+            <Color x:Key="LightPurpleColor">#8B87A0</Color>
+
+            <!--Sky Blue Color-->
+            <Color x:Key="SkyBlueColor">#06DED6</Color>
             
             <!--#endregion-->
 
@@ -99,6 +109,7 @@
                 <Setter Property="FontFamily" Value="{DynamicResource Boldfont}" />
             </Style>
             <!--#endregion-->
+            
             <!--#region Entrys -->
             <!--Primary Login Entry-->
             <Style x:Key="PrimaryEntry" TargetType="Entry">
@@ -117,7 +128,9 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <!--#endregion-->
+            
             <!--#region Labels -->
+            
             <!--Primary Font -->
             <Style x:Key="PrimaryLable" TargetType="Label">
                 <Setter Property="FontSize" Value="20" />

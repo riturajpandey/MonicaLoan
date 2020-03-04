@@ -8,9 +8,37 @@ namespace MonicaLoanApp.ViewModels
 {
     public class BaseViewModel : BindableObject
     {
-        private INavigation _Navigation;
-       // protected readonly IBusinessCode _businessCode;
+        
+        // protected readonly IBusinessCode _businessCode;
+        #region CONSTRUCTOR
+        public BaseViewModel(INavigation navigation = null)
+        {
+            try
+            {
+                Navigation = navigation;
+                BacksCommand = new Command(OnBacksAsync);
+                MenuCommand = new Command(OnMenuAsync);
+                //  _businessCode = SimpleIoc.Default.GetInstance<IBusinessCode>();
+            }
+            catch (Exception ex)
+            { }
+        }
+        #endregion
+
+        #region COMMAND
         public Command BacksCommand { get; set; }
+        public Command MenuCommand { get; set; }
+        #endregion
+
+        #region PROPERTIES
+        public Acr.UserDialogs.IUserDialogs UserDialog
+        {
+            get
+            {
+                return Acr.UserDialogs.UserDialogs.Instance;
+            }
+        }
+        private INavigation _Navigation;
         public INavigation Navigation
         {
             get { return _Navigation; }
@@ -25,19 +53,9 @@ namespace MonicaLoanApp.ViewModels
         }
 
         public bool IsInitialized { get; set; }
+        #endregion
 
-        public BaseViewModel(INavigation navigation = null)
-        {
-            try
-            {
-                Navigation = navigation;
-                BacksCommand = new Command(OnBacksAsync);
-              //  _businessCode = SimpleIoc.Default.GetInstance<IBusinessCode>();
-            }
-            catch (Exception ex)
-            { }
-        }
-
+        #region METHODS
         /// <summary>
         /// TODO : To Navigate To Back Page...
         /// </summary>
@@ -52,12 +70,13 @@ namespace MonicaLoanApp.ViewModels
 
             }
         }
-        public Acr.UserDialogs.IUserDialogs UserDialog
+        /// <summary>
+        /// TODO : To Navigate To MasterDetail Page...
+        /// </summary>
+        /// <param name="obj"></param>
+        private void OnMenuAsync(object obj)
         {
-            get
-            {
-                return Acr.UserDialogs.UserDialogs.Instance;
-            }
+            App.masterDetailPage.IsPresented = true;
         }
         public async Task PushModalAsync(Page page)
         {
@@ -82,5 +101,8 @@ namespace MonicaLoanApp.ViewModels
             if (Navigation != null)
                 await Navigation.PopModalAsync();
         }
+        #endregion
+       
+
     }
 }

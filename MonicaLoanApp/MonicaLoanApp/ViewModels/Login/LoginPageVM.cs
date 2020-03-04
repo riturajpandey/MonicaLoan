@@ -79,9 +79,8 @@ namespace MonicaLoanApp.ViewModels
 
             //To Set The First Page...
             App.masterDetailPage.Master = new MenuPage();
-            App.masterDetailPage.Detail = new NavigationPage(new LoanPage());
+            App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
             App.Current.MainPage = App.masterDetailPage;
-
         }
         /// <summary>
         /// TODO: To validate Forgot Password Command..

@@ -140,7 +140,7 @@
                             <!--label Section-->
                             <Label Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Text="Term: How long do you want the loan for?" Style="{StaticResource SmallestLable}" Margin="5"/>
                             <!--Tenure Section-->
-                            <Grid Grid.Row="7" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>

@@ -16,29 +16,26 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <!--Header Section-->
-                <Grid Grid.Row="0" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="40"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Frame Grid.Row="0" Padding="0">
+                    <!--Header Section-->
+                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
-                    </Grid>
-                    <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                        <Grid.GestureRecognizers>
-                            <!--<TapGestureRecognizer Command="{Binding MenuCommand}"/>-->
-                        </Grid.GestureRecognizers>
-                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                    </Grid>
-                </Grid>
+                </Frame>
+                
 
                 <!--Middle grid-->
                 <Grid Grid.Row="1" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,15,10,0">

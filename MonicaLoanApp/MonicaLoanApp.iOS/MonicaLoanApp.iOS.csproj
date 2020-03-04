@@ -492,4 +492,112 @@
   <ItemGroup>
     <BundleResource Include="Resources\list%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\userbluebold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\upload%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\userbluebold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\upload%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\userbluebold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dateblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\employee_numberblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id_cardblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id_card%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dateblue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\employee_numberblue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\employee_numberblue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\id_cardblue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dateblue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\currencyblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\currencyblue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_circle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\select%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\setting%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camra%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\company%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_circle%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\select%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\setting%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camra%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\company%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\currencyblue%403x.png" />
+  </ItemGroup>
 </Project>

@@ -25,9 +25,9 @@ namespace MonicaLoanApp.Views.ResetPassword
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PopModalAsync();
-        }
+        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    Navigation.PopModalAsync();
+        //}
     }
 }

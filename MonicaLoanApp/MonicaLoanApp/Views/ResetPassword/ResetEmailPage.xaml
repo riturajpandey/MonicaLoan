@@ -33,7 +33,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
                             </Grid.GestureRecognizers>
                             <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         </Grid>
@@ -76,7 +76,7 @@
                                 </Grid>
                             </Grid>
                             <!--Email Section-->
-                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>

@@ -32,6 +32,32 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
+        private string _EnterEmployeeNumber;
+        public string EnterEmployeeNumber
+        {
+            get { return _EnterEmployeeNumber; }
+            set
+            {
+                if (_EnterEmployeeNumber != value)
+                {
+                    _EnterEmployeeNumber = value;
+                    OnPropertyChanged("EnterEmployeeNumber");
+                }
+            }
+        }
+        private string _EnterSalary;
+        public string EnterSalary
+        {
+            get { return _EnterSalary; }
+            set
+            {
+                if (_EnterSalary != value)
+                {
+                    _EnterSalary = value;
+                    OnPropertyChanged("EnterSalary");
+                }
+            }
+        }
         private string _NumberOfWeek;
         public string NumberOfWeek
         {

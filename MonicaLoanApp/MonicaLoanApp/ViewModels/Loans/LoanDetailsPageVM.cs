@@ -21,10 +21,10 @@ namespace MonicaLoanApp.ViewModels.Loans
             //TODO : Dummy Data in list
             LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             {
-                 new LoanDetailsModel{Id="0", Amount="N500,000",Status="Pending approval",AmtDate="1 Feb 2020" , SelectBackColor="F1EDED"},
-                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", SelectBackColor=""},
+                 new LoanDetailsModel{Id="0", Amount="N500,000",Status="Pending approval",AmtDate="1 Feb 2020" ,},
+                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
             };
         }
       
@@ -36,7 +36,6 @@ namespace MonicaLoanApp.ViewModels.Loans
         public Command PlusCommand { get; set; }
 
         #endregion
-
 
         #region Properties
 
@@ -72,7 +71,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnPlusAsync(object obj)
         {
-           // await Navigation.PushModalAsync(new Views.Loans.LoanDetailsPage());
+            await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
         }
 
         #endregion

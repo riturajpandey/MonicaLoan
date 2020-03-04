@@ -287,7 +287,7 @@ namespace MonicaLoanApp.ViewModels.Register
             }
         }
         /// <summary>
-        /// TODO: Define NextCommand validation...
+        /// TODO: Define SecondNextCommand validation...
         /// </summary>
         /// <param name="obj"></param>
         private async void SecondNextCommandAsync(object obj)

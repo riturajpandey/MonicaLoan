@@ -88,7 +88,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding }" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Amount" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    <local:CustomEntry Text="{Binding EnterAmount}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Amount" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
                             </Frame>
                             <!--Loan Purpose Section-->
@@ -166,7 +166,7 @@
                                     </Grid>
                                 </Frame>
                                 <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                    <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Number of weeks" Style="{StaticResource SecondryEntry}" />
+                                    <local:CustomEntry Text="{Binding NumberOfWeek}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Number of weeks" Style="{StaticResource SecondryEntry}" />
                                 </Frame>
                             </Grid>
                             <!--LoginButton Section-->
@@ -259,7 +259,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding Number}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Salary" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    <local:CustomEntry Text="{Binding EnterSalary}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Salary" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
                             </Frame>
                             <!--employee Section-->
@@ -270,10 +270,10 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding }" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter employee Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    <local:CustomEntry Text="{Binding EnterEmployeeNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter employee Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
                             </Frame>
-                            <!--Salary Section-->
+                            <!--IdCard Section-->
                             <Frame Grid.Row="5" HorizontalOptions="FillAndExpand" HeightRequest="40" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>

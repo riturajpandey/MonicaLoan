@@ -31,11 +31,12 @@
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                     </Grid>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource BlackColour}" Opacity="0.5"/>
                 </Grid>
                 <!--Middle grid-->
                 <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.6*"/>
                         <RowDefinition Height="2*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -45,8 +46,11 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="disable_three.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                        <!--<Frame Grid.Row="0" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                            <Image Source="token.png" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Frame>-->
+                            <Image Grid.Row="0" Source="token.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Margin="0,5">
                             <Label Text="You don't have any loans" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
                         <Grid Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Margin="20,5">

@@ -92,7 +92,7 @@
                 <Setter Property="TextColor" Value="{StaticResource AppWhiteColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="FontFamily" Value="{DynamicResource Regularfont}" />
+                <Setter Property="FontFamily" Value="{DynamicResource Boldfont}" />
             </Style>
             <!--#endregion-->
             <!--#region Entrys -->

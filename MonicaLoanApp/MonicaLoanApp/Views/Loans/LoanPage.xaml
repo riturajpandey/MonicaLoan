@@ -26,7 +26,7 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding MenuCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
@@ -47,7 +47,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="token.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Image Grid.Row="0" Source="loan.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Margin="0,5">
                             <Label Text="You don't have any loans" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
@@ -60,7 +60,7 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlusCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Row="0" Source="token.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Image Grid.Row="0" Source="plus.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                 </Grid>
             </Grid>

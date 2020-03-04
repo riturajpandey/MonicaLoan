@@ -75,7 +75,7 @@ namespace MonicaLoanApp.ViewModels
         private async void LoginAsync(object obj)
         {
             //Apply LoginValidations...
-            if (!await Validate()) return;
+         //   if (!await Validate()) return;
 
             //To Set The First Page...
             App.masterDetailPage.Master = new MenuPage();

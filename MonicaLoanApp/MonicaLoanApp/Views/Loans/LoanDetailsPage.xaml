@@ -75,7 +75,7 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlusCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="disable_three.png" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"/>
+                        <Image Source="plus.png" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"/>
                     </Grid>
                 </Grid>
             </Grid>

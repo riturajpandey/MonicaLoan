@@ -14,7 +14,7 @@ namespace MonicaLoanApp
             InitializeComponent();
             
           //  MainPage = new Views.Loans.LoanApplicationForm();
-            MainPage = new Views.Loans.LoanPage();
+            MainPage = new Views.Loans.YourLoanBalancePage();
 
         }
 

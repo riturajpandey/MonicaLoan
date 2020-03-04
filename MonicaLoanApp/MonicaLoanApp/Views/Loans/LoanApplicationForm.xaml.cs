@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonicaLoanApp.ViewModels.Loans;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace MonicaLoanApp.Views.Loans
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoanApplicationForm : ContentPage
     {
+        protected LoanApplicationFormVM LoanApplication_Form;
         public LoanApplicationForm()
         {
             InitializeComponent();
@@ -21,5 +23,7 @@ namespace MonicaLoanApp.Views.Loans
         {
             Navigation.PopModalAsync();
         }
+
+        
     }
 }

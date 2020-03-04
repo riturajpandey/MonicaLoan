@@ -67,6 +67,17 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="BorderColor" Value="#6d5297" />
             </Style>
+
+            <!--BordorlessFrame-->
+            <Style x:Key="BordorlessFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource AppWhiteColor}"/>
+                <Setter Property="Padding" Value="10,5,10,5" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
             <!--#endregion-->
 
             <!--#region Buttons -->
@@ -81,9 +92,9 @@
                 <Setter Property="TextColor" Value="{StaticResource AppWhiteColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="{DynamicResource Regularfont}" />
             </Style>
             <!--#endregion-->
-
             <!--#region Entrys -->
             <!--Primary Login Entry-->
             <Style x:Key="PrimaryEntry" TargetType="Entry">
@@ -93,7 +104,6 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-
             <!--Secondry Entries-->
             <Style x:Key="SecondryEntry" TargetType="Entry">
                 <Setter Property="FontSize" Value="15" />
@@ -103,7 +113,6 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <!--#endregion-->
-
             <!--#region Labels -->
             <!--Primary Font -->
             <Style x:Key="PrimaryLable" TargetType="Label">
@@ -127,7 +136,7 @@
             <Style x:Key="SmallestLable" TargetType="Label">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
-                <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
+                <Setter Property="TextColor" Value="{StaticResource SmallLblColor}" />
             </Style>
             <!--#endregion-->
 

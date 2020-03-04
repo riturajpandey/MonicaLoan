@@ -43,7 +43,7 @@
                     </Grid>
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="Black" HeightRequest="1" Opacity="0.2"></Grid>
                     <!--Final Grid-->
-                    <Grid Grid.Row="1" IsVisible="{Binding }" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource BackgroundColor}">
+                    <Grid Grid.Row="1" IsVisible="{Binding }" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="Auto"/>
@@ -56,6 +56,7 @@
                                 <RowDefinition Height="5"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="10"/>
@@ -137,19 +138,38 @@
                                 </Grid>
                             </Frame>
                             <Label Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Text="Term: How long do you want the loan for?" Style="{StaticResource SmallestLable}" Margin="5"/>
-                            <!--calender Section--><!--
-                            <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="id.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Account Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>-->
+                            <Grid Grid.Row="7" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--calender Section-->
+                                <Frame Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                            <local:CustomPicker x:Name="Weeks" ItemsSource="{Binding }" Title="Week"  VerticalOptions="CenterAndExpand">
+                                                <Picker.Items>
+                                                    <x:String>weeks</x:String>
+                                                    <x:String>Months</x:String>
+                                                    <x:String>Year</x:String>
+                                                </Picker.Items>
+                                            </local:CustomPicker>
+                                            <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                    <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Number of weeks" Style="{StaticResource SecondryEntry}" />
+                                </Frame>
+                            </Grid>
+                            
                             <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="8"></local:CustomButton>
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="9"></local:CustomButton>
                         </Grid>
                     </Grid>
                 </Grid>

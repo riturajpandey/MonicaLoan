@@ -24,9 +24,9 @@ namespace MonicaLoanApp.Views.ResetPassword
             this.BindingContext = NewPasswordVM;
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PopModalAsync();
-        }
+        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    Navigation.PopModalAsync();
+        //}
     }
 }

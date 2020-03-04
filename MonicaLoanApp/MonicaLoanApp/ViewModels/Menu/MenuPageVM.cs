@@ -89,10 +89,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnMyAccountAsync(object obj)
         {
-            //App.masterDetailPage.IsPresented = false;
-            //App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new AccountPage());
-            //App.Current.MainPage = App.masterDetailPage;
-            //App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
 
         /// <summary>

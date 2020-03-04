@@ -130,7 +130,8 @@ namespace MonicaLoanApp.ViewModels.Loans
             {
                 GridOne = true;
                 GridSecond = false;
-            }else if (GridOne == true)
+            }
+            else if (GridOne == true)
             {
                 Navigation.PopModalAsync();
             }

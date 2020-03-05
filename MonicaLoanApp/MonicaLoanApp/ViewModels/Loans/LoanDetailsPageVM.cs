@@ -16,8 +16,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             Navigation = nav;
             MenuCommand = new Command(OnMenuAsync);           
             PlusCommand = new Command(OnPlusAsync);
-
-
+             
             //TODO : Dummy Data in list
             LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             {

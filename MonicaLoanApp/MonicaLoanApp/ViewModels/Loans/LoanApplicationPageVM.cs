@@ -28,9 +28,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region DELEGATECOMMAND  
-
-        public Command BackCommand { get; set; }
-
+         
         #endregion
 
         #region Properties
@@ -52,16 +50,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// TODO : To back Page...
-        /// </summary>
-        /// <param name="obj"></param>
-        private async void OnBackAsync(object obj)
-        {
-            await Navigation.PopModalAsync();
-        }
-
+         
         #endregion
 
     }

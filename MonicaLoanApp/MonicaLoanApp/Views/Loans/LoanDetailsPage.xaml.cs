@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.Loans;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.Loans;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,9 @@ namespace MonicaLoanApp.Views.Loans
         /// <param name="e"></param>
         private async void LoanDetail_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage());
+            var item = (sender as Grid).BindingContext as LoanDetailsModel;
+            if (item != null) 
+                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage());
         }
         #endregion
     }

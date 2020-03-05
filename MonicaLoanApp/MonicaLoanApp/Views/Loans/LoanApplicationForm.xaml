@@ -106,7 +106,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="select.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="Purpose" ItemsSource="{Binding }" Title="Select Purpose"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="Purpose" ItemsSource="{Binding }" Title="Select Purpose" VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>SBI</x:String>
                                                 <x:String>PNB</x:String>

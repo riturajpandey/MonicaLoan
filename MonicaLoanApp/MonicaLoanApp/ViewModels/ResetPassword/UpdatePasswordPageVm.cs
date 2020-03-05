@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,9 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
         /// <param name="obj"></param>
         private async void NewPasswordCommandAsync(object obj)
         {
-            if (!await Validate()) ;
+            if (!await Validate()) return;
+            UserDialog.Alert("Password reset successfully.!", "Alert", "Ok");
+            App.Current.MainPage = new Views.Login.LoginPage();
         }
 
         /// <summary>

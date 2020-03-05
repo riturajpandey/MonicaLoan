@@ -71,11 +71,26 @@ namespace MonicaLoanApp.Views.Register
 
             }
         }
-
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        /// <summary>
+        /// TODO :
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PckBank_Tapped(object sender, EventArgs e)
         {
-            Bank.Focus();
+            PckBank.Focus();
+        }
+
+        /// <summary>
+        /// TODO : To Defeine Event Handelr To Focus Gender Pciker...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PckGender_Tapped(object sender, EventArgs e)
+        {
+            Pckgender.Focus();
         }
         #endregion
+
     }
 }

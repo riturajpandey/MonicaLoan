@@ -209,13 +209,16 @@
                             <!--Gender Section-->
                             <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="PckGender_Tapped"/>
+                                    </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="gender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="gender" ItemsSource="{Binding Gender}" Title="Gender"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="Pckgender" ItemsSource="{Binding Gender}" Title="Gender"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>Male</x:String>
                                                 <x:String>Female</x:String>
@@ -323,7 +326,7 @@
                            <!--Merital Section-->
                             <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                    <TapGestureRecognizer Tapped="PckBank_Tapped"/>
                                 </Frame.GestureRecognizers>
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
@@ -332,7 +335,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="bank.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="Bank" ItemsSource="{Binding BankPicker}" Title="Select Bank"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="PckBank" ItemsSource="{Binding BankPicker}" Title="Select Bank"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>SBI</x:String>
                                                 <x:String>PNB</x:String>

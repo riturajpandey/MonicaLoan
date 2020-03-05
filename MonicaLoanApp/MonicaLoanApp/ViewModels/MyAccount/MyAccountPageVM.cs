@@ -36,7 +36,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Address;
+        private string _Address ="";
         public string Address
         {
             get { return _Address; }

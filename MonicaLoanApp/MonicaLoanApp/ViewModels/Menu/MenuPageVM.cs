@@ -53,10 +53,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnHomeAsync(object obj)
         {
-            //App.masterDetailPage.IsPresented = false;
-            //App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new HomePage());
-            //App.Current.MainPage = App.masterDetailPage;
-            //App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
 
         /// <summary>
@@ -113,10 +113,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnSignOutAsync(object obj)
         {
-            //App.masterDetailPage.IsPresented = false;
-            //App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new SignOutPage());
-            //App.Current.MainPage = App.masterDetailPage;
-            //App.masterDetailPage.IsPresented = false;
+            App.Current.MainPage = new Views.Login.LoginPage();
         }
 
         #endregion

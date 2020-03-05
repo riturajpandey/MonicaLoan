@@ -311,9 +311,10 @@ namespace MonicaLoanApp.ViewModels.Register
         {
             if (!await FinishSignUpValidate())
             {
-                BusinessNumber = string.Empty;
-                AccountNumber = string.Empty;
+                return;
             };
+            UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+            App.Current.MainPage = new Views.Login.LoginPage();
         }
         #region Check Validate All Fields
         /// <summary>

@@ -24,8 +24,7 @@ namespace MonicaLoanApp.ViewModels.Loans
 
 
         #endregion
-
-
+ 
         #region Properties
 
         #endregion

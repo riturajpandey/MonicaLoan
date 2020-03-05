@@ -16,6 +16,8 @@ namespace MonicaLoanApp.Views.Login
     { 
         //TODO : To Define class Level Variables...
         protected LoginPageVM LoginVm;
+
+        #region Constructor
         public LoginPage()
         {
             InitializeComponent();
@@ -24,5 +26,6 @@ namespace MonicaLoanApp.Views.Login
             LoginVm = new LoginPageVM(this.Navigation);
             this.BindingContext = LoginVm;
         }
+        #endregion
     }
 }

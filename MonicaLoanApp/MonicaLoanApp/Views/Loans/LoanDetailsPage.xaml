@@ -18,7 +18,7 @@
                 </Grid.RowDefinitions>
                  <Frame Grid.Row="0" Padding="0">
                     <!--Header Section-->
-                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
@@ -72,7 +72,17 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlusCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="plus.png" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"/>
+                        <!--Plus Image Section-->
+                        <Control:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                                                 HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
+                                                BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
+                            <Control:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
+                                                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                                BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
+                                <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
+                            </Control:CustomFrameForOpacity>
+
+                        </Control:CustomFrameForOpacity>
                     </Grid>
                 </Grid>
             </Grid>

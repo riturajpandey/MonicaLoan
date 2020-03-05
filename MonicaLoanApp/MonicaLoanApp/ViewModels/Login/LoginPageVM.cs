@@ -81,12 +81,12 @@ namespace MonicaLoanApp.ViewModels
             //   if (!await Validate()) return;
 
             //To Set The First Page...
-            //App.masterDetailPage.Master = new MenuPage();
-            //App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
-            //App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.Master = new MenuPage();
+            App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
+            App.Current.MainPage = App.masterDetailPage;
 
-            SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
-            await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+            //SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
+            //await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
         }
         /// <summary>
         /// TODO: To validate Forgot Password Command..

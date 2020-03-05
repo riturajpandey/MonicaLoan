@@ -18,16 +18,20 @@
                 </Grid.RowDefinitions>
                 <Frame Grid.Row="0" Padding="0">
                     <!--Header Section-->
-                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding MenuCommand}"/>
+                                <TapGestureRecognizer Command="{Binding MenuCommands}"/>
                             </Grid.GestureRecognizers>
-                            <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MenuCommands}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
@@ -63,7 +67,18 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlusCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Row="0" Source="plus.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <!--<Image Grid.Row="0" Source="plus.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
+                        <!--Plus Image Section-->
+                        <local:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                                                 HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
+                                                BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
+                            <local:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
+                                                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                                BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
+                                <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
+                            </local:CustomFrameForOpacity>
+
+                        </local:CustomFrameForOpacity>
                     </Grid>
                 </Grid>
             </Grid>

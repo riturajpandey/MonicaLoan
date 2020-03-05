@@ -10,6 +10,8 @@ namespace MonicaLoanApp.Views.Loans
     {
         //TODO : To Define class Level Variables...
         protected LoanPageVM LoanVM;
+
+        #region Constructor
         public LoanPage()
         {
             InitializeComponent();
@@ -18,5 +20,6 @@ namespace MonicaLoanApp.Views.Loans
             LoanVM = new LoanPageVM(this.Navigation);
             this.BindingContext = LoanVM;
         }
+        #endregion
     }
 }

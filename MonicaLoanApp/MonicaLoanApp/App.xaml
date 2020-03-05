@@ -28,6 +28,7 @@
             <Color x:Key="DarkGradientColour">#48049c</Color>
             <Color x:Key="LightGradientColour">#8350f6</Color>
             <Color x:Key="SeparatorGrayColour">#BCBCBC</Color>
+            <Color x:Key="LoginBorderColour">#6d5297</Color>
 
             <!--Gray Color-->
             <Color x:Key="LightGrayColor">#899ca3</Color>
@@ -57,7 +58,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="BorderColor" Value="#6d5297" />
+                <Setter Property="BorderColor" Value="{StaticResource LoginBorderColour}" />
             </Style>
 
             <!--Round light gray frame -->
@@ -80,7 +81,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="BorderColor" Value="#6d5297" />
+                <Setter Property="BorderColor" Value="{StaticResource LoginBorderColour}" />
             </Style>
 
             <!--BordorlessFrame-->

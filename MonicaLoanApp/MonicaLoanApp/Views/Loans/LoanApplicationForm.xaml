@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!--Main Grid-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
                 <!--GradientColor Section--><!--
                 <magic:GradientView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
                     <magic:GradientView.GradientSource >
@@ -20,14 +20,14 @@
                         </magic:LinearGradient>
                     </magic:GradientView.GradientSource>
                 </magic:GradientView>-->
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Frame Grid.Row="0" Padding="0">
                         <!--Header Section-->
-                        <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                        <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
@@ -44,7 +44,7 @@
                             </Grid>
                         </Grid>
                     </Frame>
-                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="Black" HeightRequest="1" Opacity="0.2"></Grid>
+                    <!--<Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="Black" HeightRequest="1" Opacity="0.2"></Grid>-->
                     <!--First Grid-->
                     <Grid Grid.Row="1" IsVisible="{Binding GridOne}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid.RowDefinitions>
@@ -104,7 +104,7 @@
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="select.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="select.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                         <local:CustomPicker x:Name="Purpose" ItemsSource="{Binding }" Title="Select Purpose"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>

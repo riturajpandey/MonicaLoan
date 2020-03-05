@@ -34,6 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MyAccount\PersonalDetailsPage.xaml.cs">
+      <DependentUpon>PersonalDetailsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\Loans\LoanApplicationForm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -55,7 +61,13 @@
     <EmbeddedResource Update="Views\Menu\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyAccount\AddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\MyAccount\MyAccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyAccount\PersonalDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\LoanApplication\LoanProcessedPopup.xaml">

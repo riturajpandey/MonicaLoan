@@ -78,19 +78,19 @@ namespace MonicaLoanApp.ViewModels.Register
                 }
             }
         }
-        private string _Email;
-        public string Email
-        {
-            get { return _Email; }
-            set
+            private string _Email;
+            public string Email
             {
-                if (_Email != value)
+                get { return _Email; }
+                set
                 {
-                    _Email = value;
-                    OnPropertyChanged("Email");
+                    if (_Email != value)
+                    {
+                        _Email = value;
+                        OnPropertyChanged("Email");
+                    }
                 }
             }
-        }
         private bool _FirstGrid = true;
         public bool FirstGrid
         {

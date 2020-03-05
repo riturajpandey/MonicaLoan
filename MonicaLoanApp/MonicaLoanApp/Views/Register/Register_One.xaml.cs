@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Register
@@ -15,15 +16,19 @@ namespace MonicaLoanApp.Views.Register
     {
         //TODO: TO define class level variable
         protected Register_OneVM RegisterOneVM;
+
         #region constructor
         public Register_One()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             RegisterOneVM = new Register_OneVM(this.Navigation);
             this.BindingContext = RegisterOneVM;
         }
         #endregion
 
+        #region Methods
         /// <summary>
         /// TODO:To define back Tap Gesture...
         /// </summary>
@@ -51,7 +56,7 @@ namespace MonicaLoanApp.Views.Register
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
             RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
-            
+
         }
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -63,7 +68,7 @@ namespace MonicaLoanApp.Views.Register
             if (DtPckDOB.Date != null)
             {
                 RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
-                
+
             }
         }
 
@@ -71,5 +76,6 @@ namespace MonicaLoanApp.Views.Register
         {
             Bank.Focus();
         }
+        #endregion
     }
 }

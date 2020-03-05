@@ -18,7 +18,7 @@
                 </Grid.RowDefinitions>
                 <Frame Grid.Row="0" Padding="0">
                     <!--Header Section-->
-                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" >
+                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>

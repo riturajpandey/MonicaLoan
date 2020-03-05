@@ -15,6 +15,8 @@ namespace MonicaLoanApp.Views.ResetPassword
     public partial class UpdatePasswordPage : ContentPage
     {
         protected UpdatePasswordPageVM NewPasswordVM;
+
+        #region Constructor
         public UpdatePasswordPage()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace MonicaLoanApp.Views.ResetPassword
             NewPasswordVM = new UpdatePasswordPageVM(this.Navigation);
             this.BindingContext = NewPasswordVM;
         }
-
+        #endregion
         //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         //{
         //    Navigation.PopModalAsync();

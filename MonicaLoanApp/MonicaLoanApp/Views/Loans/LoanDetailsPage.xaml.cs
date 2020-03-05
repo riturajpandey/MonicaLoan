@@ -16,6 +16,8 @@ namespace MonicaLoanApp.Views.Loans
     {
         //TODO : To Define class Level Variables...
         protected LoanDetailsPageVM LoanDetailsVM;
+
+        #region Constructor
         public LoanDetailsPage()
         {
             InitializeComponent();
@@ -24,7 +26,9 @@ namespace MonicaLoanApp.Views.Loans
             LoanDetailsVM = new LoanDetailsPageVM(this.Navigation);
             this.BindingContext = LoanDetailsVM;
         }
+        #endregion
 
+        #region Methods
         /// <summary>
         /// TODO: To list tapped event open LoanDetail page..
         /// </summary>
@@ -34,5 +38,6 @@ namespace MonicaLoanApp.Views.Loans
         {
             await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage());
         }
+        #endregion
     }
 }

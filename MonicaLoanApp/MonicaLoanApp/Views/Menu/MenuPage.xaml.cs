@@ -16,6 +16,8 @@ namespace MonicaLoanApp.Views.Menu
     {
         //TODO : To Define Class Level Variables...
         private MenuPageVM MenuVM;
+
+        #region Constructor
         public MenuPage()
         {
             InitializeComponent();
@@ -25,5 +27,6 @@ namespace MonicaLoanApp.Views.Menu
             MenuVM = new MenuPageVM(this.Navigation);
             this.BindingContext = MenuVM;
         }
+        #endregion
     }
 }

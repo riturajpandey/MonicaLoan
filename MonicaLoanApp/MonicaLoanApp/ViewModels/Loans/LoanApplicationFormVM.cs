@@ -119,11 +119,19 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region Method
+        /// <summary>
+        /// TODO: To define continue command for naviagtion to next page.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ContinueCommandAsync(object obj)
         {
             GridOne = false;
             GridSecond = true;
         }
+        /// <summary>
+        /// TODO: To define backCommand for hide and show grid .
+        /// </summary>
+        /// <param name="obj"></param>
         private void BckCommandAsync(object obj)
         {
             if (GridSecond == true)

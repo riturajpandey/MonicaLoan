@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Loans
@@ -20,11 +21,14 @@ namespace MonicaLoanApp.Views.Loans
         public LoanApplicationForm()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             LoanApplication_Form = new LoanApplicationFormVM(this.Navigation);
             this.BindingContext = LoanApplication_Form;
         }
         #endregion
 
+        #region Methods
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
@@ -61,7 +65,7 @@ namespace MonicaLoanApp.Views.Loans
 
             }
         }
-
+        #endregion
 
     }
 }

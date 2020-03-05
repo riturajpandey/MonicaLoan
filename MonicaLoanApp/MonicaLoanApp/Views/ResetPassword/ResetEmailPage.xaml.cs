@@ -16,6 +16,8 @@ namespace MonicaLoanApp.Views.ResetPassword
     {
         //TODO : To Define class Level Variables...
         protected EmailResetPageVM EmailResetVM;
+
+        #region COnstructor
         public ResetEmailPage()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace MonicaLoanApp.Views.ResetPassword
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
-
+        #endregion
         //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         //{
         //    Navigation.PopModalAsync();

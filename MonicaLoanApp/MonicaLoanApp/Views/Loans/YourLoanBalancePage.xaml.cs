@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Loans
@@ -15,11 +16,16 @@ namespace MonicaLoanApp.Views.Loans
     {
         //Define Properties Here...
         protected YourLoanBalancePageVM YourLoanBalancePageVM;
+
+        #region Constructor
         public YourLoanBalancePage()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             YourLoanBalancePageVM = new YourLoanBalancePageVM(this.Navigation);
             BindingContext = YourLoanBalancePageVM;
         }
+        #endregion
     }
 }

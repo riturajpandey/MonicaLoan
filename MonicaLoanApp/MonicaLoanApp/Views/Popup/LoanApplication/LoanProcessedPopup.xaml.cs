@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Popup.LoanApplication
@@ -21,12 +22,13 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
         public LoanProcessedPopup()
         {
             InitializeComponent();
+            
             PopUpBgLayout.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(HideDialog)
             });
         }
-        private void ShowDialogAnimation(VisualElement dialog, VisualElement bg)
+        private void ShowDialogAnimation(Xamarin.Forms.VisualElement dialog, Xamarin.Forms.VisualElement bg)
         {
             dialog.TranslationY = bg.Height;
             bg.IsVisible = true;
@@ -45,7 +47,7 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
 
             OnDialogShowing(new EventArgs());
         }
-        private async void HideDialogAnimation(VisualElement dialog, VisualElement bg)
+        private async void HideDialogAnimation(Xamarin.Forms.VisualElement dialog, Xamarin.Forms.VisualElement bg)
         {
             //ANIMATIONS     
             var hideBgAnimation = OpacityAnimation(bg, 0.5, 0);
@@ -89,15 +91,15 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
         {
             DialogShowing?.Invoke(this, e);
         }
-        private static Animation TransLateYAnimation(VisualElement element, double from, double to)
+        private static Animation TransLateYAnimation(Xamarin.Forms.VisualElement element, double from, double to)
         {
             return new Animation(d => { element.TranslationY = d; }, from, to);
         }
-        private static Animation TransLateXAnimation(VisualElement element, double from, double to)
+        private static Animation TransLateXAnimation(Xamarin.Forms.VisualElement element, double from, double to)
         {
             return new Animation(d => { element.TranslationX = d; }, from, to);
         }
-        private static Animation OpacityAnimation(VisualElement element, double from, double to)
+        private static Animation OpacityAnimation(Xamarin.Forms.VisualElement element, double from, double to)
         {
             return new Animation(d => { element.Opacity = d; }, from, to);
         }

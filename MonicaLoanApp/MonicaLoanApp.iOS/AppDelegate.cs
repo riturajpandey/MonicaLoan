@@ -25,9 +25,12 @@ namespace MonicaLoanApp.iOS
             #region Initializing Packages 
             global::Xamarin.Forms.Forms.Init(); 
             Rg.Plugins.Popup.Popup.Init(); 
-            Plugin.InputKit.Platforms.iOS.Config.Init();   
+            Plugin.InputKit.Platforms.iOS.Config.Init();
+            UIApplication.SharedApplication.StatusBarHidden = false;
+
             #endregion
             LoadApplication(new App());
+
 
             return base.FinishedLaunching(app, options);
         }

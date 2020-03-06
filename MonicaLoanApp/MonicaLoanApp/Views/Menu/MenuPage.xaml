@@ -34,8 +34,8 @@
                             </Grid.GestureRecognizers>
                             <Image Grid.Column="0" Source="Ellipse3.png" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
                             <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
-                                <Label Text="Joe Bloggs" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                                <Label Text="87447197" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                                <Label Text="{Binding UserName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                                <Label Text="{Binding UserNumber}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
                             </StackLayout>
                             
                         </Grid>

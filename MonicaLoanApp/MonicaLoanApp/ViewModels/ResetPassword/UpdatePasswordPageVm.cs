@@ -7,10 +7,10 @@ using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.ResetPassword
 {
-    public class UpdatePasswordPageVM : BaseViewModel
+    public class UpdatePasswordPageVm : BaseViewModel
     {
         #region Constructor
-        public UpdatePasswordPageVM(INavigation nav)
+        public UpdatePasswordPageVm(INavigation nav)
         {
             Navigation = nav;
             NewPasswordCommand = new Command(NewPasswordCommandAsync);

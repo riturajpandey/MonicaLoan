@@ -42,11 +42,36 @@ namespace MonicaLoanApp.ViewModels.Menu
         #endregion
 
         #region PROPERTIES 
-
+        private string _UserName = "Joe Bloggs";
+        public string UserName
+        {
+            get { return _UserName; }
+            set
+            {
+                if (_UserName != value)
+                {
+                    _UserName = value;
+                    OnPropertyChanged("UserName");
+                }
+            }
+        }
+        private string _UserNumber= "87447197";
+        public string UserNumber
+        {
+            get { return _UserNumber; }
+            set
+            {
+                if (_UserNumber != value)
+                {
+                    _UserNumber = value;
+                    OnPropertyChanged("UserNumber");
+                }
+            }
+        }
         #endregion
 
         #region Methods
-       
+
         /// <summary>
         /// TODO : To navigate To Home Page...
         /// </summary>

@@ -31,6 +31,7 @@
                             <controls:CustomFrameForOpacity HeightRequest="46" WidthRequest="46" CornerRadius="23" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
+                                <Image Source="checknew.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
                             </controls:CustomFrameForOpacity>
 
                         </controls:CustomFrameForOpacity>

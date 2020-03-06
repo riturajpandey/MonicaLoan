@@ -73,7 +73,7 @@
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="mailblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                             </Grid>
                         </Frame>
@@ -90,7 +90,7 @@
                                 <!--Calender Image-->
                                 <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Image Source="dateblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                                    <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
+                                    <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False" />
                                 </Grid>
                                 <!--Date Section-->
                                 <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand"/>
@@ -103,7 +103,7 @@
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="gender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="genderblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                     <local:CustomPicker x:Name="gender" ItemsSource="{Binding Gender}" Title="Gender"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
@@ -123,7 +123,7 @@
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="martial.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="martialblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                     <local:CustomPicker x:Name="MaritalStatus" ItemsSource="{Binding MaritalStatus}" Title="Marital Status"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>

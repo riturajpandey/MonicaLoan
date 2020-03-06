@@ -291,7 +291,7 @@
                                 </Grid>
                             </Frame>
                             <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit Application" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="7"></local:CustomButton>
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit Application" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="7"></local:CustomButton>
                         </Grid>
                     </Grid>
                 </Grid>

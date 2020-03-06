@@ -41,7 +41,7 @@
                     <Label Text="Your Loan Balance" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource SkyBlueColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <!--Due Soon Text-->
-                    <Label Text="N500,000.00" FontFamily="{StaticResource Boldfont}" FontSize="25" TextColor="{StaticResource AppWhiteColor}" 
+                    <Label Text="{Binding LoanAmount}" FontFamily="{StaticResource Boldfont}" FontSize="25" TextColor="{StaticResource AppWhiteColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </Grid>
@@ -55,7 +55,7 @@
                                                 BackgroundColor="{StaticResource LightBlackColor}" BorderColor="{StaticResource LightBlackColor}">
                         <StackLayout Spacing="3" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <!--Amount Text-->
-                            <Label Text="N8,250,500.00" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource AppWhiteColor}" 
+                            <Label Text="{Binding DueAmount}" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource AppWhiteColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <!--Due Soon Text-->
                             <Label Text="Due Soon" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource LightPurpleColor}" 
@@ -80,7 +80,9 @@
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
                         <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
                     </controls:CustomFrameForOpacity>
-
+                    <controls:CustomFrameForOpacity.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlusCommand}"/>
+                    </controls:CustomFrameForOpacity.GestureRecognizers>
                 </controls:CustomFrameForOpacity>
                 <!--Detail Image Section-->
                 <controls:CustomFrameForOpacity Grid.Column="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
@@ -91,7 +93,9 @@
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
                         <Image Source="list.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
                     </controls:CustomFrameForOpacity>
-
+                    <controls:CustomFrameForOpacity.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListCommand}"/>
+                    </controls:CustomFrameForOpacity.GestureRecognizers>
                 </controls:CustomFrameForOpacity>
             </Grid>
         </Grid>

@@ -14,7 +14,7 @@ namespace MonicaLoanApp.Views.ResetPassword
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdatePasswordPage : ContentPage
     {
-        protected UpdatePasswordPageVM NewPasswordVM;
+        protected UpdatePasswordPageVm NewPasswordVM;
 
         #region Constructor
         public UpdatePasswordPage()
@@ -22,7 +22,7 @@ namespace MonicaLoanApp.Views.ResetPassword
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            NewPasswordVM = new UpdatePasswordPageVM(this.Navigation);
+            NewPasswordVM = new UpdatePasswordPageVm(this.Navigation);
             this.BindingContext = NewPasswordVM;
         }
         #endregion

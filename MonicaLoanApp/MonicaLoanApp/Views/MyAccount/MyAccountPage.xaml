@@ -62,7 +62,7 @@
                         <Image Grid.Column="0" Source="userbluebold.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <StackLayout Grid.Column="1">
                             <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" Margin="20,0,0,0"/>
-                            <Label Text="Joe Bloggs" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
+                            <Label Text="{Binding PersonalDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
                         </StackLayout>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="1" ></Grid>
@@ -79,7 +79,7 @@
                         <!--<Label Grid.Column="1" Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                         <StackLayout Grid.Column="1">
                             <Label Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" Margin="20,0,0,0"/>
-                            <Label Text="15, Bale Street, Lekki, London." HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
+                            <Label Text="{Binding Address}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
                         </StackLayout>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="3" ></Grid>
@@ -96,7 +96,7 @@
                         <!--<Label Grid.Column="1" Text="Employement" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                         <StackLayout Grid.Column="1" Margin="10,0,0,0">
                             <Label Text="Employement" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" />
-                            <Label Text="Joe Bloggs" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
+                            <Label Text="{Binding Employement}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                         </StackLayout>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="5" ></Grid>
@@ -109,11 +109,11 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding BankDetailsCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="bank.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Image Grid.Column="0" Source="bankblue.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <!--<Label Grid.Column="1" Text="Bank Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                         <StackLayout Grid.Column="1" Margin="10,0,0,0">
                             <Label Text="Bank Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}"/>
-                            <Label Text="Royal Bank 87413232" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
+                            <Label Text="{Binding BankDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                         </StackLayout>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="7" ></Grid>

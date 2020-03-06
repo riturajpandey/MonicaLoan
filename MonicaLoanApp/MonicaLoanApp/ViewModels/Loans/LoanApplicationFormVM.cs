@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MonicaLoanApp.Views.Popup.LoanApplication;
+using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -7,12 +9,14 @@ namespace MonicaLoanApp.ViewModels.Loans
 {
     public class LoanApplicationFormVM :BaseViewModel
     {
+        protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
         #region Constructor
         public LoanApplicationFormVM(INavigation nav)
         {
             Navigation = nav;
             Continue = new Command(ContinueCommandAsync);
             BckCommand = new Command(BckCommandAsync);
+            SubmitCommand = new Command(SubmitCommandAsync);
         }
 
         
@@ -116,6 +120,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         #region Command
         public Command Continue { get; set; }
         public Command BckCommand { get; set; }
+        public Command SubmitCommand { get; set; }
         #endregion
 
         #region Method
@@ -127,6 +132,16 @@ namespace MonicaLoanApp.ViewModels.Loans
         {
             GridOne = false;
             GridSecond = true;
+        }
+        /// <summary>
+        /// TODO: To define SubmitCommand for naviagtion to next page.
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void SubmitCommandAsync(object obj)
+        {
+            SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
+            await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+
         }
         /// <summary>
         /// TODO: To define backCommand for hide and show grid .

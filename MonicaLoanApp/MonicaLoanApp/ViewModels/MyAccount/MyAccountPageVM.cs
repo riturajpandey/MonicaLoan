@@ -22,7 +22,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Properties
-        private string _PersonalDetails;
+        private string _PersonalDetails = "Joe Bloggs";
         public string PersonalDetails
         {
             get { return _PersonalDetails; }
@@ -36,7 +36,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Address ="";
+        private string _Address = "15, Bale Street, Lekki, London.";
         public string Address
         {
             get { return _Address; }
@@ -50,7 +50,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Employement;
+        private string _Employement= "Joe Bloggs";
         public string Employement
         {
             get { return _Employement; }
@@ -64,7 +64,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _BankDetails;
+        private string _BankDetails = "Royal Bank 87413232";
         public string BankDetails
         {
             get { return _BankDetails; }
@@ -96,7 +96,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private void logoutCommandAsync(object obj)
         {
-            
+            App.Current.MainPage = new Views.Login.LoginPage();
         }
         /// <summary>
         /// TODO: To define BankDetailsCommand.
@@ -104,6 +104,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private void BankDetailsCommandAsync(object obj)
         {
+            Navigation.PushModalAsync(new Views.MyAccount.BankPage());
         }
         /// <summary>
         /// TODO: To define EmployementCommand.
@@ -111,6 +112,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private void EmployementCommandAsync(object obj)
         {
+            Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
           
         }
         /// <summary>

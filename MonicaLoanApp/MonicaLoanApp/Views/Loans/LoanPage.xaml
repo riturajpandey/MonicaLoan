@@ -16,7 +16,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Padding="0">
+                <local:CustomFrameForOpacity Grid.Row="0" Padding="0">
                     <!--Header Section-->
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                         <!--Separator-->
                         <Grid Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource SeparatorGrayColour}" Opacity="0.5"/>
                     </Grid>
-                </Frame>
+                </local:CustomFrameForOpacity>
                
                 <!--Middle grid-->
                 <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

@@ -69,7 +69,6 @@ namespace MonicaLoanApp.ViewModels
         #endregion
 
         #region Methods
-
         //
         /// <summary>
         /// TODO: To validate Login Command...

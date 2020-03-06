@@ -26,7 +26,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Header Section-->
-                    <Frame Grid.Row="0" Padding="5,0">
+                    <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
                         <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
@@ -42,7 +42,7 @@
                             <Label Text="Reset Password" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
                         </Grid>
                     </Grid>
-                    </Frame>
+                    </local:CustomFrameForOpacity>
 
                     <!--Middle grid-->
                     <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -79,7 +79,7 @@
                                 </Grid>
                             </Grid>
                             <!--Email Section-->
-                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                            <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
@@ -88,7 +88,7 @@
                                     <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                 </Grid>
-                            </Frame>
+                            </local:CustomFrameForOpacity>
                             <!--LoginButton Section-->
                             <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="5"></local:CustomButton>
                         </Grid>

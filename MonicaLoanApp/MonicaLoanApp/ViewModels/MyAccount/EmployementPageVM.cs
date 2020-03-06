@@ -13,6 +13,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             Navigation = nav;
         }
         #endregion
+
         #region Properties
         private string _DateOfBirth = "Date of Birth";
         public string DateOfBirth

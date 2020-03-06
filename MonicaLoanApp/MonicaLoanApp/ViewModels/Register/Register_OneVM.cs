@@ -244,12 +244,11 @@ namespace MonicaLoanApp.ViewModels.Register
 
         #region Method
         /// <summary>
-        /// TODO: Define BackCommand validation...
+        /// TODO: Define BackCommand validation for Grids inside single page...
         /// </summary>
         /// <param name="obj"></param>
         private void BckCommandAsync(object obj)
         {
-
             if (FinalGrid == true)
             {
                 SecondGrid = true;
@@ -266,9 +265,7 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 Navigation.PopModalAsync();
             }
-
         }
-
         /// <summary>
         /// TODO: Define NextCommand validation...
         /// </summary>

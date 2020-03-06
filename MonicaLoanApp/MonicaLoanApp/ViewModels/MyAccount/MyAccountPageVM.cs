@@ -17,8 +17,6 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             BankDetailsCommand = new Command(BankDetailsCommandAsync);
             logoutCommand = new Command(logoutCommandAsync);
         }
-
-       
         #endregion
 
         #region Properties

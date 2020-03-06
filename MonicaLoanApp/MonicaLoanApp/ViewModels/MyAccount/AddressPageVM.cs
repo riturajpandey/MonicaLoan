@@ -27,13 +27,13 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     OnPropertyChanged("AddressOne");
                 }
             }
-            #endregion
-
-            #region Commands
-            #endregion
-
-            #region Methods
-            #endregion
         }
+        #endregion
+
+        #region Commands
+        #endregion
+
+        #region Methods
+        #endregion
     }
 }

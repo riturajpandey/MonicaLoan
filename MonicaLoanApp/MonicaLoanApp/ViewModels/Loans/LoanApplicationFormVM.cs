@@ -7,9 +7,13 @@ using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Loans
 {
-    public class LoanApplicationFormVM :BaseViewModel
+    public class LoanApplicationFormVM : BaseViewModel
     {
+        /// <summary>
+        /// TODO: To define class level variable...
+        /// </summary>
         protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
+
         #region Constructor
         public LoanApplicationFormVM(INavigation nav)
         {
@@ -19,7 +23,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             SubmitCommand = new Command(SubmitCommandAsync);
         }
 
-        
+
         #endregion
 
         #region Properties
@@ -75,7 +79,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private bool _GridOne= true;
+        private bool _GridOne = true;
         public bool GridOne
         {
             get { return _GridOne; }

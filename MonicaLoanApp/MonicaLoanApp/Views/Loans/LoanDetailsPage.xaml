@@ -9,39 +9,39 @@
              Title="Loan Details Page">
 
     <ContentPage.Content>
-       
-            <!--Main Grid-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <!--Main Grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Control:CustomFrameForOpacity Grid.Row="0" Padding="0">
+                <!--Header Section-->
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                    </Grid>
+                    <!--Separator-->
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource SeparatorGrayColour}" Opacity="0.5"/>
+                </Grid>
+            </Control:CustomFrameForOpacity>
+
+            <!--Middle grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,20,10,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                 <Frame Grid.Row="0" Padding="0">
-                    <!--Header Section-->
-                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding MenuCommand}"/>
-                            </Grid.GestureRecognizers>
-                            <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
-                        </Grid>
-                        <!--Separator-->
-                        <Grid Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource SeparatorGrayColour}" Opacity="0.5"/>
-                    </Grid>
-                </Frame>
-
-                <!--Middle grid-->
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,20,10,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
                 <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Control:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvLoanDetails" ItemsSource="{Binding LoanDetailsList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                         <Control:RepeaterView.ItemTemplate>
@@ -67,24 +67,24 @@
                         </Control:RepeaterView.ItemTemplate>
                     </Control:RepeaterView>
                 </ScrollView>
-                    <Grid  Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding PlusCommand}"/>
-                        </Grid.GestureRecognizers>
-                        <!--Plus Image Section-->
-                        <Control:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                <Grid  Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlusCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <!--Plus Image Section-->
+                    <Control:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
-                            <Control:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
+                        <Control:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
-                                <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
-                            </Control:CustomFrameForOpacity>
-
+                            <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
                         </Control:CustomFrameForOpacity>
-                    </Grid>
+
+                    </Control:CustomFrameForOpacity>
                 </Grid>
             </Grid>
-      
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

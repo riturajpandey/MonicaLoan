@@ -13,8 +13,6 @@ namespace MonicaLoanApp.ViewModels.Loans
         public LoanApplicationPageVM(INavigation nav)
         {
             Navigation = nav;
-           // BackCommand = new Command(OnBackAsync);
-
             //TODO : Dummy Data in list
             LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             {

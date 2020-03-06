@@ -88,7 +88,6 @@
                                     <Image Source="disable_three.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
                                 </Grid>
                             </Grid>
-
                             <!--FirstName Section-->
                             <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

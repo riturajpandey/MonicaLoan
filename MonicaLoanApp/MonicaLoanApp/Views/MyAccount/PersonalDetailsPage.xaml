@@ -14,7 +14,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Padding="5,0">
+                <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
                     <!--Header Section-->
                     <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                             <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
                     </Grid>
-                </Frame>
+                </local:CustomFrameForOpacity>
                 <!--Main Grid-->
                 <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
                     <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="30,15" >
@@ -56,7 +56,7 @@
                         <!--Camera section-->
                         <Image Grid.Row="0" Source="camra.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50"></Image>
                         <!--FirstName Section-->
-                        <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                        <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
@@ -65,9 +65,9 @@
                                 <Image Source="userbluebold.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <local:CustomEntry Text="{Binding FirstName}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Joe Bloggs" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                             </Grid>
-                        </Frame>
+                        </local:CustomFrameForOpacity>
                         <!--Email Section-->
-                        <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                        <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
@@ -76,12 +76,12 @@
                                 <Image Source="mailblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                             </Grid>
-                        </Frame>
+                        </local:CustomFrameForOpacity>
                         <!--calender Section-->
-                        <Frame Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
-                            <Frame.GestureRecognizers>
+                        <local:CustomFrameForOpacity Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
+                            <local:CustomFrameForOpacity.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
-                            </Frame.GestureRecognizers>
+                            </local:CustomFrameForOpacity.GestureRecognizers>
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
@@ -95,9 +95,9 @@
                                 <!--Date Section-->
                                 <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand"/>
                             </Grid>
-                        </Frame>
+                        </local:CustomFrameForOpacity>
                         <!--Gender Section-->
-                        <Frame Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                        <local:CustomFrameForOpacity Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
@@ -115,9 +115,9 @@
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </Grid>
-                        </Frame>
+                        </local:CustomFrameForOpacity>
                         <!--Merital Section-->
-                        <Frame Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
+                        <local:CustomFrameForOpacity Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
@@ -135,7 +135,7 @@
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </Grid>
-                        </Frame>
+                        </local:CustomFrameForOpacity>
                         <!--Save Section-->
                         <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Save" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding SaveCommand}" Grid.Row="12"></local:CustomButton>
                     </Grid>

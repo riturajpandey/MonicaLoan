@@ -10,7 +10,6 @@ namespace MonicaLoanApp.ViewModels.Loans
     public class LoanDetailsPageVM : BaseViewModel
     {
         #region  Constructor
-
         public LoanDetailsPageVM(INavigation nav)
         {
             Navigation = nav;
@@ -35,11 +34,9 @@ namespace MonicaLoanApp.ViewModels.Loans
       
         #endregion
 
-        #region DELEGATECOMMAND  
-
+        #region Commands  
         public Command MenuCommand { get; set; }     
         public Command PlusCommand { get; set; }
-
         #endregion
 
         #region Properties

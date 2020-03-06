@@ -44,7 +44,7 @@
                         <Image Grid.Row="0" Source="logo.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="100" WidthRequest="50"/>
                     </Grid>
                     <!--Email Section-->
-                    <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
+                    <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
@@ -53,9 +53,9 @@
                             <Image Source="mail.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
-                    </Frame>
+                    </local:CustomFrameForOpacity>
                     <!--Password Section-->
-                    <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
+                    <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource LoginFrame}">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
@@ -64,7 +64,7 @@
                             <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             <local:CustomEntry Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
-                    </Frame>
+                    </local:CustomFrameForOpacity>
                     <!--LoginButton Section-->
                     <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="6"/>
                     <!--ForgotPasswordButton-->

@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
-             x:Class="MonicaLoanApp.Views.MyAccount.AddressPage">
+             x:Class="MonicaLoanApp.Views.Payments.MakePaymentPage">
     <ContentPage.Content>
         <!--Main Grid-->
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -14,8 +14,8 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--Header Section-->
                 <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
-                    <!--Header Section-->
                     <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
@@ -30,7 +30,7 @@
                             </Image>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                            <Label Text="Make Payment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
                     </Grid>
                 </local:CustomFrameForOpacity>
@@ -48,61 +48,59 @@
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <!--FirstAddress Section-->
-                        <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                        <!--Loan Section-->
+                        <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="location.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding AddressOne}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Address Line 1" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--SecondAddress Section-->
-                        <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="location.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding AddressSecond}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Address Line 2" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--City Section-->
-                        <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="city.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding City}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="London" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--State Section-->
-                        <local:CustomFrameForOpacity Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="state.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="MaritalStatus" ItemsSource="{Binding State}" Title="Select State"  VerticalOptions="CenterAndExpand">
+                                    <local:CustomPicker x:Name="PckLoan" ItemsSource="{Binding Loan}" Title="Select Loan"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
-                                            <x:String>MP</x:String>
-                                            <x:String>UP</x:String>
-                                            <x:String>CH</x:String>
+                                            <x:String>Personal Loan</x:String>
+                                            <x:String>Education Loan</x:String>
+                                            <x:String>Home Loan</x:String>
                                         </Picker.Items>
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </Grid>
                         </local:CustomFrameForOpacity>
-                        <!--Save Section-->
-                        <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Save" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding SaveCommand}" Grid.Row="8"></local:CustomButton>
+                        <!--calender Section-->
+                        <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
+                            <local:CustomFrameForOpacity.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
+                            </local:CustomFrameForOpacity.GestureRecognizers>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--Calender Image-->
+                                <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Image Source="dateblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
+                                </Grid>
+                                <!--Date Section-->
+                                <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
+                                <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                            </Grid>
+                        </local:CustomFrameForOpacity>
+                        <!--Amount Section-->
+                        <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <local:CustomEntry Text="{Binding Amount}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Amount you want to pay" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
+                            </Grid>
+                        </local:CustomFrameForOpacity>
+                        <!--Payment Button Section-->
+                        <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Proceed to Payment" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding PaymentCommand}" Grid.Row="6"></local:CustomButton>
                     </Grid>
                 </Grid>
             </Grid>

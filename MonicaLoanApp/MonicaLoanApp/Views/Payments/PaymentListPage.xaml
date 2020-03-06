@@ -7,46 +7,46 @@
              mc:Ignorable="d"
              x:Class="MonicaLoanApp.Views.Payments.PaymentListPage">
     <ContentPage.Content>
-            <!--Main Grid-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <!--Main Grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Header Section-->
+            <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
+                <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                        <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Payments" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                    </Grid>
+                    <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2" Margin="0,0,10,0"/>
+                </Grid>
+            </local:CustomFrameForOpacity>
+            <!--Middle grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-            <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
-                    <!--Header Section-->
-                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-
-                            <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                        </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Payments" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
-                        </Grid>
-                        <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2" Margin="0,0,10,0"/>
-                    </Grid>
-                </local:CustomFrameForOpacity>
-                <!--Middle grid-->
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <!--List view Section-->
                 <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <local:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvLoanDetails" ItemsSource="{Binding PaymentList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                         <local:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <!--Amount Section-->
-                                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}" Margin="25,8">
+                                    <local:CustomFrameForOpacity Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}" Margin="25,8">
                                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
@@ -62,29 +62,29 @@
                                             </Grid>
                                             <Label Grid.Row="1" Text="{Binding SmsLabel}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                         </Grid>
-                                    </Frame>
+                                    </local:CustomFrameForOpacity>
                                 </ViewCell>
                             </DataTemplate>
                         </local:RepeaterView.ItemTemplate>
                     </local:RepeaterView>
                 </ScrollView>
-                    <Grid  Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding PlusCommand}"/>
-                        </Grid.GestureRecognizers>
-                        <!--Plus Image Section-->
-                        <local:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                <!--Plus Image Section-->
+                <Grid Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PaymentPlusCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <local:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
-                            <local:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
+                        <local:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
-                                <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
-                            </local:CustomFrameForOpacity>
-
+                            <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
                         </local:CustomFrameForOpacity>
-                    </Grid>
+
+                    </local:CustomFrameForOpacity>
                 </Grid>
             </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

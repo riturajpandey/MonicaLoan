@@ -18,6 +18,8 @@ namespace MonicaLoanApp.Views.Payments
         /// TODO: To define Class level variable.....
         /// </summary>
         protected PaymentPageVM PaymentVM;
+
+        #region Constructor
         public PaymentListPage()
         {
             InitializeComponent();
@@ -26,5 +28,6 @@ namespace MonicaLoanApp.Views.Payments
             PaymentVM = new PaymentPageVM(this.Navigation);
             this.BindingContext = PaymentVM;
         }
+        #endregion
     }
 }

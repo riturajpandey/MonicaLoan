@@ -17,12 +17,9 @@ namespace MonicaLoanApp.ViewModels.Loans
         }
         #endregion
 
-        #region DELEGATECOMMAND  
-
+        #region Commands 
         public Command MenuCommands { get; set; }
         public Command PlusCommand { get; set; }
-
-
         #endregion
  
         #region Properties

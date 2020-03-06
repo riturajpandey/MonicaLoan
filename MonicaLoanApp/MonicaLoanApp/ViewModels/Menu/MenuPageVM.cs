@@ -102,10 +102,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnPaymentsAsync(object obj)
         {
-            //App.masterDetailPage.IsPresented = false;
-            //App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentsPage());
-            //App.Current.MainPage = App.masterDetailPage;
-            //App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Payments.PaymentPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
 
         /// <summary>

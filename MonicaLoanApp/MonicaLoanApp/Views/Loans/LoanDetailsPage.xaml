@@ -9,7 +9,7 @@
              Title="Loan Details Page">
 
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+       
             <!--Main Grid-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
@@ -38,12 +38,11 @@
                 </Frame>
 
                 <!--Middle grid-->
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,20,10,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
-
+                <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Control:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvLoanDetails" ItemsSource="{Binding LoanDetailsList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                         <Control:RepeaterView.ItemTemplate>
                             <DataTemplate>
@@ -67,8 +66,8 @@
                             </DataTemplate>
                         </Control:RepeaterView.ItemTemplate>
                     </Control:RepeaterView>
-
-                    <Grid  Grid.Row="1" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" Margin="20,0">
+                </ScrollView>
+                    <Grid  Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlusCommand}"/>
                         </Grid.GestureRecognizers>
@@ -86,6 +85,6 @@
                     </Grid>
                 </Grid>
             </Grid>
-        </ScrollView>
+      
     </ContentPage.Content>
 </ContentPage>

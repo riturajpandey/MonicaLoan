@@ -89,13 +89,13 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
-                            <Image Grid.Row="1" Grid.Column="0" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Row="1" Grid.Column="0" Source="company.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding UserCompany}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="1" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Row="1" Grid.Column="2" Source="currencyblue.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="1" Grid.Column="3" Text="{Binding UserSalary}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="2" Grid.Column="0" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Row="2" Grid.Column="0" Source="dateblue.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding Date}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="2" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Row="2" Grid.Column="2" Source="userbluebold.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="2" Grid.Column="3" Text="{Binding UserName}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
                     </Frame>

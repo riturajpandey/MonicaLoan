@@ -16,12 +16,12 @@
                     <RowDefinition Height="70*"/>
                 </Grid.RowDefinitions>
                 <!--Header Section-->
-                <local:CustomFrameForOpacity Grid.Row="0" Padding="5,10">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                <local:CustomFrameForOpacity Grid.Row="0" Padding="5,10" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
@@ -42,7 +42,7 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,20,0">
-                            <Label Text="What can we help you with today?" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" Style="{StaticResource SecondryLable}"/>
+                            <Label Text="What can we help you with today?" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" Style="{StaticResource PrimaryLable}"/>
                         </Grid>
                         <!--Search bar Section-->
                         <local:CustomFrameForOpacity Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}" CornerRadius="0" Margin="20,0,20,0">

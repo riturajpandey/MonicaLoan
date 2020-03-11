@@ -9,20 +9,20 @@
              Title="Loan Details Page">
 
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        
             <!--Main Grid-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <local:CustomFrameForOpacity Grid.Row="0" Padding="0">
+            <local:CustomFrameForOpacity Grid.Row="0" Padding="0" BackgroundColor="{StaticResource FramlgtGrayColor}">
                     <!--Header Section-->
-                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                             <Grid.GestureRecognizers>
@@ -33,12 +33,12 @@
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
+                        <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
                     </Grid>
                 </local:CustomFrameForOpacity>
-                
-
                 <!--Middle grid-->
-                <Grid Grid.Row="1" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,15,10,0">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <Grid RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,30,10,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -47,8 +47,8 @@
                     </Grid.RowDefinitions>
 
                     <!--Status Section-->
-                    <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -61,7 +61,7 @@
                     </local:CustomFrameForOpacity>
 
                     <!--Amount Section-->
-                    <local:CustomFrameForOpacity Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                    <local:CustomFrameForOpacity Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -75,7 +75,7 @@
                     </local:CustomFrameForOpacity>
 
                     <!--Employment Section-->
-                    <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                    <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -88,20 +88,20 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
-                            <Image Grid.Row="1" Grid.Column="0" Source="company.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
+                            <Image Grid.Row="1" Grid.Column="0" Source="company.png" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding UserCompany}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="1" Grid.Column="2" Source="currencyblue.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding UserSalary}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="2" Grid.Column="0" Source="dateblue.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Row="1" Grid.Column="2" Source="currency.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding UserSalary}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                            <Image Grid.Row="2" Grid.Column="0" Source="calender.png" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding Date}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                            <Image Grid.Row="2" Grid.Column="2" Source="userbluebold.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="3" Text="{Binding UserName}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                            <Image Grid.Row="2" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Row="2" Grid.Column="3" Text="{Binding UserName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
                     </local:CustomFrameForOpacity>
 
                     <!--Loan schedule Section-->
-                    <local:CustomFrameForOpacity Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryGrayFrame}">
+                    <local:CustomFrameForOpacity Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -127,12 +127,12 @@
                                 </local:RepeaterView.ItemTemplate>
                             </local:RepeaterView>
                         </Grid>
-                          
+
                     </local:CustomFrameForOpacity>
-                       
+
                 </Grid>
+            </ScrollView>
             </Grid>
-        </ScrollView>
     </ContentPage.Content>
 
 </ContentPage>

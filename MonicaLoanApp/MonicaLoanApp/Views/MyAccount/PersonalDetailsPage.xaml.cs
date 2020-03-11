@@ -47,7 +47,7 @@ namespace MonicaLoanApp.Views.MyAccount
         /// <param name="e"></param>
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
-            PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+            PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("MMMM dd, yyyy");
 
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             if (DtPckDOB.Date != null)
             {
-                PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+                PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("MMMM dd, yyyy");
 
             }
         }

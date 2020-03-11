@@ -20,15 +20,15 @@ namespace MonicaLoanApp.ViewModels.Loans
             LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             {
                  new LoanDetailsModel{Id="0", Amount="N500,000",Status="Pending approval",AmtDate="1 Feb 2020" ,},
-                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="3", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="4", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="5", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="6", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="7", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="8", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="9", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
-                 new LoanDetailsModel{Id="10", Amount="N100,000",Status="Close",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="3", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="4", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="5", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="6", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="7", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="8", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="9", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
+                 new LoanDetailsModel{Id="10", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
             };
         }
       

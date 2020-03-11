@@ -33,6 +33,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.motorconnect.dev</string>
+	<string>com.modernadvocacy.votejobs.maryland</string>
 </dict>
 </plist>

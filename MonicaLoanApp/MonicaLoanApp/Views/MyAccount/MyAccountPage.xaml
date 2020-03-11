@@ -12,12 +12,12 @@
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
+                <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0" BackgroundColor="{StaticResource FramlgtGrayColor}">
                     <!--Header Section-->
-                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
@@ -34,7 +34,7 @@
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="My Account" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
-                        <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2" Margin="0,0,10,0"/>
+                        <!--<Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2" Margin="0,0,10,0"/>-->
                     </Grid>
                 </local:CustomFrameForOpacity>
                 <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Margin="35">
@@ -54,16 +54,16 @@
                     <!--Home-->
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PersonalDetailsCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="userbluebold.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                        <StackLayout Grid.Column="1">
-                            <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" Margin="20,0,0,0"/>
-                            <Label Text="{Binding PersonalDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
+                        <Image Grid.Column="0" Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                            <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" />
+                            <Label Text="{Binding PersonalDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                         </StackLayout>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="1" ></Grid>
@@ -96,7 +96,7 @@
                         <Image Grid.Column="0" Source="profile.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <!--<Label Grid.Column="1" Text="Employement" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                         <StackLayout Grid.Column="1" Margin="10,0,0,0">
-                            <Label Text="Employement" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" />
+                            <Label Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" />
                             <Label Text="{Binding Employement}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                         </StackLayout>
                     </Grid>
@@ -127,21 +127,21 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding settingCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="setting.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Image Grid.Column="0" Source="setting.png" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,-5,0"/>
                         <Label Grid.Column="1" Text="Your App Settings" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>
                     </Grid>
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="9" ></Grid>
                     <!--Sign Out Section-->
                     <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding logoutCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="logout.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                        <Label Grid.Column="1" Text="Sign Out" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>
+                        <Image Grid.Column="0" Source="signout.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Sign Out" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0,0,0"/>
                     </Grid>
                 </Grid>
             </Grid>

@@ -11,23 +11,14 @@
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!--Main Grid-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
-                <!--GradientColor Section--><!--
-                <magic:GradientView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-                    <magic:GradientView.GradientSource >
-                        <magic:LinearGradient Angle="0">
-                            <magic:GradientStop Color="{StaticResource DarkGradientColour}" Offset="0" />
-                            <magic:GradientStop Color="{StaticResource LightGradientColour}" Offset="1" />
-                        </magic:LinearGradient>
-                    </magic:GradientView.GradientSource>
-                </magic:GradientView>-->
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <local:CustomFrameForOpacity Grid.Row="0" Padding="0">
-                        <!--Header Section-->
-                        <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <!--Header Section-->
+                    <local:CustomFrameForOpacity Grid.Row="0" Padding="0" BackgroundColor="{StaticResource HeaderColor}">
+                        <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
@@ -44,7 +35,6 @@
                             </Grid>
                         </Grid>
                     </local:CustomFrameForOpacity>
-                    <!--<Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="Black" HeightRequest="1" Opacity="0.2"></Grid>-->
                     <!--First Grid-->
                     <Grid Grid.Row="1" IsVisible="{Binding GridOne}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
                         <Grid.RowDefinitions>
@@ -60,6 +50,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="5"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="10"/>
@@ -85,9 +76,9 @@
                             </Grid>
                             <!--Amount Section-->
                             <local:CustomFrameForOpacity Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -99,9 +90,9 @@
                                 <local:CustomFrameForOpacity.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                 </local:CustomFrameForOpacity.GestureRecognizers>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="select.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
@@ -122,9 +113,9 @@
                                 <local:CustomFrameForOpacity.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                 </local:CustomFrameForOpacity.GestureRecognizers>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="payment.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -141,9 +132,9 @@
                                 </Grid>
                             </local:CustomFrameForOpacity>
                             <!--label Section-->
-                            <Label Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Text="Term: How long do you want the loan for?" Style="{StaticResource SmallestLable}" Margin="5"/>
+                            <Label Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Text="Term: How long do you want the loan for?" Style="{StaticResource SmallestLable}" Margin="5"/>
                             <!--Tenure Section-->
-                            <Grid Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -152,12 +143,12 @@
                                 <local:CustomFrameForOpacity Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="25"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="dateblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                        <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                         <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                            <local:CustomPicker x:Name="Weeks" ItemsSource="{Binding }" Title="Week"  VerticalOptions="CenterAndExpand">
+                                            <local:CustomPicker x:Name="Weeks" ItemsSource="{Binding }" Title="Weeks"  VerticalOptions="CenterAndExpand">
                                                 <Picker.Items>
                                                     <x:String>weeks</x:String>
                                                     <x:String>Months</x:String>
@@ -169,11 +160,11 @@
                                     </Grid>
                                 </local:CustomFrameForOpacity>
                                 <local:CustomFrameForOpacity Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                    <local:CustomEntry Text="{Binding NumberOfWeek}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Number of weeks" Style="{StaticResource SecondryEntry}" />
+                                    <local:CustomEntry Text="{Binding NumberOfWeek}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="No. of weeks" Style="{StaticResource SecondryEntry}" />
                                 </local:CustomFrameForOpacity>
                             </Grid>
-                            <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding Continue}" Grid.Row="9"></local:CustomButton>
+                            <!--LoanButton Section-->
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding Continue}" Grid.Row="10" Margin="5,0,5,0"></local:CustomButton>
                         </Grid>
                     </Grid>
                     <!--Second Grid-->
@@ -183,7 +174,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0">
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0" RowSpacing="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -217,13 +208,13 @@
                                 <local:CustomFrameForOpacity.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                 </local:CustomFrameForOpacity.GestureRecognizers>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="userbluebold.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                    <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                         <local:CustomPicker x:Name="Employee" ItemsSource="{Binding }" Title="Select Employer"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>Salaried</x:String>
@@ -236,18 +227,18 @@
                                 </Grid>
                             </local:CustomFrameForOpacity>
                             <!--Date Section-->
-                            <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
+                            <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="50" Style="{StaticResource BordorlessFrame}">
                                 <local:CustomFrameForOpacity.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
                                 </local:CustomFrameForOpacity.GestureRecognizers>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <!--Calender Image-->
                                     <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                        <Image Source="dateblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                         <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
                                     </Grid>
                                     <!--Date Section-->
@@ -256,9 +247,9 @@
                             </local:CustomFrameForOpacity>
                             <!--Salary Section-->
                             <local:CustomFrameForOpacity  Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -267,9 +258,9 @@
                             </local:CustomFrameForOpacity>
                             <!--employee Section-->
                             <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="employee_numberblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -277,21 +268,21 @@
                                 </Grid>
                             </local:CustomFrameForOpacity>
                             <!--IdCard Section-->
-                            <local:CustomFrameForOpacity Grid.Row="5" HorizontalOptions="FillAndExpand" HeightRequest="40" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <local:CustomFrameForOpacity Grid.Row="5" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="id_cardblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
                                         <Label Text="Upload id card" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <Image Source="upload.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Image Source="upload.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
                                     </StackLayout>                                    
                                 </Grid>
                             </local:CustomFrameForOpacity>
-                            <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit Application" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="7"></local:CustomButton>
+                            <!--SaveButton Section-->
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Save" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="7" Margin="5,0,5,0"></local:CustomButton>
                         </Grid>
                     </Grid>
                 </Grid>

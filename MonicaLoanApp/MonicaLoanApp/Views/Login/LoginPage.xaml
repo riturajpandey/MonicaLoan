@@ -36,8 +36,8 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
                     <!--Icon of Application-->
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -50,7 +50,7 @@
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="mail.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="mailwhite.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
                         </Grid>
                     </local:CustomFrameForOpacity>
@@ -66,11 +66,11 @@
                         </Grid>
                     </local:CustomFrameForOpacity>
                     <!--LoginButton Section-->
-                    <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="6"/>
+                    <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="6" Margin="5,0,5,0"/>
                     <!--ForgotPasswordButton-->
-                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forget Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" Grid.Row="8" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
+                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forgot Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" FontSize="15" Grid.Row="8" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
                     <!--RegisterButton-->
-                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding Register}" Grid.Row="9" TextColor="{StaticResource AppWhiteColor}"/>
+                    <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding Register}" FontSize="15" Grid.Row="9" TextColor="{StaticResource AppWhiteColor}"/>
                 </Grid>
             </Grid>
         </Grid>

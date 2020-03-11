@@ -11,11 +11,13 @@
         <ResourceDictionary>
             <!--#region Colors -->
             <!--White-->
-            <Color x:Key="AppWhiteColor">#FFFFFF</Color> 
+            <Color x:Key="AppWhiteColor">#FFFFFF</Color>
+            <Color x:Key="HeaderWhiteColor">#FFFCFC</Color>
+            <Color x:Key="SideBarWhiteColor">#FDFBFB</Color> 
 
             <Color x:Key="BlackColour">#000000</Color>
             <Color x:Key="TransparentColor">Transparent</Color>
-            <Color x:Key="HeaderColor">#FFFFFF</Color>
+            <Color x:Key="HeaderColor">#FEFEFE</Color>
             <Color x:Key="LgnFrameColor">#4D2090</Color>
             <Color x:Key="FramlgtGrayColor">#F8F8F8</Color>
             <Color x:Key="BtnColor">#04cac3</Color>
@@ -57,7 +59,7 @@
                 <Setter Property="HasShadow" Value="False" />
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="BorderColor" Value="{StaticResource LoginBorderColour}" />
             </Style>
@@ -71,6 +73,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="50" />
             </Style>
 
             <!--Round login frame -->
@@ -82,7 +85,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="BorderColor" Value="{StaticResource LoginBorderColour}" />
             </Style>
 
@@ -95,7 +98,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="50" />
             </Style>
             <!--#endregion-->
 
@@ -110,7 +113,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="TextColor" Value="{StaticResource AppWhiteColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="HeightRequest" Value="60" />
                 <Setter Property="FontFamily" Value="{DynamicResource Boldfont}" />
             </Style>
             <!--#endregion-->

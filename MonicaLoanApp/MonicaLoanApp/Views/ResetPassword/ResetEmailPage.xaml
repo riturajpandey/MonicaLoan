@@ -22,12 +22,12 @@
                 </magic:GradientView>
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Header Section-->
-                    <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0">
-                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" Margin="10,0">
+                    <local:CustomFrameForOpacity Grid.Row="0" Padding="5,0" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
@@ -90,7 +90,7 @@
                                 </Grid>
                             </local:CustomFrameForOpacity>
                             <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="5"></local:CustomButton>
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="5" Margin="5,0,5,0"></local:CustomButton>
                         </Grid>
                     </Grid>
                 </Grid>

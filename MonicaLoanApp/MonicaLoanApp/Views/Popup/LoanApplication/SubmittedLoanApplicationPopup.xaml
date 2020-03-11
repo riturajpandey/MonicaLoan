@@ -18,23 +18,24 @@
                 <Grid x:Name="singleRouteGrid" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" RowSpacing="20">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="20"/>
                         </Grid.RowDefinitions>
                         <!--Check Image Section-->
-                        <controls:CustomFrameForOpacity Grid.Row="1" HeightRequest="60" WidthRequest="60" CornerRadius="30" Padding="0" IsClippedToBounds="True"
+                        <Image Source="checkk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="Fill" Grid.Row="1" HeightRequest="80" WidthRequest="80"/>
+                        <!--<controls:CustomFrameForOpacity Grid.Row="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource BtnColor}" BorderColor="{StaticResource BtnColor}">
-                            <controls:CustomFrameForOpacity HeightRequest="46" WidthRequest="46" CornerRadius="23" Padding="0" IsClippedToBounds="True"
+                            <controls:CustomFrameForOpacity HeightRequest="56" WidthRequest="56" CornerRadius="28" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
-                                <Image Source="checknew.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                
                             </controls:CustomFrameForOpacity>
 
-                        </controls:CustomFrameForOpacity>
+                        </controls:CustomFrameForOpacity>--> 
                         <!--You Have Submitted Loan Application-->
                         <Label Grid.Row="2" Text="You have submitted Loan application" FontFamily="{StaticResource Boldfont}" FontSize="18" TextColor="{StaticResource PurpleColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>

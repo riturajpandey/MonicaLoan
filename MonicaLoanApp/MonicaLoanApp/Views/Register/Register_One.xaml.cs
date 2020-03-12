@@ -27,6 +27,15 @@ namespace MonicaLoanApp.Views.Register
             this.BindingContext = RegisterOneVM;
         }
         #endregion
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            //await RegisterOneVM.AccessRegisterPreValidate();
+             await RegisterOneVM.AccessRegister();
+           // await RegisterOneVM.AccessRegisterActivate();
+        }
+        #endregion
 
         #region Methods
         /// <summary>

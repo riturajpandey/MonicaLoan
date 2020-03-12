@@ -8,12 +8,15 @@ namespace MonicaLoanApp
     {
         //TODO : To Declare Global Variables.. 
         public static MasterDetailPage masterDetailPage = new MasterDetailPage();
-
+        //TODO : To Define Global Varialbes Here....
+        private static Autofac.IContainer _container;
         public App()
         {
             InitializeComponent();
-            
-          //  MainPage = new Views.Loans.LoanApplicationForm();
+            //To initialize Containers..
+            AppSetup appSetup = new AppSetup();
+            _container = appSetup.CreateContainer();
+            //  MainPage = new Views.Loans.LoanApplicationForm();
             MainPage = new Views.Login.LoginPage();
 
         }

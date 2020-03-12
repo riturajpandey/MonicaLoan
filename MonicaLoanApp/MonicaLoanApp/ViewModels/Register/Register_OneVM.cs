@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using MonicaLoanApp.Models;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +10,11 @@ using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Register
 {
-    public class Register_OneVM: BaseViewModel
+    public class Register_OneVM : BaseViewModel
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-        
+
         #region Constructor
         public Register_OneVM(INavigation nav)
         {
@@ -78,19 +80,19 @@ namespace MonicaLoanApp.ViewModels.Register
                 }
             }
         }
-            private string _Email;
-            public string Email
+        private string _Email;
+        public string Email
+        {
+            get { return _Email; }
+            set
             {
-                get { return _Email; }
-                set
+                if (_Email != value)
                 {
-                    if (_Email != value)
-                    {
-                        _Email = value;
-                        OnPropertyChanged("Email");
-                    }
+                    _Email = value;
+                    OnPropertyChanged("Email");
                 }
             }
+        }
         private bool _FirstGrid = true;
         public bool FirstGrid
         {
@@ -313,6 +315,194 @@ namespace MonicaLoanApp.ViewModels.Register
             UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
             App.Current.MainPage = new Views.Login.LoginPage();
         }
+
+        /// <summary>
+        /// Call This Api For AccessRegisterPreValidate
+        /// </summary>
+        /// <returns></returns>
+        public async Task AccessRegisterPreValidate()
+        {
+            //Call api..
+            try
+            {
+                //Call AccessRegisterPreValidate Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessRegisterPreValidateApi(new AccessRegisterPreValidateRequestModel()
+                            {
+                                emailaddress = "ankseth143@gmail.com",
+                                bvn = "Kjl1234"
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as AccessRegisterPreValidateResponseModel);
+                                    //if (requestList != null)
+                                    //{
+                                    //    Helpers.Constants.ObjSetUserProfile.birthDate = UserDOB;
+                                    //    Helpers.Constants.ObjSetUserProfile.bloodType = BloodGroupType;
+                                    //    Helpers.Constants.ObjSetUserProfile.emailAddress = UserEmail;
+                                    //    Helpers.Constants.ObjSetUserProfile.fullName = UserFullName;
+                                    //    Helpers.Constants.ObjSetUserProfile.height = Convert.ToInt32(UserHeight);
+                                    //    Helpers.Constants.ObjSetUserProfile.mobilePhone = UserPhoneNumber;
+                                    //    Helpers.Constants.ObjSetUserProfile.weight = Convert.ToInt32(UserWeight);
+                                    //    UserDialog.Alert("Profile updated successfully.", "Success", "Ok");
+                                    //}
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
+
+
+        public async Task AccessRegister()
+        {
+            //Call api..
+            try
+            {
+                //Call AccessRegister Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessRegisterApi(new AccessRegisterRequestModel()
+                            {
+                                firstname = "and",
+                                middlename = "and",
+                                lastname = "vermd",
+                                emailaddress = "and@gmail.com",
+                                password = "paassword111",
+                                mobileno = "8888999999",
+                                gender = "M",
+                                maritalstatus = "S",
+                                dateofbirth = "02/06/1980",
+                                bvn = "bbb232",
+                                bankcode = "1030",
+                                bankaccountno = "1234567891011124"
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as AccessRegisterResponseModel);
+                                    //if (requestList != null)
+                                    //{
+                                    //    Helpers.Constants.ObjSetUserProfile.birthDate = UserDOB;
+                                    //    Helpers.Constants.ObjSetUserProfile.bloodType = BloodGroupType;
+                                    //    Helpers.Constants.ObjSetUserProfile.emailAddress = UserEmail;
+                                    //    Helpers.Constants.ObjSetUserProfile.fullName = UserFullName;
+                                    //    Helpers.Constants.ObjSetUserProfile.height = Convert.ToInt32(UserHeight);
+                                    //    Helpers.Constants.ObjSetUserProfile.mobilePhone = UserPhoneNumber;
+                                    //    Helpers.Constants.ObjSetUserProfile.weight = Convert.ToInt32(UserWeight);
+                                    //    UserDialog.Alert("Profile updated successfully.", "Success", "Ok");
+                                    //}
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
+
+        public async Task AccessRegisterActivate()
+        {
+            //Call api..
+            try
+            {
+                //Call AccessRegisterActivate Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessRegisterActivateApi(new AccessRegisterActivateRequestModel()
+                            {
+                                usertoken = "8331995",
+                                validatetoken = "806207727"
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as AccessRegisterResponseModel);
+                                    //if (requestList != null)
+                                    //{
+                                    //    Helpers.Constants.ObjSetUserProfile.birthDate = UserDOB;
+                                    //    Helpers.Constants.ObjSetUserProfile.bloodType = BloodGroupType;
+                                    //    Helpers.Constants.ObjSetUserProfile.emailAddress = UserEmail;
+                                    //    Helpers.Constants.ObjSetUserProfile.fullName = UserFullName;
+                                    //    Helpers.Constants.ObjSetUserProfile.height = Convert.ToInt32(UserHeight);
+                                    //    Helpers.Constants.ObjSetUserProfile.mobilePhone = UserPhoneNumber;
+                                    //    Helpers.Constants.ObjSetUserProfile.weight = Convert.ToInt32(UserWeight);
+                                    //    UserDialog.Alert("Profile updated successfully.", "Success", "Ok");
+                                    //}
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
+        #endregion
+
         #region Check Validate All Fields
         /// <summary>
         /// TODO : To Apply SignupValidations...
@@ -396,7 +586,6 @@ namespace MonicaLoanApp.ViewModels.Register
             return true;
         }
 
-        #endregion
         #endregion
     }
 }

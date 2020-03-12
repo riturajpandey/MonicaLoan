@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using MonicaLoanApp.BuisnessCode;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +10,8 @@ namespace MonicaLoanApp.ViewModels
 {
     public class BaseViewModel : BindableObject
     {
-        
-        // protected readonly IBusinessCode _businessCode;
+
+        protected readonly IBusinessCode _businessCode;
         #region CONSTRUCTOR
         public BaseViewModel(INavigation navigation = null)
         {
@@ -18,7 +20,7 @@ namespace MonicaLoanApp.ViewModels
                 Navigation = navigation;
                 BacksCommand = new Command(OnBacksAsync);
                 MenuCommand = new Command(OnMenuAsync);
-                //  _businessCode = SimpleIoc.Default.GetInstance<IBusinessCode>();
+                 _businessCode = SimpleIoc.Default.GetInstance<IBusinessCode>();
             }
             catch (Exception ex)
             { }
@@ -103,7 +105,7 @@ namespace MonicaLoanApp.ViewModels
                 await Navigation.PopModalAsync();
         }
         #endregion
-       
+
 
     }
 }

@@ -312,8 +312,9 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 return;
             };
-            UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
-            App.Current.MainPage = new Views.Login.LoginPage();
+            await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
+            //UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+            //App.Current.MainPage = new Views.Login.LoginPage();
         }
 
         /// <summary>

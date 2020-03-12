@@ -9,6 +9,7 @@ namespace MonicaLoanApp.BuisnessCode
         //StaticDataSearch Api 
         Task<StaticDataSearchResponseModel> StaticDataSearch(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed);
 
+        #region Register Apis
         //AccessRegisterPreValidate 
         Task<AccessRegisterPreValidateResponseModel> AccessRegisterPreValidateApi(AccessRegisterPreValidateRequestModel request, Action<object> success, Action<object> failed);
 
@@ -16,5 +17,7 @@ namespace MonicaLoanApp.BuisnessCode
         Task<AccessRegisterResponseModel> AccessRegisterApi(AccessRegisterRequestModel request, Action<object> success, Action<object> failed);
         //AccessRegisterActivateApi 
         Task<AccessRegisterActivateResponseModel> AccessRegisterActivateApi(AccessRegisterActivateRequestModel request, Action<object> success, Action<object> failed);
+
+        #endregion    
     }
 }

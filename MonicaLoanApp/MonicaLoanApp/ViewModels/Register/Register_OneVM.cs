@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
+using MonicaLoanApp.Helpers;
 using MonicaLoanApp.Models;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,7 +16,7 @@ namespace MonicaLoanApp.ViewModels.Register
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-
+        private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         #region Constructor
         public Register_OneVM(INavigation nav)
         {
@@ -231,8 +233,34 @@ namespace MonicaLoanApp.ViewModels.Register
             }
         }
 
+        private ObservableCollection<Staticdata> _Banklist;
+        public ObservableCollection<Staticdata> Banklist
+        {
+            get { return _Banklist; }
+            set
+            {
+                if (_Banklist != value)
+                {
+                    _Banklist = value;
+                    OnPropertyChanged("Banklist");
+                }
+            }
+        }
+        private string _Code;
+        public string Code
+        {
+            get { return _Code; }
+            set
+            {
+                if (_Code != value)
+                {
+                    _Code = value;
+                    OnPropertyChanged("Code");
+                }
+            }
+        }
 
-
+        public string Bankcode { get; set; }
 
         #endregion
 
@@ -308,21 +336,7 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <param name="obj"></param>
         private async void FinishCommandAsync(object obj)
         {
-            if (!await FinishSignUpValidate())
-            {
-                return;
-            };
-            await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
-            //UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
-            //App.Current.MainPage = new Views.Login.LoginPage();
-        }
-
-        /// <summary>
-        /// Call This Api For AccessRegisterPreValidate
-        /// </summary>
-        /// <returns></returns>
-        public async Task AccessRegisterPreValidate()
-        {
+            if (!await FinishSignUpValidate()) return;
             //Call api..
             try
             {
@@ -336,25 +350,25 @@ namespace MonicaLoanApp.ViewModels.Register
                         {
                             await _businessCode.AccessRegisterPreValidateApi(new AccessRegisterPreValidateRequestModel()
                             {
-                                emailaddress = "ankseth143@gmail.com",
-                                bvn = "Kjl1234"
+                                emailaddress = Email,
+                                bvn = BusinessNumber
                             },
-                            async (obj) =>
+                            async (resobj) =>
                             {
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
-                                    var requestList = (obj as AccessRegisterPreValidateResponseModel);
-                                    //if (requestList != null)
-                                    //{
-                                    //    Helpers.Constants.ObjSetUserProfile.birthDate = UserDOB;
-                                    //    Helpers.Constants.ObjSetUserProfile.bloodType = BloodGroupType;
-                                    //    Helpers.Constants.ObjSetUserProfile.emailAddress = UserEmail;
-                                    //    Helpers.Constants.ObjSetUserProfile.fullName = UserFullName;
-                                    //    Helpers.Constants.ObjSetUserProfile.height = Convert.ToInt32(UserHeight);
-                                    //    Helpers.Constants.ObjSetUserProfile.mobilePhone = UserPhoneNumber;
-                                    //    Helpers.Constants.ObjSetUserProfile.weight = Convert.ToInt32(UserWeight);
-                                    //    UserDialog.Alert("Profile updated successfully.", "Success", "Ok");
-                                    //}
+                                    var requestList = (resobj as AccessRegisterPreValidateResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        if (requestList.responsemessage == "Validation Successful")
+                                        {
+                                          await AccessRegister();
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.Alert(requestList.responsemessage,"Alert", "Ok");
+                                        }
+                                    }
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>
@@ -364,7 +378,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                     UserDialog.HideLoading();
                                     UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
                                 });
-                            });
+                            }) ;
                         }
                     }).ConfigureAwait(false);
                 }
@@ -376,9 +390,15 @@ namespace MonicaLoanApp.ViewModels.Register
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+            //await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
+            //UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+            //App.Current.MainPage = new Views.Login.LoginPage();
         }
 
-
+        /// <summary>
+        /// Call This Api For AccessRegister
+        /// </summary>
+        /// <returns></returns>
         public async Task AccessRegister()
         {
             //Call api..
@@ -394,35 +414,39 @@ namespace MonicaLoanApp.ViewModels.Register
                         {
                             await _businessCode.AccessRegisterApi(new AccessRegisterRequestModel()
                             {
-                                firstname = "and",
-                                middlename = "and",
-                                lastname = "vermd",
-                                emailaddress = "and@gmail.com",
-                                password = "paassword111",
-                                mobileno = "8888999999",
-                                gender = "M",
-                                maritalstatus = "S",
-                                dateofbirth = "02/06/1980",
-                                bvn = "bbb232",
-                                bankcode = "1030",
-                                bankaccountno = "1234567891011124"
+                                firstname = FirstName,
+                                middlename = MiddleName,
+                                lastname = LastName,
+                                emailaddress = Email,
+                                password = NewPassword,
+                                mobileno = Number,
+                                gender = Gender,
+                                maritalstatus = MaritalStatus,
+                                dateofbirth = DateOfBirth,
+                                bvn = BusinessNumber,
+                                bankcode = Bankcode,
+                                bankaccountno = AccountNumber
                             },
                             async (obj) =>
                             {
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     var requestList = (obj as AccessRegisterResponseModel);
-                                    //if (requestList != null)
-                                    //{
-                                    //    Helpers.Constants.ObjSetUserProfile.birthDate = UserDOB;
-                                    //    Helpers.Constants.ObjSetUserProfile.bloodType = BloodGroupType;
-                                    //    Helpers.Constants.ObjSetUserProfile.emailAddress = UserEmail;
-                                    //    Helpers.Constants.ObjSetUserProfile.fullName = UserFullName;
-                                    //    Helpers.Constants.ObjSetUserProfile.height = Convert.ToInt32(UserHeight);
-                                    //    Helpers.Constants.ObjSetUserProfile.mobilePhone = UserPhoneNumber;
-                                    //    Helpers.Constants.ObjSetUserProfile.weight = Convert.ToInt32(UserWeight);
-                                    //    UserDialog.Alert("Profile updated successfully.", "Success", "Ok");
-                                    //}
+                                    if (requestList != null)
+                                    {
+                                        if (requestList.responsecode == 100)
+                                        {
+                                            Helpers.Constants.UserToken = requestList.usertoken;
+                                            await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            
+                                        }
+
+                                    }
+                                    
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>
@@ -446,6 +470,10 @@ namespace MonicaLoanApp.ViewModels.Register
             { UserDialog.HideLoading(); }
         }
 
+        /// <summary>
+        /// Call This Api For AccessRegisterActivate
+        /// </summary>
+        /// <returns></returns>
         public async Task AccessRegisterActivate()
         {
             //Call api..
@@ -461,7 +489,7 @@ namespace MonicaLoanApp.ViewModels.Register
                         {
                             await _businessCode.AccessRegisterActivateApi(new AccessRegisterActivateRequestModel()
                             {
-                                usertoken = "8331995",
+                                usertoken = Constants.UserToken,
                                 validatetoken = "806207727"
                             },
                             async (obj) =>
@@ -502,7 +530,64 @@ namespace MonicaLoanApp.ViewModels.Register
             catch (Exception ex)
             { UserDialog.HideLoading(); }
         }
-        #endregion
+        /// <summary>
+        /// Call This Api For StaticDataSearch
+        /// </summary>
+        /// <returns></returns>
+        public async Task StaticDataSearch()
+        {
+            //Call api..
+            try
+            {
+                //Call AccessRegisterActivate Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.StaticDataSearchApi(new StaticDataSearchRequestModel()
+                            {
+                                
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as StaticDataSearchResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        Banklist = new ObservableCollection<Staticdata>(requestList.staticdata);
+                                    }
+                                    else
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                    }
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
+    #endregion
 
         #region Check Validate All Fields
         /// <summary>
@@ -553,6 +638,13 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert("Please enter password.");
+                return false;
+            }
+            bool isvalid1 = (Regex.IsMatch(NewPassword, _NewPasswordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isvalid1)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter valid Password.");
                 return false;
             }
             UserDialogs.Instance.HideLoading();

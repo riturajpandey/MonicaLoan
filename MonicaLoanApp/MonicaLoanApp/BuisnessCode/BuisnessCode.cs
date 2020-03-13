@@ -23,19 +23,18 @@ namespace MonicaLoanApp.BuisnessCode
         
 
         #region StaticDataSearchApi
-        public async Task<StaticDataSearchResponseModel> StaticDataSearch(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed)
+        public async Task<StaticDataSearchResponseModel> StaticDataSearchApi(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed)
         {
             StaticDataSearchResponseModel resmodel = new StaticDataSearchResponseModel();
             try
             {
-                var url = string.Format("{0}/api/appconnect/AccessRegisterPreValidate", WebServiceDetails.BaseUri);
+                var url = string.Format("{0}/api/appconnect/StaticDataSearch", WebServiceDetails.BaseUri);
                 string randomGuid = Guid.NewGuid().ToString();
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
                 dic.Add("hash", "dcdscfdscds");
                 var result = _apiProvider.Post<StaticDataSearchResponseModel, StaticDataSearchRequestModel>(url, request, dic);
-
                 var response = result.Result;
                 StaticDataSearchResponseModel objres = null;
                 dynamic obj = "";
@@ -166,6 +165,41 @@ namespace MonicaLoanApp.BuisnessCode
                 if (response.IsSuccessful != false)
                 {
                     objres = JsonConvert.DeserializeObject<AccessRegisterActivateResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+
+        public async Task<LoginResponseModel> AccessLoginApi(LoginRequestModel request, Action<object> success, Action<object> failed)
+        {
+            LoginResponseModel resmodel = new LoginResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/AccessLogin", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<LoginResponseModel, LoginRequestModel>(url, request, dic);
+                var response = result.Result;
+                LoginResponseModel objres = null;
+                dynamic obj = "";
+                LoginResponseModel reg = new LoginResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<LoginResponseModel>(response.RawResult);
                     success.Invoke(objres);
                 }
                 else

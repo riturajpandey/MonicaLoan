@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.Register;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +23,7 @@ namespace MonicaLoanApp.Views.Register
         public Register_One()
         {
             InitializeComponent();
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             RegisterOneVM = new Register_OneVM(this.Navigation);
@@ -31,9 +34,9 @@ namespace MonicaLoanApp.Views.Register
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //await RegisterOneVM.AccessRegisterPreValidate();
-             await RegisterOneVM.AccessRegister();
-           // await RegisterOneVM.AccessRegisterActivate();
+            // await RegisterOneVM.AccessRegister();
+            // await RegisterOneVM.AccessRegisterActivate();
+            await RegisterOneVM.StaticDataSearch();
         }
         #endregion
 
@@ -64,7 +67,18 @@ namespace MonicaLoanApp.Views.Register
         /// <param name="e"></param>
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
-            RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+            try
+            {
+                if (DtPckDOB.Date != null)
+                {
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    RegisterOneVM.DateOfBirth = DateBirth;
+                }
+
+            }
+            catch (Exception ex)
+            { }
 
         }
         /// <summary>
@@ -74,11 +88,19 @@ namespace MonicaLoanApp.Views.Register
         /// <param name="e"></param>
         private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DtPckDOB.Date != null)
+            try
             {
-                RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+                if (DtPckDOB.Date != null)
+                {
+                    // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    RegisterOneVM.DateOfBirth = DateBirth;
 
+                }
             }
+            catch (Exception ex)
+            { }
         }
         /// <summary>
         /// TODO :
@@ -88,6 +110,15 @@ namespace MonicaLoanApp.Views.Register
         private void PckBank_Tapped(object sender, EventArgs e)
         {
             PckBank.Focus();
+        }
+        /// <summary>
+        /// TODO :
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PckBankfrst_Tapped(object sender, EventArgs e)
+        {
+            PckBankfrst.Focus();
         }
 
         /// <summary>
@@ -101,5 +132,29 @@ namespace MonicaLoanApp.Views.Register
         }
         #endregion
 
+        private void PckSelectbankCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckBankfrst.SelectedIndex >= 0)
+            {
+                var code = PckBankfrst.SelectedItem as Staticdata;
+                RegisterOneVM.Bankcode = code.key;
+            }
+        }
+
+        private void Pckgender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Pckgender.SelectedIndex >= 0)
+            {
+                RegisterOneVM.Gender = Pckgender.Items[Pckgender.SelectedIndex];
+            }
+        }
+
+        private void MaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckMaritalStatus.SelectedIndex >= 0)
+            {
+                RegisterOneVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+            }
+        }
     }
 }

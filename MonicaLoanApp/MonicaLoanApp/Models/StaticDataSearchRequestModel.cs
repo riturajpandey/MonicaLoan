@@ -6,7 +6,7 @@ namespace MonicaLoanApp.Models
 {
     public class StaticDataSearchRequestModel
     {
-    } 
+    }
     public class StaticDataSearchResponseModel
     {
         public int responsecode { get; set; }
@@ -18,5 +18,5 @@ namespace MonicaLoanApp.Models
         public string type { get; set; }
         public string key { get; set; }
         public string data { get; set; }
-    } 
+    }
 }

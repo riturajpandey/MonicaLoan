@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using MonicaLoanApp.Helpers;
+using MonicaLoanApp.Models;
+using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -6,28 +10,80 @@ using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Register
 {
-    public class ConfirmRegistrationVM: BaseViewModel
+    public class ConfirmRegistrationVM : BaseViewModel
     {
         #region Constructor
         public ConfirmRegistrationVM(INavigation nav)
         {
             Navigation = nav;
-           
+
             FinishCommand = new Command(FinishCommandAsync);
             BckCommand = new Command(BckCommandAsync);
         }
-
-        private void BckCommandAsync(object obj)
+        //For cancel user registration varification...
+        private async void BckCommandAsync(object obj)
         {
-            UserDialog.Alert(" Registration varification failed.", "Failed", "Ok");
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+            var text = (res ? "No" : "Yes");
+            if (text == "Yes")
             App.Current.MainPage = new Views.Login.LoginPage();
         }
 
         private async void FinishCommandAsync(object obj)
         {
             if (!await Validate()) return;
-            UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
-            App.Current.MainPage = new Views.Login.LoginPage();
+            
+            //Call api..
+            try
+            {
+                //Call AccessRegisterActivate Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessRegisterActivateApi(new AccessRegisterActivateRequestModel()
+                            {
+                                usertoken = Constants.UserToken,
+                                validatetoken = RegisterToken
+                            },
+                            async (aobj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (aobj as AccessRegisterActivateResponseModel);
+
+                                    if (requestList!= null)
+                                    {
+                                        if (requestList.responsecode == 100)
+                                        {
+                                            UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                        } 
+                                    }
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
         }
         #endregion
 
@@ -65,7 +121,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialog.Alert("Please enter your token.");
                 return false;
             }
-           
+
             return true;
         }
         #endregion

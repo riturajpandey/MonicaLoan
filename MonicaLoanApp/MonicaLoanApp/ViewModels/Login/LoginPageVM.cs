@@ -1,7 +1,9 @@
 ﻿using Acr.UserDialogs;
+using MonicaLoanApp.Models;
 using MonicaLoanApp.Views.Loans;
 using MonicaLoanApp.Views.Menu;
 using MonicaLoanApp.Views.Popup.LoanApplication;
+using Plugin.Connectivity;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace MonicaLoanApp.ViewModels
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        private const string _passwordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
 
         #region  Constructor
@@ -77,14 +80,73 @@ namespace MonicaLoanApp.ViewModels
         {
             //Apply LoginValidations...
             if (!await Validate()) return;
+            //Call api..
+            try
+            {
+                //Call AccessRegister Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessLoginApi(new LoginRequestModel()
+                            {
 
-            //To Set The First Page...
-            App.masterDetailPage.Master = new MenuPage();
-            App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
-            App.Current.MainPage = App.masterDetailPage;
+                                emailaddress = Email,
+                                password = Password,
 
-            //SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
-            //await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+                            },
+                            async (aobj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (aobj as LoginResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        if (requestList.responsecode == 100)
+                                        {
+                                            Helpers.Constants.LoginUserToken = requestList.usertoken;
+                                            Helpers.Constants.LoginUserSecret = requestList.usersecret;
+                                            App.masterDetailPage.Master = new MenuPage();
+                                            App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
+                                            App.Current.MainPage = App.masterDetailPage;
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+
+                                        }
+
+                                    }
+
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+            ////To Set The First Page...
+            //App.masterDetailPage.Master = new MenuPage();
+            //App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
+            //App.Current.MainPage = App.masterDetailPage;
+
         }
         /// <summary>
         /// TODO: To validate Forgot Password Command..
@@ -125,7 +187,12 @@ namespace MonicaLoanApp.ViewModels
                 UserDialog.Alert("Please enter your password.");
                 return false;
             }
-
+            bool isPasswordValid = (Regex.IsMatch(Password, _passwordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isPasswordValid)
+            {
+                UserDialogs.Instance.Alert("Please enter valid Password");
+                return false;
+            }
             return true;
         }
         #endregion

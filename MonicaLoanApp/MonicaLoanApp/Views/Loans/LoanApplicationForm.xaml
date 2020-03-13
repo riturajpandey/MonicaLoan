@@ -97,7 +97,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="select.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="Purpose" ItemsSource="{Binding }" Title="Select Purpose" VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="Purpose" ItemsSource="{Binding Purpose}" ItemDisplayBinding="{Binding data}" Title="Select Purpose" VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>SBI</x:String>
                                                 <x:String>PNB</x:String>
@@ -269,6 +269,9 @@
                             </local:CustomFrameForOpacity>
                             <!--IdCard Section-->
                             <local:CustomFrameForOpacity Grid.Row="5" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                <local:CustomFrameForOpacity.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding IdCardCommand}"/>
+                                </local:CustomFrameForOpacity.GestureRecognizers>
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="25"/>

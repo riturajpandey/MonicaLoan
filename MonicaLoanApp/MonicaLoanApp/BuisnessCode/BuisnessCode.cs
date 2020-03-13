@@ -220,6 +220,7 @@ namespace MonicaLoanApp.BuisnessCode
             return resmodel;
         }
         #endregion
+
         #region Resetpassword
         /// <summary>
         /// To call AccessPasswordReminderApi...
@@ -288,6 +289,52 @@ namespace MonicaLoanApp.BuisnessCode
                 if (response.IsSuccessful != false)
                 {
                     objres = JsonConvert.DeserializeObject<AccessPasswordChangeResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+
+
+        #endregion
+
+        #region LogOut
+        /// <summary>
+        /// To call Logout Api..
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<AccessLogOutResponseModel> AccessLogOutApi(AccessLogOutRequestModel request, Action<object> success, Action<object> failed)
+        {
+            AccessLogOutResponseModel resmodel = new AccessLogOutResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/AccessLogOut", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<AccessLogOutResponseModel, AccessLogOutRequestModel>(url, request, dic);
+                var response = result.Result;
+                AccessLogOutResponseModel objres = null;
+                dynamic obj = "";
+                AccessLogOutResponseModel reg = new AccessLogOutResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<AccessLogOutResponseModel>(response.RawResult);
                     success.Invoke(objres);
                 }
                 else

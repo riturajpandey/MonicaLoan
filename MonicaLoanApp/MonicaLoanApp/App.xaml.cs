@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MonicaLoanApp.Views.Loans;
+using MonicaLoanApp.Views.Menu;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +18,17 @@ namespace MonicaLoanApp
             //To initialize Containers..
             AppSetup appSetup = new AppSetup();
             _container = appSetup.CreateContainer();
-            //  MainPage = new Views.Loans.LoanApplicationForm();
-            MainPage = new Views.Login.LoginPage();
+
+            if (Helpers.Settings.GeneralAccessToken == string.Empty)
+            {
+                MainPage = new MonicaLoanApp.Views.Login.LoginPage();
+            }
+            else
+            {
+                App.masterDetailPage.Master = new MenuPage();
+                App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
+                App.Current.MainPage = App.masterDetailPage;
+            }
 
         }
 

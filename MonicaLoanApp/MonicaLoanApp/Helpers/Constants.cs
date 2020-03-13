@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MonicaLoanApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace MonicaLoanApp.Helpers
@@ -17,5 +19,7 @@ namespace MonicaLoanApp.Helpers
         public static string imgFilePath = string.Empty;
         //To maintain variable for Media picker selected items
         public static string PartImageBase64 = string.Empty;
+
+        public static ObservableCollection<Staticdata> StaticDataList = new ObservableCollection<Staticdata>();
     }
 }

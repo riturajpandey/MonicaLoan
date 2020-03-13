@@ -5,6 +5,7 @@ using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -362,11 +363,11 @@ namespace MonicaLoanApp.ViewModels.Register
                                     {
                                         if (requestList.responsemessage == "Validation Successful")
                                         {
-                                          await AccessRegister();
+                                            await AccessRegister();
                                         }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage,"Alert", "Ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "Ok");
                                         }
                                     }
                                     UserDialog.HideLoading();
@@ -378,7 +379,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                     UserDialog.HideLoading();
                                     UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
                                 });
-                            }) ;
+                            });
                         }
                     }).ConfigureAwait(false);
                 }
@@ -442,11 +443,11 @@ namespace MonicaLoanApp.ViewModels.Register
                                         else
                                         {
                                             UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            
+
                                         }
 
                                     }
-                                    
+
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>
@@ -536,58 +537,16 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <returns></returns>
         public async Task StaticDataSearch()
         {
-            //Call api..
+            //Fileter Bank List From Static Data List..
             try
             {
-                //Call AccessRegisterActivate Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    await Task.Run(async () =>
-                    {
-                        if (_businessCode != null)
-                        {
-                            await _businessCode.StaticDataSearchApi(new StaticDataSearchRequestModel()
-                            {
-                                
-                            },
-                            async (obj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var requestList = (obj as StaticDataSearchResponseModel);
-                                    if (requestList != null)
-                                    {
-                                        Banklist = new ObservableCollection<Staticdata>(requestList.staticdata);
-                                    }
-                                    else
-                                    {
-                                        UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
-                                    }
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                });
-                            });
-                        }
-                    }).ConfigureAwait(false);
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
+                var filteredBankList = Helpers.Constants.StaticDataList.Where(a => a.type == "BANK").ToList();
+                Banklist = new ObservableCollection<Staticdata>(filteredBankList); 
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
         }
-    #endregion
+        #endregion
 
         #region Check Validate All Fields
         /// <summary>

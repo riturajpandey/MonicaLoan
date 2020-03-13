@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -316,54 +317,14 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <returns></returns>
         public async Task StaticDataSearch()
         {
-            //Call api..
+            //Fileter Bank List From Static Data List..
             try
             {
-                //Call AccessRegisterActivate Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    await Task.Run(async () =>
-                    {
-                        if (_businessCode != null)
-                        {
-                            await _businessCode.StaticDataSearchApi(new StaticDataSearchRequestModel()
-                            {
+                var EmployerList = Helpers.Constants.StaticDataList.Where(a => a.type == "EMPLOYER").ToList();
+                EmpCode = new ObservableCollection<Staticdata>(EmployerList);
 
-                            },
-                            async (obj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var requestList = (obj as StaticDataSearchResponseModel);
-                                    if (requestList != null)
-                                    {
-                                        EmpCode = new ObservableCollection<Staticdata>(requestList.staticdata);
-                                        Purpose = new ObservableCollection<Staticdata>(requestList.staticdata);
-                                    }
-                                    else
-                                    {
-                                        UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
-                                    }
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                });
-                            });
-                        }
-                    }).ConfigureAwait(false);
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
+                var PurposeList = Helpers.Constants.StaticDataList.Where(a => a.type == "PURPOSE").ToList();
+                Purpose = new ObservableCollection<Staticdata>(PurposeList);
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }

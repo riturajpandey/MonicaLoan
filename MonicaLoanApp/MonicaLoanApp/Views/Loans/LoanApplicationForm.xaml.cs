@@ -27,6 +27,13 @@ namespace MonicaLoanApp.Views.Loans
             this.BindingContext = LoanApplication_Form;
         }
         #endregion
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoanApplication_Form.StaticDataSearch();
+        }
+        #endregion
 
         #region Methods
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)

@@ -18,7 +18,6 @@ namespace MonicaLoanApp.ViewModels
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-        private const string _passwordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
 
         #region  Constructor
@@ -185,12 +184,6 @@ namespace MonicaLoanApp.ViewModels
             if (string.IsNullOrEmpty(Password))
             {
                 UserDialog.Alert("Please enter your password.");
-                return false;
-            }
-            bool isPasswordValid = (Regex.IsMatch(Password, _passwordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-            if (!isPasswordValid)
-            {
-                UserDialogs.Instance.Alert("Please enter valid Password");
                 return false;
             }
             return true;

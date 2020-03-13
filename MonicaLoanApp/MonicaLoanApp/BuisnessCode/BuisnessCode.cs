@@ -20,7 +20,7 @@ namespace MonicaLoanApp.BuisnessCode
             _apiProvider = apiProvider;
         }
 
-        
+
 
         #region StaticDataSearchApi
         public async Task<StaticDataSearchResponseModel> StaticDataSearchApi(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed)
@@ -78,7 +78,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash","hS9NwfFvC; Z`~bUE'vqE7-#y");
+                dic.Add("hash", "hS9NwfFvC; Z`~bUE'vqE7-#y");
                 var result = _apiProvider.Post<AccessRegisterPreValidateResponseModel, AccessRegisterPreValidateRequestModel>(url, request, dic);
 
                 var response = result.Result;
@@ -181,6 +181,10 @@ namespace MonicaLoanApp.BuisnessCode
             return resmodel;
         }
 
+
+        #endregion
+
+        #region Login
         public async Task<LoginResponseModel> AccessLoginApi(LoginRequestModel request, Action<object> success, Action<object> failed)
         {
             LoginResponseModel resmodel = new LoginResponseModel();
@@ -200,6 +204,90 @@ namespace MonicaLoanApp.BuisnessCode
                 if (response.IsSuccessful != false)
                 {
                     objres = JsonConvert.DeserializeObject<LoginResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+        #endregion
+        #region Resetpassword
+        /// <summary>
+        /// To call AccessPasswordReminderApi...
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<AccessPasswordReminderResponseModel> AccessPasswordReminderApi(AccessPasswordReminderRequestModel request, Action<object> success, Action<object> failed)
+        {
+            AccessPasswordReminderResponseModel resmodel = new AccessPasswordReminderResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/AccessPasswordReminder", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<AccessPasswordReminderResponseModel, AccessPasswordReminderRequestModel>(url, request, dic);
+                var response = result.Result;
+                AccessPasswordReminderResponseModel objres = null;
+                dynamic obj = "";
+                AccessPasswordReminderResponseModel reg = new AccessPasswordReminderResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<AccessPasswordReminderResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+        /// <summary>
+        /// To call AccessPasswordChangeApi...
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<AccessPasswordChangeResponseModel> AccessPasswordChangeApi(AccessPasswordChangeRequestModel request, Action<object> success, Action<object> failed)
+        {
+            AccessPasswordChangeResponseModel resmodel = new AccessPasswordChangeResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/AccessPasswordChange", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<AccessPasswordChangeResponseModel, AccessPasswordChangeRequestModel>(url, request, dic);
+                var response = result.Result;
+                AccessPasswordChangeResponseModel objres = null;
+                dynamic obj = "";
+                AccessPasswordChangeResponseModel reg = new AccessPasswordChangeResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<AccessPasswordChangeResponseModel>(response.RawResult);
                     success.Invoke(objres);
                 }
                 else

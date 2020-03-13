@@ -17,12 +17,12 @@ namespace MonicaLoanApp.Views.ResetPassword
         protected UpdatePasswordPageVm NewPasswordVM;
 
         #region Constructor
-        public UpdatePasswordPage()
+        public UpdatePasswordPage(string Email)
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            NewPasswordVM = new UpdatePasswordPageVm(this.Navigation);
+            NewPasswordVM = new UpdatePasswordPageVm(this.Navigation, Email);
             this.BindingContext = NewPasswordVM;
         }
         #endregion

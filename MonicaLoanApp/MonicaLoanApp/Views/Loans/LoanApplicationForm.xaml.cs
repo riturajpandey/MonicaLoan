@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.Loans;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.Loans;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,8 +57,18 @@ namespace MonicaLoanApp.Views.Loans
         /// <param name="e"></param>
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
-            LoanApplication_Form.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+            try
+            {
+                if (DtPckDOB.Date != null)
+                {
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    LoanApplication_Form.DateOfBirth = DateBirth;
+                }
 
+            }
+            catch (Exception ex)
+            { }
         }
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -66,13 +77,52 @@ namespace MonicaLoanApp.Views.Loans
         /// <param name="e"></param>
         private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DtPckDOB.Date != null)
+            try
             {
-                LoanApplication_Form.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+                if (DtPckDOB.Date != null)
+                {
+                    // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    LoanApplication_Form.DateOfBirth = DateBirth;
 
+                }
             }
+            catch (Exception ex)
+            { }
         }
         #endregion
 
+        private void Purpose_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (Pckgender.SelectedIndex >= 0)
+            //{
+            //    var code = PckBankfrst.SelectedItem as Staticdata;
+            // RegisterOneVM.Bankcode = code.key;
+            //}
+            if (PckPurpose.SelectedIndex >= 0)
+            {
+                var purposecode = PckPurpose.SelectedItem as Staticdata;
+                LoanApplication_Form.PurposeCode = purposecode.key;
+            }
+
+        }
+
+        private void Employee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckEmployee.SelectedIndex >= 0)
+            {
+                var EmployerCode = PckEmployee.SelectedItem as Staticdata;
+                LoanApplication_Form.EmployerCode = EmployerCode.key;
+            }
+        }
+
+        private void pckWeeks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pckWeeks.SelectedIndex >= 0)
+            {
+                LoanApplication_Form.LoanDuration = pckWeeks.Items[pckWeeks.SelectedIndex];
+            }
+        }
     }
 }

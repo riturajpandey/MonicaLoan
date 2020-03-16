@@ -26,6 +26,9 @@ namespace MonicaLoanApp.Helpers
         private const string AccessToken = "AccessToken";
         private static readonly string AccessTokenDefault = string.Empty;
 
+        private const string LoanNumber = "LoanNumber";
+        private static readonly string LoanNumberDefault = string.Empty;
+
         public static string GeneralAccessToken
         {
             get
@@ -35,6 +38,18 @@ namespace MonicaLoanApp.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(AccessToken, value);
+            }
+        }
+
+        public static string GeneralLoanNumber
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(LoanNumber, LoanNumberDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(LoanNumber, value);
             }
         }
         #endregion

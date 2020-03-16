@@ -1,9 +1,12 @@
-﻿using Acr.UserDialogs;
+﻿using MonicaLoanApp.Models;
+using Acr.UserDialogs;
 using MonicaLoanApp.Models.Loan;
 using MonicaLoanApp.Models.Payments;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +25,20 @@ namespace MonicaLoanApp.ViewModels.Payments
         #endregion
 
         #region Properties
+        private ObservableCollection<Staticdata> _SelectLoan;
+        public ObservableCollection<Staticdata> SelectLoan
+        {
+            get { return _SelectLoan; }
+            set
+            {
+                if (_SelectLoan != value)
+                {
+                    _SelectLoan = value;
+                    OnPropertyChanged("SelectLoan");
+                }
+            }
+        }
+
         private string _DateOfBirth = "Select schedule";
         public string DateOfBirth
         {
@@ -286,6 +303,27 @@ namespace MonicaLoanApp.ViewModels.Payments
                 return false;
             }
             return true; 
+        }
+        private void PaymentCommandAsync(object obj)
+        {
+            UserDialog.Alert("Payment Complete successfully.!", "Success", "Ok");
+            App.Current.MainPage = new Views.Payments.PaymentListPage();
+        }
+
+        /// <summary>
+        /// Call This Api For StaticDataSearch
+        /// </summary>
+        /// <returns></returns>
+        public async Task StaticDataSearch()
+        {
+            //Fileter Bank List From Static Data List..
+            try
+            {
+                var EmployerList = Helpers.Constants.StaticDataList.Where(a => a.type == "EMPLOYER").ToList();
+                SelectLoan = new ObservableCollection<Staticdata>(EmployerList);
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
         }
         #endregion
 

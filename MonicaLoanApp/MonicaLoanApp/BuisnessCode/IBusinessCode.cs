@@ -35,7 +35,12 @@ namespace MonicaLoanApp.BuisnessCode
         #endregion
 
         #region Logout
+        // Logout Api...
         Task<AccessLogOutResponseModel> AccessLogOutApi(AccessLogOutRequestModel request, Action<object> success, Action<object> failed);
+        #endregion
+        #region Loan Create Api
+        //
+        Task<LoanCreateResponseModel> LoanCreateApi(LoanCreateRequestModel request, Action<object> success, Action<object> failed);
         #endregion
 
         #region LoanSearch 

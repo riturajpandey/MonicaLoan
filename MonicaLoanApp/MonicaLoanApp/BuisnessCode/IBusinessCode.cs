@@ -6,7 +6,7 @@ namespace MonicaLoanApp.BuisnessCode
 {
     public interface IBusinessCode
     {
-        //StaticDataSearch Api 
+        //StaticDataSearch Api ...
         Task<StaticDataSearchResponseModel> StaticDataSearchApi(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed);
 
         #region Register Apis
@@ -26,9 +26,9 @@ namespace MonicaLoanApp.BuisnessCode
         #endregion
 
         #region resetpassword
-        //StaticDataSearch Api 
+        //StaticDataSearch Api ...
         Task<AccessPasswordReminderResponseModel> AccessPasswordReminderApi(AccessPasswordReminderRequestModel request, Action<object> success, Action<object> failed);
-        //StaticDataSearch Api 
+        //StaticDataSearch Api ...
         Task<AccessPasswordChangeResponseModel> AccessPasswordChangeApi(AccessPasswordChangeRequestModel request, Action<object> success, Action<object> failed);
         #endregion
 
@@ -36,9 +36,19 @@ namespace MonicaLoanApp.BuisnessCode
         // Logout Api...
         Task<AccessLogOutResponseModel> AccessLogOutApi(AccessLogOutRequestModel request, Action<object> success, Action<object> failed);
         #endregion
+
         #region Loan Create Api
-        //
+        //LoanCreate Api...
         Task<LoanCreateResponseModel> LoanCreateApi(LoanCreateRequestModel request, Action<object> success, Action<object> failed);
+        //Profile Get Api...
+        #endregion
+
+        #region Profile
+        //get Profile data Api..
+        Task<ProfileGetResponseModel> ProfileGetApi(ProfileGetRequestModel request, Action<object> success, Action<object> failed);
+
+        //Save Profile Data...
+        // Task<SaveDataResponseModel> ProfileSaveApi(SaveDataResponseModel request, Action<object> succss, Action<object> failed);
         #endregion
     }
 

@@ -22,7 +22,22 @@ namespace MonicaLoanApp.Views.MyAccount
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             AddressVM = new AddressPageVM(this.Navigation);
             this.BindingContext = AddressVM;
+
+            //AddressVM.State = Helpers.Settings.UserStatename;
+            if (!string.IsNullOrEmpty(Helpers.Settings.UserStatename))
+            {
+                var item = AddressVM.Statelist.Where(a => a.data == Helpers.Settings.UserStatename).FirstOrDefault();
+                var index = AddressVM.Statelist.IndexOf(item);
+                MaritalStatus.SelectedItem = index;
+            } 
         }
-       
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await AddressVM.StaticDataSearch();
+        }
+        #endregion
+
     }
 }

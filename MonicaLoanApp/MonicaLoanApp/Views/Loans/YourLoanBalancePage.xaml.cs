@@ -15,7 +15,7 @@ namespace MonicaLoanApp.Views.Loans
     public partial class YourLoanBalancePage : ContentPage
     {
         //Define Properties Here...
-        protected YourLoanBalancePageVM YourLoanBalancePageVM;
+        protected YourLoanBalancePageVM YourLoanBalancePagevm;
 
         #region Constructor
         public YourLoanBalancePage()
@@ -23,8 +23,15 @@ namespace MonicaLoanApp.Views.Loans
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-            YourLoanBalancePageVM = new YourLoanBalancePageVM(this.Navigation);
-            BindingContext = YourLoanBalancePageVM;
+            YourLoanBalancePagevm = new YourLoanBalancePageVM(this.Navigation);
+            BindingContext = YourLoanBalancePagevm;
+        }
+        #endregion
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await YourLoanBalancePagevm.GetProfile();
         }
         #endregion
     }

@@ -12,6 +12,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         {
             Navigation = nav;
             SaveCommand = new Command(SaveCommandAsync);
+            FirstName = Helpers.Settings.UserFirstname +" "+ Helpers.Settings.UserLastname;
+            Email = Helpers.Settings.UserEmailaddress;
+            DateOfBirth = Helpers.Settings.UserDateofbirth;
+            Gender = Helpers.Settings.UserGender;
+            MaritalStatus = Helpers.Settings.UserMaritalstatus;
         }
 
        
@@ -54,6 +59,33 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 {
                     _Email = value;
                     OnPropertyChanged("Email");
+                }
+            }
+        }
+        private string _Gender;
+        public string Gender
+        {
+            get { return _Gender; }
+            set
+            {
+                if (_Gender != value)
+                {
+                    _Gender = value;
+                    OnPropertyChanged("Gender");
+                }
+            }
+        }
+
+        private string _MaritalStatus;
+        public string MaritalStatus
+        {
+            get { return _MaritalStatus; }
+            set
+            {
+                if (_MaritalStatus != value)
+                {
+                    _MaritalStatus = value;
+                    OnPropertyChanged("MaritalStatus");
                 }
             }
         }

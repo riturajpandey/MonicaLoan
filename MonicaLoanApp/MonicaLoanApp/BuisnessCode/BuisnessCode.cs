@@ -392,6 +392,51 @@ namespace MonicaLoanApp.BuisnessCode
             }
             return resmodel;
         }
+
+
+        #endregion
+        #region Profile
+        /// <summary>
+        /// To call Profile Get Api
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<ProfileGetResponseModel> ProfileGetApi(ProfileGetRequestModel request, Action<object> success, Action<object> failed)
+        {
+            ProfileGetResponseModel resmodel = new ProfileGetResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/ProfileGet", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<ProfileGetResponseModel, ProfileGetRequestModel>(url, request, dic);
+                var response = result.Result;
+                ProfileGetResponseModel objres = null;
+                dynamic obj = "";
+                ProfileGetResponseModel reg = new ProfileGetResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<ProfileGetResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
         #endregion
     }
 }

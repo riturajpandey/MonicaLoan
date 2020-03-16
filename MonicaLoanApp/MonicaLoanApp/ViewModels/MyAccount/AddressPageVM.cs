@@ -1,6 +1,10 @@
-﻿using System;
+﻿using MonicaLoanApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.MyAccount
@@ -11,6 +15,10 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public AddressPageVM(INavigation nav)
         {
             Navigation = nav;
+            AddressOne = Helpers.Settings.UserAddressline1;
+            AddressSecond = Helpers.Settings.UserAddressline2;
+            City = Helpers.Settings.UserCity;
+           // State = Helpers.Settings.UserStatename;
         }
         #endregion
 
@@ -28,12 +36,67 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 }
             }
         }
+        private string _AddressSecond;
+        public string AddressSecond
+        {
+            get { return _AddressSecond; }
+            set
+            {
+                if (_AddressSecond != value)
+                {
+                    _AddressSecond = value;
+                    OnPropertyChanged("AddressSecond");
+                }
+            }
+        }
+        private string _City;
+        public string City
+        {
+            get { return _City; }
+            set
+            {
+                if (_City != value)
+                {
+                    _City = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+
+        private ObservableCollection<Staticdata> _Statelist;
+        public ObservableCollection<Staticdata> Statelist
+        {
+            get { return _Statelist; }
+            set
+            {
+                if (_Statelist != value)
+                {
+                    _Statelist = value;
+                    OnPropertyChanged("Statelist");
+                }
+            }
+        }
         #endregion
 
         #region Commands
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Call This Api For StaticDataSearch
+        /// </summary>
+        /// <returns></returns>
+        public async Task StaticDataSearch()
+        {
+            //Fileter Bank List From Static Data List..
+            try
+            {
+                var filteredStatelist = Helpers.Constants.StaticDataList.Where(a => a.type == "STATE").ToList();
+                Statelist = new ObservableCollection<Staticdata>(filteredStatelist);
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
         #endregion
     }
 }

@@ -30,7 +30,8 @@ namespace MonicaLoanApp.iOS
 
             #endregion
             LoadApplication(new App());
-
+            //Popup Menu
+            Xam.Plugin.iOS.PopupEffect.Init();
 
             return base.FinishedLaunching(app, options);
         }

@@ -73,6 +73,7 @@ namespace MonicaLoanApp.Views.Payments
             if (PckLoan.SelectedIndex >= 0)
             {
                 var loan = PckLoan.SelectedItem as Loan;
+                MakePaymentVM.LoanNumber = loan.loannumber; 
                 MakePaymentVM.LoanAmount = loan.loanamount; 
                 MakePaymentVM.LoanPurpose = PckLoan.Items[PckLoan.SelectedIndex];
                 MakePaymentVM.SchedulesList = new ObservableCollection<Schedule>(loan.schedules); 

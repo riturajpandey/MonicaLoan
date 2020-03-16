@@ -94,6 +94,20 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
         }
 
+        private string _LoanNumber;
+        public string LoanNumber
+        {
+            get { return _LoanNumber; }
+            set
+            {
+                if (_LoanNumber != value)
+                {
+                    _LoanNumber = value;
+                    OnPropertyChanged("LoanNumber"); 
+                }
+            }
+        }
+
         private string _LoanSchedule;
         public string LoanSchedule 
         {
@@ -157,7 +171,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                             await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
                             {
                                 usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
-                                loannumber = "1338806772"
+                                loannumber = LoanNumber
                             },
                             async (obj) =>
                             {
@@ -219,10 +233,10 @@ namespace MonicaLoanApp.ViewModels.Payments
                             await _businessCode.PaymentCreateApi(new PaymentCreateRequestModel()
                             {
                                 usertoken = Helpers.Settings.GeneralAccessToken,
-                                loannumber = "1338806772",
-                                loanschedulenumber = LoanSchedule,
+                                loannumber = LoanNumber, 
+                                loanschedulenumber = LoanSchedule, 
                                 amount = Amount,
-                                paymentmethodcode = "CARD"
+                                paymentmethodcode = "CARD" 
                             },
                             async (objj) =>
                             {
@@ -303,11 +317,6 @@ namespace MonicaLoanApp.ViewModels.Payments
                 return false;
             }
             return true; 
-        }
-        private void PaymentCommandAsync(object obj)
-        {
-            UserDialog.Alert("Payment Complete successfully.!", "Success", "Ok");
-            App.Current.MainPage = new Views.Payments.PaymentListPage();
         }
 
         /// <summary>

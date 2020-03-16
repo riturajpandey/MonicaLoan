@@ -1,26 +1,36 @@
-﻿using MonicaLoanApp.Models;
+﻿using Acr.UserDialogs;
+using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Loans
 {
     public class LoanApplicationPageVM : BaseViewModel
     {
+        public List<string> ContextMenu = new List<string>();
+        
+
         #region  Constructor
         public LoanApplicationPageVM(INavigation nav)
         {
             Navigation = nav;
-            //TODO : Dummy Data in list
-            LoanDetailsList = new ObservableCollection<LoanDetailsModel>
-            {
-                 new LoanDetailsModel{Id="0", Amount="N500,000",Status="Paid",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="1", Amount="N100,000",Status="Paid",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Pay",AmtDate="1 Feb 2020"},
-                 new LoanDetailsModel{Id="2", Amount="N100,000",Status="Pay",AmtDate="1 Feb 2020"},
-            };
+            ContextMenu.Add("Accept");
+            ContextMenu.Add("Decline"); 
+
+            ////TODO : Dummy Data in list
+            //LoanDetailsList = new ObservableCollection<LoanDetailsModel>
+            //{
+            //     new LoanDetailsModel{Id="0", Amount="N500,000",Status="Paid",AmtDate="1 Feb 2020"},
+            //     new LoanDetailsModel{Id="1", Amount="N100,000",Status="Paid",AmtDate="1 Feb 2020"},
+            //     new LoanDetailsModel{Id="2", Amount="N100,000",Status="Pay",AmtDate="1 Feb 2020"},
+            //     new LoanDetailsModel{Id="2", Amount="N100,000",Status="Pay",AmtDate="1 Feb 2020"},
+            //}; 
         }
 
         #endregion
@@ -29,10 +39,10 @@ namespace MonicaLoanApp.ViewModels.Loans
          
         #endregion
 
-        #region Properties
+        #region Properties 
 
-        private ObservableCollection<LoanDetailsModel> _LoanDetailsList;
-        public ObservableCollection<LoanDetailsModel> LoanDetailsList
+        private ObservableCollection<Schedule> _LoanDetailsList;    
+        public ObservableCollection<Schedule> LoanDetailsList   
         {
             get { return _LoanDetailsList; }
             set
@@ -40,11 +50,11 @@ namespace MonicaLoanApp.ViewModels.Loans
                 if (_LoanDetailsList != value)
                 {
                     _LoanDetailsList = value;
-                    OnPropertyChanged("LoanDetailsList");
+                    OnPropertyChanged("LoanDetailsList"); 
                 }
             }
         }
-        private string _Status = "Active";
+        private string _Status = "Active";    
         public string Status
         {
             get { return _Status; }
@@ -53,11 +63,11 @@ namespace MonicaLoanApp.ViewModels.Loans
                 if(_Status!= value)
                 {
                     _Status = value;
-                    OnPropertyChanged("Status");
+                    OnPropertyChanged("Status"); 
                 }
             }
         }
-        private string _Date = "1 Dec 2019";
+        private string _Date = "1 Dec 2019";  
         public string Date
         {
             get { return _Date; }
@@ -136,10 +146,85 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
+        private string _EmployeeLoanDate ;
+        public string EmployeeLoanDate
+        {
+            get { return _UserName; }
+            set
+            {
+                if (_UserName != value)
+                {
+                    _UserName = value;
+                    OnPropertyChanged("EmployeeLoanDate");
+                }
+            }
+        }
+
         #endregion
 
         #region Methods
-
+        public async Task GetLoanDetail(AllLoan allLoan)  
+        {
+            //Call api..
+            try
+            {
+                //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
+                            {
+                                usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
+                                loannumber = allLoan.loannumber
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as LoanSearchResponseModel).loans;
+                                    if (requestList != null)
+                                    {
+                                        UserDialogs.Instance.HideLoading(); 
+                                        LoanDetailsList = new ObservableCollection<Schedule>(requestList[0].schedules);
+                                        Status = requestList[0].statusname;
+                                        Date = requestList[0].LoanDate; 
+                                        LoanAmount = "N" + requestList[0].loanamount;
+                                        LoanBalance = "N" + requestList[0].loanbalance;
+                                        UserCompany = requestList[0].employername;  
+                                        UserSalary = "N" + requestList[0].employeesalarymonthly;  
+                                        EmployeeLoanDate = requestList[0].EmployeeLoanDate;   
+                                        UserName = requestList[0].employeenumber;
+                                    } 
+                                    else
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                    }
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
         #endregion
 
     }

@@ -45,6 +45,7 @@ namespace MonicaLoanApp.BuisnessCode
 
         #region LoanSearch 
         Task<LoanSearchResponseModel> LoanSearchApi(LoanSearchRequestModel request, Action<object> success, Action<object> failed);
+        Task<AllLoanResponseModel> GetAllLoansApi(AllLoanRequestModel request, Action<object> success, Action<object> failed);
         #endregion
 
         #region Payment 

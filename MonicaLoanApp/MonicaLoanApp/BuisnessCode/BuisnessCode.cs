@@ -387,6 +387,48 @@ namespace MonicaLoanApp.BuisnessCode
             }
             return resmodel;
         }
+
+        /// <summary>
+        /// To Call All Loan Api...
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns> 
+        public async Task<AllLoanResponseModel> GetAllLoansApi(AllLoanRequestModel request, Action<object> success, Action<object> failed)
+        {
+            AllLoanResponseModel resmodel = new AllLoanResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/LoanSearch", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "dcdscfdscds");
+                var result = _apiProvider.Post<AllLoanResponseModel, AllLoanRequestModel>(url, request, dic);
+                var response = result.Result;
+                AllLoanResponseModel objres = null;
+                dynamic obj = "";
+                AllLoanResponseModel reg = new AllLoanResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<AllLoanResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
         #endregion
 
         #region Payment 
@@ -468,6 +510,8 @@ namespace MonicaLoanApp.BuisnessCode
             }
             return resmodel;
         }
+
+       
         #endregion
     }
 }

@@ -33,8 +33,12 @@
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                         </Grid>
-                        <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
-                    </Grid>
+                    <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
                 </local:CustomFrameForOpacity>
                 <!--Middle grid-->
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
@@ -51,7 +55,7 @@
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/> 
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Text="Status" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
                             <Label Grid.Row="0" Text="Date" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
@@ -94,7 +98,7 @@
                             <Image Grid.Row="1" Grid.Column="2" Source="currency.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="1" Grid.Column="3" Text="{Binding UserSalary}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                             <Image Grid.Row="2" Grid.Column="0" Source="calender.png" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Date}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding EmployeeLoanDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                             <Image Grid.Row="2" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <Label Grid.Row="2" Grid.Column="3" Text="{Binding UserName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                         </Grid>
@@ -118,9 +122,9 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Text="{Binding AmtDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
-                                                <Label Grid.Column="1" Text="{Binding Amount}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
-                                                <Label Grid.Column="2" Text="{Binding Status}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                                                <Label Grid.Column="0" Text="{Binding ScheduleDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                                                <Label Grid.Column="1" Text="{Binding amounttotal}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
+                                                <Label Grid.Column="2" Text="{Binding statusname}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                             </Grid>
                                         </ViewCell>
                                     </DataTemplate>

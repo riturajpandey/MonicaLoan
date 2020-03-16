@@ -1,5 +1,7 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
+using MonicaLoanApp.Models.Payments;
 using MonicaLoanApp.Providers;
 using MonicaLoanApp.Services;
 using Newtonsoft.Json;
@@ -335,6 +337,80 @@ namespace MonicaLoanApp.BuisnessCode
                 if (response.IsSuccessful != false)
                 {
                     objres = JsonConvert.DeserializeObject<AccessLogOutResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+        #endregion
+
+        #region LoanSearch 
+        public async Task<LoanSearchResponseModel> LoanSearchApi(LoanSearchRequestModel request, Action<object> success, Action<object> failed)
+        {
+            LoanSearchResponseModel resmodel = new LoanSearchResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/LoanSearch", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "dcdscfdscds");
+                var result = _apiProvider.Post<LoanSearchResponseModel, LoanSearchRequestModel>(url, request, dic);
+                var response = result.Result;
+                LoanSearchResponseModel objres = null;
+                dynamic obj = "";
+                LoanSearchResponseModel reg = new LoanSearchResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<LoanSearchResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+        #endregion
+
+        #region Payment 
+        public async Task<PaymentCreateResponseModel> PaymentCreateApi(PaymentCreateRequestModel request, Action<object> success, Action<object> failed)
+        {
+            PaymentCreateResponseModel resmodel = new PaymentCreateResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/PaymentCreate", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "dcdscfdscds");
+                var result = _apiProvider.Post<PaymentCreateResponseModel, PaymentCreateRequestModel>(url, request, dic);
+                var response = result.Result;
+                PaymentCreateResponseModel objres = null;  
+                dynamic obj = "";
+                PaymentCreateResponseModel reg = new PaymentCreateResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<PaymentCreateResponseModel>(response.RawResult);
                     success.Invoke(objres);
                 }
                 else

@@ -1,4 +1,6 @@
 ﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
+using MonicaLoanApp.Models.Payments;
 using System;
 using System.Threading.Tasks;
 
@@ -34,6 +36,14 @@ namespace MonicaLoanApp.BuisnessCode
 
         #region Logout
         Task<AccessLogOutResponseModel> AccessLogOutApi(AccessLogOutRequestModel request, Action<object> success, Action<object> failed);
+        #endregion
+
+        #region LoanSearch 
+        Task<LoanSearchResponseModel> LoanSearchApi(LoanSearchRequestModel request, Action<object> success, Action<object> failed);
+        #endregion
+
+        #region Payment 
+        Task<PaymentCreateResponseModel> PaymentCreateApi(PaymentCreateRequestModel request, Action<object> success, Action<object> failed);
         #endregion
     }
 

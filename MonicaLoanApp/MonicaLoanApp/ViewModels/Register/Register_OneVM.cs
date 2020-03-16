@@ -529,7 +529,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 }
             }
             catch (Exception ex)
-            { UserDialog.HideLoading(); }
+            { UserDialog.HideLoading(); } 
         }
         /// <summary>
         /// Call This Api For StaticDataSearch

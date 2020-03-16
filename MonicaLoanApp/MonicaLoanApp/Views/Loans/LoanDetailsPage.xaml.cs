@@ -1,4 +1,5 @@
 ﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
 using MonicaLoanApp.ViewModels.Loans;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,15 @@ namespace MonicaLoanApp.Views.Loans
         }
         #endregion
 
+        /// <summary>
+        /// TODO : TO Define OnAppearing Event...
+        /// </summary>
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoanDetailsVM.GetAllLoans();
+        }
+
         #region Methods
         /// <summary>
         /// TODO: To list tapped event open LoanDetail page..
@@ -37,9 +47,9 @@ namespace MonicaLoanApp.Views.Loans
         /// <param name="e"></param>
         private async void LoanDetail_Tapped(object sender, EventArgs e)
         {
-            var item = (sender as Grid).BindingContext as LoanDetailsModel;
+            var item = (sender as Grid).BindingContext as AllLoan;    
             if (item != null) 
-                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage());
+                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage(item));   
         }
         #endregion
     }

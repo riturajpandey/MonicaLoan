@@ -1,4 +1,6 @@
 ﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
+using MonicaLoanApp.Models.Payments;
 using System;
 using System.Threading.Tasks;
 
@@ -49,6 +51,15 @@ namespace MonicaLoanApp.BuisnessCode
 
         //Save Profile Data...
         // Task<SaveDataResponseModel> ProfileSaveApi(SaveDataResponseModel request, Action<object> succss, Action<object> failed);
+        #endregion
+
+        #region LoanSearch 
+        Task<LoanSearchResponseModel> LoanSearchApi(LoanSearchRequestModel request, Action<object> success, Action<object> failed);
+        Task<AllLoanResponseModel> GetAllLoansApi(AllLoanRequestModel request, Action<object> success, Action<object> failed);
+        #endregion
+
+        #region Payment 
+        Task<PaymentCreateResponseModel> PaymentCreateApi(PaymentCreateRequestModel request, Action<object> success, Action<object> failed);
         #endregion
     }
 

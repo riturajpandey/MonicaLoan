@@ -172,6 +172,22 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
+
+        private string _LoanDuration;
+        public string LoanDuration
+        {
+            get { return _LoanDuration; }
+            set
+            {
+                if (_LoanDuration != value)
+                {
+                    _LoanDuration = value;
+                    OnPropertyChanged("LoanDuration");
+                }
+            }
+        }
+        public string PurposeCode { get; set; }
+        public string EmployerCode { get; set; }
         #endregion
 
         #region Command
@@ -196,9 +212,77 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// </summary>
         /// <param name="obj"></param>
         private async void SubmitCommandAsync(object obj)
-        {
-            SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
-            await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+        { //Call api..
+            try
+            {
+                //Call AccessRegister Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.LoanCreateApi(new LoanCreateRequestModel()
+                            {
+                                usertoken = Helpers.Settings.GeneralAccessToken,
+                                loanamount= Convert.ToInt32(EnterAmount),
+                                durationperiod= LoanDuration,
+                                durationtotal= Convert.ToInt32(NumberOfWeek),
+                                employeesalarymonthly= Convert.ToInt32(EnterSalary),
+                                employercode=EmployerCode,
+                                purposecode=PurposeCode,
+                                employeenumber= EnterEmployeeNumber,
+                                employeeidcard= Helpers.Constants.imgFilePath,
+                                employeestartdate= DateOfBirth,
+                                
+                            },
+                            async (_obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (_obj as LoanCreateResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        if (requestList.responsecode == 100)
+                                        {
+                                            Helpers.Settings.GeneralLoanNumber = requestList.loannumber;
+                                            Helpers.Constants.LoanSubmitSms = requestList.responsemessage;
+                                            SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
+                                            await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+
+                                        }
+
+                                    }
+
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            }) ;
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+            //SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
+            //await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
 
         }
         /// <summary>
@@ -329,6 +413,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             catch (Exception ex)
             { UserDialog.HideLoading(); }
         }
+
         #endregion
     }
 }

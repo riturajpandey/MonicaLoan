@@ -103,5 +103,10 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
         {
             return new Animation(d => { element.Opacity = d; }, from, to);
         }
+
+        private void CustomButton_Clicked(object sender, EventArgs e)
+        {
+           // Navigation.PushModalAsync(new Views.Loans.LoanPage());
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace MonicaLoanApp.Helpers
         public static string imgFilePath = string.Empty;
         //To maintain variable for Media picker selected items
         public static string PartImageBase64 = string.Empty;
+        public static string LoanSubmitSms = string.Empty;
 
         public static ObservableCollection<Staticdata> StaticDataList = new ObservableCollection<Staticdata>();
     }

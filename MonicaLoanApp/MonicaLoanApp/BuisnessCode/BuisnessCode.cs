@@ -20,8 +20,6 @@ namespace MonicaLoanApp.BuisnessCode
             _apiProvider = apiProvider;
         }
 
-
-
         #region StaticDataSearchApi
         public async Task<StaticDataSearchResponseModel> StaticDataSearchApi(StaticDataSearchRequestModel request, Action<object> success, Action<object> failed)
         {
@@ -335,6 +333,50 @@ namespace MonicaLoanApp.BuisnessCode
                 if (response.IsSuccessful != false)
                 {
                     objres = JsonConvert.DeserializeObject<AccessLogOutResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+        #endregion
+
+        #region LoanCreate
+        /// <summary>
+        /// To call LoanCreate Api..
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<LoanCreateResponseModel> LoanCreateApi(LoanCreateRequestModel request, Action<object> success, Action<object> failed)
+        {
+            LoanCreateResponseModel resmodel = new LoanCreateResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/LoanCreate", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<LoanCreateResponseModel, LoanCreateRequestModel>(url, request, dic);
+                var response = result.Result;
+                LoanCreateResponseModel objres = null;
+                dynamic obj = "";
+                LoanCreateResponseModel reg = new LoanCreateResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<LoanCreateResponseModel>(response.RawResult);
                     success.Invoke(objres);
                 }
                 else

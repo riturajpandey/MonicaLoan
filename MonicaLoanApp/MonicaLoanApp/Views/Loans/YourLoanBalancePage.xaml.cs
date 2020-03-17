@@ -31,7 +31,8 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await YourLoanBalancePagevm.GetProfile();
+            YourLoanBalancePagevm.LoanAmount = Helpers.Constants.UserLoanbalance;
+            YourLoanBalancePagevm.DueAmount = Helpers.Constants.UserDuebalance;
         }
         #endregion
     }

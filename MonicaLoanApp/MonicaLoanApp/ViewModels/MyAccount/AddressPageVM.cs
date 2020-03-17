@@ -15,9 +15,9 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public AddressPageVM(INavigation nav)
         {
             Navigation = nav;
-            AddressOne = Helpers.Settings.UserAddressline1;
-            AddressSecond = Helpers.Settings.UserAddressline2;
-            City = Helpers.Settings.UserCity;
+            //AddressOne = Helpers.Constants.UserAddressline1;
+            //AddressSecond = Helpers.Constants.UserAddressline2;
+            //City = Helpers.Constants.UserCity;
            // State = Helpers.Settings.UserStatename;
         }
         #endregion
@@ -59,6 +59,19 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 {
                     _City = value;
                     OnPropertyChanged("City");
+                }
+            }
+        }
+        private string _State;
+        public string State
+        {
+            get { return _State; }
+            set
+            {
+                if (_State != value)
+                {
+                    _State = value;
+                    OnPropertyChanged("State");
                 }
             }
         }

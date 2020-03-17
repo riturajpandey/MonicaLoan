@@ -16,11 +16,12 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             EmployementCommand = new Command(EmployementCommandAsync);
             BankDetailsCommand = new Command(BankDetailsCommandAsync);
             logoutCommand = new Command(logoutCommandAsync);
+            
         }
         #endregion
 
         #region Properties
-        private string _PersonalDetails = "Joe Bloggs";
+        private string _PersonalDetails ;
         public string PersonalDetails
         {
             get { return _PersonalDetails; }
@@ -34,7 +35,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Address = "15, Bale Street, Lekki, London.";
+        private string _Address ;
         public string Address
         {
             get { return _Address; }
@@ -48,7 +49,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Employement= "Joe Bloggs";
+        private string _Employement;
         public string Employement
         {
             get { return _Employement; }
@@ -62,7 +63,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _BankDetails = "Royal Bank 87413232";
+        private string _BankDetails ;
         public string BankDetails
         {
             get { return _BankDetails; }

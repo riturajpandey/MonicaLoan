@@ -20,7 +20,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="nav"></param>
         public MenuPageVM(INavigation nav)
         {
-            Navigation = nav;            
+            Navigation = nav;
             HomeCommand = new Command(OnHomeAsync);
             LoansCommand = new Command(OnLoansAsync);
             PaymentsCommand = new Command(OnPaymentsAsync);
@@ -43,7 +43,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         #endregion
 
         #region PROPERTIES 
-        private string _UserName = "Joe Bloggs";
+        private string _UserName;
         public string UserName
         {
             get { return _UserName; }
@@ -56,7 +56,7 @@ namespace MonicaLoanApp.ViewModels.Menu
                 }
             }
         }
-        private string _UserNumber= "87447197";
+        private string _UserNumber;
         public string UserNumber
         {
             get { return _UserNumber; }
@@ -177,7 +177,7 @@ namespace MonicaLoanApp.ViewModels.Menu
                                     UserDialog.HideLoading();
                                     UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
                                 });
-                            }) ;
+                            });
                         }
                     }).ConfigureAwait(false);
                 }
@@ -189,7 +189,7 @@ namespace MonicaLoanApp.ViewModels.Menu
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-            
+
         }
 
         #endregion

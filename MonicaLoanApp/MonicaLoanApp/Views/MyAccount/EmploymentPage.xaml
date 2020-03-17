@@ -57,12 +57,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckEmployment" ItemsSource="{Binding State}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
-                                        <Picker.Items>
-                                            <x:String>Salaried</x:String>
-                                            <x:String>Married</x:String>
-                                            <x:String>Diavorced</x:String>
-                                        </Picker.Items>
+                                    <local:CustomPicker x:Name="PckEmployee" ItemsSource="{Binding EmpCode}" SelectedIndexChanged="Employee_SelectedIndexChanged" ItemDisplayBinding="{Binding data}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
+                                        <!--<Picker.Items>
+                                                <x:String>Salaried</x:String>
+                                                <x:String>Self Employee</x:String>
+                                                <x:String>Student</x:String>
+                                            </Picker.Items>-->
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>

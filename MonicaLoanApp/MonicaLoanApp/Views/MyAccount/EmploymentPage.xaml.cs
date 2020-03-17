@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.MyAccount;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.MyAccount;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,18 @@ namespace MonicaLoanApp.Views.MyAccount
             this.BindingContext = EmployementVM;
         }
         #endregion
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await EmployementVM.StaticDataSearch();
+            EmployementVM.EnterEmpNo = Helpers.Constants.UserEmployeenumber;
+            EmployementVM.EnterSalary = Helpers.Constants.UserSalary;
+            EmployementVM.DateOfBirth=Helpers.Constants.UserDateofbirth;
+            
 
+        }
+        #endregion
         #region Methods
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -46,8 +58,18 @@ namespace MonicaLoanApp.Views.MyAccount
         /// <param name="e"></param>
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
-            EmployementVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+            try
+            {
+                if (DtPckDOB.Date != null)
+                {
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    EmployementVM.DateOfBirth = DateBirth;
+                }
 
+            }
+            catch (Exception ex)
+            { }
         }
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -56,12 +78,30 @@ namespace MonicaLoanApp.Views.MyAccount
         /// <param name="e"></param>
         private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DtPckDOB.Date != null)
+            try
             {
-                EmployementVM.DateOfBirth = DtPckDOB.Date.ToString("dd MMMM yyyy");
+                if (DtPckDOB.Date != null)
+                {
+                    // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    EmployementVM.DateOfBirth = DateBirth;
 
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
+        private void Employee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckEmployee.SelectedIndex >= 0)
+            {
+                var EmployerCode = PckEmployee.SelectedItem as Staticdata;
+                EmployementVM.EmployerCode = EmployerCode.key;
             }
         }
         #endregion
+
+
     }
 }

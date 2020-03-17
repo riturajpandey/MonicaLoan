@@ -105,11 +105,10 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="genderblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="gender" ItemsSource="{Binding Gender}" Title="Select gender"  VerticalOptions="CenterAndExpand">
+                                    <local:CustomPicker x:Name="pckgender" ItemsSource="{Binding Gender}" Title="Select gender" SelectedIndexChanged="gender_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
-                                            <x:String>Male</x:String>
-                                            <x:String>Female</x:String>
-                                            <x:String>Other</x:String>
+                                            <x:String>M</x:String>
+                                            <x:String>F</x:String>
                                         </Picker.Items>
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -125,11 +124,10 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="martialblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="MaritalStatus" ItemsSource="{Binding MaritalStatus}" Title="Marital Status"  VerticalOptions="CenterAndExpand">
+                                    <local:CustomPicker x:Name="PckMaritalStatus" ItemsSource="{Binding MaritalStatus}" Title="Marital Status" SelectedIndexChanged="MaritalStatus_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
-                                            <x:String>Single</x:String>
-                                            <x:String>Married</x:String>
-                                            <x:String>Divorced</x:String>
+                                            <x:String>S</x:String>
+                                            <x:String>M</x:String>
                                         </Picker.Items>
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>

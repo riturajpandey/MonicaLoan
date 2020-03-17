@@ -655,9 +655,40 @@ namespace MonicaLoanApp.BuisnessCode
             return resmodel;
         }
 
-       
-
-
+        public async Task<ProfileSaveResponseModel> ProfileSaveApi(ProfileSaveRequestModel request, Action<object> success, Action<object> failed)
+        {
+            ProfileSaveResponseModel resmodel = new ProfileSaveResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/ProfileSave", WebServiceDetails.BaseUri); 
+                string randomGuid = Guid.NewGuid().ToString(); 
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", "xyz123");
+                var result = _apiProvider.Post<ProfileSaveResponseModel, ProfileSaveRequestModel>(url, request, dic); 
+                var response = result.Result;
+                ProfileSaveResponseModel objres = null;
+                dynamic obj = "";
+                ProfileSaveResponseModel reg = new ProfileSaveResponseModel(); 
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<ProfileSaveResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
         #endregion
     }
 }

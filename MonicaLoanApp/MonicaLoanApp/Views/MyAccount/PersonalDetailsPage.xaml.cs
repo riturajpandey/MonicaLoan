@@ -27,14 +27,6 @@ namespace MonicaLoanApp.Views.MyAccount
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             PersonalDetailsVM = new Personal_DetailsVM(this.Navigation);
             this.BindingContext = PersonalDetailsVM;
-
-
-            //if (!string.IsNullOrEmpty(Helpers.Constants.UserMaritalstatus))
-            //{
-            //    var item = PersonalDetailsVM.Statelist.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
-            //    var index = PersonalDetailsVM.Statelist.IndexOf(item);
-            //    MaritalStatus.SelectedItem = index;
-            //}
         }
         #endregion
 
@@ -118,6 +110,15 @@ namespace MonicaLoanApp.Views.MyAccount
             PersonalDetailsVM.DateOfBirth = Helpers.Constants.UserDateofbirth;
             PersonalDetailsVM.Gender = Helpers.Constants.Usergender;
             PersonalDetailsVM.MaritalStatus = Helpers.Constants.UserMaritalstatus;
+
+            if (!string.IsNullOrEmpty(Helpers.Constants.Usergender))
+            {
+                PckGender.SelectedItem = Helpers.Constants.Usergender;
+            }
+            if (!string.IsNullOrEmpty(Helpers.Constants.UserMaritalstatus))
+            {
+                PckMaritalStatus.SelectedItem = Helpers.Constants.UserMaritalstatus;  
+            }
         }
 
 

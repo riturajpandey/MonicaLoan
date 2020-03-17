@@ -36,6 +36,13 @@ namespace MonicaLoanApp.Views.MyAccount
             
             BankVM.BankAccountNumber = Helpers.Constants.UserBankaccountno;
             BankVM.EnterBVN = Helpers.Constants.UserBvn;
+
+            if (!string.IsNullOrEmpty(Helpers.Constants.UserBankname))
+            {
+                var item = BankVM.Banklist.Where(a => a.data == Helpers.Constants.UserBankname).FirstOrDefault();
+                var index = BankVM.Banklist.IndexOf(item);
+                PckBankfrst.SelectedIndex = index;  
+            }
         }
         #endregion
 

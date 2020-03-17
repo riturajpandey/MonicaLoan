@@ -57,7 +57,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckLoan" ItemsSource="{Binding LoansList}" ItemDisplayBinding="{Binding purposename}" Title="Select Loan"  
+                                    <local:CustomPicker x:Name="PckLoan" ItemsSource="{Binding LoansList}" ItemDisplayBinding="{Binding loannumber}" Title="Select Loan"  
                                           SelectedIndexChanged="PckLoan_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
                                         <!--<Picker.Items>
                                             <x:String>Personal Loan</x:String>

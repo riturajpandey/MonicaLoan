@@ -37,7 +37,13 @@ namespace MonicaLoanApp.Views.MyAccount
             EmployementVM.EnterEmpNo = Helpers.Constants.UserEmployeenumber;
             EmployementVM.EnterSalary = Helpers.Constants.UserSalary;
             EmployementVM.DateOfBirth=Helpers.Constants.UserDateofbirth;
-            
+
+            if (!string.IsNullOrEmpty(Helpers.Constants.UserEmployername))
+            {
+                var item = EmployementVM.EmpCode.Where(a => a.data == Helpers.Constants.UserEmployername).FirstOrDefault();
+                var index = EmployementVM.EmpCode.IndexOf(item);
+                PckEmployee.SelectedIndex = index;
+            }
 
         }
         #endregion

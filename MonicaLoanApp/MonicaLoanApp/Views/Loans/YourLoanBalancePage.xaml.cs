@@ -32,6 +32,8 @@ namespace MonicaLoanApp.Views.Loans
         {
             base.OnAppearing();
             await YourLoanBalancePagevm.GetProfile();
+            YourLoanBalancePagevm.LoanAmount = Helpers.Constants.UserLoanbalance;
+            YourLoanBalancePagevm.DueAmount = Helpers.Constants.UserDuebalance;
         }
         #endregion
     }

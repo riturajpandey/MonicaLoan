@@ -27,6 +27,14 @@ namespace MonicaLoanApp.Views.MyAccount
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             PersonalDetailsVM = new Personal_DetailsVM(this.Navigation);
             this.BindingContext = PersonalDetailsVM;
+
+
+            //if (!string.IsNullOrEmpty(Helpers.Constants.UserMaritalstatus))
+            //{
+            //    var item = PersonalDetailsVM.Statelist.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
+            //    var index = PersonalDetailsVM.Statelist.IndexOf(item);
+            //    MaritalStatus.SelectedItem = index;
+            //}
         }
         #endregion
 
@@ -47,7 +55,18 @@ namespace MonicaLoanApp.Views.MyAccount
         /// <param name="e"></param>
         private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
         {
-            PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("MMMM dd, yyyy");
+            try
+            {
+                if (DtPckDOB.Date != null)
+                {
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    PersonalDetailsVM.DateOfBirth = DateBirth;
+                }
+
+            }
+            catch (Exception ex)
+            { }
 
         }
         /// <summary>
@@ -57,15 +76,49 @@ namespace MonicaLoanApp.Views.MyAccount
         /// <param name="e"></param>
         private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DtPckDOB.Date != null)
+            try
             {
-                PersonalDetailsVM.DateOfBirth = DtPckDOB.Date.ToString("MMMM dd, yyyy");
+                if (DtPckDOB.Date != null)
+                {
+                    // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
+                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+                    var DateBirth = date.Replace("-", "/");
+                    PersonalDetailsVM.DateOfBirth = DateBirth;
 
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
+        private void MaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckMaritalStatus.SelectedIndex >= 0)
+            {
+                PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+            }
+        }
+
+        private void gender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pckgender.SelectedIndex >= 0)
+            {
+                PersonalDetailsVM.Gender = pckgender.Items[pckgender.SelectedIndex];
             }
         }
 
 
         #endregion
+
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            PersonalDetailsVM.FirstName = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
+            PersonalDetailsVM.Email = Helpers.Constants.UserEmailAddress;
+            PersonalDetailsVM.DateOfBirth = Helpers.Constants.UserDateofbirth;
+            PersonalDetailsVM.Gender = Helpers.Constants.Usergender;
+            PersonalDetailsVM.MaritalStatus = Helpers.Constants.UserMaritalstatus;
+        }
 
         private void gender_SelectedIndexChanged(object sender, EventArgs e)
         {

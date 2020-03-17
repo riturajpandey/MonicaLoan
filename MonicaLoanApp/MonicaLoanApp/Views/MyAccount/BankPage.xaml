@@ -55,12 +55,13 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="bankblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckBank" ItemsSource="{Binding }" Title="Select Bank"  VerticalOptions="CenterAndExpand">
-                                        <Picker.Items>
-                                            <x:String>PNB</x:String>
-                                            <x:String>SBI</x:String>
-                                            <x:String>ICICI</x:String>
-                                        </Picker.Items>
+                                    <local:CustomPicker x:Name="PckBankfrst" ItemsSource="{Binding Banklist}" ItemDisplayBinding="{Binding data}" Title="Select Bank" FontSize="13" 
+                                                                SelectedIndexChanged="PckSelectbankCode_SelectedIndexChanged" VerticalOptions="CenterAndExpand" Margin="0,0,0,0">
+                                        <!--<Picker.Items>
+                                                <x:String>SBI</x:String>
+                                                <x:String>PNB</x:String>
+                                                <x:String>HDFC</x:String>
+                                            </Picker.Items>-->
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>

@@ -90,7 +90,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="state.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="MaritalStatus" ItemsSource="{Binding Statelist}" ItemDisplayBinding="{Binding data}" Title="Select State"  VerticalOptions="CenterAndExpand">
+                                    <local:CustomPicker x:Name="pckstate" ItemsSource="{Binding Statelist}" ItemDisplayBinding="{Binding data}" Title="Select State" SelectedIndexChanged="pckstate_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
                                         
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>

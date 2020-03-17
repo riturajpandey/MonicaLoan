@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.MyAccount;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.MyAccount;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace MonicaLoanApp.Views.MyAccount
             this.BindingContext = AddressVM;
 
             //AddressVM.State = Helpers.Settings.UserStatename;
-            if (!string.IsNullOrEmpty(Helpers.Settings.UserStatename))
+            if (!string.IsNullOrEmpty(Helpers.Constants.UserStateName))
             {
-                var item = AddressVM.Statelist.Where(a => a.data == Helpers.Settings.UserStatename).FirstOrDefault();
+                var item = AddressVM.Statelist.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
                 var index = AddressVM.Statelist.IndexOf(item);
-                MaritalStatus.SelectedItem = index; 
+                pckstate.SelectedItem = index;
             } 
         }
         #region EventHandler
@@ -36,8 +37,19 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             base.OnAppearing();
             await AddressVM.StaticDataSearch();
+            AddressVM.AddressOne = Helpers.Constants.UserAddressline1;
+            AddressVM.AddressSecond = Helpers.Constants.UserAddressline2;
+            AddressVM.City = Helpers.Constants.UserCity;
         }
         #endregion
 
+        private void pckstate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pckstate.SelectedIndex >= 0)
+            {
+                var state = pckstate.SelectedItem as Staticdata;
+                AddressVM.State = state.key;
+            }
+        }
     }
 }

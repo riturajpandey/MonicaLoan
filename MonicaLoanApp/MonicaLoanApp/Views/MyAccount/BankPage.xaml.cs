@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.ViewModels.MyAccount;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.ViewModels.MyAccount;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,24 @@ namespace MonicaLoanApp.Views.MyAccount
             this.BindingContext = BankVM;
         }
         #endregion
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await BankVM.StaticDataSearch();
+            
+            BankVM.BankAccountNumber = Helpers.Constants.UserBankaccountno;
+            BankVM.EnterBVN = Helpers.Constants.UserBvn;
+        }
+        #endregion
+
+        private void PckSelectbankCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckBankfrst.SelectedIndex >= 0)
+            {
+                var code = PckBankfrst.SelectedItem as Staticdata;
+                BankVM.Bankcode = code.key;
+            }
+        }
     }
 }

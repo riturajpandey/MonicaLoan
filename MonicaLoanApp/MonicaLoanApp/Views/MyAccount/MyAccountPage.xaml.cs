@@ -13,7 +13,7 @@ namespace MonicaLoanApp.Views.MyAccount
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyAccountPage : ContentPage
-    {//TODO:
+    {
         protected MyAccountPageVM MyAccountVM;
         #region Constructor
         public MyAccountPage()
@@ -25,5 +25,13 @@ namespace MonicaLoanApp.Views.MyAccount
             this.BindingContext = MyAccountVM;
         }
         #endregion
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            MyAccountVM.PersonalDetails = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
+            MyAccountVM.Address = Helpers.Constants.UserAddressline1 + "," + Helpers.Constants.UserAddressline2 + "" + Helpers.Constants.UserCity;
+            MyAccountVM.Employement = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
+            MyAccountVM.BankDetails = Helpers.Constants.UserBankname + " " + Helpers.Constants.UserBankaccountno;
+        }
     }
 }

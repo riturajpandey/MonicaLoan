@@ -17,6 +17,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             Navigation = nav;
             PlusCommand = new Command(PlusCommandAsync);
             ListCommand = new Command(ListCommandAsync);
+           
         }
         #endregion
 
@@ -26,7 +27,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region Properties
-        private string _LoanAmount= "N500,000.00";
+        private string _LoanAmount;
         public string LoanAmount
         {
             get { return _LoanAmount; }
@@ -39,7 +40,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _DueAmount= "N8,250,500.00";
+        private string _DueAmount;
         public string DueAmount
         {
             get { return _DueAmount; }
@@ -71,6 +72,10 @@ namespace MonicaLoanApp.ViewModels.Loans
         {
             
         }
+        /// <summary>
+        /// TO call Get profile data
+        /// </summary>
+        /// <returns></returns>
         public async Task GetProfile()
         {
             //Call api..
@@ -98,35 +103,31 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     {
                                         if (requestList.responsecode == 100)
                                         {
-                                            Helpers.Settings.UserLoanBalance = requestList.loanbalance;
-                                            Helpers.Settings.UserDueBalance = requestList.duesoon;
-                                            Helpers.Settings.UserBvn = requestList.bvn;
-                                            Helpers.Settings.UserCity = requestList.city;
-                                            Helpers.Settings.UserBankname = requestList.bankname;
-                                            Helpers.Settings.UserBankcode = requestList.bankcode;
-                                            Helpers.Settings.UserAddressline1 = requestList.addressline1;
-                                            Helpers.Settings.UserAddressline2 = requestList.addressline2;
-                                            Helpers.Settings.UserBankaccountno = requestList.bankaccountno;
-                                            Helpers.Settings.UserDateofbirth = requestList.dateofbirth;
-                                            Helpers.Settings.UserEmailaddress = requestList.emailaddress;
-                                            Helpers.Settings.UserEmployeenumber = requestList.employeenumber;
-                                            Helpers.Settings.UserEmployercode = requestList.employercode;
-                                            Helpers.Settings.UserEmployername = requestList.employername;
-                                            Helpers.Settings.UserFirstname = requestList.firstname;
-                                            Helpers.Settings.UserMiddlename = requestList.middlename;
-                                            Helpers.Settings.UserLastname = requestList.lastname;
-                                            Helpers.Settings.UserMobileno = requestList.mobileno;
-                                            Helpers.Settings.UserProfilepic = requestList.profilepic;
-                                            Helpers.Settings.UserMaritalstatus = requestList.maritalstatus;
-                                            Helpers.Settings.UserSalary = requestList.salary;
-                                            Helpers.Settings.UserStartdate = requestList.startdate;
-                                            Helpers.Settings.UserStatename = requestList.statename;
-                                            Helpers.Settings.UserStatecode = requestList.statecode;
-                                            Helpers.Settings.UserGender = requestList.gender;
-                                            //Helpers.Settings.GeneralLoanNumber = requestList.loannumber;
-                                            //Helpers.Constants.LoanSubmitSms = requestList.responsemessage;
-                                            //SubmittedLoanApplicationPopup = new SubmittedLoanApplicationPopup();
-                                            //await Navigation.PushPopupAsync(SubmittedLoanApplicationPopup, true);
+                                            Helpers.Constants.UserLoanbalance = requestList.loanbalance;
+                                            Helpers.Constants.UserDuebalance = requestList.duesoon;
+                                            Helpers.Constants.UserBvn = requestList.bvn;
+                                            Helpers.Constants.UserCity = requestList.city;
+                                            Helpers.Constants.UserBankname = requestList.bankname;
+                                            Helpers.Constants.UserBankcode = requestList.bankcode;
+                                            Helpers.Constants.UserAddressline1 = requestList.addressline1;
+                                            Helpers.Constants.UserAddressline2 = requestList.addressline2;
+                                            Helpers.Constants.UserBankaccountno = requestList.bankaccountno;
+                                            Helpers.Constants.UserDateofbirth = requestList.dateofbirth;
+                                            Helpers.Constants.UserEmailAddress = requestList.emailaddress;
+                                            Helpers.Constants.UserEmployeenumber = requestList.employeenumber;
+                                            Helpers.Constants.UserEmployercode = requestList.employercode;
+                                            Helpers.Constants.UserEmployername = requestList.employername;
+                                            Helpers.Constants.UserFirstname = requestList.firstname;
+                                            Helpers.Constants.UserMiddlename = requestList.middlename;
+                                            Helpers.Constants.UserLastname = requestList.lastname;
+                                            Helpers.Constants.Usermobileno = requestList.mobileno;
+                                            Helpers.Constants.Userprofilepic = requestList.profilepic;
+                                            Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
+                                            Helpers.Constants.UserSalary = requestList.salary;
+                                            Helpers.Constants.UserStateName = requestList.statename;
+                                            Helpers.Constants.UserStatecode = requestList.statecode;
+                                            Helpers.Constants.UserStartdate = requestList.startdate;
+                                            Helpers.Constants.Usergender = requestList.gender;
 
                                         }
                                         else

@@ -94,11 +94,6 @@ namespace MonicaLoanApp.Views.Loans
 
         private void Purpose_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (Pckgender.SelectedIndex >= 0)
-            //{
-            //    var code = PckBankfrst.SelectedItem as Staticdata;
-            // RegisterOneVM.Bankcode = code.key;
-            //}
             if (PckPurpose.SelectedIndex >= 0)
             {
                 var purposecode = PckPurpose.SelectedItem as Staticdata;

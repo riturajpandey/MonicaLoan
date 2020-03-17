@@ -1,6 +1,10 @@
-﻿using System;
+﻿using MonicaLoanApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.MyAccount
@@ -54,12 +58,42 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 }
             }
         }
+        private ObservableCollection<Staticdata> _EmpCode;
+        public ObservableCollection<Staticdata> EmpCode
+        {
+            get { return _EmpCode; }
+            set
+            {
+                if (_EmpCode != value)
+                {
+                    _EmpCode = value;
+                    OnPropertyChanged("EmpCode");
+                }
+            }
+        }
+        public string EmployerCode { get; set; }
         #endregion
 
         #region Commands
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Call This Api For StaticDataSearch
+        /// </summary>
+        /// <returns></returns>
+        public async Task StaticDataSearch()
+        {
+            //Fileter Bank List From Static Data List..
+            try
+            {
+                var EmployerList = Helpers.Constants.StaticDataList.Where(a => a.type == "EMPLOYER").ToList();
+                EmpCode = new ObservableCollection<Staticdata>(EmployerList);
+
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
         #endregion
     }
 }

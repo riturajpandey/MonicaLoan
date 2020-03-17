@@ -24,7 +24,7 @@ namespace MonicaLoanApp.Views.Menu
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
-            MenuVM = new MenuPageVM(this.Navigation);
+            MenuVM = new MenuPageVM(this.Navigation); 
             this.BindingContext = MenuVM;
         }
         #endregion

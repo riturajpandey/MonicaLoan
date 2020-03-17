@@ -20,14 +20,20 @@ namespace MonicaLoanApp.Views.Payments
         protected PaymentPageVM PaymentVM;
 
         #region Constructor
-        public PaymentListPage()
+        public PaymentListPage() 
         {
             InitializeComponent();
             // iOS Platform
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             PaymentVM = new PaymentPageVM(this.Navigation);
-            this.BindingContext = PaymentVM;
+            this.BindingContext = PaymentVM; 
         }
         #endregion
+
+        protected async override void OnAppearing() 
+        {
+            base.OnAppearing();
+            await PaymentVM.GetAllPayments();
+        }
     }
 }

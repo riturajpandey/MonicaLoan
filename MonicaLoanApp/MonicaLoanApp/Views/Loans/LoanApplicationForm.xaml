@@ -91,6 +91,9 @@
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                 </local:CustomFrameForOpacity.GestureRecognizers>
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="GrdSelectPurpose_Tapped"/>
+                                    </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="25"/>
                                         <ColumnDefinition Width="*"/>

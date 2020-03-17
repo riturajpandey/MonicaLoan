@@ -171,7 +171,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                             await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
                             {
                                 usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
-                                loannumber = LoanNumber
+                                loannumber = Helpers.Settings.GeneralLoanNumber 
                             },
                             async (obj) =>
                             {

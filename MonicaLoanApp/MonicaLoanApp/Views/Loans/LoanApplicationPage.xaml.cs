@@ -1,4 +1,6 @@
-﻿using MonicaLoanApp.Models.Loan;
+﻿using Acr.UserDialogs;
+using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Loan;
 using MonicaLoanApp.ViewModels.Loans;
 using System;
 using System.Collections.Generic;
@@ -37,11 +39,12 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing(); 
-            await LoanApplicationVM.GetLoanDetail(AllLoanDetails);       
-
+            await LoanApplicationVM.GetLoanDetail(AllLoanDetails);
+            await LoanApplicationVM.StaticDataSearch(); 
         }
         #endregion
 
+        //TODO : To Define Menu Dot Tapped Event...
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Popup = new PopupMenu()
@@ -57,12 +60,32 @@ namespace MonicaLoanApp.Views.Loans
 
         private async void popup_onitemselected(string item)
         {
-            //if (item == "chat")
-            //{
-            //    await navigation.pushasync(new views.chat.chatpage(), false);
-            //}
-            //if (item == "profile")
-            //{ }
+            if (item == "Accept")
+            {
+                var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to accept loan.", null, "No", "Yes");
+                var text = (res ? "No" : "Yes");
+                if (text == "Yes")
+                {
+                    LoanApplicationVM.Action = "A";
+                    await LoanApplicationVM.LoanRespond(AllLoanDetails); 
+                }
+            }
+            if (item == "Decline")
+            {
+                PckDeclineReason.IsVisible = true; 
+                PckDeclineReason.Focus();
+            }
+        }
+
+        private async void PckDeclineReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckDeclineReason.SelectedIndex >= 0)
+            {
+                var declinereason = PckDeclineReason.SelectedItem as Staticdata;
+                LoanApplicationVM.DeclineReasonCode = declinereason.key;
+                LoanApplicationVM.Action = "D";
+                await LoanApplicationVM.LoanRespond(AllLoanDetails);
+            }
         }
     }
 }

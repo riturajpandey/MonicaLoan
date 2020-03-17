@@ -9,38 +9,38 @@
              Title="Loan Details Page">
 
     <ContentPage.Content>
-        
-            <!--Main Grid-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+
+        <!--Main Grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <local:CustomFrameForOpacity Grid.Row="0" Padding="0" BackgroundColor="{StaticResource FramlgtGrayColor}">
-                    <!--Header Section-->
-                    <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
-                            </Grid.GestureRecognizers>
-                            <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
-                        </Grid>
+                <!--Header Section-->
+                <Grid  HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BacksCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Loan Application" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                    </Grid>
                     <Image Source="menu_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
-                </local:CustomFrameForOpacity>
-                <!--Middle grid-->
+            </local:CustomFrameForOpacity>
+            <!--Middle grid-->
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
                 <Grid RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,30,10,10">
                     <Grid.RowDefinitions>
@@ -55,7 +55,7 @@
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/> 
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Text="Status" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
                             <Label Grid.Row="0" Text="Date" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" />
@@ -136,7 +136,18 @@
 
                 </Grid>
             </ScrollView>
+
+            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <local:CustomPicker x:Name="PckDeclineReason" ItemsSource="{Binding DeclineReasonList}" ItemDisplayBinding="{Binding data}" Title="Select reason for decline"  
+                   IsVisible="False" SelectedIndexChanged="PckDeclineReason_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
+                    <!--<Picker.Items>
+                        <x:String>High Interest Rate</x:String>
+                        <x:String>No Longer Required</x:String>
+                        <x:String>Other Reasons</x:String> 
+                    </Picker.Items>-->
+                </local:CustomPicker>
             </Grid>
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

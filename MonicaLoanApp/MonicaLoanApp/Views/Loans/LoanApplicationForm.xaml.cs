@@ -39,7 +39,7 @@ namespace MonicaLoanApp.Views.Loans
         #region Methods
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            PckEmployee.Focus();
         }
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -85,7 +85,6 @@ namespace MonicaLoanApp.Views.Loans
                     var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
                     var DateBirth = date.Replace("-", "/");
                     LoanApplication_Form.DateOfBirth = DateBirth;
-
                 }
             }
             catch (Exception ex)
@@ -123,6 +122,11 @@ namespace MonicaLoanApp.Views.Loans
             {
                 LoanApplication_Form.LoanDuration = pckWeeks.Items[pckWeeks.SelectedIndex];
             }
+        }
+
+        private void GrdSelectPurpose_Tapped(object sender, EventArgs e)
+        {
+            PckPurpose.Focus();
         }
     }
 }

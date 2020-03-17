@@ -63,6 +63,18 @@ namespace MonicaLoanApp.Views.MyAccount
 
             }
         }
+
+
         #endregion
+
+        private void gender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex]; 
+        }
+
+        private void PckMaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+        }
     }
 }

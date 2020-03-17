@@ -17,7 +17,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             DateOfBirth = Helpers.Settings.UserDateofbirth;
             Gender = Helpers.Settings.UserGender;
             MaritalStatus = Helpers.Settings.UserMaritalstatus;
-        }
+        } 
 
        
         #endregion

@@ -59,6 +59,34 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
+        private bool _IsLoansAvailable;
+        public bool IsLoansAvailable
+        {
+            get { return _IsLoansAvailable; }
+            set
+            {
+                if (_IsLoansAvailable != value)
+                {
+                    _IsLoansAvailable = value;
+                    OnPropertyChanged("IsLoansAvailable");
+                }
+            }
+        }
+
+        private bool _IsLoansNotAvailable;
+        public bool IsLoansNotAvailable
+        {
+            get { return _IsLoansNotAvailable; }
+            set
+            {
+                if (_IsLoansNotAvailable != value)
+                {
+                    _IsLoansNotAvailable = value;
+                    OnPropertyChanged("IsLoansNotAvailable");
+                }
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -87,11 +115,14 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     {
                                         UserDialogs.Instance.HideLoading();
                                         LoanDetailsList = new ObservableCollection<AllLoan>(requestList);
+                                        IsLoansAvailable = true;
+                                        IsLoansNotAvailable = false;
                                     }
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        IsLoansAvailable = false;
+                                        IsLoansNotAvailable = true; 
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -122,7 +153,8 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnMenuAsync(object obj)
         {
-            await Navigation.PopModalAsync();
+            //await Navigation.PopModalAsync();
+            App.masterDetailPage.IsPresented = true;
         }
        
         /// <summary>

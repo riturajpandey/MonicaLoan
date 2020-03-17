@@ -5,6 +5,7 @@ using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -54,7 +55,22 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _Status = "Active";    
+
+        private ObservableCollection<Staticdata> _DeclineReasonList;
+        public ObservableCollection<Staticdata> DeclineReasonList
+        {
+            get { return _DeclineReasonList; }
+            set
+            {
+                if (_DeclineReasonList != value)
+                {
+                    _DeclineReasonList = value; 
+                    OnPropertyChanged("DeclineReasonList"); 
+                }
+            }
+        }
+
+        private string _Status ;    
         public string Status
         {
             get { return _Status; }
@@ -67,7 +83,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _Date = "1 Dec 2019";  
+        private string _Date ;  
         public string Date
         {
             get { return _Date; }
@@ -80,7 +96,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _LoanAmount = "N500,000";
+        private string _LoanAmount ;
         public string LoanAmount
         {
             get { return _LoanAmount; }
@@ -93,7 +109,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _LoanBalance = "N200,000";
+        private string _LoanBalance ;
         public string LoanBalance
         {
             get { return _LoanBalance; }
@@ -106,7 +122,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserCompany = "Coca Cola Limited";
+        private string _UserCompany ;
         public string UserCompany
         {
             get { return _UserCompany; }
@@ -119,7 +135,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserSalary = "N100,000";
+        private string _UserSalary ;
         public string UserSalary
         {
             get { return _UserSalary; }
@@ -132,7 +148,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserName = "ABC 1234";
+        private string _UserName ;
         public string UserName
         {
             get { return _UserName; }
@@ -160,9 +176,38 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
+        private string _Action;
+        public string Action
+        {
+            get { return _Action; }
+            set
+            {
+                if (_Action != value)
+                {
+                    _Action = value;
+                    OnPropertyChanged("Action");
+                }
+            }
+        }
+
+        private string _DeclineReasonCode;
+        public string DeclineReasonCode
+        {
+            get { return _DeclineReasonCode; }
+            set
+            {
+                if (_DeclineReasonCode != value)
+                {
+                    _DeclineReasonCode = value;
+                    OnPropertyChanged("DeclineReasonCode");
+                }
+            }
+        }
+
         #endregion
 
         #region Methods
+        //TODO : To Call Api To Get Loan Details...
         public async Task GetLoanDetail(AllLoan allLoan)  
         {
             //Call api..
@@ -224,6 +269,90 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+        }
+
+        //TODO : To Call Loan Respond Api When Accept...
+        public async Task LoanRespond(AllLoan allLoan)
+        {
+            //Call api..
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                if (CrossConnectivity.Current.IsConnected)  
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.LoanRespondApi(new LoanRespondRequestModel()
+                            {
+                                usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
+                                loannumber = allLoan.loannumber,
+                                action = Action,
+                                declinereasoncode = DeclineReasonCode
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as LoanRespondResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        var alertConfig = new AlertConfig
+                                        {
+                                            Title = "Alert",
+                                            Message = "Your loan responded successfully!",
+                                            OkText = "OK",
+                                            OnAction = () =>
+                                            {
+                                                App.Current.MainPage = new Views.Loans.LoanDetailsPage(); 
+                                            }
+                                        };
+                                        UserDialogs.Instance.Alert(alertConfig);
+                                    }
+                                    else
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                    }
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
+
+        /// <summary>
+        /// Call This Api For StaticDataSearch
+        /// </summary>
+        /// <returns></returns>
+        public async Task StaticDataSearch()
+        {
+            //Fileter Bank List From Static Data List..
+            try
+            {
+                var filteredBankList = Helpers.Constants.StaticDataList.Where(a => a.type == "DECLINEREASON").ToList();
+                DeclineReasonList = new ObservableCollection<Staticdata>(filteredBankList); 
+            } 
+            catch (Exception ex) 
+            { UserDialog.HideLoading(); } 
         }
         #endregion
 

@@ -28,7 +28,7 @@ namespace MonicaLoanApp.Views.MyAccount
             {
                 var item = AddressVM.Statelist.Where(a => a.data == Helpers.Settings.UserStatename).FirstOrDefault();
                 var index = AddressVM.Statelist.IndexOf(item);
-                MaritalStatus.SelectedItem = index;
+                MaritalStatus.SelectedItem = index; 
             } 
         }
         #region EventHandler

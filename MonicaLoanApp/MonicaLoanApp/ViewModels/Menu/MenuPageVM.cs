@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models;
 using MonicaLoanApp.Views.Loans;
+using MonicaLoanApp.Views.Payments;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -90,8 +91,8 @@ namespace MonicaLoanApp.ViewModels.Menu
         private async void OnLoansAsync(object obj)
         {
             App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanPage());
-            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
+            App.Current.MainPage = App.masterDetailPage; 
             App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
@@ -101,7 +102,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         private async void OnPaymentsAsync(object obj)
         {
             App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Payments.PaymentPage());
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentListPage());
             App.Current.MainPage = App.masterDetailPage;
             App.masterDetailPage.IsPresented = false;
         }

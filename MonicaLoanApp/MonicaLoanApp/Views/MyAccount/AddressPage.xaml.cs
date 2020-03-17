@@ -20,7 +20,7 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             InitializeComponent();
             // iOS Platform
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); 
             AddressVM = new AddressPageVM(this.Navigation);
             this.BindingContext = AddressVM;
 
@@ -29,7 +29,7 @@ namespace MonicaLoanApp.Views.MyAccount
             {
                 var item = AddressVM.Statelist.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
                 var index = AddressVM.Statelist.IndexOf(item);
-                pckstate.SelectedItem = index;
+                pckstate.SelectedIndex = index; 
             } 
         }
         #region EventHandler

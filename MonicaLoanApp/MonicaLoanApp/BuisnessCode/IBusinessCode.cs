@@ -48,6 +48,7 @@ namespace MonicaLoanApp.BuisnessCode
         #region Profile
         //get Profile data Api..
         Task<ProfileGetResponseModel> ProfileGetApi(ProfileGetRequestModel request, Action<object> success, Action<object> failed);
+        Task<ProfileSaveResponseModel> ProfileSaveApi(ProfileSaveRequestModel request, Action<object> success, Action<object> failed);
 
         //Save Profile Data...
         // Task<SaveDataResponseModel> ProfileSaveApi(SaveDataResponseModel request, Action<object> succss, Action<object> failed);

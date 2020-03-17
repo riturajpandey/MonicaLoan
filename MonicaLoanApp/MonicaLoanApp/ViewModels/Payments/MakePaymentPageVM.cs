@@ -122,8 +122,8 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
         }
 
-        private ObservableCollection<Loan> _LoansList;
-        public ObservableCollection<Loan> LoansList
+        private ObservableCollection<AllLoan> _LoansList;
+        public ObservableCollection<AllLoan> LoansList
         {
             get { return _LoansList; } 
             set
@@ -156,32 +156,31 @@ namespace MonicaLoanApp.ViewModels.Payments
         #endregion
 
         #region Methods
-        public async Task GetLoans()
+        public async Task GetAllLoans()
         {
             //Call api..
             try
             {
-                //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
                     {
                         if (_businessCode != null)
                         {
-                            await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
+                            await _businessCode.GetAllLoansApi(new AllLoanRequestModel()
                             {
-                                usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
-                                loannumber = Helpers.Settings.GeneralLoanNumber 
+                                usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken
                             },
                             async (obj) =>
                             {
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
-                                    var requestList = (obj as LoanSearchResponseModel).loans;
-                                    if (requestList != null)
+                                    var requestList = (obj as AllLoanResponseModel).loans;
+                                    if (requestList.Count > 0)
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        LoansList = new ObservableCollection<Loan>(requestList); 
+                                        LoansList = new ObservableCollection<AllLoan>(requestList);
                                     }
                                     else
                                     {
@@ -209,7 +208,62 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-        } 
+        }
+
+        public async Task GetLoans()
+        {
+            //Call api..
+            try
+            {
+                //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
+                            {
+                                usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
+                                loannumber = LoanNumber
+                            },
+                            async (obj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as LoanSearchResponseModel).loans;
+                                    if (requestList != null)
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        SchedulesList = new ObservableCollection<Schedule>(requestList[0].schedules);
+                                    }
+                                    else
+                                    {
+                                        UserDialogs.Instance.HideLoading();
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                    }
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+        }
 
         /// <summary>
         /// TODO: To define Payment Complete Command...

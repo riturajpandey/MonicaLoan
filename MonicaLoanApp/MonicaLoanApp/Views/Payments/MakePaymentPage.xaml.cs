@@ -29,7 +29,7 @@ namespace MonicaLoanApp.Views.Payments
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await MakePaymentVM.GetLoans();
+            await MakePaymentVM.GetAllLoans();
         }
         #endregion
 
@@ -68,15 +68,16 @@ namespace MonicaLoanApp.Views.Payments
         //}
         #endregion
 
-        private void PckLoan_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PckLoan_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PckLoan.SelectedIndex >= 0)
             {
-                var loan = PckLoan.SelectedItem as Loan;
+                var loan = PckLoan.SelectedItem as AllLoan; 
                 MakePaymentVM.LoanNumber = loan.loannumber; 
                 MakePaymentVM.LoanAmount = loan.loanamount; 
                 MakePaymentVM.LoanPurpose = PckLoan.Items[PckLoan.SelectedIndex];
-                MakePaymentVM.SchedulesList = new ObservableCollection<Schedule>(loan.schedules); 
+                await MakePaymentVM.GetLoans();
+                //MakePaymentVM.SchedulesList = new ObservableCollection<Schedule>(loan.schedules); 
             }
         }
 

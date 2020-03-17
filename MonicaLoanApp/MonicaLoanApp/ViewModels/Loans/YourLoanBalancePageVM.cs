@@ -122,12 +122,12 @@ namespace MonicaLoanApp.ViewModels.Loans
                                             Helpers.Constants.UserLastname = requestList.lastname;
                                             Helpers.Constants.Usermobileno = requestList.mobileno;
                                             Helpers.Constants.Userprofilepic = requestList.profilepic;
-                                            Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
+                                            Helpers.Constants.UserMaritalstatus = requestList.maritalstatus; 
                                             Helpers.Constants.UserSalary = requestList.salary;
                                             Helpers.Constants.UserStateName = requestList.statename;
                                             Helpers.Constants.UserStatecode = requestList.statecode;
                                             Helpers.Constants.UserStartdate = requestList.startdate;
-                                            Helpers.Constants.Usergender = requestList.gender;
+                                            Helpers.Constants.Usergender = requestList.gender; 
 
                                         }
                                         else

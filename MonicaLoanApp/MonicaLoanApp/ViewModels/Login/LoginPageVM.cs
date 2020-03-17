@@ -109,7 +109,6 @@ namespace MonicaLoanApp.ViewModels
                                             //Helpers.Constants.LoginUserToken = requestList.usertoken;
                                             Helpers.Settings.GeneralAccessToken = requestList.usertoken;
                                             Helpers.Constants.LoginUserSecret = requestList.usersecret;
-                                            await GetProfile();
                                             App.masterDetailPage.Master = new MenuPage();
                                             App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
                                             App.Current.MainPage = App.masterDetailPage;

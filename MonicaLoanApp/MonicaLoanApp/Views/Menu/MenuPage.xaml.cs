@@ -32,6 +32,7 @@ namespace MonicaLoanApp.Views.Menu
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            await MenuVM.GetProfile();
             MenuVM.UserName= Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             MenuVM.UserNumber= Helpers.Constants.Usermobileno;
         }

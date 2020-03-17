@@ -90,21 +90,21 @@ namespace MonicaLoanApp.Views.MyAccount
             catch (Exception ex)
             { }
         }
-        private void MaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (PckMaritalStatus.SelectedIndex >= 0)
-            {
-                PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
-            }
-        }
+        //private void MaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (PckMaritalStatus.SelectedIndex >= 0)
+        //    {
+        //        PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+        //    }
+        //}
 
-        private void gender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (pckgender.SelectedIndex >= 0)
-            {
-                PersonalDetailsVM.Gender = pckgender.Items[pckgender.SelectedIndex];
-            }
-        }
+        //private void gender_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (PckGender.SelectedIndex >= 0)
+        //    {
+        //        PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex];
+        //    }
+        //}
 
 
         #endregion
@@ -120,9 +120,10 @@ namespace MonicaLoanApp.Views.MyAccount
             PersonalDetailsVM.MaritalStatus = Helpers.Constants.UserMaritalstatus;
         }
 
+
         private void gender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex]; 
+            PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex];
         }
 
         private void PckMaritalStatus_SelectedIndexChanged(object sender, EventArgs e)

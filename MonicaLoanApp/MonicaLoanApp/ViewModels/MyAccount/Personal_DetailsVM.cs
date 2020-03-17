@@ -12,11 +12,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         {
             Navigation = nav;
             SaveCommand = new Command(SaveCommandAsync);
-            FirstName = Helpers.Settings.UserFirstname +" "+ Helpers.Settings.UserLastname;
-            Email = Helpers.Settings.UserEmailaddress;
-            DateOfBirth = Helpers.Settings.UserDateofbirth;
-            Gender = Helpers.Settings.UserGender;
-            MaritalStatus = Helpers.Settings.UserMaritalstatus;
+          
         } 
 
        

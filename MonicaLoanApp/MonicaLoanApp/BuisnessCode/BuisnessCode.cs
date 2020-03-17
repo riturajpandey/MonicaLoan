@@ -20,6 +20,7 @@ namespace MonicaLoanApp.BuisnessCode
         {
             //To initialize service providers...
             _apiProvider = apiProvider;
+           
         }
 
         #region StaticDataSearchApi
@@ -33,7 +34,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey);
                 var result = _apiProvider.Post<StaticDataSearchResponseModel, StaticDataSearchRequestModel>(url, request, dic);
                 var response = result.Result;
                 StaticDataSearchResponseModel objres = null;
@@ -62,7 +63,7 @@ namespace MonicaLoanApp.BuisnessCode
 
         #region Register Apis 
         /// <summary>
-        /// Call This Api For AccessRegisterPreValidate
+        /// Call This Api For AccessRegisterPreValidate...
         /// </summary>
         /// <param name="request"></param>
         /// <param name="success"></param>
@@ -78,7 +79,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "hS9NwfFvC; Z`~bUE'vqE7-#y");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress + request.bvn);
                 var result = _apiProvider.Post<AccessRegisterPreValidateResponseModel, AccessRegisterPreValidateRequestModel>(url, request, dic);
 
                 var response = result.Result;
@@ -105,7 +106,7 @@ namespace MonicaLoanApp.BuisnessCode
 
         }
         /// <summary>
-        /// Call This Api For AccessRegisterApi
+        /// Call This Api For AccessRegisterApi...
         /// </summary>
         /// <param name="request"></param>
         /// <param name="success"></param>
@@ -121,7 +122,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress + request.bvn + request.lastname + request.password);
                 var result = _apiProvider.Post<AccessRegisterResponseModel, AccessRegisterRequestModel>(url, request, dic);
                 var response = result.Result;
                 AccessRegisterResponseModel objres = null;
@@ -145,7 +146,13 @@ namespace MonicaLoanApp.BuisnessCode
             }
             return resmodel;
         }
-
+        /// <summary>
+        /// To call AccessRegisterApi...
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
         public async Task<AccessRegisterActivateResponseModel> AccessRegisterActivateApi(AccessRegisterActivateRequestModel request, Action<object> success, Action<object> failed)
         {
             AccessRegisterActivateResponseModel resmodel = new AccessRegisterActivateResponseModel();
@@ -156,7 +163,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + request.validatetoken);
                 var result = _apiProvider.Post<AccessRegisterActivateResponseModel, AccessRegisterActivateRequestModel>(url, request, dic);
                 var response = result.Result;
                 AccessRegisterActivateResponseModel objres = null;
@@ -195,7 +202,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress + request.password);
                 var result = _apiProvider.Post<LoginResponseModel, LoginRequestModel>(url, request, dic);
                 var response = result.Result;
                 LoginResponseModel objres = null;
@@ -239,7 +246,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress);
                 var result = _apiProvider.Post<AccessPasswordReminderResponseModel, AccessPasswordReminderRequestModel>(url, request, dic);
                 var response = result.Result;
                 AccessPasswordReminderResponseModel objres = null;
@@ -280,7 +287,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress + request.validatetoken + request.password);
                 var result = _apiProvider.Post<AccessPasswordChangeResponseModel, AccessPasswordChangeRequestModel>(url, request, dic);
                 var response = result.Result;
                 AccessPasswordChangeResponseModel objres = null;
@@ -326,7 +333,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<AccessLogOutResponseModel, AccessLogOutRequestModel>(url, request, dic);
                 var response = result.Result;
                 AccessLogOutResponseModel objres = null;
@@ -352,7 +359,49 @@ namespace MonicaLoanApp.BuisnessCode
         }
         #endregion
 
-        #region LoanSearch 
+        #region Loan 
+        /// <summary>
+        /// To call LoanCreate Api..
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<LoanCreateResponseModel> LoanCreateApi(LoanCreateRequestModel request, Action<object> success, Action<object> failed)
+        {
+            LoanCreateResponseModel resmodel = new LoanCreateResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/LoanCreate", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + request.employercode + request.loanamount);
+                var result = _apiProvider.Post<LoanCreateResponseModel, LoanCreateRequestModel>(url, request, dic);
+                var response = result.Result;
+                LoanCreateResponseModel objres = null;
+                dynamic obj = "";
+                LoanCreateResponseModel reg = new LoanCreateResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<LoanCreateResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+            }
+            return resmodel;
+        }
+
         /// <summary>
         /// To Call Loan Search Api
         /// </summary>
@@ -370,7 +419,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + request.loannumber);
                 var result = _apiProvider.Post<LoanSearchResponseModel, LoanSearchRequestModel>(url, request, dic);
                 var response = result.Result;
                 LoanSearchResponseModel objres = null;
@@ -412,7 +461,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + Helpers.Settings.GeneralLoanNumber);
                 var result = _apiProvider.Post<AllLoanResponseModel, AllLoanRequestModel>(url, request, dic);
                 var response = result.Result;
                 AllLoanResponseModel objres = null;
@@ -454,7 +503,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + request.loannumber + request.action);
                 var result = _apiProvider.Post<LoanRespondResponseModel, LoanRespondRequestModel>(url, request, dic);
                 var response = result.Result;
                 LoanRespondResponseModel objres = null;
@@ -498,7 +547,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + request.loannumber + request.loanschedulenumber);
                 var result = _apiProvider.Post<PaymentCreateResponseModel, PaymentCreateRequestModel>(url, request, dic);
                 var response = result.Result;
                 PaymentCreateResponseModel objres = null;  
@@ -540,7 +589,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "dcdscfdscds");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<PaymentSearchResponseModel, PaymentSearchRequestModel>(url, request, dic); 
                 var response = result.Result;
                 PaymentSearchResponseModel objres = null;
@@ -566,52 +615,6 @@ namespace MonicaLoanApp.BuisnessCode
         }
         #endregion
 
-        #region LoanCreate
-        /// <summary>
-        /// To call LoanCreate Api..
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="success"></param>
-        /// <param name="failed"></param>
-        /// <returns></returns>
-        public async Task<LoanCreateResponseModel> LoanCreateApi(LoanCreateRequestModel request, Action<object> success, Action<object> failed)
-        {
-            LoanCreateResponseModel resmodel = new LoanCreateResponseModel();
-            try
-            {
-                var url = string.Format("{0}/api/appconnect/LoanCreate", WebServiceDetails.BaseUri);
-                string randomGuid = Guid.NewGuid().ToString();
-                var dic = new Dictionary<string, string>();
-                //dic.Add("Content-Type", "Application/json");
-                dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
-                var result = _apiProvider.Post<LoanCreateResponseModel, LoanCreateRequestModel>(url, request, dic);
-                var response = result.Result;
-                LoanCreateResponseModel objres = null;
-                dynamic obj = "";
-                LoanCreateResponseModel reg = new LoanCreateResponseModel();
-                if (response.IsSuccessful != false)
-                {
-                    objres = JsonConvert.DeserializeObject<LoanCreateResponseModel>(response.RawResult);
-                    success.Invoke(objres);
-                }
-                else
-                {
-                    UserDialogs.Instance.HideLoading();
-                    failed.Invoke(obj);
-                }
-            }
-            catch (Exception exception)
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
-            }
-            return resmodel;
-        }
-
-
-        #endregion
-
         #region Profile
         /// <summary>
         /// To call Profile Get Api
@@ -630,7 +633,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<ProfileGetResponseModel, ProfileGetRequestModel>(url, request, dic);
                 var response = result.Result;
                 ProfileGetResponseModel objres = null;

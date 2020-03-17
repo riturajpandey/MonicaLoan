@@ -186,6 +186,19 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
+        private string _RepaymentType;
+        public string RepaymentType
+        {
+            get { return _RepaymentType; }
+            set
+            {
+                if (_RepaymentType != value)
+                {
+                    _RepaymentType = value;
+                    OnPropertyChanged("RepaymentType");
+                }
+            }
+        }
         public string PurposeCode { get; set; }
         public string EmployerCode { get; set; }
         #endregion

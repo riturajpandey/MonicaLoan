@@ -101,7 +101,13 @@ namespace MonicaLoanApp.Views.Loans
             }
 
         }
-
+        private void Repayment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PckRepayment.SelectedIndex >= 0)
+            {
+                LoanApplication_Form.RepaymentType = PckRepayment.Items[PckRepayment.SelectedIndex];
+            }
+        }
         private void Employee_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PckEmployee.SelectedIndex >= 0)
@@ -123,5 +129,7 @@ namespace MonicaLoanApp.Views.Loans
         {
             PckPurpose.Focus();
         }
+
+        
     }
 }

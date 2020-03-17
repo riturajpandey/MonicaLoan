@@ -8,5 +8,7 @@ namespace MonicaLoanApp.Services
     {
         //Base Url for Database Server
         public static string BaseUri = "http://monica.phasestream.com";
+
+        public static string AppKey = "hS9NwfFvC;Z`~bUE'vqE7-#y";
     }
 }

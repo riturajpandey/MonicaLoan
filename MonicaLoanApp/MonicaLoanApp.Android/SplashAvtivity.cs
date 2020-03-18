@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace MonicaLoanApp.Droid
 {
-    [Activity(Theme = "@style/MainTheme.Splash", MainLauncher = true, NoHistory = true)]
+    [Activity(Theme = "@style/MainTheme.Splash", Icon = "@drawable/fav", MainLauncher = true,  NoHistory = true)]
     public class SplashAvtivity : Activity
     {
 

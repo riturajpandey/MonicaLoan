@@ -34,9 +34,18 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             base.OnAppearing();
             await EmployementVM.StaticDataSearch();
+            EmployementVM.EmployerName = Helpers.Constants.UserEmployername;
+            EmployementVM.EmployerCode = Helpers.Constants.UserEmployercode;
             EmployementVM.EnterEmpNo = Helpers.Constants.UserEmployeenumber;
             EmployementVM.EnterSalary = Helpers.Constants.UserSalary;
-            EmployementVM.DateOfBirth=Helpers.Constants.UserDateofbirth;
+            if(!string.IsNullOrEmpty(Helpers.Constants.UserStartdate))
+            {
+                EmployementVM.StartDate = Helpers.Constants.UserStartdate;
+            }
+            else
+            {
+                EmployementVM.StartDate = "Start date"; 
+            }
 
             if (!string.IsNullOrEmpty(Helpers.Constants.UserEmployername))
             {
@@ -69,8 +78,8 @@ namespace MonicaLoanApp.Views.MyAccount
                 if (DtPckDOB.Date != null)
                 {
                     var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
-                    var DateBirth = date.Replace("-", "/");
-                    EmployementVM.DateOfBirth = DateBirth;
+                    var startdate = date.Replace("-", "/");
+                    EmployementVM.StartDate = startdate;
                 }
 
             }
@@ -90,8 +99,8 @@ namespace MonicaLoanApp.Views.MyAccount
                 {
                     // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
                     var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
-                    var DateBirth = date.Replace("-", "/");
-                    EmployementVM.DateOfBirth = DateBirth;
+                    var startdate = date.Replace("-", "/");
+                    EmployementVM.StartDate = startdate;
 
                 }
             }
@@ -102,8 +111,9 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             if (PckEmployee.SelectedIndex >= 0)
             {
-                var EmployerCode = PckEmployee.SelectedItem as Staticdata;
-                EmployementVM.EmployerCode = EmployerCode.key;
+                var employee = PckEmployee.SelectedItem as Staticdata;
+                EmployementVM.EmployerName = PckEmployee.Items[PckEmployee.SelectedIndex];
+                EmployementVM.EmployerCode = employee.key; 
             }
         }
         #endregion

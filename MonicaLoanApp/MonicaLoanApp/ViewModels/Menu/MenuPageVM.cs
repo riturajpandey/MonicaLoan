@@ -5,6 +5,7 @@ using MonicaLoanApp.Views.Payments;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -245,7 +246,12 @@ namespace MonicaLoanApp.ViewModels.Menu
                                             Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
                                             Helpers.Constants.UserSalary = requestList.salary;
                                             Helpers.Constants.UserStateName = requestList.statename;
-                                            Helpers.Constants.UserStatecode = requestList.statecode;
+                                            if (!string.IsNullOrEmpty(Helpers.Constants.UserStateName))
+                                            {
+                                                var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
+                                                Helpers.Constants.UserStatecode = item.key;
+                                            }
+                                            
                                             Helpers.Constants.UserStartdate = requestList.startdate;
                                             Helpers.Constants.Usergender = requestList.gender;
 

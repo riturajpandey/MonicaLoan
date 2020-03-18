@@ -63,7 +63,8 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding FirstName}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Joe Bloggs" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <Label Text="{Binding FirstName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <!--<local:CustomEntry Text="{Binding FirstName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Joe Bloggs" Style="{StaticResource SecondryEntry}" Grid.Column="1" />-->
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--Email Section-->
@@ -74,14 +75,15 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="mailblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <Label Text="{Binding Email}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <!--<local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />-->
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--calender Section-->
                         <local:CustomFrameForOpacity Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
-                            <local:CustomFrameForOpacity.GestureRecognizers>
+                            <!--<local:CustomFrameForOpacity.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
-                            </local:CustomFrameForOpacity.GestureRecognizers>
+                            </local:CustomFrameForOpacity.GestureRecognizers>-->
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
@@ -90,7 +92,7 @@
                                 <!--Calender Image-->
                                 <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                                    <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False" />
+                                    <!--<DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False" />-->
                                 </Grid>
                                 <!--Date Section-->
                                 <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand"/>

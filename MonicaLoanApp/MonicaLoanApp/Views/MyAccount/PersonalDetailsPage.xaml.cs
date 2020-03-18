@@ -31,57 +31,59 @@ namespace MonicaLoanApp.Views.MyAccount
         #endregion
 
         #region Methods
-        /// <summary>
-        /// If User Click On Date Of Birth Picker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DtPckDOB_Tapped(object sender, EventArgs e)
-        {
-            DtPckDOB.Focus();
-        }
-        /// <summary>
-        /// If User Click On Date Of Birth Picker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
-        {
-            try
-            {
-                if (DtPckDOB.Date != null)
-                {
-                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
-                    var DateBirth = date.Replace("-", "/");
-                    PersonalDetailsVM.DateOfBirth = DateBirth;
-                }
+        ///// <summary>
+        ///// If User Click On Date Of Birth Picker
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void DtPckDOB_Tapped(object sender, EventArgs e)
+        //{
+        //    DtPckDOB.Focus();
+        //}
+        ///// <summary>
+        ///// If User Click On Date Of Birth Picker
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private async void DtPckDOB_DateSelected(object sender, DateChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (DtPckDOB.Date != null)
+        //        {
+        //            var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+        //            var DateBirth = date.Replace("-", "/");
+        //            PersonalDetailsVM.DateOfBirth = DateBirth;
+        //        }
 
-            }
-            catch (Exception ex)
-            { }
+        //    }
+        //    catch (Exception ex)
+        //    { }
 
-        }
-        /// <summary>
-        /// If User Click On Date Of Birth Picker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
-        {
-            try
-            {
-                if (DtPckDOB.Date != null)
-                {
-                    // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
-                    var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
-                    var DateBirth = date.Replace("-", "/");
-                    PersonalDetailsVM.DateOfBirth = DateBirth;
+        //}
+        ///// <summary>
+        ///// If User Click On Date Of Birth Picker
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private async void DtPckDOB_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (DtPckDOB.Date != null)
+        //        {
+        //            // RegisterOneVM.DateOfBirth = DtPckDOB.Date.ToString("MM/dd/yyyy");
+        //            var date = DtPckDOB.Date.ToString("dd/MM/yyyy");
+        //            var DateBirth = date.Replace("-", "/");
+        //            PersonalDetailsVM.DateOfBirth = DateBirth;
 
-                }
-            }
-            catch (Exception ex)
-            { }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    { }
+        //}
+
+
         //private void MaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    if (PckMaritalStatus.SelectedIndex >= 0)

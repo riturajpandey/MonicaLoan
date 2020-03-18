@@ -78,7 +78,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="city.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding City}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="London" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <local:CustomEntry Text="{Binding City}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="City" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--State Section-->

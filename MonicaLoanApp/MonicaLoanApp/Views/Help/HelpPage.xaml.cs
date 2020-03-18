@@ -53,7 +53,7 @@ namespace MonicaLoanApp.Views.Help
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-                lvQuerylist.ItemsSource = HelpVM.FaqList.Where(x => x.key.ToLower().Contains(e.NewTextValue.ToLower())).ToList();
+            lvQuerylist.ItemsSource = HelpVM.FaqList.Where(x => x.key.ToLower().Contains(e.NewTextValue.ToLower())).ToList();
         }
     }
 }

@@ -35,85 +35,87 @@
                     </Grid>
                 </local:CustomFrameForOpacity>
                 <!--Main Grid-->
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
-                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="30,40" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <!--Employment Section-->
-                        <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckEmployee" ItemsSource="{Binding EmpCode}" SelectedIndexChanged="Employee_SelectedIndexChanged" ItemDisplayBinding="{Binding data}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
-                                        <!--<Picker.Items>
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="30,40" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!--Employment Section-->
+                            <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                        <local:CustomPicker x:Name="PckEmployee" ItemsSource="{Binding EmpCode}" SelectedIndexChanged="Employee_SelectedIndexChanged" ItemDisplayBinding="{Binding data}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
+                                            <!--<Picker.Items>
                                                 <x:String>Salaried</x:String>
                                                 <x:String>Self Employee</x:String>
                                                 <x:String>Student</x:String>
                                             </Picker.Items>-->
-                                    </local:CustomPicker>
-                                    <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--Employee Number Section-->
-                        <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="employee_numberblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding EnterEmpNo}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Employee Number" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--Salary Section-->
-                        <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding EnterSalary}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Salary" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--calender Section-->
-                        <local:CustomFrameForOpacity Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
-                            <local:CustomFrameForOpacity.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
-                            </local:CustomFrameForOpacity.GestureRecognizers>
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <!--Calender Image-->
-                                <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                    <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                                    <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
+                                        </local:CustomPicker>
+                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
                                 </Grid>
-                                <!--Date Section-->
-                                <Label Grid.Column="1" Text="{Binding StartDate}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
-                                <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--Save Section-->
-                        <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Save" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding SaveCommand}" Grid.Row="8" Margin="5,0,5,0"></local:CustomButton>
+                            </local:CustomFrameForOpacity>
+                            <!--Employee Number Section-->
+                            <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="employee_numberblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <local:CustomEntry Text="{Binding EnterEmpNo}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Employee Number" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
+                                </Grid>
+                            </local:CustomFrameForOpacity>
+                            <!--Salary Section-->
+                            <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <local:CustomEntry Text="{Binding EnterSalary}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Salary" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                </Grid>
+                            </local:CustomFrameForOpacity>
+                            <!--calender Section-->
+                            <local:CustomFrameForOpacity Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
+                                <local:CustomFrameForOpacity.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
+                                </local:CustomFrameForOpacity.GestureRecognizers>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Calender Image-->
+                                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                        <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
+                                    </Grid>
+                                    <!--Date Section-->
+                                    <Label Grid.Column="1" Text="{Binding StartDate}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
+                                    <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                </Grid>
+                            </local:CustomFrameForOpacity>
+                            <!--Save Section-->
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Save" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding SaveCommand}" Grid.Row="8" Margin="5,0,5,0"></local:CustomButton>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </ScrollView>
             </Grid>
         </Grid>
     </ContentPage.Content>

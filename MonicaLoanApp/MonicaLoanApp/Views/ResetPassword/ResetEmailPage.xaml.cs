@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +22,7 @@ namespace MonicaLoanApp.Views.ResetPassword
         public ResetEmailPage()
         {
             InitializeComponent();
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             EmailResetVM = new EmailResetPageVM(this.Navigation);
             this.BindingContext = EmailResetVM;
             // iOS Platform

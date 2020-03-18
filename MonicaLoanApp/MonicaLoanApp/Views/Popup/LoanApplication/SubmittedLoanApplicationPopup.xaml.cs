@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Extensions;
+﻿using MonicaLoanApp.Views.Loans;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -106,7 +107,10 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
 
         private void CustomButton_Clicked(object sender, EventArgs e)
         {
-           // Navigation.PushModalAsync(new Views.Loans.LoanPage());
+            HideDialog();
+            App.masterDetailPage.IsPresented = false; 
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
+            App.Current.MainPage = App.masterDetailPage; 
         }
     }
 }

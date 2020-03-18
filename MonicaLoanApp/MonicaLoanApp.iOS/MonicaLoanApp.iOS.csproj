@@ -78,6 +78,7 @@
     <Compile Include="Renders\CustomEntryRenderer.cs" />
     <Compile Include="Renders\CustomFrameForOpacityRenderer.cs" />
     <Compile Include="Renders\CustomPickerRenderer.cs" />
+    <Compile Include="Renders\CustomUnderLinedLabelRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

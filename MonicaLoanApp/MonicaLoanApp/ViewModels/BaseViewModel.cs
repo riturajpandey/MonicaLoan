@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using MonicaLoanApp.BuisnessCode;
 using MonicaLoanApp.Models;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -134,55 +135,64 @@ namespace MonicaLoanApp.ViewModels
         /// <returns></returns>
         public async Task StaticDataSearch()
         {
-            //Call api..
-            try
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralStaticDataResponse))
             {
-                //Call AccessRegisterActivate Api..  
-                //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    await Task.Run(async () =>
-                    {
-                        if (_businessCode != null)
-                        {
-                            await _businessCode.StaticDataSearchApi(new StaticDataSearchRequestModel()
-                            { },
-                            async (obj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var requestList = (obj as StaticDataSearchResponseModel);
-                                    if (requestList != null)
-                                    {
-                                        Staticdatalist = new ObservableCollection<Staticdata>(requestList.staticdata);
-                                        Helpers.Constants.StaticDataList = Staticdatalist;
-                                    }
-                                    else
-                                    {
-                                        UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
-                                    }
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                });
-                            });
-                        }
-                    }).ConfigureAwait(false);
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
+                var objres = JsonConvert.DeserializeObject<StaticDataSearchResponseModel>(Helpers.Settings.GeneralStaticDataResponse);
+                Helpers.Constants.StaticDataList = new ObservableCollection<Staticdata>(objres.staticdata);
             }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
+            else
+            {
+
+                //Call api..
+                try
+                {
+                    //Call AccessRegisterActivate Api..  
+                    //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await Task.Run(async () =>
+                        {
+                            if (_businessCode != null)
+                            {
+                                await _businessCode.StaticDataSearchApi(new StaticDataSearchRequestModel()
+                                { },
+                                async (obj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        var requestList = (obj as StaticDataSearchResponseModel);
+                                        if (requestList != null)
+                                        {
+                                            Staticdatalist = new ObservableCollection<Staticdata>(requestList.staticdata);
+                                            Helpers.Constants.StaticDataList = Staticdatalist;
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.HideLoading();
+                                            UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        }
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
+                                });
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
+                }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
+            }
         }
 
         #endregion 

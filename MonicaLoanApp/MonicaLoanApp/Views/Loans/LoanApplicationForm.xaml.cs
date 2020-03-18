@@ -28,6 +28,7 @@ namespace MonicaLoanApp.Views.Loans
             this.BindingContext = LoanApplication_Form;
         }
         #endregion
+
         #region EventHandler
         protected async override void OnAppearing()
         {
@@ -90,7 +91,6 @@ namespace MonicaLoanApp.Views.Loans
             catch (Exception ex)
             { }
         }
-        #endregion
 
         private void Purpose_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -129,7 +129,10 @@ namespace MonicaLoanApp.Views.Loans
         {
             PckPurpose.Focus();
         }
+        #endregion
 
-        
+
+
+
     }
 }

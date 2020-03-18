@@ -668,7 +668,7 @@ namespace MonicaLoanApp.BuisnessCode
                 var dic = new Dictionary<string, string>();
                 //dic.Add("Content-Type", "Application/json");
                 dic.Add("randomguid", randomGuid);
-                dic.Add("hash", "xyz123");
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + Helpers.Constants.UserEmailAddress + Helpers.Constants.UserLastname);
                 var result = _apiProvider.Post<ProfileSaveResponseModel, ProfileSaveRequestModel>(url, request, dic); 
                 var response = result.Result;
                 ProfileSaveResponseModel objres = null;

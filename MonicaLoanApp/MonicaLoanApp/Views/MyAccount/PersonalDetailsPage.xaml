@@ -102,7 +102,7 @@
                         <local:CustomFrameForOpacity Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="genderblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -121,11 +121,11 @@
                         <local:CustomFrameForOpacity Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="35"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="martialblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Margin="-5,0,0,0">
                                     <local:CustomPicker x:Name="PckMaritalStatus" SelectedIndexChanged="PckMaritalStatus_SelectedIndexChanged" Title="Marital Status"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
                                             <x:String>S</x:String>

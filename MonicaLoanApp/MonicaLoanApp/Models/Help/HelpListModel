@@ -6,7 +6,7 @@ namespace MonicaLoanApp.Models.Help
 {
     public class HelpListModel
     {
-        public string Question { get; set; }
-        public string Answer { get; set; }
+        public string key { get; set; }
+        public string data { get; set; }
     }
 }

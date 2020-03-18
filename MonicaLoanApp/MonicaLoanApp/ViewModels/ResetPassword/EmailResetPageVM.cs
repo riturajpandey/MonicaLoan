@@ -83,8 +83,10 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                     {
                                         if (requestList.responsecode == 100)
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                           // UserDialog.HideLoading();
                                             await Navigation.PushModalAsync(new Views.ResetPassword.UpdatePasswordPage(Email));
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            
                                         }
                                     }
 

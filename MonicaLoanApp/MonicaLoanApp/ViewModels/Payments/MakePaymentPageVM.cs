@@ -185,7 +185,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Currently you have no loans to make payment.", "Alert", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });

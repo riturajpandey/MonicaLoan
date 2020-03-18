@@ -229,7 +229,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             try
             {
                 //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>

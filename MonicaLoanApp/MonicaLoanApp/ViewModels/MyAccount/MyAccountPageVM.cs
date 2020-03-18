@@ -20,7 +20,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             EmployementCommand = new Command(EmployementCommandAsync);
             BankDetailsCommand = new Command(BankDetailsCommandAsync);
             logoutCommand = new Command(logoutCommandAsync);
-            
+            AppSettingCommand = new Command(AppSettingCommandAsync);  
         }
         #endregion
 
@@ -90,6 +90,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public Command BankDetailsCommand { get; set; }
         public Command settingCommand { get; set; }
         public Command logoutCommand { get; set; }
+        public Command AppSettingCommand { get; set; } 
         #endregion
 
         #region Method
@@ -188,6 +189,15 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private void PersonalDetailsCommandAsync(object obj)
         {
             Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+        }
+
+        /// <summary>
+        /// TODO: To define App SEttings.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void AppSettingCommandAsync(object obj) 
+        {
+            Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
         }
         #endregion
     }

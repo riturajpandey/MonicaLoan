@@ -17,7 +17,6 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         {
             Navigation = nav;
             SaveCommand = new Command(SaveCommandAsync);
-          
         } 
 
        

@@ -15,29 +15,29 @@ namespace MonicaLoanApp.ViewModels.Help
         #endregion
 
         #region Properties
-        private string _Question;
-        public string Question
+        private string _key;
+        public string key
         {
-            get { return _Question; }
+            get { return _key; }
             set
             {
-                if(_Question != value)
+                if(_key != value)
                 {
-                    _Question = value;
-                    OnPropertyChanged("Question");
+                    _key = value;
+                    OnPropertyChanged("key");
                 }
             }
         }
-        private string _Answer;
-        public string Answer
+        private string _data;
+        public string data
         {
-            get { return _Answer; }
+            get { return _data; }
             set
             {
-                if (_Answer != value)
+                if (_data != value)
                 {
-                    _Answer = value;
-                    OnPropertyChanged("Answer");
+                    _data = value;
+                    OnPropertyChanged("data");
                 }
             }
         }

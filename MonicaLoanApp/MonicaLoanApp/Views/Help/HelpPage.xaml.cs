@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.Models.Help;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Help;
 using MonicaLoanApp.ViewModels.Help;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace MonicaLoanApp.Views.Help
             this.BindingContext = HelpVM;
         }
         #endregion
+
         #region Methods
         /// <summary>
         /// TODO: To list tapped event open LoanDetail page..
@@ -35,10 +37,23 @@ namespace MonicaLoanApp.Views.Help
         /// <param name="e"></param>
         private async void LoanDetail_Tapped(object sender, EventArgs e)
         {
-            var item = (sender as Grid).BindingContext as HelpListModel;
+            var item = (sender as Grid).BindingContext as Staticdata;
             if (item != null)
                 await Navigation.PushModalAsync(new Views.Help.DebitCardQueries(item));
         }
         #endregion
+
+        #region EventHandler
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await HelpVM.StaticDataSearch();
+        }
+        #endregion
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+                lvQuerylist.ItemsSource = HelpVM.FaqList.Where(x => x.key.ToLower().Contains(e.NewTextValue.ToLower())).ToList();
+        }
     }
 }

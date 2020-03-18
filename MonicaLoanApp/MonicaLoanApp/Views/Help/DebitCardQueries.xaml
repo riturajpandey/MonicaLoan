@@ -39,8 +39,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="{Binding Question}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="17"/>
-                <Label Grid.Row="1" Text="{Binding Answer}" HorizontalOptions="EndAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
+                <Label Grid.Row="0" Text="{Binding key}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="17"/>
+                <Label Grid.Row="1" Text="{Binding data}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

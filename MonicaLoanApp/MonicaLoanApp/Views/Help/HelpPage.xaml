@@ -51,8 +51,8 @@
                                     <ColumnDefinition Width="40"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
-                                <local:CustomEntry Text="{Binding Amount}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Search some keyword" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
+                                <Image Source="search.png"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
+                                <local:CustomEntry Text="{Binding Amount}" TextChanged="SearchBar_TextChanged" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Search some keyword" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
                             </Grid>
                         </local:CustomFrameForOpacity>
                     </Grid>
@@ -65,7 +65,7 @@
                     </Grid.RowDefinitions>
                     <Label Text="Top Help Questions" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="0" Style="{StaticResource SecondryLable}" />
                     <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <local:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvLoanDetails" ItemsSource="{Binding QueryList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                        <local:RepeaterView Grid.Row="0" Grid.RowSpan="2" x:Name="lvQuerylist" ItemsSource="{Binding FaqList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                             <local:RepeaterView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -78,8 +78,8 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <Label Grid.Row="0" Text="{Binding Question}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="17"/>
-                                            <Label Grid.Row="1" Text="{Binding Answer}" HorizontalOptions="EndAndExpand" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                                            <Label Grid.Row="0" Text="{Binding key}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"  Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="17"/>
+                                            <Label Grid.Row="1" Text="{Binding data}" HorizontalOptions="StartAndExpand" LineBreakMode="TailTruncation"  VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>

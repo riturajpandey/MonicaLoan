@@ -1,4 +1,5 @@
-﻿using MonicaLoanApp.Models.Help;
+﻿using MonicaLoanApp.Models;
+using MonicaLoanApp.Models.Help;
 using MonicaLoanApp.ViewModels.Help;
 using System;
 using System.Collections.Generic;
@@ -16,17 +17,17 @@ namespace MonicaLoanApp.Views.Help
     {
         //TODO: To define class level variable
         protected DebitCardQueriesVM DebitCardVM;
-        public HelpListModel _helpListModel;
+        public Staticdata _helpListModel;
 
         #region Constructor
-        public DebitCardQueries(HelpListModel helpListModel)
+        public DebitCardQueries(Staticdata helpListModel)
         {
             InitializeComponent();
             DebitCardVM = new DebitCardQueriesVM(this.Navigation);
             this.BindingContext = DebitCardVM;
             _helpListModel = helpListModel;
-            DebitCardVM.Question = _helpListModel.Question;
-            DebitCardVM.Answer = _helpListModel.Answer;
+            DebitCardVM.key = _helpListModel.key;
+            DebitCardVM.data = _helpListModel.data;
 
         }
         #endregion

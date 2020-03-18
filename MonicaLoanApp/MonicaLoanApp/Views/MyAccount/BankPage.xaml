@@ -75,7 +75,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="id_cardblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding EnterEmpNo}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bank Account Number" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
+                                <local:CustomEntry Text="{Binding BankAccountNumber}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bank Account Number" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--Salary Section-->
@@ -86,7 +86,8 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="bvn.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding EnterSalary}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter BVN" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <Label Text="{Binding EnterBVN}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <!--<local:CustomEntry Text="{Binding EnterBVN}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter BVN" Style="{StaticResource SecondryEntry}" Grid.Column="1" />-->
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--Save Section-->

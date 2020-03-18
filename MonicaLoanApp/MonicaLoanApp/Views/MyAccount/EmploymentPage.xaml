@@ -106,7 +106,7 @@
                                     <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
                                 </Grid>
                                 <!--Date Section-->
-                                <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
+                                <Label Grid.Column="1" Text="{Binding StartDate}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
                                 <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
                             </Grid>
                         </local:CustomFrameForOpacity>

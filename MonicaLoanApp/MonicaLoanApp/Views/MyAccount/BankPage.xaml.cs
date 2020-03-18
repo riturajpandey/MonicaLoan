@@ -33,9 +33,11 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             base.OnAppearing();
             await BankVM.StaticDataSearch();
-            
+
+            BankVM.Bankcode = Helpers.Constants.UserBankcode;
+            BankVM.BankName = Helpers.Constants.UserBankname;
             BankVM.BankAccountNumber = Helpers.Constants.UserBankaccountno;
-            BankVM.EnterBVN = Helpers.Constants.UserBvn;
+            BankVM.EnterBVN = Helpers.Constants.UserBvn; 
 
             if (!string.IsNullOrEmpty(Helpers.Constants.UserBankname))
             {
@@ -50,8 +52,9 @@ namespace MonicaLoanApp.Views.MyAccount
         {
             if (PckBankfrst.SelectedIndex >= 0)
             {
-                var code = PckBankfrst.SelectedItem as Staticdata;
-                BankVM.Bankcode = code.key;
+                var bank = PckBankfrst.SelectedItem as Staticdata;
+                BankVM.BankName = PckBankfrst.Items[PckBankfrst.SelectedIndex];
+                BankVM.Bankcode = bank.key; 
             }
         }
     }

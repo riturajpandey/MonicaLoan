@@ -29,80 +29,8 @@ namespace MonicaLoanApp.Helpers
         private const string LoanNumber = "LoanNumber";
         private static readonly string LoanNumberDefault = string.Empty;
 
-        //private const string LoanBalance = "LoanBalance";
-        //private static readonly string LoanBalanceDefault = string.Empty;
-
-        //private const string DueBalance = "DueBalance";
-        //private static readonly string DueBalanceDefault = string.Empty;
-
-        //private const string Firstname = "Firstname";
-        //private static readonly string FirstnameDefault = string.Empty;
-
-        //private const string Middlename = "Middlename";
-        //private static readonly string MiddlenameDefault = string.Empty;
-
-        //private const string Lastname = "Lastname";
-        //private static readonly string LastnameDefault = string.Empty;
-
-        //private const string Emailaddress = "Emailaddress";
-        //private static readonly string EmailaddressDefault = string.Empty;
-
-        //private const string Mobileno = "Mobileno";
-        //private static readonly string MobilenoDefault = string.Empty;
-
-        //private const string Gender = "Gender";
-        //private static readonly string GenderDefault = string.Empty;
-
-        //private const string Maritalstatus = "Maritalstatus";
-        //private static readonly string MaritalstatusDefault = string.Empty;
-
-        //private const string Dateofbirth = "Dateofbirth";
-        //private static readonly string DateofbirthDefault = string.Empty;
-
-        //private const string Bvn = "Bvn";
-        //private static readonly string BvnDefault = string.Empty;
-
-        //private const string Bankcode = "Bankcode";
-        //private static readonly string BankcodeDefault = string.Empty;
-
-        //private const string Bankname = "Bankname";
-        //private static readonly string BanknameDefault = string.Empty;
-
-        //private const string Bankaccountno = "Bankaccountno";
-        //private static readonly string BankaccountnoDefault = string.Empty;
-
-        //private const string Addressline1 = "Addressline1";
-        //private static readonly string Addressline1Default = string.Empty;
-
-        //private const string Addressline2 = "Addressline2";
-        //private static readonly string Addressline2Default = string.Empty;
-
-        //private const string City = "City";
-        //private static readonly string CityDefault = string.Empty;
-        
-        //private const string Statecode = "Statecode";
-        //private static readonly string StatecodeDefault = string.Empty;
-        
-        //private const string Statename = "Statename";
-        //private static readonly string StatenameDefault = string.Empty;
-        
-        //private const string Employercode = "Employercode";
-        //private static readonly string EmployercodeDefault = string.Empty;
-        
-        //private const string Employername = "Employername";
-        //private static readonly string EmployernameDefault = string.Empty;
-        
-        //private const string Employeenumber = "Employeenumber";
-        //private static readonly string EmployeenumberDefault = string.Empty;
-        
-        //private const string Salary = "Salary";
-        //private static readonly string SalaryDefault = string.Empty;
-        
-        //private const string Startdate = "Startdate";
-        //private static readonly string StartdateDefault = string.Empty;
-        
-        //private const string Profilepic = "Profilepic";
-        //private static readonly string ProfilepicDefault = string.Empty;
+        private const string StaticDataResponse = "StaticDataResponse";
+        private static readonly string StaticDataResponseDefault = string.Empty;
 
 
         public static string GeneralAccessToken
@@ -114,6 +42,17 @@ namespace MonicaLoanApp.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(AccessToken, value);
+            }
+        }
+        public static string GeneralStaticDataResponse
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(StaticDataResponse, StaticDataResponseDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(StaticDataResponse, value);
             }
         }
         public static string GeneralLoanNumber

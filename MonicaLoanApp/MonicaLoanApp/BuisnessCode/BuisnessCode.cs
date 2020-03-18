@@ -37,6 +37,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey);
                 var result = _apiProvider.Post<StaticDataSearchResponseModel, StaticDataSearchRequestModel>(url, request, dic);
                 var response = result.Result;
+                Helpers.Settings.GeneralStaticDataResponse = response.RawResult; 
                 StaticDataSearchResponseModel objres = null;
                 dynamic obj = "";
                 StaticDataSearchResponseModel reg = new StaticDataSearchResponseModel();

@@ -37,6 +37,12 @@
                     </local:CustomFrameForOpacity>
                     <!--First Grid-->
                     <ScrollView Grid.Row="1" IsVisible="{Binding GridOne}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,60" />
+                                <On Platform="Android" Value="0,0,0,0" />
+                            </OnPlatform>
+                        </ScrollView.Margin>
                         <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>

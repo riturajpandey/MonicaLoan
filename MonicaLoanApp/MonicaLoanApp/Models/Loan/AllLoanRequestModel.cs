@@ -23,16 +23,16 @@ namespace MonicaLoanApp.Models.Loan
         public string statuscode { get; set; }
         public string statusname { get; set; }
 
-        public string LoanDate
-        {
-            get
-            {
-                DateTime date ;
-                string loanDate = string.Empty;
-                date = Convert.ToDateTime( datecreated);
-                loanDate = date.ToString("d MMM yyyy"); 
-                return loanDate;
-            }
-        }
+        //public string LoanDate
+        //{
+        //    get
+        //    {
+        //        DateTime date ;
+        //        string loanDate = string.Empty;
+        //        date = Convert.ToDateTime( datecreated);
+        //        loanDate = date.ToString("d MMM yyyy"); 
+        //        return loanDate;
+        //    }
+        //}
     }
 }

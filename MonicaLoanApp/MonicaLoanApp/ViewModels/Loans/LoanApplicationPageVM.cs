@@ -235,12 +235,12 @@ namespace MonicaLoanApp.ViewModels.Loans
                                         UserDialogs.Instance.HideLoading(); 
                                         LoanDetailsList = new ObservableCollection<Schedule>(requestList[0].schedules);
                                         Status = requestList[0].statusname;
-                                        Date = requestList[0].LoanDate; 
+                                        Date = requestList[0].datecreated; 
                                         LoanAmount = "N" + requestList[0].loanamount;
                                         LoanBalance = "N" + requestList[0].loanbalance;
                                         UserCompany = requestList[0].employername;  
                                         UserSalary = "N" + requestList[0].employeesalarymonthly;  
-                                        EmployeeLoanDate = requestList[0].EmployeeLoanDate;   
+                                        EmployeeLoanDate = requestList[0].employeestartdate;   
                                         UserName = requestList[0].employeenumber;
                                     } 
                                     else

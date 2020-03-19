@@ -14,7 +14,8 @@
             <!--White-->
             <Color x:Key="AppWhiteColor">#FFFFFF</Color>
             <Color x:Key="HeaderWhiteColor">#FFFCFC</Color>
-            <Color x:Key="SideBarWhiteColor">#FDFBFB</Color> 
+            <Color x:Key="SideBarWhiteColor">#FDFBFB</Color>
+            <Color x:Key="SideBarHeaderWhiteColor">#FFFDFD</Color>
 
             <Color x:Key="BlackColour">#000000</Color>
             <Color x:Key="TransparentColor">Transparent</Color>

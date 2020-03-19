@@ -65,7 +65,7 @@
                                             <Label  Text="{Binding loanamount}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}"  />
                                         </StackLayout>
                                         <Label Grid.Row="0" Text="{Binding statusname}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"/>
-                                        <Label Grid.Row="1" Text="{Binding LoanDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" Margin="10,0"/>
+                                        <Label Grid.Row="1" Text="{Binding datecreated}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" Margin="10,0"/>
                                         <!--Separator-->
                                         <Grid Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{StaticResource BlackColour}" Opacity="0.5"/>
                                     </Grid>

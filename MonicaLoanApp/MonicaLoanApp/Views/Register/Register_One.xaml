@@ -45,6 +45,12 @@
                     </Frame>
                     <!--First Grid grid-->
                     <ScrollView Grid.Row="1" IsVisible="{Binding FirstGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,50" />
+                                <On Platform="Android" Value="0,0,0,0" />
+                            </OnPlatform>
+                        </ScrollView.Margin>
                         <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -153,7 +159,13 @@
                         </Grid>
                     </ScrollView>
                     <!-- Second grid-->
-                    <ScrollView Grid.Row="1" IsVisible="{Binding SecondGrid}" Margin="0,0,0,30">
+                    <ScrollView Grid.Row="1" IsVisible="{Binding SecondGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,50" />
+                                <On Platform="Android" Value="0,0,0,30" />
+                            </OnPlatform>
+                        </ScrollView.Margin>
                         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -316,6 +328,12 @@
                     </ScrollView>
                     <!--Final Grid-->
                     <ScrollView Grid.Row="1" IsVisible="{Binding FinalGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,50" />
+                                <On Platform="Android" Value="0,0,0,0" />
+                            </OnPlatform>
+                        </ScrollView.Margin>
                         <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>

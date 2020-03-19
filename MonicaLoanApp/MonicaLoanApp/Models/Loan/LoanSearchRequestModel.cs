@@ -44,29 +44,29 @@ namespace MonicaLoanApp.Models.Loan
         public string declinereasoncomments { get; set; }
         public List<Schedule> schedules { get; set; }
 
-        public string LoanDate
-        {
-            get
-            {
-                DateTime date;
-                string loanDate = string.Empty;
-                date = Convert.ToDateTime(datecreated);
-                loanDate = date.ToString("d MMM yyyy");
-                return loanDate;
-            }
-        }
+        //public string LoanDate
+        //{
+        //    get
+        //    {
+        //        DateTime date;
+        //        string loanDate = string.Empty;
+        //        date = Convert.ToDateTime(datecreated);
+        //        loanDate = date.ToString("d MMM yyyy");
+        //        return loanDate;
+        //    }
+        //}
 
-        public string EmployeeLoanDate
-        {
-            get
-            {
-                DateTime date;
-                string loanDate = string.Empty;
-                date = Convert.ToDateTime(employeestartdate); 
-                loanDate = date.ToString("d MMM yyyy");
-                return loanDate;
-            }
-        }
+        //public string EmployeeLoanDate
+        //{
+        //    get
+        //    {
+        //        DateTime date;
+        //        string loanDate = string.Empty;
+        //        date = Convert.ToDateTime(employeestartdate); 
+        //        loanDate = date.ToString("d MMM yyyy");
+        //        return loanDate;
+        //    }
+        //}
     }
 
     public class Schedule
@@ -76,16 +76,16 @@ namespace MonicaLoanApp.Models.Loan
         public string duedate { get; set; }
         public string statuscode { get; set; }
         public string statusname { get; set; }
-        public string ScheduleDate 
-        {
-            get
-            {
-                DateTime date;
-                string loanDate = string.Empty;
-                date = Convert.ToDateTime(duedate);
-                loanDate = date.ToString("d MMM yyyy");
-                return loanDate;
-            }
-        }
+        //public string ScheduleDate 
+        //{
+        //    get
+        //    {
+        //        DateTime date;
+        //        string loanDate = string.Empty;
+        //        date = Convert.ToDateTime(duedate);
+        //        loanDate = date.ToString("d MMM yyyy");
+        //        return loanDate;
+        //    }
+        //}
     }
 }

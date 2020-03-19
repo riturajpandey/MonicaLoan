@@ -344,7 +344,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                 employercode=EmployerCode,
                                 purposecode=PurposeCode,
                                 employeenumber= EnterEmployeeNumber,
-                                employeeidcard= Helpers.Constants.imgFilePath,
+                                employeeidcard= PartImgBase64,
                                 employeestartdate= DateOfBirth,
                                 
                             },

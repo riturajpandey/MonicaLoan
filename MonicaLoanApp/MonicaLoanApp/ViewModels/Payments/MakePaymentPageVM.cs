@@ -94,7 +94,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
         }
 
-        private string _LoanNumber;
+        private string _LoanNumber = "Select loan";
         public string LoanNumber
         {
             get { return _LoanNumber; }
@@ -108,7 +108,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
         }
 
-        private string _LoanSchedule;
+        private string _LoanSchedule = "Select schedule"; 
         public string LoanSchedule 
         {
             get { return _LoanSchedule; }
@@ -146,6 +146,62 @@ namespace MonicaLoanApp.ViewModels.Payments
                 {
                     _SchedulesList = value;
                     OnPropertyChanged("SchedulesList");
+                }
+            }
+        }
+
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                if (_Name != value)
+                {
+                    _Name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+
+        private string _Bank;
+        public string Bank
+        {
+            get { return _Bank; }
+            set
+            {
+                if (_Bank != value)
+                {
+                    _Bank = value;
+                    OnPropertyChanged("Bank");
+                }
+            }
+        }
+
+        private string _AccountNumber;
+        public string AccountNumber
+        {
+            get { return _AccountNumber; }
+            set
+            {
+                if (_AccountNumber != value)
+                {
+                    _AccountNumber = value;
+                    OnPropertyChanged("AccountNumber");
+                }
+            }
+        }
+
+        private string _Reference;
+        public string Reference
+        {
+            get { return _Reference; }
+            set
+            {
+                if (_Reference != value)
+                {
+                    _Reference = value;
+                    OnPropertyChanged("Reference");
                 }
             }
         }
@@ -346,13 +402,13 @@ namespace MonicaLoanApp.ViewModels.Payments
         //TODO : To Apply SignupValidations...
         private async Task<bool> PaymentValidate()
         {
-            if (string.IsNullOrEmpty(LoanPurpose))
+            if (LoanNumber == "Select loan")
             {
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert("Please select loan.", "Alert", "Ok"); 
                 return false;
             }
-            if (string.IsNullOrEmpty(LoanSchedule))
+            if (LoanSchedule == "Select schedule")
             {
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert("Please select schedule", "Alert", "Ok"); 

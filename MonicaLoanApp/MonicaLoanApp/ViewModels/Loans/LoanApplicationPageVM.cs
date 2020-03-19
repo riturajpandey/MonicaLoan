@@ -15,14 +15,14 @@ namespace MonicaLoanApp.ViewModels.Loans
     public class LoanApplicationPageVM : BaseViewModel
     {
         public List<string> ContextMenu = new List<string>();
-        
+
 
         #region  Constructor
         public LoanApplicationPageVM(INavigation nav)
         {
             Navigation = nav;
             ContextMenu.Add("Accept");
-            ContextMenu.Add("Decline"); 
+            ContextMenu.Add("Decline");
 
             ////TODO : Dummy Data in list
             //LoanDetailsList = new ObservableCollection<LoanDetailsModel>
@@ -37,13 +37,13 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region DELEGATECOMMAND  
-         
+
         #endregion
 
         #region Properties 
 
-        private ObservableCollection<Schedule> _LoanDetailsList;    
-        public ObservableCollection<Schedule> LoanDetailsList   
+        private ObservableCollection<Schedule> _LoanDetailsList;
+        public ObservableCollection<Schedule> LoanDetailsList
         {
             get { return _LoanDetailsList; }
             set
@@ -51,7 +51,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 if (_LoanDetailsList != value)
                 {
                     _LoanDetailsList = value;
-                    OnPropertyChanged("LoanDetailsList"); 
+                    OnPropertyChanged("LoanDetailsList");
                 }
             }
         }
@@ -64,26 +64,26 @@ namespace MonicaLoanApp.ViewModels.Loans
             {
                 if (_DeclineReasonList != value)
                 {
-                    _DeclineReasonList = value; 
-                    OnPropertyChanged("DeclineReasonList"); 
+                    _DeclineReasonList = value;
+                    OnPropertyChanged("DeclineReasonList");
                 }
             }
         }
 
-        private string _Status ;    
+        private string _Status;
         public string Status
         {
             get { return _Status; }
             set
             {
-                if(_Status!= value)
+                if (_Status != value)
                 {
                     _Status = value;
-                    OnPropertyChanged("Status"); 
+                    OnPropertyChanged("Status");
                 }
             }
         }
-        private string _Date ;  
+        private string _Date;
         public string Date
         {
             get { return _Date; }
@@ -96,7 +96,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _LoanAmount ;
+        private string _LoanAmount;
         public string LoanAmount
         {
             get { return _LoanAmount; }
@@ -109,7 +109,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _LoanBalance ;
+        private string _LoanBalance;
         public string LoanBalance
         {
             get { return _LoanBalance; }
@@ -122,7 +122,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserCompany ;
+        private string _UserCompany;
         public string UserCompany
         {
             get { return _UserCompany; }
@@ -135,7 +135,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserSalary ;
+        private string _UserSalary;
         public string UserSalary
         {
             get { return _UserSalary; }
@@ -148,7 +148,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
-        private string _UserName ;
+        private string _UserName;
         public string UserName
         {
             get { return _UserName; }
@@ -162,7 +162,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
-        private string _EmployeeLoanDate ;
+        private string _EmployeeLoanDate;
         public string EmployeeLoanDate
         {
             get { return _UserName; }
@@ -208,7 +208,7 @@ namespace MonicaLoanApp.ViewModels.Loans
 
         #region Methods
         //TODO : To Call Api To Get Loan Details...
-        public async Task GetLoanDetail(AllLoan allLoan)  
+        public async Task GetLoanDetail(AllLoan allLoan)
         {
             //Call api..
             try
@@ -232,17 +232,17 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     var requestList = (obj as LoanSearchResponseModel).loans;
                                     if (requestList != null)
                                     {
-                                        UserDialogs.Instance.HideLoading(); 
+                                        UserDialogs.Instance.HideLoading();
                                         LoanDetailsList = new ObservableCollection<Schedule>(requestList[0].schedules);
                                         Status = requestList[0].statusname;
-                                        Date = requestList[0].datecreated; 
+                                        Date = requestList[0].LoanDate;
                                         LoanAmount = "N" + requestList[0].loanamount;
                                         LoanBalance = "N" + requestList[0].loanbalance;
-                                        UserCompany = requestList[0].employername;  
-                                        UserSalary = "N" + requestList[0].employeesalarymonthly;  
-                                        EmployeeLoanDate = requestList[0].employeestartdate;   
+                                        UserCompany = requestList[0].employername;
+                                        UserSalary = "N" + requestList[0].employeesalarymonthly;
+                                        EmployeeLoanDate = requestList[0].EmployeeLoanDate; 
                                         UserName = requestList[0].employeenumber;
-                                    } 
+                                    }
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
@@ -278,7 +278,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             try
             {
                 UserDialogs.Instance.ShowLoading();
-                if (CrossConnectivity.Current.IsConnected)  
+                if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
                     {
@@ -306,7 +306,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                             OkText = "OK",
                                             OnAction = () =>
                                             {
-                                                App.Current.MainPage = new Views.Loans.LoanDetailsPage(); 
+                                                App.Current.MainPage = new Views.Loans.LoanDetailsPage();
                                             }
                                         };
                                         UserDialogs.Instance.Alert(alertConfig);
@@ -349,10 +349,10 @@ namespace MonicaLoanApp.ViewModels.Loans
             try
             {
                 var filteredBankList = Helpers.Constants.StaticDataList.Where(a => a.type == "DECLINEREASON").ToList();
-                DeclineReasonList = new ObservableCollection<Staticdata>(filteredBankList); 
-            } 
-            catch (Exception ex) 
-            { UserDialog.HideLoading(); } 
+                DeclineReasonList = new ObservableCollection<Staticdata>(filteredBankList);
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
         }
         #endregion
 

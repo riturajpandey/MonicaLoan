@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace MonicaLoanApp.Models.Loan
@@ -23,16 +24,26 @@ namespace MonicaLoanApp.Models.Loan
         public string statuscode { get; set; }
         public string statusname { get; set; }
 
-        //public string LoanDate
+        //public DateTime LoanDate
         //{
         //    get
         //    {
-        //        DateTime date ;
-        //        string loanDate = string.Empty;
-        //        date = Convert.ToDateTime( datecreated);
-        //        loanDate = date.ToString("d MMM yyyy"); 
-        //        return loanDate;
+        //        DateTime date;
+        //        date = DateTime.Parse(datecreated); 
+        //        return date;
         //    }
         //}
+
+        public string LoanDate
+        {
+            get
+            {
+                DateTime date;
+                string loanDate = string.Empty;
+                date = DateTime.Parse(datecreated);
+                loanDate = date.ToString("d MMM yyyy"); 
+                return loanDate;
+            }
+        }
     }
 }

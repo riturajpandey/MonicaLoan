@@ -7,10 +7,10 @@ namespace MonicaLoanApp.Models.Loan
     public class LoanSearchRequestModel
     {
         public string usertoken { get; set; }
-        public string loannumber { get; set; } 
+        public string loannumber { get; set; }
     }
 
-    public class LoanSearchResponseModel 
+    public class LoanSearchResponseModel
     {
         public int responsecode { get; set; }
         public string responsemessage { get; set; }
@@ -36,42 +36,70 @@ namespace MonicaLoanApp.Models.Loan
         public string employercode { get; set; }
         public string employername { get; set; }
         public string employeenumber { get; set; }
-        public string employeestartdate { get; set; } 
-        public string repaymenttypecode { get; set; } 
+        public string employeestartdate { get; set; }
+        public string repaymenttypecode { get; set; }
         public string repaymenttypename { get; set; }
         public string declinereasoncode { get; set; }
         public string declinereasonname { get; set; }
         public string declinereasoncomments { get; set; }
         public List<Schedule> schedules { get; set; }
 
-        public string LoanDate 
+        public string LoanDate
         {
+
             get
             {
-                DateTime date;
-                string loanDate = string.Empty;
-                if(!string.IsNullOrEmpty(datecreated))
+                string date = string.Empty;
+
+                try
                 {
-                    date = DateTime.Parse(datecreated);
-                    loanDate = date.ToString("d MMM yyyy");
+                    var Day = datecreated.Substring(0, 2);
+                    var Month = datecreated.Substring(3, 2);
+                    var Year = datecreated.Substring(6, 4);
+                    var monthname = Utilities.Utility.ConvertMonthIntoEnglishLanguage(Month);
+                    date = Day + " " + monthname + " " + Year;
                 }
-                return loanDate;
+                catch (Exception ex)
+                {
+                }
+                return date;
             }
         }
 
         public string EmployeeLoanDate
         {
+
             get
             {
-                DateTime date;
-                string loanDate = string.Empty;
-                if (!string.IsNullOrEmpty(employeestartdate))
+                string date = string.Empty;
+
+                try
                 {
-                    date = DateTime.Parse(employeestartdate);
-                    loanDate = date.ToString("d MMM yyyy");
+                    if (employeestartdate!=null)
+                    {
+                        var Day = employeestartdate.Substring(0, 2);
+                        var Month = employeestartdate.Substring(3, 2);
+                        var Year = employeestartdate.Substring(6, 4);
+                        var monthname = Utilities.Utility.ConvertMonthIntoEnglishLanguage(Month);
+                        date = Day + " " + monthname + " " + Year; 
+                    }
                 }
-                return loanDate;
+                catch (Exception ex)
+                {
+                }
+                return date;
             }
+            //get
+            //{
+            //    DateTime date;
+            //    string loanDate = string.Empty;
+            //    if (!string.IsNullOrEmpty(employeestartdate))
+            //    {
+            //        date = DateTime.Parse(employeestartdate);
+            //        loanDate = date.ToString("d MMM yyyy");
+            //    }
+            //    return loanDate;
+            //}
         }
     }
 
@@ -86,15 +114,32 @@ namespace MonicaLoanApp.Models.Loan
         {
             get
             {
-                DateTime date;
-                string loanDate = string.Empty;
-                if (!string.IsNullOrEmpty(duedate))
+                string date = string.Empty;
+
+                try
                 {
-                    date = DateTime.Parse(duedate);
-                    loanDate = date.ToString("d MMM yyyy");
+                    var Day = duedate.Substring(0, 2);
+                    var Month = duedate.Substring(3, 2);
+                    var Year = duedate.Substring(6, 4);
+                    var monthname = Utilities.Utility.ConvertMonthIntoEnglishLanguage(Month);
+                    date = Day + " " + monthname + " " + Year;
                 }
-                return loanDate;
+                catch (Exception ex)
+                {
+                }
+                return date;
             }
+            //get
+            //{
+            //    DateTime date;
+            //    string loanDate = string.Empty;
+            //    if (!string.IsNullOrEmpty(duedate))
+            //    {
+            //        date = DateTime.Parse(duedate);
+            //        loanDate = date.ToString("d MMM yyyy");
+            //    }
+            //    return loanDate;
+            //}
         }
     }
 }

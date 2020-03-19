@@ -277,6 +277,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             catch (Exception ex)
             { UserDialog.HideLoading(); }
         }
+
+
         #endregion
     }
 }

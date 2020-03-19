@@ -117,57 +117,58 @@ namespace MonicaLoanApp.Views.MyAccount
 
             if (!string.IsNullOrEmpty(Helpers.Constants.Usergender))
             {
-                //if(PersonalDetailsVM.Gender == "M")
-                //{
-                //    PckGender.SelectedIndex = 0;
-                //}
-                //else
-                //{
-                //    PckGender.SelectedIndex = 1; 
-                //}
-                PckGender.SelectedItem = Helpers.Constants.Usergender;
+                if (PersonalDetailsVM.Gender == "M")
+                {
+                    PckGender.SelectedIndex = 0;
+                }
+                else
+                {
+                    PckGender.SelectedIndex = 1;
+                }
+                //PckGender.SelectedItem = Helpers.Constants.Usergender;
             }
             if (!string.IsNullOrEmpty(Helpers.Constants.UserMaritalstatus))
             {
-                //if (PersonalDetailsVM.MaritalStatus == "S")
-                //{
-                //    PckGender.SelectedIndex = 0;
-                //}
-                //else
-                //{
-                //    PckGender.SelectedIndex = 1;
-                //}
-                PckMaritalStatus.SelectedItem = Helpers.Constants.UserMaritalstatus;  
+                if (PersonalDetailsVM.MaritalStatus == "S")
+                {
+                    PckMaritalStatus.SelectedIndex = 0;
+                }
+                else
+                {
+                    PckMaritalStatus.SelectedIndex = 1;
+                }
+                //PckMaritalStatus.SelectedItem = Helpers.Constants.UserMaritalstatus;  
             }
         }
 
 
         private void gender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string gender = PckGender.Items[PckGender.SelectedIndex];
-            //if(gender == "Male")
-            //{
-            //    PersonalDetailsVM.Gender = "M";
-            //}
-            //else
-            //{
-            //    PersonalDetailsVM.Gender = "F";
-            //}
-            PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex];
+            string gender = PckGender.Items[PckGender.SelectedIndex];
+            if (gender == "Male")
+            {
+                PersonalDetailsVM.Gender = "M";
+            }
+            else
+            {
+                PersonalDetailsVM.Gender = "F";
+            }
+            //PersonalDetailsVM.Gender = PckGender.Items[PckGender.SelectedIndex];
         }
 
         private void PckMaritalStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string status = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
-            //if (status == "Single")
-            //{
-            //    PersonalDetailsVM.MaritalStatus = "S";
-            //} 
-            //else
-            //{
-            //    PersonalDetailsVM.Gender = "M";
-            //}
-            PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+            string status = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+            if (status == "Single")
+            {
+                PersonalDetailsVM.MaritalStatus = "S";
+            }
+            else
+            {
+                PersonalDetailsVM.MaritalStatus = "M"; 
+            }
+
+            //PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
         }
     }
 }

@@ -108,9 +108,7 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
         private void CustomButton_Clicked(object sender, EventArgs e)
         {
             HideDialog();
-            App.masterDetailPage.IsPresented = false; 
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
-            App.Current.MainPage = App.masterDetailPage; 
+            App.Current.MainPage = new Views.Loans.LoanDetailsPage();
         }
     }
 }

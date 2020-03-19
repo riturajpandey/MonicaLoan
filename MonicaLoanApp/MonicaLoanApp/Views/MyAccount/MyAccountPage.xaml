@@ -126,7 +126,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding settingCommand}"/>
+                                <TapGestureRecognizer Command="{Binding AppSettingCommand}"/>
                             </Grid.GestureRecognizers>
                             <Image Grid.Column="0" Source="setting.png" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,-5,0"/>
                             <Label Grid.Column="1" Text="Your App Settings" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>

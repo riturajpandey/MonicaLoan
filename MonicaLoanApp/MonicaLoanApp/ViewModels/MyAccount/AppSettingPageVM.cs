@@ -11,6 +11,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public AppSettingPageVM(INavigation nav)
         {
             Navigation = nav;
+            BackCommand = new Command(BackCommandAsync);
         }
         #endregion
 
@@ -18,9 +19,18 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Command 
+        public Command BackCommand { get; set; }
         #endregion
 
         #region Method
+        /// <summary>
+        /// To Define Back Button Event...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void BackCommandAsync(object obj)
+        {
+            App.Current.MainPage = new Views.MyAccount.MyAccountPage();
+        }
         #endregion
     }
 }

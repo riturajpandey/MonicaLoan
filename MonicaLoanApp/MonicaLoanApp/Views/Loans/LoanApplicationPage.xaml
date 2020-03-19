@@ -122,7 +122,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Text="{Binding duedate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
+                                                <Label Grid.Column="0" Text="{Binding ScheduleDate}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                                 <Label Grid.Column="1" Text="{Binding amounttotal}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
                                                 <Label Grid.Column="2" Text="{Binding statusname}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}" />
                                             </Grid>

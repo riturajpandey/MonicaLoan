@@ -15,7 +15,7 @@
                 <magic:GradientView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
                     <magic:GradientView.GradientSource >
                         <magic:LinearGradient Angle="0">
-                            <magic:GradientStop Color="{StaticResource DarkGradientColour}" Offset="0" />   
+                            <magic:GradientStop Color="{StaticResource DarkGradientColour}" Offset="0" />
                             <magic:GradientStop Color="{StaticResource LightGradientColour}" Offset="1" />
                         </magic:LinearGradient>
                     </magic:GradientView.GradientSource>
@@ -27,129 +27,131 @@
                     </Grid.RowDefinitions>
                     <!--Header Section-->
                     <Frame Grid.Row="0" Padding="5,0" BackgroundColor="{StaticResource FramlgtGrayColor}">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BckCommand}"/>
-                            </Grid.GestureRecognizers>
-                            <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BckCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                            <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Text="Register" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Register" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0"></Label>
-                        </Grid>
-                    </Grid>
                     </Frame>
                     <!--First Grid grid-->
-                    <Grid Grid.Row="1" IsVisible="{Binding FirstGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="2*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0" RowSpacing="0">
+                    <ScrollView Grid.Row="1" IsVisible="{Binding FirstGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
-                            <!--Page Count Section-->
-                            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <!--Page Count Section-->
+
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="active_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
-                                    <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
-                                    <Image Source="disable_three.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="active_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                        <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
+                                        <Image Source="disable_three.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    </Grid>
                                 </Grid>
+                                <!--FirstName Section-->
+                                <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding FirstName}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                                <!--MiddleName Section-->
+                                <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding MiddleName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+
+                                <!--LastName Section-->
+                                <Frame Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding LastName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                                <!--Email Section-->
+                                <Frame Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+
+                                <!--New Password Section-->
+                                <Frame Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="lock.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding NewPassword}" IsPassword="True"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password"  Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                                <!--LoginButton Section-->
+                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Next" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" Grid.Row="12" Margin="5,0,5,0"></local:CustomButton>
                             </Grid>
-                            <!--FirstName Section-->
-                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding FirstName}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-                            <!--MiddleName Section-->
-                            <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding MiddleName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-
-                            <!--LastName Section-->
-                            <Frame Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding LastName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-                            <!--Email Section-->
-                            <Frame Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-
-                            <!--New Password Section-->
-                            <Frame Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="lock.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding NewPassword}" IsPassword="True"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password"  Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-                            <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Next" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" Grid.Row="12" Margin="5,0,5,0"></local:CustomButton>
                         </Grid>
-                    </Grid>
-                    
+                    </ScrollView>
                     <!-- Second grid-->
                     <ScrollView Grid.Row="1" IsVisible="{Binding SecondGrid}" Margin="0,0,0,30">
                         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
@@ -312,96 +314,97 @@
                             </Grid>
                         </Grid>
                     </ScrollView>
-                   
-                    
                     <!--Final Grid-->
-                    <Grid Grid.Row="1" IsVisible="{Binding FinalGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="2*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0" RowSpacing="10">
+                    <ScrollView Grid.Row="1" IsVisible="{Binding FinalGrid}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
-                            <!--Page Count Section-->
-                            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0" RowSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <!--Page Count Section-->
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="one_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
-                                    <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" HeightRequest="25" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
-                                    <Image Source="circlee.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="one_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                        <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" HeightRequest="25" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
+                                        <Image Source="circlee.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
 
-                            <!--BVN Section-->
-                            <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="bvn_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding BusinessNumber}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bvn" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-                           <!--Bank Section-->
-                            <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="PckBank_Tapped"/>
-                                </Frame.GestureRecognizers>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="bank.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="PckBank" ItemsSource="{Binding Banklist}" ItemDisplayBinding="{Binding data}" Title="Select Bank"  VerticalOptions="CenterAndExpand">
-                                            <!--<Picker.Items>
+                                <!--BVN Section-->
+                                <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="bvn_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding BusinessNumber}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bvn" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                                <!--Bank Section-->
+                                <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="PckBank_Tapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="bank.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                            <local:CustomPicker x:Name="PckBank" ItemsSource="{Binding Banklist}" ItemDisplayBinding="{Binding data}" Title="Select Bank"  VerticalOptions="CenterAndExpand">
+                                                <!--<Picker.Items>
                                                 <x:String>SBI</x:String>
                                                 <x:String>PNB</x:String>
                                                 <x:String>HDFC</x:String>
                                             </Picker.Items>-->
-                                        </local:CustomPicker>
-                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                            <!--Account Section-->
-                            <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="id.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="30"/>
-                                    <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Account Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
-                                </Grid>
-                            </Frame>
-                            <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Finish" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="5" Margin="5,0,5,0"></local:CustomButton>
+                                            </local:CustomPicker>
+                                            <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <!--Account Section-->
+                                <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="id.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="30"/>
+                                        <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Account Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                                <!--LoginButton Section-->
+                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Finish" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="5" Margin="5,0,5,0"></local:CustomButton>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </ScrollView>
+                    
                 </Grid>
             </Grid>
         </Grid>

@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using MonicaLoanApp.Models;
+using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.MyAccount
@@ -94,9 +98,64 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TODO: To define logoutCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void logoutCommandAsync(object obj)
-        {
-            App.Current.MainPage = new Views.Login.LoginPage();
+        private async void logoutCommandAsync(object obj)
+        { //Call api..
+            try
+            {
+                //Call AccessRegister Api..  
+                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
+                            {
+                                usertoken = Helpers.Settings.GeneralAccessToken,
+
+                            },
+                            async (aobj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (aobj as AccessLogOutResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        if (requestList.responsecode == 100)
+                                        {
+                                            Helpers.Settings.GeneralAccessToken = string.Empty;
+                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                        }
+                                        else
+                                        {
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                        }
+
+                                    }
+
+                                    UserDialog.HideLoading();
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    UserDialog.HideLoading();
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                }
+            }
+            catch (Exception ex)
+            { UserDialog.HideLoading(); }
+            // App.Current.MainPage = new Views.Login.LoginPage();
         }
         /// <summary>
         /// TODO: To define BankDetailsCommand.

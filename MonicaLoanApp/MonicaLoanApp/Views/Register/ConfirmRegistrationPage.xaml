@@ -44,64 +44,66 @@
                         </Grid>
                     </local:CustomFrameForOpacity>
                     <!--Middle grid-->
-                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0">
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="5"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <!--Page Count Section-->
-                            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <!--Page Count Section-->
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="one_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
-                                    <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
-                                    <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
-                                    <Image Source="circlee.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    <Grid Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="one_circle.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                        <Image Source="disable_count.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                                        <Image Source="right_arrow.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="3"/>
+                                        <Image Source="circlee.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="4"/>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                            <!--Label Section-->
-                            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="Please enter the validation token we sent to your email." HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Style="{StaticResource SmallestLable}" HorizontalTextAlignment="Center" TextColor="{StaticResource SkyBlueColor}"/>
-                            </Grid>
-                            <!--Token Section-->
-                            <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="token_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <local:CustomEntry Text="{Binding RegisterToken}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Token" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                <!--Label Section-->
+                                <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="Please enter the validation token we sent to your email." HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Style="{StaticResource SmallestLable}" HorizontalTextAlignment="Center" TextColor="{StaticResource SkyBlueColor}"/>
                                 </Grid>
-                            </local:CustomFrameForOpacity>
-                            <!--LoginButton Section-->
-                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Finish" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="6" Margin="5,0,5,0"></local:CustomButton>
+                                <!--Token Section-->
+                                <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="token_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <local:CustomEntry Text="{Binding RegisterToken}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Token" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                    </Grid>
+                                </local:CustomFrameForOpacity>
+                                <!--LoginButton Section-->
+                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Finish" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="6" Margin="5,0,5,0"></local:CustomButton>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </ScrollView>
                 </Grid>
             </Grid>
         </Grid>

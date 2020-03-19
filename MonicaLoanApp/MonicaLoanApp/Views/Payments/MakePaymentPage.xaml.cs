@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MonicaLoanApp.Views.Payments
@@ -22,6 +24,9 @@ namespace MonicaLoanApp.Views.Payments
         public MakePaymentPage()
         {
             InitializeComponent();
+            // iOS Platform
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             MakePaymentVM = new MakePaymentPageVM(this.Navigation);
             this.BindingContext = MakePaymentVM;
         }

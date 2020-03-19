@@ -35,64 +35,65 @@
                     </Grid>
                 </local:CustomFrameForOpacity>
                 <!--Main Grid-->
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
-                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="30,40" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <!--Loan Section-->
-                        <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckLoan" ItemsSource="{Binding LoansList}" ItemDisplayBinding="{Binding loannumber}" Title="Select Loan"  
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource FramlgtGrayColor}">
+                        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="30,40" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!--Loan Section-->
+                            <local:CustomFrameForOpacity Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame }">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                        <local:CustomPicker x:Name="PckLoan" ItemsSource="{Binding LoansList}" ItemDisplayBinding="{Binding loannumber}" Title="Select Loan"  
                                           SelectedIndexChanged="PckLoan_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
-                                        <!--<Picker.Items>
+                                            <!--<Picker.Items>
                                             <x:String>Personal Loan</x:String>
                                             <x:String>Education Loan</x:String>
                                             <x:String>Home Loan</x:String>
                                         </Picker.Items>-->
-                                    </local:CustomPicker>
-                                    <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--calender Section-->
-                        <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="PickerSchedule_Tapped"/>
-                                </Grid.GestureRecognizers>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                    <local:CustomPicker x:Name="PckSchedule" ItemsSource="{Binding SchedulesList}" ItemDisplayBinding="{Binding loanschedulenumber}" Title="Select Schedule"  
+                                        </local:CustomPicker>
+                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </Grid>
+                            </local:CustomFrameForOpacity>
+                            <!--calender Section-->
+                            <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Style="{StaticResource BordorlessFrame}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="PickerSchedule_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="loan.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                                        <local:CustomPicker x:Name="PckSchedule" ItemsSource="{Binding SchedulesList}" ItemDisplayBinding="{Binding loanschedulenumber}" Title="Select Schedule"  
                                           SelectedIndexChanged="PckSchedule_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
-                                        <!--<Picker.Items>
+                                            <!--<Picker.Items>
                                             <x:String>Personal Loan</x:String>
                                             <x:String>Education Loan</x:String>
                                             <x:String>Home Loan</x:String>
                                         </Picker.Items>-->
-                                    </local:CustomPicker>
-                                    <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </Grid>
-                            <!--<local:CustomFrameForOpacity.GestureRecognizers>
+                                        </local:CustomPicker>
+                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </Grid>
+                                <!--<local:CustomFrameForOpacity.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="DtPckDOB_Tapped"/>
                             </local:CustomFrameForOpacity.GestureRecognizers>
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -100,31 +101,36 @@
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                --><!--Calender Image--><!--
+                                -->
+                                <!--Calender Image-->
+                                <!--
                                 <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                     <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
                                 </Grid>
-                                --><!--Date Section--><!--
+                                -->
+                                <!--Date Section-->
+                                <!--
                                 <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
                                 <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
                             </Grid>-->
-                        </local:CustomFrameForOpacity>
-                        <!--Amount Section-->
-                        <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding Amount}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Amount you want to pay" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
-                            </Grid>
-                        </local:CustomFrameForOpacity>
-                        <!--Payment Button Section-->
-                        <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Proceed to Payment" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding PaymentCommand}" Grid.Row="6" Margin="5,0,5,0"></local:CustomButton>
+                            </local:CustomFrameForOpacity>
+                            <!--Amount Section-->
+                            <local:CustomFrameForOpacity Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="currenncy.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <local:CustomEntry Text="{Binding Amount}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Amount you want to pay" Style="{StaticResource SecondryEntry}"  Grid.Column="1" />
+                                </Grid>
+                            </local:CustomFrameForOpacity>
+                            <!--Payment Button Section-->
+                            <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Proceed to Payment" Style="{StaticResource PrimaryButton}" BorderColor="{StaticResource LoginBorderColour}" Command="{Binding PaymentCommand}" Grid.Row="6" Margin="5,0,5,0"></local:CustomButton>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </ScrollView>
             </Grid>
         </Grid>
     </ContentPage.Content>

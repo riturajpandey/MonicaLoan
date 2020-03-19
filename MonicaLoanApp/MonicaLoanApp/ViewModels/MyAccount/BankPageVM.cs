@@ -301,9 +301,14 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <returns></returns>
         public async Task<bool> ValidateBank()
         {
+            if(string.IsNullOrEmpty(BankName))
+            {
+                UserDialog.Alert("Please select bank.");
+                return false;
+            }
             if (string.IsNullOrEmpty(BankAccountNumber))
             {
-                UserDialog.Alert("Please enter BankAccountNumber");
+                UserDialog.Alert("Please enter bank account number.");
                 return false;
             }
             if (string.IsNullOrEmpty(EnterBVN))

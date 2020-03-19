@@ -100,6 +100,7 @@ namespace MonicaLoanApp.Views.Loans
             {
                 var purposecode = PckPurpose.SelectedItem as Staticdata;
                 LoanApplication_Form.PurposeCode = purposecode.key;
+                LoanApplication_Form.SelectPurpose = PckPurpose.Items[PckPurpose.SelectedIndex]; 
             }
 
         }
@@ -107,7 +108,10 @@ namespace MonicaLoanApp.Views.Loans
         {
             if (PckRepayment.SelectedIndex >= 0)
             {
-                LoanApplication_Form.RepaymentType = PckRepayment.Items[PckRepayment.SelectedIndex];
+                string repaymenttype = PckRepayment.Items[PckRepayment.SelectedIndex];
+                PckRepayment.SelectedItem = repaymenttype;
+                LoanApplication_Form.RepaymentType = repaymenttype;
+                //LoanApplication_Form.RepaymentType = PckRepayment.Items[PckRepayment.SelectedIndex];
             }
         }
         private void Employee_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,6 +120,7 @@ namespace MonicaLoanApp.Views.Loans
             {
                 var EmployerCode = PckEmployee.SelectedItem as Staticdata;
                 LoanApplication_Form.EmployerCode = EmployerCode.key;
+                LoanApplication_Form.Employer = PckEmployee.Items[PckEmployee.SelectedIndex];
             }
         }
 

@@ -157,7 +157,7 @@
                                             </Grid.ColumnDefinitions>
                                             <Image Source="calender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0"/>
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                                <local:CustomPicker x:Name="pckWeeks" SelectedIndexChanged="pckWeeks_SelectedIndexChanged" Title="Weeks"  VerticalOptions="CenterAndExpand">
+                                                <local:CustomPicker x:Name="pckWeeks" SelectedIndexChanged="pckWeeks_SelectedIndexChanged" Title="Duration"  VerticalOptions="CenterAndExpand">
                                                     <Picker.Items>
                                                         <x:String>D</x:String>
                                                         <x:String>W</x:String>
@@ -169,7 +169,7 @@
                                         </Grid>
                                     </local:CustomFrameForOpacity>
                                     <local:CustomFrameForOpacity Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
-                                        <local:CustomEntry Text="{Binding NumberOfWeek}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="No. of weeks" Style="{StaticResource SecondryEntry}" />
+                                        <local:CustomEntry Text="{Binding NumberOfWeek}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="No. of duration" Style="{StaticResource SecondryEntry}" />
                                     </local:CustomFrameForOpacity>
                                 </Grid>
                                 <!--LoanButton Section-->

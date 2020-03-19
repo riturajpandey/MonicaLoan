@@ -328,6 +328,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 UserDialog.Alert("Please enter your city.");
                 return false;
             }
+            if(string.IsNullOrEmpty(State))
+            {
+                UserDialog.Alert("Please select state.");
+                return false;
+            }
             return true;
             
         }

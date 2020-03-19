@@ -313,6 +313,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <returns></returns>
         public async Task<bool> ValidateEmployement()
         {
+            if(string.IsNullOrEmpty(EmployerName))
+            {
+                UserDialog.Alert("Please select employer");
+                return false;
+            }
             if (string.IsNullOrEmpty(EnterEmpNo))
             {
                 UserDialog.Alert("Please enter enter employe No");
@@ -321,6 +326,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             if (string.IsNullOrEmpty(EnterSalary))
             {
                 UserDialog.Alert("Please enter salary.");
+                return false;
+            }
+            if(StartDate == "Start date")
+            {
+                UserDialog.Alert("Please select start date.");
                 return false;
             }
             return true;

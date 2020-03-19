@@ -199,6 +199,34 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
             }
         }
+
+        private string _SelectPurpose;
+        public string SelectPurpose
+        {
+            get { return _SelectPurpose; }
+            set
+            {
+                if (_SelectPurpose != value)
+                {
+                    _SelectPurpose = value;
+                    OnPropertyChanged("SelectPurpose");
+                }
+            }
+        }
+
+        private string _Employer;
+        public string Employer
+        {
+            get { return _Employer; }
+            set
+            {
+                if (_Employer != value)
+                {
+                    _Employer = value;
+                    OnPropertyChanged("Employer");
+                }
+            }
+        }
         public string PurposeCode { get; set; }
         public string EmployerCode { get; set; }
         #endregion
@@ -215,17 +243,87 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// TODO: To define continue command for naviagtion to next page.
         /// </summary>
         /// <param name="obj"></param>
-        private void ContinueCommandAsync(object obj)
+        private async void ContinueCommandAsync(object obj)
         {
+            //Apply Validations...
+            if (!await ValidateLoan()) return;
             GridOne = false;
             GridSecond = true;
         }
+
+        /// <summary>
+        /// TODO : To Validate User ValidateEmployement Fields...
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> ValidateLoan()
+        {
+            if (string.IsNullOrEmpty(EnterAmount))
+            {
+                UserDialog.Alert("Please enter amount.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(SelectPurpose))
+            {
+                UserDialog.Alert("Please select purpose.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(RepaymentType))
+            {
+                UserDialog.Alert("Please select repayment type.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(LoanDuration))
+            {
+                UserDialog.Alert("Please select duration.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(NumberOfWeek))
+            {
+                UserDialog.Alert("Please enter no. of duration."); 
+                return false;
+            }
+            return true;  
+        }
+
+        public async Task<bool> ValidateLoanDetail()
+        {
+            if (string.IsNullOrEmpty(Employer))
+            {
+                UserDialog.Alert("Please select employer.");
+                return false;
+            }
+            if (DateOfBirth == "Select Start date")
+            {
+                UserDialog.Alert("Please select start date.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(EnterSalary))
+            {
+                UserDialog.Alert("Please enter salary.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(EnterEmployeeNumber))
+            {
+                UserDialog.Alert("Please enter employee number.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(PartImgBase64))
+            {
+                UserDialog.Alert("Please upload id card.");
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// TODO: To define SubmitCommand for naviagtion to next page.
         /// </summary>
         /// <param name="obj"></param>
         private async void SubmitCommandAsync(object obj)
-        { //Call api..
+        {
+            //Apply Validations...
+            if (!await ValidateLoanDetail()) return; 
+            //Call api..
             try
             {
                 //Call AccessRegister Api..  
@@ -357,7 +455,8 @@ namespace MonicaLoanApp.ViewModels.Loans
                         //Helpers.Constants.PartImage = file.Path;
                         //PartImg = file.Path;
                         var ImageByteData = await DependencyService.Get<IMediaService>().ResizeImage(await DependencyService.Get<IMediaService>().GetMediaInBytes(file.Path), 50, 50);
-                        Helpers.Constants.PartImageBase64 = Convert.ToBase64String(ImageByteData);
+                        PartImgBase64 = Convert.ToBase64String(ImageByteData);
+                        Helpers.Constants.PartImageBase64 = PartImgBase64;
                     }
                     UserDialogs.Instance.HideLoading();
                 }
@@ -398,6 +497,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                         //PartImg = file.Path;
                         var ImageByteData = await DependencyService.Get<IMediaService>().ResizeImage(await DependencyService.Get<IMediaService>().GetMediaInBytes(file.Path), 50, 50);
                         PartImgBase64 = Convert.ToBase64String(ImageByteData);
+                        Helpers.Constants.PartImageBase64 = PartImgBase64;
                     }
                     UserDialogs.Instance.HideLoading();
                 }

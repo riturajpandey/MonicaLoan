@@ -23,7 +23,7 @@
                     <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BacksCommand}"/>
+                                <TapGestureRecognizer Command="{Binding BackCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </Grid>
@@ -45,16 +45,16 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50*"/>
-                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Image Source="medicalparkimg.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="MONICA.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Spacing="5">
-                                <Image Source="location.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="30" WidthRequest="30"/>
-                                <Label Text="Version 123456.123" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}"></Label>
+                                <Image Source="setting_new.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                                <Label Text="Version 123456.123" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="14"></Label>
                             </StackLayout>
                         </Grid>
                     </Grid>
@@ -110,7 +110,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Source="location.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="share.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             </Grid>
                             <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <local:CustomUnderLinedLAbel Text="Tell your friends about us" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>
@@ -123,7 +123,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Source="location.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="view.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             </Grid>
                             <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <local:CustomUnderLinedLAbel Text="Privacy Policy" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>
@@ -136,7 +136,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Source="location.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Source="file.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                             </Grid>
                             <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <local:CustomUnderLinedLAbel Text="Terms and Conditions" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>

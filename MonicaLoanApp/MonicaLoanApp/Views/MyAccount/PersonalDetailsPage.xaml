@@ -109,8 +109,8 @@
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                     <local:CustomPicker x:Name="PckGender" SelectedIndexChanged="gender_SelectedIndexChanged" Title="Select gender"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
-                                            <x:String>M</x:String>
-                                            <x:String>F</x:String>
+                                            <x:String>Male</x:String>
+                                            <x:String>Female</x:String> 
                                         </Picker.Items>
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -128,8 +128,8 @@
                                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Margin="-5,0,0,0">
                                     <local:CustomPicker x:Name="PckMaritalStatus" SelectedIndexChanged="PckMaritalStatus_SelectedIndexChanged" Title="Marital Status"  VerticalOptions="CenterAndExpand">
                                         <Picker.Items>
-                                            <x:String>S</x:String>
-                                            <x:String>M</x:String>
+                                            <x:String>Single</x:String>
+                                            <x:String>Married</x:String> 
                                         </Picker.Items>
                                     </local:CustomPicker>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>

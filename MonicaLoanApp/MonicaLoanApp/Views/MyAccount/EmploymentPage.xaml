@@ -58,7 +58,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="user.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="PckEmployee" ItemsSource="{Binding EmpCode}" SelectedIndexChanged="Employee_SelectedIndexChanged" ItemDisplayBinding="{Binding data}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="PckEmployee" TextColor="{StaticResource SmallLblColor}" ItemsSource="{Binding EmpCode}" SelectedIndexChanged="Employee_SelectedIndexChanged" ItemDisplayBinding="{Binding data}" Title="Select Employer"  VerticalOptions="CenterAndExpand">
                                             <!--<Picker.Items>
                                                 <x:String>Salaried</x:String>
                                                 <x:String>Self Employee</x:String>
@@ -107,7 +107,7 @@
                                         <DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False"/>
                                     </Grid>
                                     <!--Date Section-->
-                                    <Label Grid.Column="1" Text="{Binding StartDate}"  VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
+                                    <Label Grid.Column="1" Text="{Binding StartDate}" TextColor="{StaticResource SmallLblColor}" VerticalOptions="CenterAndExpand" Margin="5,0,0,0" FontSize="15"/>
                                     <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
                                 </Grid>
                             </local:CustomFrameForOpacity>

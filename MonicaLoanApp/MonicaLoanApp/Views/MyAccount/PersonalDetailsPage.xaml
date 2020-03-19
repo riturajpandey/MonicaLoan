@@ -96,7 +96,7 @@
                                         <!--<DatePicker x:Name="DtPckDOB" DateSelected="DtPckDOB_DateSelected" Unfocused="DtPckDOB_Unfocused" IsVisible="False" />-->
                                     </Grid>
                                     <!--Date Section-->
-                                    <Label Grid.Column="1" Text="{Binding DateOfBirth}"  VerticalOptions="CenterAndExpand"/>
+                                    <Label Grid.Column="1" Text="{Binding DateOfBirth}" TextColor="{StaticResource SmallLblColor}" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                             </local:CustomFrameForOpacity>
                             <!--Gender Section-->
@@ -108,7 +108,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="genderblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                        <local:CustomPicker x:Name="PckGender" SelectedIndexChanged="gender_SelectedIndexChanged" Title="Select gender"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="PckGender" SelectedIndexChanged="gender_SelectedIndexChanged" Title="Select gender" TextColor="{StaticResource SmallLblColor}" VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>Male</x:String>
                                                 <x:String>Female</x:String>
@@ -127,7 +127,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="martialblue.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Margin="-5,0,0,0">
-                                        <local:CustomPicker x:Name="PckMaritalStatus" SelectedIndexChanged="PckMaritalStatus_SelectedIndexChanged" Title="Marital Status"  VerticalOptions="CenterAndExpand">
+                                        <local:CustomPicker x:Name="PckMaritalStatus" SelectedIndexChanged="PckMaritalStatus_SelectedIndexChanged" TextColor="{StaticResource SmallLblColor}" Title="Marital Status"  VerticalOptions="CenterAndExpand">
                                             <Picker.Items>
                                                 <x:String>Single</x:String>
                                                 <x:String>Married</x:String>

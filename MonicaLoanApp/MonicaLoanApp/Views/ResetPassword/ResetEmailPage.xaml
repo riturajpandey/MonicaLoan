@@ -45,6 +45,12 @@
                     </local:CustomFrameForOpacity>
                     <!--Middle grid-->
                     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                        <ScrollView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,-50,0,0" />
+                                <On Platform="Android, WinPhone, Windows" Value="0,0,0,0" />
+                            </OnPlatform>
+                        </ScrollView.Margin>
                         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -80,6 +86,12 @@
                                 </Grid>
                                 <!--Email Section-->
                                 <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
+                                    <local:CustomFrameForOpacity.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="iOS" Value="0,-20,0,0" />
+                                            <On Platform="Android, WinPhone, Windows" Value="0,0,0,0" />
+                                        </OnPlatform>
+                                    </local:CustomFrameForOpacity.Margin>
                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="20"/>

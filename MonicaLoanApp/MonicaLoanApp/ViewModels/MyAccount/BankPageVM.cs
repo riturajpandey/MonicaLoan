@@ -104,6 +104,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void SaveCommandAsync(object obj)
         {
+            //Apply ValidateBank...
+            if (!await ValidateBank()) return;
             //Call api..
             try
             {
@@ -292,6 +294,25 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+        }
+        /// <summary>
+        /// TODO : To Validate User ValidateEmployement Fields...
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> ValidateBank()
+        {
+            if (string.IsNullOrEmpty(BankAccountNumber))
+            {
+                UserDialog.Alert("Please enter BankAccountNumber");
+                return false;
+            }
+            if (string.IsNullOrEmpty(EnterBVN))
+            {
+                UserDialog.Alert("Please enter bvn number.");
+                return false;
+            }
+            return true;
+
         }
         #endregion
     }

@@ -111,7 +111,15 @@ namespace MonicaLoanApp.Views.MyAccount
             base.OnAppearing();
             PersonalDetailsVM.FirstName = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             PersonalDetailsVM.Email = Helpers.Constants.UserEmailAddress;
-            PersonalDetailsVM.DateOfBirth = Helpers.Constants.UserDateofbirth;
+            if (!string.IsNullOrEmpty(Helpers.Constants.UserDateofbirth))
+            {
+                var Day = Helpers.Constants.UserDateofbirth.Substring(0, 2);
+                var Month = Helpers.Constants.UserDateofbirth.Substring(3, 2);
+                var Year = Helpers.Constants.UserDateofbirth.Substring(6, 4);
+                var monthname = Utilities.Utility.ConvertMonthIntoEnglishLanguage(Month);
+                PersonalDetailsVM.DateOfBirth = monthname + " " + Day + ", " + Year;
+            }
+            
             PersonalDetailsVM.Gender = Helpers.Constants.Usergender;
             PersonalDetailsVM.MaritalStatus = Helpers.Constants.UserMaritalstatus;
 

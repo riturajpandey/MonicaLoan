@@ -130,7 +130,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Image Source="payment.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                            <local:CustomPicker x:Name="PckRepayment" ItemsSource="{Binding }" Title="Select Repayment Type" SelectedIndexChanged="Repayment_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
+                                            <local:CustomPicker x:Name="PckRepayment" Title="Select Repayment Type" SelectedIndexChanged="Repayment_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
                                                 <Picker.Items>
                                                     <x:String>Single Payment</x:String>
                                                     <x:String>Multiple Payments</x:String>

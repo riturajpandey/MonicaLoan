@@ -104,7 +104,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding FirstName}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding FirstName}" Keyboard="Text"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                     </Grid>
                                 </Frame>
                                 <!--MiddleName Section-->
@@ -115,7 +115,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding MiddleName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding MiddleName}" Keyboard="Text" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                     </Grid>
                                 </Frame>
 
@@ -127,7 +127,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding LastName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding LastName}" Keyboard="Text" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                     </Grid>
                                 </Frame>
                                 <!--Email Section-->

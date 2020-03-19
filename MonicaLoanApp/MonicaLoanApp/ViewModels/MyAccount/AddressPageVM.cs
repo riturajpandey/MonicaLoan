@@ -115,6 +115,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void SaveCommandAsync(object obj)
         {
+            //Apply LoginValidations...
+            if (!await ValidateAddress()) return;
             //Call api..
             try
             {
@@ -136,7 +138,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 addressline1 = AddressOne,
                                 addressline2 = AddressSecond,
                                 City = City,
-                                Statecode = StateCode,  
+                                Statecode = StateCode,
                                 employercode = Helpers.Constants.UserEmployercode,
                                 employeenumber = Helpers.Constants.UserEmployeenumber,
                                 Salary = Helpers.Constants.UserSalary,
@@ -204,7 +206,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TO call Get profile data
         /// </summary>
         /// <returns></returns>
-        public async Task GetProfile() 
+        public async Task GetProfile()
         {
             //Call api..
             try
@@ -257,7 +259,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                                 var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
                                                 Helpers.Constants.UserStatecode = item.key;
                                             }
-                                           
+
                                             Helpers.Constants.UserStartdate = requestList.startdate;
                                             Helpers.Constants.Usergender = requestList.gender;
                                         }
@@ -303,6 +305,31 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+        }
+
+        /// <summary>
+        /// TODO : To Validate User ValidateAddress Fields...
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> ValidateAddress()
+        {
+            if (string.IsNullOrEmpty(AddressOne))
+            {
+                UserDialog.Alert("Please enter address line 1");
+                return false;
+            }
+            if (string.IsNullOrEmpty(AddressSecond))
+            {
+                UserDialog.Alert("Please enter your address line 2.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(City))
+            {
+                UserDialog.Alert("Please enter your city.");
+                return false;
+            }
+            return true;
+            
         }
         #endregion
     }

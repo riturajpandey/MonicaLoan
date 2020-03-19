@@ -18,6 +18,9 @@ namespace MonicaLoanApp.ViewModels.Register
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
         private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
+        private const string _NewFrstname = @"^[a-zA-Z]+$";
+        private const string _NewMiddlename = @"^[a-zA-Z]+$";
+        private const string _NewLastname = @"^[a-zA-Z]+$";
         #region Constructor
         public Register_OneVM(INavigation nav)
         {
@@ -568,16 +571,37 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter First Name");
                 return false;
             }
+            bool isValid2 = (Regex.IsMatch(FirstName, _NewFrstname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid2)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please use aphabet only");
+                return false;
+            }
             if (string.IsNullOrEmpty(MiddleName))
             {
                 UserDialog.HideLoading();
                 UserDialogs.Instance.Alert("Please enter Middle Name");
                 return false;
             }
+            bool isValid5 = (Regex.IsMatch(MiddleName, _NewMiddlename, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid5)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please use aphabet only");
+                return false;
+            }
             if (string.IsNullOrEmpty(LastName))
             {
                 UserDialog.HideLoading();
                 UserDialogs.Instance.Alert("Please enter Last Name");
+                return false;
+            }
+            bool isValid3 = (Regex.IsMatch(LastName, _NewLastname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid3)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please use aphabet only");
                 return false;
             }
             if (string.IsNullOrEmpty(Email))

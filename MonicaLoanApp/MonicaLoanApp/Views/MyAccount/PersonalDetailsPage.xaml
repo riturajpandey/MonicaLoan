@@ -55,7 +55,8 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <!--Camera section-->
-                            <Image Grid.Row="0" Source="camra.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50"></Image>
+                            <Image Grid.Row="0" Source="camra.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50">
+                            </Image>
                             <!--FirstName Section-->
                             <local:CustomFrameForOpacity Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource BordorlessFrame}">
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

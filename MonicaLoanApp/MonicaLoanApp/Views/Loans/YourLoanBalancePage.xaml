@@ -75,6 +75,9 @@
                 <controls:CustomFrameForOpacity Grid.Column="0" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
+                    <d:CustomFrameForOpacity.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </d:CustomFrameForOpacity.GestureRecognizers>
                     <controls:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
@@ -88,6 +91,9 @@
                 <controls:CustomFrameForOpacity Grid.Column="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
+                    <d:CustomFrameForOpacity.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="listTapGestureRecognizer_Tapped"/>
+                    </d:CustomFrameForOpacity.GestureRecognizers>
                     <controls:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">

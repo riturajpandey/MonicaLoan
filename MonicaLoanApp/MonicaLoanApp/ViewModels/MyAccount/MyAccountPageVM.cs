@@ -21,18 +21,18 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             EmployementCommand = new Command(EmployementCommandAsync);
             BankDetailsCommand = new Command(BankDetailsCommandAsync);
             logoutCommand = new Command(logoutCommandAsync);
-            AppSettingCommand = new Command(AppSettingCommandAsync);  
+            AppSettingCommand = new Command(AppSettingCommandAsync);
         }
         #endregion
 
         #region Properties
-        private string _PersonalDetails ;
+        private string _PersonalDetails;
         public string PersonalDetails
         {
             get { return _PersonalDetails; }
             set
             {
-                if(_PersonalDetails!= value)
+                if (_PersonalDetails != value)
                 {
                     _PersonalDetails = value;
                     OnPropertyChanged("PersonalDetails");
@@ -40,7 +40,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Address ;
+        private string _Address;
         public string Address
         {
             get { return _Address; }
@@ -60,7 +60,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             get { return _Employement; }
             set
             {
-                if(_Employement!= value)
+                if (_Employement != value)
                 {
                     _Employement = value;
                     OnPropertyChanged("Employement");
@@ -68,7 +68,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _BankDetails ;
+        private string _BankDetails;
         public string BankDetails
         {
             get { return _BankDetails; }
@@ -79,7 +79,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     _BankDetails = value;
                     OnPropertyChanged("BankDetails");
                 }
-                
+
             }
         }
         #endregion
@@ -92,7 +92,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public Command BankDetailsCommand { get; set; }
         public Command settingCommand { get; set; }
         public Command logoutCommand { get; set; }
-        public Command AppSettingCommand { get; set; } 
+        public Command AppSettingCommand { get; set; }
         #endregion
 
         #region Method
@@ -108,46 +108,57 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
-                    await Task.Run(async () =>
+                    var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+                    var text = (res ? "No" : "Yes");
+                    if (text == "Yes")
                     {
-                        if (_businessCode != null)
+                        await Task.Run(async () =>
                         {
-                            await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                            {
-                                usertoken = Helpers.Settings.GeneralAccessToken,
 
-                            },
-                            async (aobj) =>
+                            if (_businessCode != null)
                             {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    var requestList = (aobj as AccessLogOutResponseModel);
-                                    if (requestList != null)
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
+
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        if (requestList.responsecode == 100)
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            Helpers.Settings.GeneralAccessToken = string.Empty;
-                                            App.Current.MainPage = new Views.Login.LoginPage();
-                                        }
-                                        else
-                                        {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            if (requestList.responsecode == 100)
+                                            {
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage();
+                                                // App.Current.MainPage = new Views.Login.LoginPage();
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            }
+
                                         }
 
-                                    }
-
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
                                 {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
                                 });
-                            });
-                        }
-                    }).ConfigureAwait(false);
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                    }
                 }
                 else
                 {
@@ -174,7 +185,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private void EmployementCommandAsync(object obj)
         {
             Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
-          
+
         }
         /// <summary>
         /// TODO: To define AddressCommand.
@@ -197,9 +208,9 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TODO: To define App SEttings.
         /// </summary>
         /// <param name="obj"></param>
-        private void AppSettingCommandAsync(object obj) 
+        private void AppSettingCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
+            Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private void ListCommandAsync(object obj)
         {
-
+            Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
         }
         /// <summary>
         /// TODO: To define
@@ -71,7 +71,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private void PlusCommandAsync(object obj)
         {
-
+            Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
         }
         /// <summary>
         /// TO call Get profile data

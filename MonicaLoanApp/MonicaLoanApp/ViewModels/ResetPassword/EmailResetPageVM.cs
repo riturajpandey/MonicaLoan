@@ -85,10 +85,13 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                         {
                                            // UserDialog.HideLoading();
                                             await Navigation.PushModalAsync(new Views.ResetPassword.UpdatePasswordPage(Email));
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            
+                                        }
+                                        else
+                                        {
+                                           await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
                                         }
                                     }
+                                    
 
                                     UserDialog.HideLoading();
                                 });

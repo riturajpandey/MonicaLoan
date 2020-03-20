@@ -142,46 +142,57 @@ namespace MonicaLoanApp.ViewModels.Menu
                 UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
-                    await Task.Run(async () =>
+                    var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+                    var text = (res ? "No" : "Yes");
+                    if (text == "Yes")
                     {
-                        if (_businessCode != null)
+                        await Task.Run(async () =>
                         {
-                            await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                            {
-                                usertoken = Helpers.Settings.GeneralAccessToken,
 
-                            },
-                            async (aobj) =>
+                            if (_businessCode != null)
                             {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    var requestList = (aobj as AccessLogOutResponseModel);
-                                    if (requestList != null)
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
+
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        if (requestList.responsecode == 100)
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            Helpers.Settings.GeneralAccessToken = string.Empty;
-                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                            if (requestList.responsecode == 100)
+                                            {
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage();
+                                            // App.Current.MainPage = new Views.Login.LoginPage();
                                         }
-                                        else
-                                        {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            }
+
                                         }
 
-                                    }
-
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
                                 {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
                                 });
-                            });
-                        }
-                    }).ConfigureAwait(false);
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                    }
                 }
                 else
                 {

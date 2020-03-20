@@ -19,7 +19,7 @@ namespace MonicaLoanApp.ViewModels.Register
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
         //private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         private const string _NewFrstname = @"^[a-zA-Z]+$";
-        private const string _NewMiddlename = @"^[a-zA-Z]+$";
+       // private const string _NewMiddlename = @"^[a-zA-Z]+$";
         private const string _NewLastname = @"^[a-zA-Z]+$";
         #region Constructor
         public Register_OneVM(INavigation nav)
@@ -544,7 +544,7 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <returns></returns>
         private async Task<bool> SignupValidate()
         {
-            if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(MiddleName) && string.IsNullOrEmpty(LastName) && string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(BusinessNumber))
+            if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName) && string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(BusinessNumber))
             {
 
                 UserDialogs.Instance.HideLoading();
@@ -557,6 +557,11 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter First Name");
                 return false;
             }
+            if (FirstName.Length >= 30)
+            {
+                UserDialog.Alert("Token should contain less than 20 charcter.");
+                return false;
+            }
             bool isValid2 = (Regex.IsMatch(FirstName, _NewFrstname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid2)
             {
@@ -564,23 +569,33 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please use aphabet only");
                 return false;
             }
-            if (string.IsNullOrEmpty(MiddleName))
-            {
-                UserDialog.HideLoading();
-                UserDialogs.Instance.Alert("Please enter Middle Name");
-                return false;
-            }
-            bool isValid5 = (Regex.IsMatch(MiddleName, _NewMiddlename, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-            if (!isValid5)
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please use aphabet only");
-                return false;
-            }
+            //if (string.IsNullOrEmpty(MiddleName))
+            //{
+            //    UserDialog.HideLoading();
+            //    UserDialogs.Instance.Alert("Please enter Middle Name");
+            //    return false;
+            //}
+            //if (MiddleName.Length >= 30)
+            //{
+            //    UserDialog.Alert("Token should contain less than 20 charcter.");
+            //    return false;
+            //}
+            //bool isValid5 = (Regex.IsMatch(MiddleName, _NewMiddlename, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            //if (!isValid5)
+            //{
+            //    UserDialogs.Instance.HideLoading();
+            //    UserDialogs.Instance.Alert("Please use aphabet only");
+            //    return false;
+            //}
             if (string.IsNullOrEmpty(LastName))
             {
                 UserDialog.HideLoading();
                 UserDialogs.Instance.Alert("Please enter Last Name");
+                return false;
+            }
+            if (LastName.Length >= 30)
+            {
+                UserDialog.Alert("Token should contain less than 20 charcter.");
                 return false;
             }
             bool isValid3 = (Regex.IsMatch(LastName, _NewLastname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
@@ -596,6 +611,11 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter email.");
                 return false;
             }
+            if (Email.Length <= 5 && Email.Length >= 100)
+            {
+                UserDialog.Alert("Email should contain at least 5 charcter.");
+                return false;
+            }
             bool isValid4 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid4)
             {
@@ -609,10 +629,9 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter password.");
                 return false;
             }
-            if (NewPassword.Length <= 5)
+            if (NewPassword.Length <= 6 && NewPassword.Length >= 50)
             {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Password should contain at least 6 character.");
+                UserDialog.Alert("Password should contain at least 6 charcter.");
                 return false;
             }
             if (string.IsNullOrEmpty(BusinessNumber))
@@ -637,6 +656,22 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert("Please enter Number.");
+                return false;
+            }
+            if (Number.Length >= 15)
+            {
+                UserDialog.Alert("Number should contain less than 15 charcter.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(AccountNumber))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter AccountNumber.");
+                return false;
+            }
+            if (AccountNumber.Length != 10)
+            {
+                UserDialog.Alert("AccountNumber should contain exact 10 digit.");
                 return false;
             }
             UserDialogs.Instance.HideLoading();

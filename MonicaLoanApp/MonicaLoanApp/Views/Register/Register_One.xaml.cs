@@ -42,14 +42,24 @@ namespace MonicaLoanApp.Views.Register
 
         #region Methods
         /// <summary>
-        /// TODO:To define back Tap Gesture...
+        /// back event from Device back button..
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        //{
-        //  //  Navigation.PopModalAsync();
-        //}
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed()
+        {
+            
+            if (RegisterOneVM.SecondGrid == true)
+            {
+                RegisterOneVM.FirstGrid = true;
+                RegisterOneVM.SecondGrid = false;
+                // FinalGrid = false;
+            }
+            else if (RegisterOneVM.FirstGrid == true)
+            {
+                Navigation.PopModalAsync();
+            }
+            return true;
+        }
 
         /// <summary>
         /// If User Click On Date Of Birth Picker
@@ -146,6 +156,11 @@ namespace MonicaLoanApp.Views.Register
             {
                 RegisterOneVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
             }
+        }
+
+        private void PckMaritalStatus_Tapped(object sender, EventArgs e)
+        {
+            PckMaritalStatus.Focus();
         }
     }
 }

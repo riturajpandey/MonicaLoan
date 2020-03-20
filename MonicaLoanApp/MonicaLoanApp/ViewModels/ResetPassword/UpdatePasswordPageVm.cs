@@ -90,8 +90,12 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                     {
                                         if (requestList.responsecode == 100)
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Success", "ok");
                                             App.Current.MainPage = new Views.Login.LoginPage();
+                                        }
+                                        else
+                                        {
+                                            await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
                                         }
                                     }
 
@@ -129,6 +133,11 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
             if (string.IsNullOrEmpty(Token))
             {
                 UserDialog.Alert("Please enter Token.");
+                return false;
+            }
+            if (Token.Length >= 20)
+            {
+                UserDialog.Alert("Token should contain less than 20 charcter.");
                 return false;
             }
             if (string.IsNullOrEmpty(NewPassword))

@@ -32,9 +32,12 @@ namespace MonicaLoanApp.Views.Loans
         {
             base.OnAppearing();
             await YourLoanBalancePagevm.GetProfile();
-            YourLoanBalancePagevm.LoanAmount = Helpers.Constants.UserLoanbalance;
-            YourLoanBalancePagevm.DueAmount = Helpers.Constants.UserDuebalance;
+            //YourLoanBalancePagevm.LoanAmount = "N"+ Helpers.Constants.UserLoanbalance;
+            //YourLoanBalancePagevm.DueAmount = "N"+ Helpers.Constants.UserDuebalance;
+            YourLoanBalancePagevm.LoanAmount = String.Format("{0:n0}", Convert.ToInt32(Helpers.Constants.UserLoanbalance));
+            YourLoanBalancePagevm.DueAmount = String.Format("{0:n0}", Convert.ToInt32(Helpers.Constants.UserDuebalance));
         }
         #endregion
+
     }
 }

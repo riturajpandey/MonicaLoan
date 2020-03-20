@@ -163,7 +163,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="bvn_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding BusinessNumber}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bvn" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding BusinessNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Bvn" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                     </Grid>
                                 </Frame>
                                 <!--LoginButton Section-->
@@ -233,7 +233,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="iphone.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding Number}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Mobile Number" Style="{StaticResource SecondryEntry}" Grid.Column="1"/>
+                                        <local:CustomEntry Text="{Binding Number}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="e.g. 08091234567" Style="{StaticResource SecondryEntry}" Grid.Column="1"/>
                                     </Grid>
                                 </Frame>
                                 <!--Gender Section-->
@@ -262,6 +262,9 @@
                                 <!--Merital Section-->
                                 <Frame Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource PrimaryFrame}">
                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="PckMaritalStatus_Tapped"/>
+                                        </Grid.GestureRecognizers>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="25"/>
                                             <ColumnDefinition Width="*"/>

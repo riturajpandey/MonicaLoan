@@ -99,7 +99,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                         else
                                         {
                                             await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
-                                        }
+                                        }  
                                     }
 
                                     UserDialog.HideLoading();

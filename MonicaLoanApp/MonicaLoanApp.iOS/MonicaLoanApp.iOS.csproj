@@ -945,4 +945,40 @@
   <ItemGroup>
     <BundleResource Include="Resources\view%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide_black%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vieww.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vieww%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vieww%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_black%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_black%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\view_hide_black%402x.png" />
+  </ItemGroup>
 </Project>

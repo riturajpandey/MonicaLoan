@@ -10652,6 +10652,18 @@ namespace MonicaLoanApp.Droid
 			// aapt resource value: 0x7F0700D4
 			public const int view = 2131165396;
 			
+			// aapt resource value: 0x7F0700D8
+			public const int vieww = 2131165400;
+			
+			// aapt resource value: 0x7F0700D5
+			public const int view_black = 2131165397;
+			
+			// aapt resource value: 0x7F0700D6
+			public const int view_hide = 2131165398;
+			
+			// aapt resource value: 0x7F0700D7
+			public const int view_hide_black = 2131165399;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

@@ -70,8 +70,8 @@
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding PasswordCommand}"/>
                                     </Grid.GestureRecognizers>
-                                    <Image Source="password.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <Image Source="mailwhite.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="view_hide.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="vieww.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                             </Grid>
                         </local:CustomFrameForOpacity>

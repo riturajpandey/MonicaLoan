@@ -125,6 +125,11 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                 UserDialog.Alert("Please enter your email address.");
                 return false;
             }
+            if (Email.Length <= 5 && Email.Length >= 100)
+            {
+                UserDialog.Alert("Email should contain at least 5 charcter.");
+                return false;
+            }
             bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {

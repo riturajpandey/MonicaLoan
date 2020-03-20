@@ -179,9 +179,19 @@ namespace MonicaLoanApp.ViewModels
                 UserDialogs.Instance.Alert("Please enter valid email", "Alert", "Ok");
                 return false;
             }
+            if (Email.Length<= 5 && Email.Length>=100)
+            {
+                UserDialog.Alert("Email should contain at least 5 charcter.");
+                return false;
+            }
             if (string.IsNullOrEmpty(Password))
             {
                 UserDialog.Alert("Please enter your password.");
+                return false;
+            }
+            if (Password.Length <= 6 && Password.Length >= 50)
+            {
+                UserDialog.Alert("Password should contain at least 6 charcter.");
                 return false;
             }
             return true;

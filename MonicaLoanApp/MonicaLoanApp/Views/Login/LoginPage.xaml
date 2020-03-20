@@ -36,8 +36,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="15"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="15"/>
                             <RowDefinition Height="20"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition Height="20"/>
                         </Grid.RowDefinitions>
                         <!--Icon of Application-->
@@ -71,7 +72,9 @@
                         <!--ForgotPasswordButton-->
                         <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forgot Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" FontSize="15" Grid.Row="8" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
                         <!--RegisterButton-->
-                        <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding Register}" FontSize="15" Grid.Row="9" TextColor="{StaticResource AppWhiteColor}"/>
+                        <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <local:CustomButton HorizontalOptions="CenterAndExpand"  Command="{Binding Register}" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource AppWhiteColor}"/>
+                        </Grid>
                     </Grid>
                 </ScrollView>
             </Grid>

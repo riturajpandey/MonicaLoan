@@ -29,5 +29,10 @@ namespace MonicaLoanApp.Views.Login
             this.BindingContext = LoginVm;
         }
         #endregion
+
+        //private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushModalAsync(new Views.Register.Register_One());
+        //}
     }
 }

@@ -35,6 +35,11 @@ namespace MonicaLoanApp.Views.Login
         }
         #endregion
 
+        //private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushModalAsync(new Views.Register.Register_One());
+        //}
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

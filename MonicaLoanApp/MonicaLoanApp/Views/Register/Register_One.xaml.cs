@@ -108,15 +108,6 @@ namespace MonicaLoanApp.Views.Register
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PckBank_Tapped(object sender, EventArgs e)
-        {
-            PckBank.Focus();
-        }
-        /// <summary>
-        /// TODO :
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void PckBankfrst_Tapped(object sender, EventArgs e)
         {
             PckBankfrst.Focus();

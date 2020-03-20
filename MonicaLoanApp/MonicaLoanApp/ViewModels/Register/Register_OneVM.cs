@@ -17,7 +17,7 @@ namespace MonicaLoanApp.ViewModels.Register
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-        private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
+        //private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         private const string _NewFrstname = @"^[a-zA-Z]+$";
         private const string _NewMiddlename = @"^[a-zA-Z]+$";
         private const string _NewLastname = @"^[a-zA-Z]+$";
@@ -27,7 +27,6 @@ namespace MonicaLoanApp.ViewModels.Register
             Navigation = nav;
             NextCommand = new Command(NextCommandAsync);
             SecondNextCommand = new Command(SecondNextCommandAsync);
-            FinishCommand = new Command(FinishCommandAsync);
             BckCommand = new Command(BckCommandAsync);
         }
         #endregion
@@ -283,17 +282,11 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <param name="obj"></param>
         private void BckCommandAsync(object obj)
         {
-            if (FinalGrid == true)
-            {
-                SecondGrid = true;
-                FirstGrid = false;
-                FinalGrid = false;
-            }
-            else if (SecondGrid == true)
+            if (SecondGrid == true)
             {
                 FirstGrid = true;
                 SecondGrid = false;
-                FinalGrid = false;
+                // FinalGrid = false;
             }
             else if (FirstGrid == true)
             {
@@ -314,7 +307,6 @@ namespace MonicaLoanApp.ViewModels.Register
             {
                 FirstGrid = false;
                 SecondGrid = true;
-                FinalGrid = false;
             }
         }
         /// <summary>
@@ -323,24 +315,9 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <param name="obj"></param>
         private async void SecondNextCommandAsync(object obj)
         {
-            if (!await SecondSignValidate())
-            {
-                return;
-            }
-            else
-            {
-                FirstGrid = false;
-                SecondGrid = false;
-                FinalGrid = true;
-            }
-        }
-        /// <summary>
-        /// TODO: Define FinishCommand validation...
-        /// </summary>
-        /// <param name="obj"></param>
-        private async void FinishCommandAsync(object obj)
-        {
-            if (!await FinishSignUpValidate()) return;
+            if (!await SecondSignValidate()) return;
+            FirstGrid = false;
+            SecondGrid = true;
             //Call api..
             try
             {
@@ -394,10 +371,19 @@ namespace MonicaLoanApp.ViewModels.Register
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-            //await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
-            //UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
-            //App.Current.MainPage = new Views.Login.LoginPage();
         }
+        /// <summary>
+        /// TODO: Define FinishCommand validation...
+        /// </summary>
+        /// <param name="obj"></param>
+        //private async void FinishCommandAsync(object obj)
+        //{
+        //    //if (!await FinishSignUpValidate()) return;
+
+        //    //await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
+        //    //UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+        //    //App.Current.MainPage = new Views.Login.LoginPage();
+        //}
 
         /// <summary>
         /// Call This Api For AccessRegister
@@ -532,7 +518,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 }
             }
             catch (Exception ex)
-            { UserDialog.HideLoading(); } 
+            { UserDialog.HideLoading(); }
         }
         /// <summary>
         /// Call This Api For StaticDataSearch
@@ -544,7 +530,7 @@ namespace MonicaLoanApp.ViewModels.Register
             try
             {
                 var filteredBankList = Helpers.Constants.StaticDataList.Where(a => a.type == "BANK").ToList();
-                Banklist = new ObservableCollection<Staticdata>(filteredBankList); 
+                Banklist = new ObservableCollection<Staticdata>(filteredBankList);
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
@@ -558,7 +544,7 @@ namespace MonicaLoanApp.ViewModels.Register
         /// <returns></returns>
         private async Task<bool> SignupValidate()
         {
-            if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(MiddleName) && string.IsNullOrEmpty(LastName) && string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(NewPassword))
+            if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(MiddleName) && string.IsNullOrEmpty(LastName) && string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(BusinessNumber))
             {
 
                 UserDialogs.Instance.HideLoading();
@@ -623,13 +609,25 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter password.");
                 return false;
             }
-            bool isvalid1 = (Regex.IsMatch(NewPassword, _NewPasswordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-            if (!isvalid1)
+            if (NewPassword.Length <= 5)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter valid Password.");
+                UserDialogs.Instance.Alert("Password should contain at least 6 character.");
                 return false;
             }
+            if (string.IsNullOrEmpty(BusinessNumber))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter Bvn Number.");
+                return false;
+            }
+            //bool isvalid1 = (Regex.IsMatch(NewPassword, _NewPasswordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            //if (!isvalid1)
+            //{
+            //    UserDialogs.Instance.HideLoading();
+            //    UserDialogs.Instance.Alert("Password should contain at least 6 character.");
+            //    return false;
+            //}
             UserDialogs.Instance.HideLoading();
             return true;
         }
@@ -644,23 +642,18 @@ namespace MonicaLoanApp.ViewModels.Register
             UserDialogs.Instance.HideLoading();
             return true;
         }
-        private async Task<bool> FinishSignUpValidate()
-        {
-            if (string.IsNullOrEmpty(BusinessNumber))
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter Bvn Number.");
-                return false;
-            }
-            if (string.IsNullOrEmpty(AccountNumber))
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter Account Number.");
-                return false;
-            }
-            UserDialogs.Instance.HideLoading();
-            return true;
-        }
+        //private async Task<bool> FinishSignUpValidate()
+        //{
+
+        //    if (string.IsNullOrEmpty(AccountNumber))
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //        UserDialogs.Instance.Alert("Please enter Account Number.");
+        //        return false;
+        //    }
+        //    UserDialogs.Instance.HideLoading();
+        //    return true;
+        //}
 
         #endregion
     }

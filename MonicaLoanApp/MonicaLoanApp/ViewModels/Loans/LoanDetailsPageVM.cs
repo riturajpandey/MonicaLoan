@@ -13,6 +13,7 @@ namespace MonicaLoanApp.ViewModels.Loans
 {
     public class LoanDetailsPageVM : BaseViewModel
     {
+       
         #region  Constructor
         public LoanDetailsPageVM(INavigation nav)
         {
@@ -163,7 +164,11 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnPlusAsync(object obj)
         {
-            await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
+            }
         }
 
         #endregion

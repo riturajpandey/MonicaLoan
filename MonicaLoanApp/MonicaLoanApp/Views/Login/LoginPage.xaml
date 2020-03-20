@@ -62,9 +62,17 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                                <local:CustomEntry Text="{Binding Password}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                                <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding PasswordCommand}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Image Source="password.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="mailwhite.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </Grid>
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--LoginButton Section-->

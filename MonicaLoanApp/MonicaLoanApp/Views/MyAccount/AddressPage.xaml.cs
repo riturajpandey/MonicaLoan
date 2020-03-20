@@ -33,6 +33,7 @@ namespace MonicaLoanApp.Views.MyAccount
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             await AddressVM.StaticDataSearch();
             AddressVM.AddressOne = Helpers.Constants.UserAddressline1;
             AddressVM.AddressSecond = Helpers.Constants.UserAddressline2;

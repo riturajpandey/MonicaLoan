@@ -19,16 +19,6 @@ namespace MonicaLoanApp.ViewModels.Payments
             MenuCommand = new Command(MenuCommandAsync);
             PlusCommand = new Command(PlusCommandAsync);
             PaymentPlusCommand = new Command(PaymentPlusCommandAsync);
-            //PaymentList = new ObservableCollection<PaymentsListModel>
-            //{
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //    new PaymentsListModel{Amount="N50,000", AmntDate="1 Dec 2019",SmsLabel="Payment recived for some text here eith lorium ipsum dolor alt amet, consecteur sed do."},
-            //};
         }
 
        
@@ -160,17 +150,27 @@ namespace MonicaLoanApp.ViewModels.Payments
         /// TODO: To define PlusCommand for Navigate page..
         /// </summary>
         /// <param name="obj"></param>
-        private void PlusCommandAsync(object obj)
+        private async void PlusCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
+            }
+                
         }
         /// <summary>
         /// TODO: To define PlusCommand for add Payment..
         /// </summary>
         /// <param name="obj"></param>
-        private void PaymentPlusCommandAsync(object obj)
+        private async void PaymentPlusCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
+            }
+                
         }
 
         private void MenuCommandAsync(object obj)   

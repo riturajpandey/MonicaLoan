@@ -427,7 +427,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                         if (requestList.responsecode == 100)
                                         {
                                             Helpers.Constants.UserToken = requestList.usertoken;
-                                            await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage());
+                                            await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage(Email));
                                         }
                                         else
                                         {

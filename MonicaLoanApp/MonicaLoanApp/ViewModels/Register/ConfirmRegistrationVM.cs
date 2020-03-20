@@ -12,11 +12,13 @@ namespace MonicaLoanApp.ViewModels.Register
 {
     public class ConfirmRegistrationVM : BaseViewModel
     {
+        public string Email;
+
         #region Constructor
-        public ConfirmRegistrationVM(INavigation nav)
+        public ConfirmRegistrationVM(INavigation nav, string email)
         {
             Navigation = nav;
-
+            Email = email;
             FinishCommand = new Command(FinishCommandAsync);
             BckCommand = new Command(BckCommandAsync);
         }
@@ -26,7 +28,7 @@ namespace MonicaLoanApp.ViewModels.Register
             var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
             var text = (res ? "No" : "Yes");
             if (text == "Yes")
-            App.Current.MainPage = new Views.Login.LoginPage();
+            App.Current.MainPage = new Views.Login.LoginPage(null);
         }
 
        
@@ -107,6 +109,8 @@ namespace MonicaLoanApp.ViewModels.Register
                                              UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "OK");
                                             // await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
                                         }
+                                            App.Current.MainPage = new Views.Login.LoginPage(Email);
+                                        } 
                                     }
                                     UserDialog.HideLoading();
                                 });

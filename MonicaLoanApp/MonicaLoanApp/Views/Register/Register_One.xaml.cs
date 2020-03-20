@@ -34,6 +34,7 @@ namespace MonicaLoanApp.Views.Register
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             // await RegisterOneVM.AccessRegister();
             // await RegisterOneVM.AccessRegisterActivate();
             await RegisterOneVM.StaticDataSearch();
@@ -146,7 +147,16 @@ namespace MonicaLoanApp.Views.Register
         {
             if (Pckgender.SelectedIndex >= 0)
             {
-                RegisterOneVM.Gender = Pckgender.Items[Pckgender.SelectedIndex];
+                string gender = Pckgender.Items[Pckgender.SelectedIndex];
+                if (gender == "Male")
+                {
+                    RegisterOneVM.Gender = "M"; 
+                }
+                else
+                {
+                    RegisterOneVM.Gender = "F";
+                }
+                //RegisterOneVM.Gender = Pckgender.Items[Pckgender.SelectedIndex];
             }
         }
 
@@ -154,7 +164,16 @@ namespace MonicaLoanApp.Views.Register
         {
             if (PckMaritalStatus.SelectedIndex >= 0)
             {
-                RegisterOneVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+                string status = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+                if (status == "Single")
+                {
+                    RegisterOneVM.MaritalStatus = "S"; 
+                }
+                else
+                {
+                    RegisterOneVM.MaritalStatus = "M"; 
+                }
+                //RegisterOneVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
             }
         }
 

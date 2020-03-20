@@ -120,6 +120,24 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
                                     usertoken = Helpers.Settings.GeneralAccessToken,
+        {
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                //Call api..
+                try
+                {
+                    //Call AccessRegister Api..  
+                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await Task.Run(async () =>
+                        {
+                            if (_businessCode != null)
+                            {
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
+                                {
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
 
                                 },
                                 async (aobj) =>
@@ -134,6 +152,23 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                                 Helpers.Settings.GeneralAccessToken = string.Empty;
                                                 App.Current.MainPage = new Views.Login.LoginPage();
                                                 // App.Current.MainPage = new Views.Login.LoginPage();
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            }
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
+                                        {
+                                            if (requestList.responsecode == 100)
+                                            {
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage(null);
                                             }
                                             else
                                             {
@@ -168,15 +203,43 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
+                                });
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
+                }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
+            }
+
             // App.Current.MainPage = new Views.Login.LoginPage();
         }
         /// <summary>
         /// TODO: To define BankDetailsCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void BankDetailsCommandAsync(object obj)
+        private async void BankDetailsCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            }
+                
         }
         /// <summary>
         /// TODO: To define EmployementCommand.
@@ -186,22 +249,41 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         {
             Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
 
+        private async void EmployementCommandAsync(object obj)
+        {
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
+            }
+                
+
         }
         /// <summary>
         /// TODO: To define AddressCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void AddressCommandAsync(object obj)
+        private async void AddressCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            }
+                
         }
         /// <summary>
         /// TODO: To define PersonalDetails.
         /// </summary>
         /// <param name="obj"></param>
-        private void PersonalDetailsCommandAsync(object obj)
+        private async void PersonalDetailsCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            }
+                
         }
 
         /// <summary>
@@ -211,6 +293,14 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private void AppSettingCommandAsync(object obj)
         {
             Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
+        private async void AppSettingCommandAsync(object obj)
+        {
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
+            }
+                
         }
 
         /// <summary>

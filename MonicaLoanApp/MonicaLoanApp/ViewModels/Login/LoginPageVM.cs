@@ -29,6 +29,7 @@ namespace MonicaLoanApp.ViewModels
         {
             Navigation = nav;
             LoginCommand = new Command(LoginAsync);
+            PasswordCommand = new Command(PasswordCommandAsync);
             ForgotCommand = new Command(ForgotPasswordAsync);
             Register = new Command(RegisterAsync);
         }
@@ -62,15 +63,74 @@ namespace MonicaLoanApp.ViewModels
             }
         }
 
+        private bool _IsPassword = true;
+        public bool IsPassword
+        {
+            get { return _IsPassword; }
+            set
+            {
+                if (_IsPassword != value)
+                {
+                    _IsPassword = value;
+                    OnPropertyChanged("IsPassword");
+                }
+            }
+        }
+
+        private bool _IsPasswordShow = true;
+        public bool IsPasswordShow
+        {
+            get { return _IsPasswordShow; }
+            set
+            {
+                if (_IsPasswordShow != value)
+                {
+                    _IsPasswordShow = value;
+                    OnPropertyChanged("IsPasswordShow");
+                }
+            }
+        }
+
+        private bool _IsPasswordNotShow = false;
+        public bool IsPasswordNotShow
+        {
+            get { return _IsPasswordNotShow; }
+            set
+            {
+                if (_IsPasswordNotShow != value)
+                {
+                    _IsPasswordNotShow = value;
+                    OnPropertyChanged("IsPasswordNotShow");
+                }
+            }
+        }
         #endregion
 
         #region Commands 
         public Command LoginCommand { get; set; }
+        public Command PasswordCommand { get; set; }
         public Command ForgotCommand { get; set; }
         public Command Register { get; set; }
         #endregion
 
         #region Methods
+
+        private async void PasswordCommandAsync(object obj) 
+        {
+            if(IsPasswordShow == true)
+            {
+                IsPasswordShow = false;
+                IsPasswordNotShow = true;
+                IsPassword = false;
+            } 
+            else
+            {
+                IsPasswordNotShow = false;
+                IsPasswordShow = true;
+                IsPassword = true;
+            }
+        }
+
         /// <summary>
         /// TODO: To validate Login Command...
         /// </summary>
@@ -112,6 +172,7 @@ namespace MonicaLoanApp.ViewModels
                                             App.masterDetailPage.Master = new MenuPage();
                                             App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
                                             App.Current.MainPage = App.masterDetailPage;
+                                            App.masterDetailPage.IsPresented = false;
                                         }
                                         else
                                         {
@@ -151,7 +212,12 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void ForgotPasswordAsync(object obj)
         {
-            await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
+            }
+                
         }
         // 
         /// <summary>
@@ -160,7 +226,12 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void RegisterAsync(object obj)
         {
-            await Navigation.PushModalAsync(new Views.Register.Register_One());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.Register.Register_One());
+            }
+                
         }
         /// <summary>
         /// TODO : To Validate User Login Fields...

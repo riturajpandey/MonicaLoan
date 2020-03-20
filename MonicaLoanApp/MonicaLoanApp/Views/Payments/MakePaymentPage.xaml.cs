@@ -34,6 +34,7 @@ namespace MonicaLoanApp.Views.Payments
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             await MakePaymentVM.GetAllLoans();
 
             MakePaymentVM.Name = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;

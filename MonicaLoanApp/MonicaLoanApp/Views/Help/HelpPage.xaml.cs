@@ -47,6 +47,7 @@ namespace MonicaLoanApp.Views.Help
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             await HelpVM.StaticDataSearch();
         }
         #endregion

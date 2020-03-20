@@ -29,6 +29,13 @@ namespace MonicaLoanApp.Views.ResetPassword
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
         #endregion
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
+        }
+
         //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         //{
         //    Navigation.PopModalAsync();

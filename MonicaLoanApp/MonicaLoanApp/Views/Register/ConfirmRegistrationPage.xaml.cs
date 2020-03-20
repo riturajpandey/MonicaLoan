@@ -14,10 +14,10 @@ namespace MonicaLoanApp.Views.Register
     public partial class ConfirmRegistrationPage : ContentPage
     {
         protected ConfirmRegistrationVM ConfrmRegistrationvm;
-        public ConfirmRegistrationPage()
+        public ConfirmRegistrationPage(string email)
         {
             InitializeComponent();
-            ConfrmRegistrationvm = new ConfirmRegistrationVM(this.Navigation);
+            ConfrmRegistrationvm = new ConfirmRegistrationVM(this.Navigation, email);
             this.BindingContext = ConfrmRegistrationvm;
         }
     }

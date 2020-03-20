@@ -100,134 +100,76 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TODO: To define logoutCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private async void logoutCommandAsync(object obj)
-        { //Call api..
-            try
-            {
-                //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
-                    var text = (res ? "No" : "Yes");
-                    if (text == "Yes")
-                    {
-                        await Task.Run(async () =>
-                        {
 
-                            if (_businessCode != null)
-                            {
-                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                                {
-                                    usertoken = Helpers.Settings.GeneralAccessToken,
+        private async void logoutCommandAsync(object obj)
         {
             if (Helpers.Constants.PageCount == 0)
             {
                 Helpers.Constants.PageCount++;
-                //Call api..
-                try
+                var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+                var text = (res ? "No" : "Yes");
+                if (text == "Yes")
                 {
-                    //Call AccessRegister Api..  
-                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                    if (CrossConnectivity.Current.IsConnected)
+                    //Call api..
+                    try
                     {
-                        await Task.Run(async () =>
+                        //Call AccessRegister Api..  
+                        UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                        if (CrossConnectivity.Current.IsConnected)
                         {
-                            if (_businessCode != null)
+                            await Task.Run(async () =>
                             {
-                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
+                                if (_businessCode != null)
                                 {
-                                    usertoken = Helpers.Settings.GeneralAccessToken,
-
-                                },
-                                async (aobj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
+                                    await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                     {
-                                        var requestList = (aobj as AccessLogOutResponseModel);
-                                        if (requestList != null)
+                                        usertoken = Helpers.Settings.GeneralAccessToken,
+
+                                    },
+                                    async (aobj) =>
+                                    {
+                                        Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            if (requestList.responsecode == 100)
+                                            var requestList = (aobj as AccessLogOutResponseModel);
+                                            if (requestList != null)
                                             {
-                                                Helpers.Settings.GeneralAccessToken = string.Empty;
-                                                App.Current.MainPage = new Views.Login.LoginPage();
-                                                // App.Current.MainPage = new Views.Login.LoginPage();
+                                                if (requestList.responsecode == 100)
+                                                {
+                                                    Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                    App.Current.MainPage = new Views.Login.LoginPage(null);
+                                                }
+                                                else
+                                                {
+                                                    UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                                }
+
                                             }
-                                            else
-                                            {
-                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            }
-                                },
-                                async (aobj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
+
+                                            UserDialog.HideLoading();
+                                        });
+                                    }, (objj) =>
                                     {
-                                        var requestList = (aobj as AccessLogOutResponseModel);
-                                        if (requestList != null)
+                                        Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            if (requestList.responsecode == 100)
-                                            {
-                                                Helpers.Settings.GeneralAccessToken = string.Empty;
-                                                App.Current.MainPage = new Views.Login.LoginPage(null);
-                                            }
-                                            else
-                                            {
-                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            }
-
-                                        }
-
-                                        UserDialog.HideLoading();
+                                            UserDialog.HideLoading();
+                                            UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                        });
                                     });
-                                }, (objj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
-                                    {
-                                        UserDialog.HideLoading();
-                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                    });
-                                });
-                            }
-                        }).ConfigureAwait(false);
+                                }
+                            }).ConfigureAwait(false);
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.Loading().Hide();
+                            await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                        }
                     }
-                    else
-                    {
-                        UserDialogs.Instance.HideLoading();
-                    }
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    catch (Exception ex)
+                    { UserDialog.HideLoading(); }
                 }
             }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
-                                        UserDialog.HideLoading();
-                                    });
-                                }, (objj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
-                                    {
-                                        UserDialog.HideLoading();
-                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                    });
-                                });
-                            }
-                        }).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        UserDialogs.Instance.Loading().Hide();
-                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                    }
-                }
-                catch (Exception ex)
-                { UserDialog.HideLoading(); }
-            }
-
-            // App.Current.MainPage = new Views.Login.LoginPage();
         }
+
         /// <summary>
         /// TODO: To define BankDetailsCommand.
         /// </summary>
@@ -245,10 +187,6 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TODO: To define EmployementCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void EmployementCommandAsync(object obj)
-        {
-            Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
-
         private async void EmployementCommandAsync(object obj)
         {
             if (Helpers.Constants.PageCount == 0)
@@ -256,7 +194,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 Helpers.Constants.PageCount++;
                 await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
             }
-                
+
 
         }
         /// <summary>
@@ -290,9 +228,6 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// TODO: To define App SEttings.
         /// </summary>
         /// <param name="obj"></param>
-        private void AppSettingCommandAsync(object obj)
-        {
-            Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
         private async void AppSettingCommandAsync(object obj)
         {
             if (Helpers.Constants.PageCount == 0)
@@ -300,7 +235,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 Helpers.Constants.PageCount++;
                 await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
             }
-                
+
         }
 
         /// <summary>

@@ -102,15 +102,13 @@ namespace MonicaLoanApp.ViewModels.Register
                                         if (requestList.responsecode == 100)
                                         {
                                             UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
-                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                            App.Current.MainPage = new Views.Login.LoginPage(Email);
                                         }
                                         else
                                         {
                                              UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "OK");
                                             // await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
                                         }
-                                            App.Current.MainPage = new Views.Login.LoginPage(Email);
-                                        } 
                                     }
                                     UserDialog.HideLoading();
                                 });

@@ -91,8 +91,8 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                     {
                                         if (requestList.responsecode == 100)
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Success", "ok");
-                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                            //UserDialogs.Instance.Alert(requestList.responsemessage, "Success", "ok");
+                                            //App.Current.MainPage = new Views.Login.LoginPage(Email);
                                             UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
                                             App.Current.MainPage = new Views.Login.LoginPage(Email);
                                         }

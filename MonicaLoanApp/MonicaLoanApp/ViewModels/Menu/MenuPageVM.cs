@@ -159,25 +159,6 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnSignOutAsync(object obj)
         {
-            //Call api..
-            try
-            {
-                //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
-                    var text = (res ? "No" : "Yes");
-                    if (text == "Yes")
-                    {
-                        await Task.Run(async () =>
-                        {
-
-                            if (_businessCode != null)
-                            {
-                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                                {
-                                    usertoken = Helpers.Settings.GeneralAccessToken,
             if (Helpers.Constants.PageCount == 0)
             {
                 Helpers.Constants.PageCount++;
@@ -196,24 +177,6 @@ namespace MonicaLoanApp.ViewModels.Menu
                                 {
                                     usertoken = Helpers.Settings.GeneralAccessToken,
 
-                                },
-                                async (aobj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
-                                    {
-                                        var requestList = (aobj as AccessLogOutResponseModel);
-                                        if (requestList != null)
-                                        {
-                                            if (requestList.responsecode == 100)
-                                            {
-                                                Helpers.Settings.GeneralAccessToken = string.Empty;
-                                                App.Current.MainPage = new Views.Login.LoginPage();
-                                            // App.Current.MainPage = new Views.Login.LoginPage();
-                                        }
-                                            else
-                                            {
-                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            }
                                 },
                                 async (aobj) =>
                                 {
@@ -249,32 +212,6 @@ namespace MonicaLoanApp.ViewModels.Menu
                     }
                     else
                     {
-                        UserDialogs.Instance.HideLoading();
-                    }
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
-            }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
-                                        UserDialog.HideLoading();
-                                    });
-                                }, (objj) =>
-                                {
-                                    Device.BeginInvokeOnMainThread(async () =>
-                                    {
-                                        UserDialog.HideLoading();
-                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                    });
-                                });
-                            }
-                        }).ConfigureAwait(false);
-                    }
-                    else
-                    {
                         UserDialogs.Instance.Loading().Hide();
                         await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
                     }
@@ -282,7 +219,7 @@ namespace MonicaLoanApp.ViewModels.Menu
                 catch (Exception ex)
                 { UserDialog.HideLoading(); }
             }
-               
+
 
         }
         /// <summary>

@@ -154,7 +154,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         private async void OnMenuAsync(object obj)
         {
             //await Navigation.PopModalAsync();
-            App.masterDetailPage.IsPresented = true;
+            App.masterDetailPage.IsPresented = true; 
         }
        
         /// <summary>

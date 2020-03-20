@@ -19,7 +19,7 @@ namespace MonicaLoanApp.Views.Login
         protected LoginPageVM LoginVm;
 
         #region Constructor
-        public LoginPage()
+        public LoginPage(string email)
         {
             InitializeComponent();
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
@@ -27,7 +27,18 @@ namespace MonicaLoanApp.Views.Login
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             LoginVm = new LoginPageVM(this.Navigation);
             this.BindingContext = LoginVm;
+
+            if(!string.IsNullOrEmpty(email))
+            {
+                LoginVm.Email = email;
+            } 
         }
         #endregion
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
+        }
     }
 }

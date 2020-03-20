@@ -21,7 +21,7 @@ namespace MonicaLoanApp
 
             if (Helpers.Settings.GeneralAccessToken == string.Empty)
             {
-                MainPage = new MonicaLoanApp.Views.Login.LoginPage();
+                MainPage = new MonicaLoanApp.Views.Login.LoginPage(null);
             }
             else
             {

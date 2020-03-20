@@ -18,6 +18,7 @@ namespace MonicaLoanApp.Views.Payments
         /// TODO: To define Class level variable.....
         /// </summary>
         protected PaymentPageVM PaymentVM;
+        
 
         #region Constructor
         public PaymentListPage() 
@@ -33,6 +34,7 @@ namespace MonicaLoanApp.Views.Payments
         protected async override void OnAppearing() 
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             await PaymentVM.GetAllPayments();
         }
     }

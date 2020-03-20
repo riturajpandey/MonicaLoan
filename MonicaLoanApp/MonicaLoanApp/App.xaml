@@ -154,6 +154,7 @@
                 <Setter Property="FontFamily" Value="{DynamicResource  Regularfont}" />
                 <Setter Property="TextColor" Value="{StaticResource MediumLblColor}" />
             </Style>
+          
             <!--Medium Font Gray-->
             <Style x:Key="SecondryGrayLable" TargetType="Label">
                 <Setter Property="FontSize" Value="16" />

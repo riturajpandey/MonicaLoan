@@ -35,6 +35,7 @@ namespace MonicaLoanApp.Views.MyAccount
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
             await EmployementVM.StaticDataSearch();
             EmployementVM.EmployerName = Helpers.Constants.UserEmployername;
             EmployementVM.EmployerCode = Helpers.Constants.UserEmployercode;

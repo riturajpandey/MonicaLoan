@@ -10,7 +10,8 @@ using Xamarin.Forms;
 namespace MonicaLoanApp.ViewModels.ResetPassword
 {
     public class UpdatePasswordPageVm : BaseViewModel
-    { public string Email;
+    { 
+        public string Email;
         #region Constructor
         public UpdatePasswordPageVm(INavigation nav, string _Email)
         {
@@ -91,7 +92,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                         if (requestList.responsecode == 100)
                                         {
                                             UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                            App.Current.MainPage = new Views.Login.LoginPage();
+                                            App.Current.MainPage = new Views.Login.LoginPage(Email);
                                         }
                                     }
 

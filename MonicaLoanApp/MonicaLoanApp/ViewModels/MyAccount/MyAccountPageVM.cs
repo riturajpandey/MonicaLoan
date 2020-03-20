@@ -21,18 +21,18 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             EmployementCommand = new Command(EmployementCommandAsync);
             BankDetailsCommand = new Command(BankDetailsCommandAsync);
             logoutCommand = new Command(logoutCommandAsync);
-            AppSettingCommand = new Command(AppSettingCommandAsync);  
+            AppSettingCommand = new Command(AppSettingCommandAsync);
         }
         #endregion
 
         #region Properties
-        private string _PersonalDetails ;
+        private string _PersonalDetails;
         public string PersonalDetails
         {
             get { return _PersonalDetails; }
             set
             {
-                if(_PersonalDetails!= value)
+                if (_PersonalDetails != value)
                 {
                     _PersonalDetails = value;
                     OnPropertyChanged("PersonalDetails");
@@ -40,7 +40,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _Address ;
+        private string _Address;
         public string Address
         {
             get { return _Address; }
@@ -60,7 +60,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             get { return _Employement; }
             set
             {
-                if(_Employement!= value)
+                if (_Employement != value)
                 {
                     _Employement = value;
                     OnPropertyChanged("Employement");
@@ -68,7 +68,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
             }
         }
 
-        private string _BankDetails ;
+        private string _BankDetails;
         public string BankDetails
         {
             get { return _BankDetails; }
@@ -79,7 +79,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     _BankDetails = value;
                     OnPropertyChanged("BankDetails");
                 }
-                
+
             }
         }
         #endregion
@@ -92,7 +92,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public Command BankDetailsCommand { get; set; }
         public Command settingCommand { get; set; }
         public Command logoutCommand { get; set; }
-        public Command AppSettingCommand { get; set; } 
+        public Command AppSettingCommand { get; set; }
         #endregion
 
         #region Method
@@ -101,105 +101,136 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// </summary>
         /// <param name="obj"></param>
         private async void logoutCommandAsync(object obj)
-        { //Call api..
-            try
+        {
+            if (Helpers.Constants.PageCount == 0)
             {
-                //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
+                Helpers.Constants.PageCount++;
+                //Call api..
+                try
                 {
-                    await Task.Run(async () =>
+                    //Call AccessRegister Api..  
+                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
                     {
-                        if (_businessCode != null)
+                        await Task.Run(async () =>
                         {
-                            await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
+                            if (_businessCode != null)
                             {
-                                usertoken = Helpers.Settings.GeneralAccessToken,
-
-                            },
-                            async (aobj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    var requestList = (aobj as AccessLogOutResponseModel);
-                                    if (requestList != null)
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
+
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        if (requestList.responsecode == 100)
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            Helpers.Settings.GeneralAccessToken = string.Empty;
-                                            App.Current.MainPage = new Views.Login.LoginPage();
-                                        }
-                                        else
-                                        {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            if (requestList.responsecode == 100)
+                                            {
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage(null);
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            }
+
                                         }
 
-                                    }
-
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
                                 {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
                                 });
-                            });
-                        }
-                    }).ConfigureAwait(false);
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
                 }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
             }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
+
             // App.Current.MainPage = new Views.Login.LoginPage();
         }
         /// <summary>
         /// TODO: To define BankDetailsCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void BankDetailsCommandAsync(object obj)
+        private async void BankDetailsCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            }
+                
         }
         /// <summary>
         /// TODO: To define EmployementCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void EmployementCommandAsync(object obj)
+        private async void EmployementCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
-          
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
+            }
+                
+
         }
         /// <summary>
         /// TODO: To define AddressCommand.
         /// </summary>
         /// <param name="obj"></param>
-        private void AddressCommandAsync(object obj)
+        private async void AddressCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            }
+                
         }
         /// <summary>
         /// TODO: To define PersonalDetails.
         /// </summary>
         /// <param name="obj"></param>
-        private void PersonalDetailsCommandAsync(object obj)
+        private async void PersonalDetailsCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            }
+                
         }
 
         /// <summary>
         /// TODO: To define App SEttings.
         /// </summary>
         /// <param name="obj"></param>
-        private void AppSettingCommandAsync(object obj) 
+        private async void AppSettingCommandAsync(object obj)
         {
-            Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
+            }
+                
         }
 
         /// <summary>

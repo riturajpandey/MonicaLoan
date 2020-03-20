@@ -80,10 +80,14 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnHomeAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
-            App.Current.MainPage = App.masterDetailPage;
-            App.masterDetailPage.IsPresented = false;
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
+                App.Current.MainPage = App.masterDetailPage; 
+                App.masterDetailPage.IsPresented = false;
+            }
         }
         /// <summary>
         /// TODO : To Perform Loan Page...
@@ -91,10 +95,15 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnLoansAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
-            App.Current.MainPage = App.masterDetailPage; 
-            App.masterDetailPage.IsPresented = false;
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
+                App.Current.MainPage = App.masterDetailPage;
+                App.masterDetailPage.IsPresented = false;
+            }
+                
         }
         /// <summary>
         /// TODO : To Perform Loan Page...
@@ -102,10 +111,15 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnPaymentsAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentListPage());
-            App.Current.MainPage = App.masterDetailPage;
-            App.masterDetailPage.IsPresented = false;
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentListPage());
+                App.Current.MainPage = App.masterDetailPage;
+                App.masterDetailPage.IsPresented = false;
+            }
+                
         }
         /// <summary>
         /// TODO : To Perform Account Page...
@@ -113,10 +127,15 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnMyAccountAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
-            App.Current.MainPage = App.masterDetailPage;
-            App.masterDetailPage.IsPresented = false;
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
+                App.Current.MainPage = App.masterDetailPage;
+                App.masterDetailPage.IsPresented = false;
+            }
+                
         }
         /// <summary>
         /// TODO : To Perform Help Page...
@@ -124,10 +143,15 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnHelpAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Help.HelpPage());
-            App.Current.MainPage = App.masterDetailPage;
-            App.masterDetailPage.IsPresented = false;
+            if (Helpers.Constants.PageCount == 0)
+            {
+                Helpers.Constants.PageCount++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Help.HelpPage());
+                App.Current.MainPage = App.masterDetailPage;
+                App.masterDetailPage.IsPresented = false;
+            }
+                
         }
         /// <summary>
         /// TODO : To Perform SignOut Page...
@@ -135,62 +159,67 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnSignOutAsync(object obj)
         {
-            //Call api..
-            try
+            if (Helpers.Constants.PageCount == 0)
             {
-                //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
+                Helpers.Constants.PageCount++;
+                //Call api..
+                try
                 {
-                    await Task.Run(async () =>
+                    //Call AccessRegister Api..  
+                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
                     {
-                        if (_businessCode != null)
+                        await Task.Run(async () =>
                         {
-                            await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
+                            if (_businessCode != null)
                             {
-                                usertoken = Helpers.Settings.GeneralAccessToken,
-
-                            },
-                            async (aobj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    var requestList = (aobj as AccessLogOutResponseModel);
-                                    if (requestList != null)
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
+
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        if (requestList.responsecode == 100)
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            Helpers.Settings.GeneralAccessToken = string.Empty;
-                                            App.Current.MainPage = new Views.Login.LoginPage();
-                                        }
-                                        else
-                                        {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            if (requestList.responsecode == 100)
+                                            {
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage(null);
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            }
+
                                         }
 
-                                    }
-
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
                                 {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
                                 });
-                            });
-                        }
-                    }).ConfigureAwait(false);
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
                 }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
             }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
+               
 
         }
         /// <summary>

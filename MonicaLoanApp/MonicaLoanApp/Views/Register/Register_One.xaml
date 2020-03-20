@@ -235,11 +235,10 @@
                                         </Grid.ColumnDefinitions>
                                         <Image Source="genderblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                            <local:CustomPicker x:Name="Pckgender" ItemsSource="{Binding Gender}" TextColor="{StaticResource SmallLblColor}" Title="Gender" SelectedIndexChanged="Pckgender_SelectedIndexChanged" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                                            <local:CustomPicker x:Name="Pckgender" TextColor="{StaticResource SmallLblColor}" Title="Gender" SelectedIndexChanged="Pckgender_SelectedIndexChanged" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
                                                 <Picker.Items>
-                                                    <x:String>M</x:String>
-                                                    <x:String>F</x:String>
-                                                    <x:String>O</x:String>
+                                                    <x:String>Male</x:String>
+                                                    <x:String>Female</x:String>
                                                 </Picker.Items>
                                             </local:CustomPicker>
                                             <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="35"/>
@@ -255,11 +254,10 @@
                                         </Grid.ColumnDefinitions>
                                         <Image Source="martialblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-                                            <local:CustomPicker x:Name="PckMaritalStatus" TextColor="{StaticResource SmallLblColor}" ItemsSource="{Binding MaritalStatus}" Title="Marital Status" SelectedIndexChanged="MaritalStatus_SelectedIndexChanged" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                                            <local:CustomPicker x:Name="PckMaritalStatus" TextColor="{StaticResource SmallLblColor}" Title="Marital Status" SelectedIndexChanged="MaritalStatus_SelectedIndexChanged" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
                                                 <Picker.Items>
-                                                    <x:String>S</x:String>
-                                                    <x:String>M</x:String>
-                                                    <x:String>D</x:String>
+                                                    <x:String>Single</x:String>
+                                                    <x:String>Married</x:String>
                                                 </Picker.Items>
                                             </local:CustomPicker>
                                             <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="35"/>

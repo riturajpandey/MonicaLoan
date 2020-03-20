@@ -29,5 +29,11 @@ namespace MonicaLoanApp.Views.MyAccount
             this.BindingContext = AppSettingVM;    
         }
         #endregion 
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Helpers.Constants.PageCount = 0;
+        }
     }
 }

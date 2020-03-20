@@ -34,8 +34,8 @@
                                 </Grid.GestureRecognizers>
                                 <Image Grid.Column="0" Source="Ellipse3.png" HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="0,-10,0,0"/>
                                 <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
-                                    <Label Text="{Binding UserName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
-                                    <Label Text="{Binding UserNumber}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" />
+                                    <Label Text="{Binding UserName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" FontSize="15"/>
+                                    <Label Text="{Binding UserNumber}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" FontSize="15"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>

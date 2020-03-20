@@ -14,6 +14,8 @@ namespace MonicaLoanApp.Helpers
         public static string LoginUserToken = string.Empty;
         //To maintain user toekn..
         public static string LoginUserSecret = string.Empty;
+        //To maintain multiple times click...
+        public static int PageCount = 0; 
 
         //To maintain variable for image from camera/gallery
         public static string imgFilePath = string.Empty;

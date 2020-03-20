@@ -15,6 +15,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public MyAccountPageVM(INavigation nav)
         {
             Navigation = nav;
+            MenuCommand = new Command(MenuCommandAsync);
             PersonalDetailsCommand = new Command(PersonalDetailsCommandAsync);
             AddressCommand = new Command(AddressCommandAsync);
             EmployementCommand = new Command(EmployementCommandAsync);
@@ -84,6 +85,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Commands
+        public Command MenuCommand { get; set; }
         public Command PersonalDetailsCommand { get; set; }
         public Command AddressCommand { get; set; }
         public Command EmployementCommand { get; set; }
@@ -198,6 +200,15 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private void AppSettingCommandAsync(object obj) 
         {
             Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
+        }
+
+        /// <summary>
+        /// TODO: To define Menu command.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void MenuCommandAsync(object obj)
+        {
+            App.masterDetailPage.IsPresented = true;
         }
         #endregion
     }

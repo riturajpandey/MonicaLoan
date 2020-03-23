@@ -79,10 +79,18 @@
                         <!--LoginButton Section-->
                         <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Login" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" Grid.Row="6" Margin="5,0,5,0"/>
                         <!--ForgotPasswordButton-->
-                        <local:CustomButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forgot Password?" BackgroundColor="{StaticResource TransparentColor}" Command="{Binding ForgotCommand}" FontSize="15" Grid.Row="8" TextColor="{StaticResource ForgotPasswordTxtClr}"/>
+                        <Grid Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forgot Password?" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource ForgotPasswordTxtClr}"/>
+                        </Grid>
                         <!--RegisterButton-->
                         <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <local:CustomButton HorizontalOptions="CenterAndExpand"  Command="{Binding Register}" VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource AppWhiteColor}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Register}"/>
+                            </Grid.GestureRecognizers>
+                            <Label HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource AppWhiteColor}"/>
                         </Grid>
                     </Grid>
                 </ScrollView>

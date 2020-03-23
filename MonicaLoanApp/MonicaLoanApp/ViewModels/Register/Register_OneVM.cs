@@ -28,6 +28,7 @@ namespace MonicaLoanApp.ViewModels.Register
             NextCommand = new Command(NextCommandAsync);
             SecondNextCommand = new Command(SecondNextCommandAsync);
             BckCommand = new Command(BckCommandAsync);
+            PasswordCommand = new Command(PasswordCommandAsync);
         }
         #endregion
 
@@ -264,7 +265,46 @@ namespace MonicaLoanApp.ViewModels.Register
         }
 
         public string Bankcode { get; set; }
+        private bool _IsPasswordShow = true;
+        public bool IsPasswordShow
+        {
+            get { return _IsPasswordShow; }
+            set
+            {
+                if (_IsPasswordShow != value)
+                {
+                    _IsPasswordShow = value;
+                    OnPropertyChanged("IsPasswordShow");
+                }
+            }
+        }
 
+        private bool _IsPasswordNotShow = false;
+        public bool IsPasswordNotShow
+        {
+            get { return _IsPasswordNotShow; }
+            set
+            {
+                if (_IsPasswordNotShow != value)
+                {
+                    _IsPasswordNotShow = value;
+                    OnPropertyChanged("IsPasswordNotShow");
+                }
+            }
+        }
+        private bool _IsPassword = true;
+        public bool IsPassword
+        {
+            get { return _IsPassword; }
+            set
+            {
+                if (_IsPassword != value)
+                {
+                    _IsPassword = value;
+                    OnPropertyChanged("IsPassword");
+                }
+            }
+        }
         #endregion
 
         #region Commands 
@@ -272,6 +312,7 @@ namespace MonicaLoanApp.ViewModels.Register
         public Command SecondNextCommand { get; set; }
         public Command FinishCommand { get; set; }
         public Command BckCommand { get; set; }
+        public Command PasswordCommand { get; set; }
 
         #endregion
 
@@ -534,6 +575,22 @@ namespace MonicaLoanApp.ViewModels.Register
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+        }
+
+        private async void PasswordCommandAsync(object obj)
+        {
+            if (IsPasswordShow == true)
+            {
+                IsPasswordShow = false;
+                IsPasswordNotShow = true;
+                IsPassword = false;
+            }
+            else
+            {
+                IsPasswordNotShow = false;
+                IsPasswordShow = true;
+                IsPassword = true;
+            }
         }
         #endregion
 

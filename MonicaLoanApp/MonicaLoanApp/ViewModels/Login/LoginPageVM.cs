@@ -36,6 +36,20 @@ namespace MonicaLoanApp.ViewModels
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _Email;
         public string Email
         {
@@ -212,12 +226,8 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void ForgotPasswordAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
         }
         // 
         /// <summary>
@@ -226,12 +236,9 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void RegisterAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.Register.Register_One());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.Register.Register_One());
+
         }
         /// <summary>
         /// TODO : To Validate User Login Fields...

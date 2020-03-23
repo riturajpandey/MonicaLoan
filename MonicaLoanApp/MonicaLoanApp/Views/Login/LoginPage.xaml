@@ -6,6 +6,7 @@
              xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             x:Name="LoginPage" IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.Login.LoginPage">
     <ContentPage.Content>
         <!--Main Grid-->

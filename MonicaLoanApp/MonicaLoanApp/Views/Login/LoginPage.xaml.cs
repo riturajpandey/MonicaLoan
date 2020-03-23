@@ -43,7 +43,7 @@ namespace MonicaLoanApp.Views.Login
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
+            LoginVm.IsPageEnable = true;
         }
     }
 }

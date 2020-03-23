@@ -6,6 +6,7 @@
              xmlns:Control="clr-namespace:MonicaLoanApp.Controls"
               xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.Loans.LoanDetailsPage" NavigationPage.HasNavigationBar="False"
              Title="Loan Details Page">
 

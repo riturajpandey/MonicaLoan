@@ -151,8 +151,10 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void LoginAsync(object obj)
         {
+            
             //Apply LoginValidations...
             if (!await Validate()) return;
+
             //Call api..
             try
             {
@@ -191,7 +193,6 @@ namespace MonicaLoanApp.ViewModels
                                         else
                                         {
                                             UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-
                                         }
 
                                     }

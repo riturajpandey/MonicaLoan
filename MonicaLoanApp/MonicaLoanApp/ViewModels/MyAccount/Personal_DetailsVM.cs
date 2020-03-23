@@ -16,13 +16,27 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public Personal_DetailsVM(INavigation nav)
         {
             Navigation = nav;
-            SaveCommand = new Command(SaveCommandAsync);
-        } 
+            SaveCommand = new Command(SaveCommandAsync); 
+        }
 
-       
+
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _DateOfBirth = "Date of birth";
         public string DateOfBirth
         {
@@ -102,6 +116,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void SaveCommandAsync(object obj)
         {
+            IsPageEnable = false;
             //Call api..
             try
             {

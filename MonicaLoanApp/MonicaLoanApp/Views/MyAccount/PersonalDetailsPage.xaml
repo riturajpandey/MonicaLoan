@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.MyAccount.Personal_Details">
     <ContentPage.Content>
         <!--Main Grid-->

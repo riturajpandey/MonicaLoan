@@ -10,13 +10,13 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MonicaLoanApp.Views.Login
+namespace MonicaLoanApp.Views.Login 
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     { 
         //TODO : To Define class Level Variables...
-        protected LoginPageVM LoginVm;
+        protected LoginPageVM LoginVm; 
 
         #region Constructor
         public LoginPage(string email)

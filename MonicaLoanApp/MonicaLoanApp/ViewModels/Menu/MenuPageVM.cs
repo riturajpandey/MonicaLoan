@@ -29,7 +29,7 @@ namespace MonicaLoanApp.ViewModels.Menu
             MyAccountCommand = new Command(OnMyAccountAsync);
             HelpCommand = new Command(OnHelpAsync);
             SignOutCommand = new Command(OnSignOutAsync);
-           
+
         }
 
         #endregion
@@ -45,6 +45,20 @@ namespace MonicaLoanApp.ViewModels.Menu
         #endregion
 
         #region PROPERTIES 
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _UserName;
         public string UserName
         {
@@ -80,14 +94,11 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnHomeAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                App.masterDetailPage.IsPresented = false;
-                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
-                App.Current.MainPage = App.masterDetailPage; 
-                App.masterDetailPage.IsPresented = false;
-            }
+            IsPageEnable = false;
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
         /// TODO : To Perform Loan Page...
@@ -95,15 +106,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnLoansAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                App.masterDetailPage.IsPresented = false;
-                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
-                App.Current.MainPage = App.masterDetailPage;
-                App.masterDetailPage.IsPresented = false;
-            }
-                
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new LoanDetailsPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
         /// TODO : To Perform Loan Page...
@@ -111,15 +117,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnPaymentsAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                App.masterDetailPage.IsPresented = false;
-                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentListPage());
-                App.Current.MainPage = App.masterDetailPage;
-                App.masterDetailPage.IsPresented = false;
-            }
-                
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new PaymentListPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
         /// TODO : To Perform Account Page...
@@ -127,15 +128,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnMyAccountAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                App.masterDetailPage.IsPresented = false;
-                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
-                App.Current.MainPage = App.masterDetailPage;
-                App.masterDetailPage.IsPresented = false;
-            }
-                
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
         /// TODO : To Perform Help Page...
@@ -143,15 +139,10 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnHelpAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                App.masterDetailPage.IsPresented = false;
-                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Help.HelpPage());
-                App.Current.MainPage = App.masterDetailPage;
-                App.masterDetailPage.IsPresented = false;
-            }
-                
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.Help.HelpPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
         }
         /// <summary>
         /// TODO : To Perform SignOut Page...
@@ -159,74 +150,67 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnSignOutAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+            var text = (res ? "No" : "Yes");
+            if (text == "Yes")
             {
-                Helpers.Constants.PageCount++;
-                var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
-                var text = (res ? "No" : "Yes");
-                if (text == "Yes")
+                //Call api..
+                try
                 {
-                    //Call api..
-                    try
+                    //Call AccessRegister Api..  
+                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
                     {
-                        //Call AccessRegister Api..  
-                        UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                        if (CrossConnectivity.Current.IsConnected)
+                        await Task.Run(async () =>
                         {
-                            await Task.Run(async () =>
+                            if (_businessCode != null)
                             {
-                                if (_businessCode != null)
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                                    {
-                                        usertoken = Helpers.Settings.GeneralAccessToken,
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
 
-                                    },
-                                    async (aobj) =>
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        Device.BeginInvokeOnMainThread(async () =>
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            var requestList = (aobj as AccessLogOutResponseModel);
-                                            if (requestList != null)
+                                            if (requestList.responsecode == 100)
                                             {
-                                                if (requestList.responsecode == 100)
-                                                {
-                                                    Helpers.Settings.GeneralAccessToken = string.Empty;
-                                                    App.Current.MainPage = new Views.Login.LoginPage(null);
-                                                }
-                                                else
-                                                {
-                                                    UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                                }
-
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage(null);
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
                                             }
 
-                                            UserDialog.HideLoading();
-                                        });
-                                    }, (objj) =>
-                                    {
-                                        Device.BeginInvokeOnMainThread(async () =>
-                                        {
-                                            UserDialog.HideLoading();
-                                            UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                        });
+                                        }
+
+                                        UserDialog.HideLoading();
                                     });
-                                }
-                            }).ConfigureAwait(false);
-                        }
-                        else
-                        {
-                            UserDialogs.Instance.Loading().Hide();
-                            await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                        }
+                                }, (objj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
+                                });
+                            }
+                        }).ConfigureAwait(false);
                     }
-                    catch (Exception ex)
-                    { UserDialog.HideLoading(); }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
                 }
-                   
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
             }
-
-
         }
         /// <summary>
         /// TO call Get profile data
@@ -286,7 +270,7 @@ namespace MonicaLoanApp.ViewModels.Menu
                                                 var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
                                                 Helpers.Constants.UserStatecode = item.key;
                                             }
-                                            
+
                                             Helpers.Constants.UserStartdate = requestList.startdate;
                                             Helpers.Constants.Usergender = requestList.gender;
 

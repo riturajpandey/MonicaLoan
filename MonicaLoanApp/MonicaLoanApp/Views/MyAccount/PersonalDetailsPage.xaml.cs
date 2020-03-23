@@ -109,7 +109,7 @@ namespace MonicaLoanApp.Views.MyAccount
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
+            PersonalDetailsVM.IsPageEnable = true;
             PersonalDetailsVM.FirstName = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             PersonalDetailsVM.Email = Helpers.Constants.UserEmailAddress;
             if (!string.IsNullOrEmpty(Helpers.Constants.UserDateofbirth))

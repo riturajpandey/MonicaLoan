@@ -22,6 +22,20 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _AddressOne;
         public string AddressOne
         {
@@ -334,7 +348,6 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 return false;
             }
             return true;
-            
         }
         #endregion
     }

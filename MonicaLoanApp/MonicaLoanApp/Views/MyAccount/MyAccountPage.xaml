@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.MyAccount.MyAccountPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -24,11 +25,13 @@
                             <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MenuCommand}"/>
+                            </Grid.GestureRecognizers>
                             <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                <Image.GestureRecognizers>
+                                <!--<Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding MenuCommand}"/>
-                                </Image.GestureRecognizers>
+                                </Image.GestureRecognizers>-->
                             </Image>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

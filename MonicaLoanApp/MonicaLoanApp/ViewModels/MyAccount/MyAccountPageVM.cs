@@ -15,7 +15,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public MyAccountPageVM(INavigation nav)
         {
             Navigation = nav;
-           // MenuCommand = new Command(MenuCommandAsync);
+            MenuCommand = new Command(MenuCommandAsync);
             PersonalDetailsCommand = new Command(PersonalDetailsCommandAsync);
             AddressCommand = new Command(AddressCommandAsync);
             EmployementCommand = new Command(EmployementCommandAsync);
@@ -26,6 +26,20 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _PersonalDetails;
         public string PersonalDetails
         {
@@ -103,70 +117,71 @@ namespace MonicaLoanApp.ViewModels.MyAccount
 
         private async void logoutCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
+            IsPageEnable = false;
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+            var text = (res ? "No" : "Yes");
+            if (text == "Yes")
             {
-                Helpers.Constants.PageCount++;
-                var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
-                var text = (res ? "No" : "Yes");
-                if (text == "Yes")
+                //Call api..
+                try
                 {
-                    //Call api..
-                    try
+                    //Call AccessRegister Api..  
+                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
                     {
-                        //Call AccessRegister Api..  
-                        UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                        if (CrossConnectivity.Current.IsConnected)
+                        await Task.Run(async () =>
                         {
-                            await Task.Run(async () =>
+                            if (_businessCode != null)
                             {
-                                if (_businessCode != null)
+                                await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
                                 {
-                                    await _businessCode.AccessLogOutApi(new AccessLogOutRequestModel()
-                                    {
-                                        usertoken = Helpers.Settings.GeneralAccessToken,
+                                    usertoken = Helpers.Settings.GeneralAccessToken,
 
-                                    },
-                                    async (aobj) =>
+                                },
+                                async (aobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
                                     {
-                                        Device.BeginInvokeOnMainThread(async () =>
+                                        var requestList = (aobj as AccessLogOutResponseModel);
+                                        if (requestList != null)
                                         {
-                                            var requestList = (aobj as AccessLogOutResponseModel);
-                                            if (requestList != null)
+                                            if (requestList.responsecode == 100)
                                             {
-                                                if (requestList.responsecode == 100)
-                                                {
-                                                    Helpers.Settings.GeneralAccessToken = string.Empty;
-                                                    App.Current.MainPage = new Views.Login.LoginPage(null);
-                                                }
-                                                else
-                                                {
-                                                    UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
-                                                }
-
+                                                Helpers.Settings.GeneralAccessToken = string.Empty;
+                                                App.Current.MainPage = new Views.Login.LoginPage(null);
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
                                             }
 
-                                            UserDialog.HideLoading();
-                                        });
-                                    }, (objj) =>
-                                    {
-                                        Device.BeginInvokeOnMainThread(async () =>
-                                        {
-                                            UserDialog.HideLoading();
-                                            UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                        });
+                                        }
+
+                                        UserDialog.HideLoading();
                                     });
-                                }
-                            }).ConfigureAwait(false);
-                        }
-                        else
-                        {
-                            UserDialogs.Instance.Loading().Hide();
-                            await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                        }
+                                }, (objj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    });
+                                });
+                            }
+                        }).ConfigureAwait(false);
                     }
-                    catch (Exception ex)
-                    { UserDialog.HideLoading(); }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    }
                 }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
+            }
+            else
+            {
+                IsPageEnable = true;
             }
         }
 
@@ -176,12 +191,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void BankDetailsCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
         }
         /// <summary>
         /// TODO: To define EmployementCommand.
@@ -189,13 +200,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void EmployementCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
-            }
-
-
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
         }
         /// <summary>
         /// TODO: To define AddressCommand.
@@ -203,12 +209,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void AddressCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
         }
         /// <summary>
         /// TODO: To define PersonalDetails.
@@ -216,12 +218,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void PersonalDetailsCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
         }
 
         /// <summary>
@@ -230,22 +228,22 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void AppSettingCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage());
-            }
-
+            IsPageEnable = false;
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.AppSettingPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false; 
+            //await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
         }
 
         /// <summary>
         /// TODO: To define Menu command.
         /// </summary>
         /// <param name="obj"></param>
-        //private void MenuCommandAsync(object obj)
-        //{
-        //    App.masterDetailPage.IsPresented = true;
-        //}
+        private void MenuCommandAsync(object obj)
+        {
+            App.masterDetailPage.IsPresented = true; 
+        }
         #endregion
     }
 }

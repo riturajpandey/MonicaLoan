@@ -100,7 +100,7 @@
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding HelpCommand}"/>
                             </Grid.GestureRecognizers>
-                            <Image Grid.Column="0" Source="help.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Grid.Column="0" Source="help.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                             <Label Grid.Column="1" Text="Help" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="20,0,0,0"/>
                         </Grid>
 

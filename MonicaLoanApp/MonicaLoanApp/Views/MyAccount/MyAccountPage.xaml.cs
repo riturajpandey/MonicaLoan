@@ -30,7 +30,7 @@ namespace MonicaLoanApp.Views.MyAccount
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
+            MyAccountVM.IsPageEnable = true; 
             MyAccountVM.PersonalDetails = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             MyAccountVM.Address = Helpers.Constants.UserAddressline1 + "," + Helpers.Constants.UserAddressline2 + "" + Helpers.Constants.UserCity;
             MyAccountVM.Employement = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;

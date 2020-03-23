@@ -46,6 +46,20 @@ namespace MonicaLoanApp.ViewModels.Loans
 
         #region Properties
 
+        private bool _IsPageEnable = true;
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private ObservableCollection<AllLoan> _LoanDetailsList;
         public ObservableCollection<AllLoan> LoanDetailsList 
         {
@@ -164,11 +178,8 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnPlusAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
-            }
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
         }
 
         #endregion

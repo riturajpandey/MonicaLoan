@@ -36,7 +36,7 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
+            LoanDetailsVM.IsPageEnable = true; 
             await LoanDetailsVM.GetAllLoans();
         }
 

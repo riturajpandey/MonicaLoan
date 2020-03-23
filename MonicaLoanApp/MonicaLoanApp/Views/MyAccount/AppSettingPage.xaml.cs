@@ -33,7 +33,6 @@ namespace MonicaLoanApp.Views.MyAccount
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public AppSettingPageVM(INavigation nav)
         {
             Navigation = nav;
-            BackCommand = new Command(BackCommandAsync);
+            BackCommand = new Command(BackCommandAsync); 
         }
         #endregion
 
@@ -29,7 +29,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void BackCommandAsync(object obj)
         {
-            App.Current.MainPage = new Views.MyAccount.MyAccountPage();
+            App.masterDetailPage.IsPresented = false;
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.MyAccountPage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
+            //App.Current.MainPage = new Views.MyAccount.MyAccountPage();
         }
         #endregion
     }

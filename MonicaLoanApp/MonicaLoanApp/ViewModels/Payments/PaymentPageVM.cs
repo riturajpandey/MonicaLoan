@@ -21,10 +21,24 @@ namespace MonicaLoanApp.ViewModels.Payments
             PaymentPlusCommand = new Command(PaymentPlusCommandAsync);
         }
 
-       
+
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true; 
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _PaymentStatus= "No Payments Currently";
         public string PaymentStatus
         {
@@ -152,12 +166,8 @@ namespace MonicaLoanApp.ViewModels.Payments
         /// <param name="obj"></param>
         private async void PlusCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
         }
         /// <summary>
         /// TODO: To define PlusCommand for add Payment..
@@ -165,12 +175,8 @@ namespace MonicaLoanApp.ViewModels.Payments
         /// <param name="obj"></param>
         private async void PaymentPlusCommandAsync(object obj)
         {
-            if (Helpers.Constants.PageCount == 0)
-            {
-                Helpers.Constants.PageCount++;
-                await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
-            }
-                
+            IsPageEnable = false;
+            await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
         }
 
         private void MenuCommandAsync(object obj)   

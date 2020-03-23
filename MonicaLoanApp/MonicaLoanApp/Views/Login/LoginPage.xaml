@@ -17,7 +17,7 @@
                     <magic:LinearGradient Angle="0">
                         <magic:GradientStop Color="{StaticResource DarkGradientColour}" Offset="0" />
                         <magic:GradientStop Color="{StaticResource LightGradientColour}" Offset="1" />
-                    </magic:LinearGradient>
+                    </magic:LinearGradient>   
                 </magic:GradientView.GradientSource>
             </magic:GradientView>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0,25,0">

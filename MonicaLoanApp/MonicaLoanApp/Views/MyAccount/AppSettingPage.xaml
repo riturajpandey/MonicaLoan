@@ -34,14 +34,15 @@
             </local:CustomFrameForOpacity>
 
             <!--Settings Section-->
-            <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30,40" RowSpacing="0" ColumnSpacing="0">
+            <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30,40" ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="1"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
@@ -98,7 +99,7 @@
 
                     <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="3" ></Grid>
 
-                    <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,30,0,0" ColumnSpacing="10">
+                    <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,30,0,0" ColumnSpacing="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
@@ -144,6 +145,7 @@
                         </Grid>
 
                     </Grid>
+                    <Grid Grid.Row="5"></Grid>
                 </Grid>
             </ScrollView>
         </Grid>

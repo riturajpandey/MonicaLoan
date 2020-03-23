@@ -20,10 +20,8 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-
                             <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BacksCommand}"/>

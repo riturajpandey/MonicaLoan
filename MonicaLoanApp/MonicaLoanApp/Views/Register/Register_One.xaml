@@ -150,9 +150,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="25"/>
                                             <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="20"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="lock.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding NewPassword}" IsPassword="True"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password"  Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding Password}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-5,0,0,0">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding PasswordCommand}"/>
+                                            </Grid.GestureRecognizers>
+                                            <Image Source="view_hide_black.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Image Source="view_black.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </Grid>
                                     </Grid>
                                 </Frame>
                                 <!--BVN Section-->

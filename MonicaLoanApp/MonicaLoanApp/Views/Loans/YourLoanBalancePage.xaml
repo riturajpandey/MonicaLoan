@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.Loans.YourLoanBalancePage"
              xmlns:controls="clr-namespace:MonicaLoanApp.Controls"
              NavigationPage.HasNavigationBar="False">

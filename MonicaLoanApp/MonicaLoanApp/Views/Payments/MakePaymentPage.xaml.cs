@@ -35,12 +35,12 @@ namespace MonicaLoanApp.Views.Payments
         {
             base.OnAppearing();
             Helpers.Constants.PageCount = 0;
-            await MakePaymentVM.GetAllLoans();
+            await MakePaymentVM.GetAllLoans(); 
 
             MakePaymentVM.Name = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             MakePaymentVM.Bank = Helpers.Constants.UserBankname;
-            MakePaymentVM.AccountNumber = Helpers.Constants.UserBankaccountno;
-            MakePaymentVM.Reference = Helpers.Constants.UserBankcode;
+            MakePaymentVM.AccountNumber = Helpers.Constants.UserBankaccountno; 
+            MakePaymentVM.Reference = Helpers.Constants.UserBankcode; 
         }
         #endregion
 

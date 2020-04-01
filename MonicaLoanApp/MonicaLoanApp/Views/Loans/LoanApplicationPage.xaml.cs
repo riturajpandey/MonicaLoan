@@ -39,7 +39,7 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing(); 
-            await LoanApplicationVM.GetLoanDetail(AllLoanDetails);
+            await LoanApplicationVM.GetLoanDetail(AllLoanDetails); 
             await LoanApplicationVM.StaticDataSearch(); 
         }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models;
 using MonicaLoanApp.Models.Loan;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace MonicaLoanApp.ViewModels.Loans
         public LoanDetailsPageVM(INavigation nav)
         {
             Navigation = nav;
-            MenuCommand = new Command(OnMenuAsync);           
+            MenuCommand = new Command(OnMenuAsync);
             PlusCommand = new Command(OnPlusAsync);
-             
+
             ////TODO : Dummy Data in list
             //LoanDetailsList = new ObservableCollection<LoanDetailsModel>
             //{
@@ -37,11 +38,11 @@ namespace MonicaLoanApp.ViewModels.Loans
             //     new LoanDetailsModel{Id="10", Amount="N100,000",Status="Closed",AmtDate="1 Feb 2020", },
             //};
         }
-      
+
         #endregion
 
         #region Commands  
-        public Command MenuCommand { get; set; }     
+        public Command MenuCommand { get; set; }
         public Command PlusCommand { get; set; }
         #endregion
 
@@ -62,7 +63,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         }
 
         private ObservableCollection<AllLoan> _LoanDetailsList;
-        public ObservableCollection<AllLoan> LoanDetailsList 
+        public ObservableCollection<AllLoan> LoanDetailsList
         {
             get { return _LoanDetailsList; }
             set
@@ -108,10 +109,20 @@ namespace MonicaLoanApp.ViewModels.Loans
         #region Methods
         public async Task GetAllLoans()
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralAllLoanResponse))
+            {
+                var a = Helpers.Settings.GeneralAllLoanResponse;
+                var allUserLoan = JsonConvert.DeserializeObject<AllLoanResponseModel>(a);
+                if (allUserLoan != null)
+                {
+                    LoanDetailsList = new ObservableCollection<AllLoan>(allUserLoan.loans);
+                } 
+            }
             //Call api..
             try
             {
-                UserDialogs.Instance.ShowLoading(); 
+                if (string.IsNullOrEmpty(Helpers.Settings.GeneralAllLoanResponse))
+                    UserDialogs.Instance.ShowLoading(); 
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -121,7 +132,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                             await _businessCode.GetAllLoansApi(new AllLoanRequestModel()
                             {
                                 usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken
-                            }, 
+                            },
                             async (obj) =>
                             {
                                 Device.BeginInvokeOnMainThread(async () =>
@@ -138,7 +149,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     {
                                         UserDialogs.Instance.HideLoading();
                                         IsLoansAvailable = false;
-                                        IsLoansNotAvailable = true; 
+                                        IsLoansNotAvailable = true;
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -161,7 +172,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-        } 
+        }
 
         /// <summary>
         /// TODO : To back Page...
@@ -170,9 +181,9 @@ namespace MonicaLoanApp.ViewModels.Loans
         private async void OnMenuAsync(object obj)
         {
             //await Navigation.PopModalAsync();
-            App.masterDetailPage.IsPresented = true; 
+            App.masterDetailPage.IsPresented = true;
         }
-       
+
         /// <summary>
         /// TODO: To validate Forgot Password Command..
         /// </summary>

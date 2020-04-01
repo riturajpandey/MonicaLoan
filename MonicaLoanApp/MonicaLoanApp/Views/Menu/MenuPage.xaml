@@ -40,7 +40,7 @@
                             </Grid>
                         </Frame>
                         <!--Home-->
-                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="25">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
@@ -49,39 +49,39 @@
                                 <TapGestureRecognizer Command="{Binding HomeCommand}"/>
                             </Grid.GestureRecognizers>
                             <Image Grid.Column="0" Source="home.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Home" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="20,0,0,0"/>
+                            <Label Grid.Column="1" Text="Home" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="0,0,0,0"/>
                         </Grid>
 
                         <!--Loans-->
-                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="25">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LoansCommand}"/>
                             </Grid.GestureRecognizers>
                             <Image Grid.Column="0" Source="loan.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0,0,0"/>
+                            <Label Grid.Column="1" Text="Loans" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="0,0,0,0"/>
                         </Grid>
 
                         <!--Payments-->
-                        <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                        <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="25">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding PaymentsCommand}"/>
                             </Grid.GestureRecognizers>
                             <Image Grid.Column="0" Source="payment.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Payments" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0,0,0"/>
+                            <Label Grid.Column="1" Text="Payments" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="0,0,0,0"/>
                         </Grid>
 
                         <!--My Account-->
-                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="35"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
@@ -92,20 +92,20 @@
                         </Grid>
 
                         <!--Help-->
-                        <Grid Grid.Row="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding HelpCommand}"/>
                             </Grid.GestureRecognizers>
-                            <Image Grid.Column="0" Source="help.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                            <Label Grid.Column="1" Text="Help" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="20,0,0,0"/>
+                            <Image Grid.Column="0" Source="help.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-10,0,0,0" />
+                            <Label Grid.Column="1" Text="Help" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="0,0,0,0"/>
                         </Grid>
 
                         <!--Sign out-->
-                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
@@ -113,8 +113,8 @@
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SignOutCommand}"/>
                             </Grid.GestureRecognizers>
-                            <Image Grid.Column="0" Source="signout.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Sign out" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="10,0,0,0"/>
+                            <Image Grid.Column="0" Source="signout.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-5,0,0,0"/>
+                            <Label Grid.Column="1" Text="Sign out" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" Margin="0,0,0,0"/>
                         </Grid>
                     </Grid>
                 </Grid>

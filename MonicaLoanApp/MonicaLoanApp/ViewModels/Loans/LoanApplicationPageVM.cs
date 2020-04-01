@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models;
 using MonicaLoanApp.Models.Loan;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -207,12 +208,31 @@ namespace MonicaLoanApp.ViewModels.Loans
 
         #region Methods
         //TODO : To Call Api To Get Loan Details...
-        public async Task GetLoanDetail(AllLoan allLoan)
+        public async Task GetLoanDetail(AllLoan allLoan)      
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralUserLoanDetailResponse))
+            {
+                var a = Helpers.Settings.GeneralUserLoanDetailResponse;
+                var allUserLoan = JsonConvert.DeserializeObject<LoanSearchResponseModel>(a);
+                if (allUserLoan != null)
+                {
+                    var loans = allUserLoan.loans;
+                    LoanDetailsList = new ObservableCollection<Schedule>(loans[0].schedules);
+                    Status = loans[0].statusname;
+                    Date = loans[0].LoanDate;
+                    LoanAmount = "N" + loans[0].loanamount;
+                    LoanBalance = "N" + loans[0].loanbalance;
+                    UserCompany = loans[0].employername;
+                    UserSalary = "N" + loans[0].employeesalarymonthly;
+                    EmployeeLoanDate = loans[0].EmployeeLoanDate;
+                    UserName = loans[0].employeenumber; 
+                }
+            }
             //Call api..
             try
             {
-                //UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                if (string.IsNullOrEmpty(Helpers.Settings.GeneralUserLoanDetailResponse)) 
+                    UserDialogs.Instance.ShowLoading("", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -222,7 +242,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                             await _businessCode.LoanSearchApi(new LoanSearchRequestModel()
                             {
                                 usertoken = MonicaLoanApp.Helpers.Settings.GeneralAccessToken,
-                                loannumber = allLoan.loannumber
+                                loannumber = allLoan.loannumber 
                             },
                             async (obj) =>
                             {

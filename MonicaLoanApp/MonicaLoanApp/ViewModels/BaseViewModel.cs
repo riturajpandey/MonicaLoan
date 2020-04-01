@@ -135,11 +135,11 @@ namespace MonicaLoanApp.ViewModels
         /// <returns></returns>
         public async Task StaticDataSearch()
         {
-            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralStaticDataResponse))
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralStaticDataResponse)) 
             {
                 var objres = JsonConvert.DeserializeObject<StaticDataSearchResponseModel>(Helpers.Settings.GeneralStaticDataResponse);
                 Helpers.Constants.StaticDataList = new ObservableCollection<Staticdata>(objres.staticdata);
-            }
+            } 
             else
             {
 

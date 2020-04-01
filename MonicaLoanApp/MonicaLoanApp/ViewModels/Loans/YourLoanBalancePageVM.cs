@@ -32,6 +32,20 @@ namespace MonicaLoanApp.ViewModels.Loans
         #endregion
 
         #region Properties
+        private bool _IsPageEnable = true;   
+        public bool IsPageEnable
+        {
+            get { return _IsPageEnable; }  
+            set
+            {
+                if (_IsPageEnable != value)
+                {
+                    _IsPageEnable = value;
+                    OnPropertyChanged("IsPageEnable");
+                }
+            }
+        }
+
         private string _LoanAmount;
         public string LoanAmount
         {
@@ -65,7 +79,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// TODO: To define
         /// </summary>
         /// <param name="obj"></param>
-        private void ListCommandAsync(object obj)
+        private async void ListCommandAsync(object obj)
         {
             if (TapCount1 == 0)
             {
@@ -77,7 +91,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// TODO: To define
         /// </summary>
         /// <param name="obj"></param>
-        private void PlusCommandAsync(object obj)
+        private async void PlusCommandAsync(object obj)
         {
             if (TapCount2 == 0)
             {
@@ -89,8 +103,45 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// TO call Get profile data
         /// </summary>
         /// <returns></returns>
-        public async Task GetProfile()
+        public async Task GetProfile() 
         {
+            if(!string.IsNullOrEmpty(Helpers.Settings.GeneralUserProfileResponse))
+            {
+                var b = Helpers.Settings.GeneralUserProfileResponse;
+                var userDetail = JsonConvert.DeserializeObject<ProfileGetResponseModel>(b);
+                if(userDetail != null)
+                {
+                    Helpers.Constants.UserLoanbalance = userDetail.loanbalance;
+                    Helpers.Constants.UserDuebalance = userDetail.duesoon;
+                    Helpers.Constants.UserBvn = userDetail.bvn;
+                    Helpers.Constants.UserCity = userDetail.city;
+                    Helpers.Constants.UserBankname = userDetail.bankname;
+                    Helpers.Constants.UserBankcode = userDetail.bankcode;
+                    Helpers.Constants.UserAddressline1 = userDetail.addressline1;
+                    Helpers.Constants.UserAddressline2 = userDetail.addressline2;
+                    Helpers.Constants.UserBankaccountno = userDetail.bankaccountno;
+                    Helpers.Constants.UserDateofbirth = userDetail.dateofbirth;
+                    Helpers.Constants.UserEmailAddress = userDetail.emailaddress;
+                    Helpers.Constants.UserEmployeenumber = userDetail.employeenumber;
+                    Helpers.Constants.UserEmployercode = userDetail.employercode;
+                    Helpers.Constants.UserEmployername = userDetail.employername;
+                    Helpers.Constants.UserFirstname = userDetail.firstname;
+                    Helpers.Constants.UserMiddlename = userDetail.middlename;
+                    Helpers.Constants.UserLastname = userDetail.lastname;
+                    Helpers.Constants.Usermobileno = userDetail.mobileno;
+                    Helpers.Constants.Userprofilepic = userDetail.profilepic;
+                    Helpers.Constants.UserMaritalstatus = userDetail.maritalstatus;
+                    Helpers.Constants.UserSalary = userDetail.salary;
+                    Helpers.Constants.UserStateName = userDetail.statename;
+                    if (!string.IsNullOrEmpty(Helpers.Constants.UserStateName))
+                    {
+                        var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
+                        Helpers.Constants.UserStatecode = item.key;
+                    }
+                    Helpers.Constants.UserStartdate = userDetail.startdate;
+                    Helpers.Constants.Usergender = userDetail.gender;
+                }
+            }
             //Call api..
             try
             {
@@ -194,7 +245,6 @@ namespace MonicaLoanApp.ViewModels.Loans
                                         }
 
                                     }
-
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>

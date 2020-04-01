@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Newtonsoft.Json;
 
 namespace MonicaLoanApp.ViewModels.Payments
 {
@@ -74,8 +75,8 @@ namespace MonicaLoanApp.ViewModels.Payments
             {
                 if (_LoanPurpose != value)
                 {
-                    _LoanPurpose = value; 
-                    OnPropertyChanged("LoanPurpose"); 
+                    _LoanPurpose = value;
+                    OnPropertyChanged("LoanPurpose");
                 }
             }
         }
@@ -103,13 +104,13 @@ namespace MonicaLoanApp.ViewModels.Payments
                 if (_LoanNumber != value)
                 {
                     _LoanNumber = value;
-                    OnPropertyChanged("LoanNumber"); 
+                    OnPropertyChanged("LoanNumber");
                 }
             }
         }
 
-        private string _LoanSchedule = "Select schedule"; 
-        public string LoanSchedule 
+        private string _LoanSchedule = "Select schedule";
+        public string LoanSchedule
         {
             get { return _LoanSchedule; }
             set
@@ -117,7 +118,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 if (_LoanSchedule != value)
                 {
                     _LoanSchedule = value;
-                    OnPropertyChanged("LoanSchedule"); 
+                    OnPropertyChanged("LoanSchedule");
                 }
             }
         }
@@ -125,7 +126,7 @@ namespace MonicaLoanApp.ViewModels.Payments
         private ObservableCollection<AllLoan> _LoansList;
         public ObservableCollection<AllLoan> LoansList
         {
-            get { return _LoansList; } 
+            get { return _LoansList; }
             set
             {
                 if (_LoansList != value)
@@ -137,7 +138,7 @@ namespace MonicaLoanApp.ViewModels.Payments
         }
 
         private ObservableCollection<Schedule> _SchedulesList;
-        public ObservableCollection<Schedule> SchedulesList 
+        public ObservableCollection<Schedule> SchedulesList
         {
             get { return _SchedulesList; }
             set
@@ -214,10 +215,20 @@ namespace MonicaLoanApp.ViewModels.Payments
         #region Methods
         public async Task GetAllLoans()
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralAllLoanResponse))
+            {
+                var a = Helpers.Settings.GeneralAllLoanResponse;
+                var allUserLoan = JsonConvert.DeserializeObject<AllLoanResponseModel>(a);
+                if (allUserLoan != null)
+                {
+                    LoansList = new ObservableCollection<AllLoan>(allUserLoan.loans);
+                }
+            }
             //Call api..
             try
             {
-                UserDialogs.Instance.ShowLoading();
+                if (string.IsNullOrEmpty(Helpers.Settings.GeneralAllLoanResponse))
+                    UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -268,6 +279,16 @@ namespace MonicaLoanApp.ViewModels.Payments
 
         public async Task GetLoans()
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralUserLoanDetailResponse))
+            {
+                var a = Helpers.Settings.GeneralUserLoanDetailResponse;
+                var allUserLoan = JsonConvert.DeserializeObject<LoanSearchResponseModel>(a);
+                if (allUserLoan != null)
+                {
+                    var loans = allUserLoan.loans;
+                    SchedulesList = new ObservableCollection<Schedule>(loans[0].schedules);  
+                }
+            }
             //Call api..
             try
             {
@@ -343,17 +364,17 @@ namespace MonicaLoanApp.ViewModels.Payments
                             await _businessCode.PaymentCreateApi(new PaymentCreateRequestModel()
                             {
                                 usertoken = Helpers.Settings.GeneralAccessToken,
-                                loannumber = LoanNumber, 
-                                loanschedulenumber = LoanSchedule, 
+                                loannumber = LoanNumber,
+                                loanschedulenumber = LoanSchedule,
                                 amount = Amount,
-                                paymentmethodcode = "CARD" 
+                                paymentmethodcode = "CARD"
                             },
                             async (objj) =>
                             {
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
-                                    var requestList = (objj as PaymentCreateResponseModel); 
-                                    if (requestList != null) 
+                                    var requestList = (objj as PaymentCreateResponseModel);
+                                    if (requestList != null)
                                     {
                                         UserDialogs.Instance.HideLoading();
                                         var alertConfig = new AlertConfig
@@ -405,19 +426,19 @@ namespace MonicaLoanApp.ViewModels.Payments
             if (LoanNumber == "Select loan")
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please select loan.", "", "Ok"); 
+                UserDialogs.Instance.Alert("Please select loan.", "Alert", "Ok"); 
                 return false;
             }
             if (LoanSchedule == "Select schedule")
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please select schedule", "", "Ok"); 
+                UserDialogs.Instance.Alert("Please select schedule", "Alert", "Ok"); 
                 return false;
             }
             if (string.IsNullOrEmpty(Amount))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter amount.", "", "Ok");
+                UserDialogs.Instance.Alert("Please enter amount.", "Alert", "Ok");
                 return false; 
             } 
             if(Convert.ToInt32(Amount) > (Convert.ToInt32(LoanAmount)))
@@ -426,7 +447,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 UserDialogs.Instance.Alert("Invalid amount", "", "Ok");
                 return false;
             }
-            return true; 
+            return true;
         }
 
         /// <summary>

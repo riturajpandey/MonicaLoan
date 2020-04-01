@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models.Payments;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -105,10 +106,20 @@ namespace MonicaLoanApp.ViewModels.Payments
         //TODO : To Call Api To Get All Payments...
         public async Task GetAllPayments()
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralAllPaymentResponse))
+            {
+                var a = Helpers.Settings.GeneralAllPaymentResponse;
+                var allUserPayment = JsonConvert.DeserializeObject<PaymentSearchResponseModel>(a);
+                if (allUserPayment != null)
+                {
+                    PaymentList = new ObservableCollection<Payment>(allUserPayment.payments);  
+                }
+            }
             //Call api..
             try
             {
-                UserDialogs.Instance.ShowLoading();
+                if (string.IsNullOrEmpty(Helpers.Settings.GeneralAllPaymentResponse))
+                    UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>

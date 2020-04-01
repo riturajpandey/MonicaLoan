@@ -423,6 +423,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + request.loannumber);
                 var result = _apiProvider.Post<LoanSearchResponseModel, LoanSearchRequestModel>(url, request, dic);
                 var response = result.Result;
+                Helpers.Settings.GeneralUserLoanDetailResponse = response.RawResult;
                 LoanSearchResponseModel objres = null;
                 dynamic obj = "";
                 LoanSearchResponseModel reg = new LoanSearchResponseModel();
@@ -465,6 +466,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret + Helpers.Settings.GeneralLoanNumber);
                 var result = _apiProvider.Post<AllLoanResponseModel, AllLoanRequestModel>(url, request, dic);
                 var response = result.Result;
+                Helpers.Settings.GeneralAllLoanResponse = response.RawResult; 
                 AllLoanResponseModel objres = null;
                 dynamic obj = "";
                 AllLoanResponseModel reg = new AllLoanResponseModel();
@@ -593,6 +595,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<PaymentSearchResponseModel, PaymentSearchRequestModel>(url, request, dic); 
                 var response = result.Result;
+                Helpers.Settings.GeneralAllPaymentResponse = response.RawResult;
                 PaymentSearchResponseModel objres = null;
                 dynamic obj = "";
                 PaymentSearchResponseModel reg = new PaymentSearchResponseModel();
@@ -637,6 +640,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<ProfileGetResponseModel, ProfileGetRequestModel>(url, request, dic);
                 var response = result.Result;
+                Helpers.Settings.GeneralUserProfileResponse = response.RawResult; 
                 ProfileGetResponseModel objres = null;
                 dynamic obj = "";
                 ProfileGetResponseModel reg = new ProfileGetResponseModel();

@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using MonicaLoanApp.Models;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         public Personal_DetailsVM(INavigation nav)
         {
             Navigation = nav;
-            SaveCommand = new Command(SaveCommandAsync); 
+            SaveCommand = new Command(SaveCommandAsync);
         }
 
 
@@ -159,9 +160,9 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             var alertConfig = new AlertConfig
                                             {
                                                 Title = "Alert",
-                                                Message = "Your personal details updated successfully!", 
+                                                Message = "Your personal details updated successfully!",
                                                 OkText = "OK",
-                                                OnAction = () => 
+                                                OnAction = () =>
                                                 {
                                                     App.Current.MainPage = new Views.MyAccount.MyAccountPage();
                                                 }
@@ -208,11 +209,48 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <returns></returns>
         public async Task GetProfile()
         {
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralUserProfileResponse))
+            {
+                var b = Helpers.Settings.GeneralUserProfileResponse;
+                var userDetail = JsonConvert.DeserializeObject<ProfileGetResponseModel>(b);
+                if (userDetail != null)
+                {
+                    Helpers.Constants.UserLoanbalance = userDetail.loanbalance;
+                    Helpers.Constants.UserDuebalance = userDetail.duesoon;
+                    Helpers.Constants.UserBvn = userDetail.bvn;
+                    Helpers.Constants.UserCity = userDetail.city;
+                    Helpers.Constants.UserBankname = userDetail.bankname;
+                    Helpers.Constants.UserBankcode = userDetail.bankcode;
+                    Helpers.Constants.UserAddressline1 = userDetail.addressline1;
+                    Helpers.Constants.UserAddressline2 = userDetail.addressline2;
+                    Helpers.Constants.UserBankaccountno = userDetail.bankaccountno;
+                    Helpers.Constants.UserDateofbirth = userDetail.dateofbirth;
+                    Helpers.Constants.UserEmailAddress = userDetail.emailaddress;
+                    Helpers.Constants.UserEmployeenumber = userDetail.employeenumber;
+                    Helpers.Constants.UserEmployercode = userDetail.employercode;
+                    Helpers.Constants.UserEmployername = userDetail.employername;
+                    Helpers.Constants.UserFirstname = userDetail.firstname;
+                    Helpers.Constants.UserMiddlename = userDetail.middlename;
+                    Helpers.Constants.UserLastname = userDetail.lastname;
+                    Helpers.Constants.Usermobileno = userDetail.mobileno;
+                    Helpers.Constants.Userprofilepic = userDetail.profilepic;
+                    Helpers.Constants.UserMaritalstatus = userDetail.maritalstatus;
+                    Helpers.Constants.UserSalary = userDetail.salary;
+                    Helpers.Constants.UserStateName = userDetail.statename;
+                    if (!string.IsNullOrEmpty(Helpers.Constants.UserStateName))
+                    {
+                        var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
+                        Helpers.Constants.UserStatecode = item.key;
+                    }
+                    Helpers.Constants.UserStartdate = userDetail.startdate;
+                    Helpers.Constants.Usergender = userDetail.gender;
+                }
+            }
             //Call api..
             try
             {
-                //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading();
+                if (string.IsNullOrEmpty(Helpers.Settings.GeneralUserProfileResponse))
+                    UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -260,7 +298,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                                 var item = Helpers.Constants.StaticDataList.Where(a => a.data == Helpers.Constants.UserStateName).FirstOrDefault();
                                                 Helpers.Constants.UserStatecode = item.key;
                                             }
-                                           
+
                                             Helpers.Constants.UserStartdate = requestList.startdate;
                                             Helpers.Constants.Usergender = requestList.gender;
 

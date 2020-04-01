@@ -29,7 +29,6 @@ namespace MonicaLoanApp
                 App.masterDetailPage.Detail = new NavigationPage(new YourLoanBalancePage());
                 App.Current.MainPage = App.masterDetailPage;
             }
-
         }
 
         protected override void OnStart()

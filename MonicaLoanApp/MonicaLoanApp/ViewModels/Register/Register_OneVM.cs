@@ -623,7 +623,7 @@ namespace MonicaLoanApp.ViewModels.Register
             if (!isValid2)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please use aphabet only");
+                UserDialogs.Instance.Alert("Please use aphabet only");                             
                 return false;
             }
             //if (string.IsNullOrEmpty(MiddleName))

@@ -32,6 +32,17 @@ namespace MonicaLoanApp.Helpers
         private const string StaticDataResponse = "StaticDataResponse";
         private static readonly string StaticDataResponseDefault = string.Empty;
 
+        private const string UserProfileResponse = "UserProfileResponse";
+        private static readonly string UserProfileResponseDefault = string.Empty;
+
+        private const string AllLoanResponse = "AllLoanResponse";
+        private static readonly string AllLoanResponseDefault = string.Empty;
+
+        private const string UserLoanDetailResponse = "UserLoanDetailResponse";
+        private static readonly string UserLoanDetailResponseDefault = string.Empty;
+
+        private const string AllPaymentResponse = "AllPaymentResponse";
+        private static readonly string AllPaymentResponseDefault = string.Empty;
 
         public static string GeneralAccessToken
         {
@@ -55,6 +66,55 @@ namespace MonicaLoanApp.Helpers
                 AppSettings.AddOrUpdateValue(StaticDataResponse, value);
             }
         }
+
+        public static string GeneralUserProfileResponse
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserProfileResponse, UserProfileResponseDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserProfileResponse, value);
+            }
+        }
+
+        public static string GeneralAllLoanResponse
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(AllLoanResponse, AllLoanResponseDefault); 
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(AllLoanResponse, value);
+            }
+        }
+
+        public static string GeneralUserLoanDetailResponse
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserLoanDetailResponse, UserLoanDetailResponseDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserLoanDetailResponse, value);
+            }
+        }
+
+        public static string GeneralAllPaymentResponse
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(AllPaymentResponse, AllPaymentResponseDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(AllPaymentResponse, value);
+            }
+        }
+
         public static string GeneralLoanNumber
         {
             get

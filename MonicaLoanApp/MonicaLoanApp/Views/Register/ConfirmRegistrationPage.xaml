@@ -49,8 +49,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/> 
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0">
                                 <Grid.RowDefinitions>
@@ -61,6 +60,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="10"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
                                 <!--Page Count Section-->
                                 <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
@@ -96,11 +96,24 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="token_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding RegisterToken}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Token" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding RegisterToken}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" 
+                                                           VerticalOptions="CenterAndExpand" Placeholder="Enter Token" Style="{StaticResource SecondryEntry}" 
+                                                           Grid.Column="1" MaxLength="30"/>
                                     </Grid>
                                 </local:CustomFrameForOpacity>
                                 <!--LoginButton Section-->
                                 <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Finish" Style="{StaticResource PrimaryButton}" Command="{Binding FinishCommand}" Grid.Row="6" Margin="5,0,5,0"></local:CustomButton>
+                                <Grid x:Name="GrdResendLink" Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,0,50,0" IsVisible="False">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ResendCodeCommand}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Label Text="Resend Code" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                               TextColor="{StaticResource MediumLblGrayColor}" FontSize="15" />
+                                </Grid>
+                                <Grid x:Name="GrdCountDown" Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,0,50,0">
+                                    <Label x:Name="LblCountDown" Text="60" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                               TextColor="{StaticResource MediumLblGrayColor}" FontSize="13" />
+                                </Grid>
                             </Grid>
                         </Grid>
                     </ScrollView>

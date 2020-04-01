@@ -20,6 +20,7 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
         public event EventHandler DialogShow;
         public event EventHandler DialogClosing;
         public event EventHandler DialogShowing;
+        int TapCount = 0;
         public SubmittedLoanApplicationPopup()
         {
             InitializeComponent();
@@ -107,8 +108,12 @@ namespace MonicaLoanApp.Views.Popup.LoanApplication
 
         private void CustomButton_Clicked(object sender, EventArgs e)
         {
-            HideDialog();
-            App.Current.MainPage = new Views.Loans.LoanDetailsPage();
+            if (TapCount == 0)
+            {
+                TapCount++;
+                HideDialog();
+                App.Current.MainPage = new Views.Loans.LoanDetailsPage();
+            }
         }
     }
 }

@@ -63,7 +63,7 @@ namespace MonicaLoanApp.Views.Payments
         {
             if (MakePaymentVM.LoanNumber == "Select loan")
             {
-                UserDialogs.Instance.Alert("Please select loan.", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please select loan.", "", "Ok");
                 return;
             }
             else
@@ -145,8 +145,6 @@ namespace MonicaLoanApp.Views.Payments
 
         //    }
         //}
-        #endregion
-
-
+        #endregion 
     }
 }

@@ -1,4 +1,6 @@
-﻿using MonicaLoanApp.ViewModels;
+﻿using Acr.UserDialogs;
+using MonicaLoanApp.Interfaces;
+using MonicaLoanApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,15 +37,34 @@ namespace MonicaLoanApp.Views.Login
         }
         #endregion
 
-        //private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushModalAsync(new Views.Register.Register_One());
-        //}
+        #region Event Hanlders
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             LoginVm.IsPageEnable = true;
+            LoginVm.TapCount = 0;
+            LoginVm.TapCount1 = 0;
+            Helpers.Constants.IsVerifyToken = false;
         }
+
+        //TODO : To Define Device Back Button Tapped Event...
+        protected override bool OnBackButtonPressed()
+        {
+            CloseApp();
+            return true;
+        }
+
+        //TODO : To Define Close App Event...
+        public async void CloseApp()
+        {
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to exit the app?", null, "No", "Yes");
+            var text = (res ? "No" : "Yes");
+            if (text == "Yes")
+            {
+                DependencyService.Get<ICloseAppService>().CloseApp();
+            }
+        }
+        #endregion
     }
 }

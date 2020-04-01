@@ -34,6 +34,8 @@ namespace MonicaLoanApp.Views.Payments
         protected async override void OnAppearing() 
         {
             base.OnAppearing();
+            PaymentVM.TapCount = 0;
+            PaymentVM.TapCount1 = 0;
             PaymentVM.IsPageEnable = true;
             await PaymentVM.GetAllPayments();
         }

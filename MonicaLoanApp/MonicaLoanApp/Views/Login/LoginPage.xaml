@@ -17,18 +17,19 @@
                     <magic:LinearGradient Angle="0">
                         <magic:GradientStop Color="{StaticResource DarkGradientColour}" Offset="0" />
                         <magic:GradientStop Color="{StaticResource LightGradientColour}" Offset="1" />
-                    </magic:LinearGradient>   
+                    </magic:LinearGradient>
                 </magic:GradientView.GradientSource>
             </magic:GradientView>
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0,25,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!--Login Section-->
-                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="25,0,25,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Login Section-->
+                    <Grid  Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="25"/>
@@ -38,9 +39,8 @@
                             <RowDefinition Height="15"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="15"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="20"/>
                         </Grid.RowDefinitions>
                         <!--Icon of Application-->
                         <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="60,0,60,0">
@@ -54,7 +54,9 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="mailwhite.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                                <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                                                   Placeholder="Email Address" Style="{StaticResource PrimaryEntry}" Grid.Column="1"
+                                                   MaxLength="100"/>
                             </Grid>
                         </local:CustomFrameForOpacity>
                         <!--Password Section-->
@@ -66,13 +68,15 @@
                                     <ColumnDefinition Width="20"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                <local:CustomEntry Text="{Binding Password}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" />
+                                <local:CustomEntry Text="{Binding Password}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" 
+                                                   VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource PrimaryEntry}" Grid.Column="1" 
+                                                   MaxLength="50"/>
                                 <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding PasswordCommand}"/>
                                     </Grid.GestureRecognizers>
-                                    <Image Source="view_hide.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                    <Image Source="vieww.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="vieww.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="view_hide.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                             </Grid>
                         </local:CustomFrameForOpacity>
@@ -85,16 +89,23 @@
                             </Grid.GestureRecognizers>
                             <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Forgot Password?" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource ForgotPasswordTxtClr}"/>
                         </Grid>
-                        <!--RegisterButton-->
-                        <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Register}"/>
-                            </Grid.GestureRecognizers>
-                            <Label HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Text="Register" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource AppWhiteColor}"/>
-                        </Grid>
+
                     </Grid>
-                </ScrollView>
-            </Grid>
+
+                    <!--RegisterButton-->
+                    <Grid Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Margin="0,0,0,20" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Register}"/>
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="New to Moni'ca?" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource SeparatorGrayColour}"/>
+                        <Label Grid.Column="1" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Text="SIGN UP" BackgroundColor="{StaticResource TransparentColor}" FontSize="15"  TextColor="{StaticResource AppWhiteColor}"/>
+                    </Grid>
+                </Grid>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

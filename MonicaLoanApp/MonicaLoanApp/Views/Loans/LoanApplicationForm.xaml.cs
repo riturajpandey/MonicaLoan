@@ -35,7 +35,7 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Helpers.Constants.PageCount = 0;
+            Helpers.Constants.PageCount = 0; 
             await LoanApplication_Form.StaticDataSearch();
         }
         #endregion
@@ -137,10 +137,6 @@ namespace MonicaLoanApp.Views.Loans
         {
             PckPurpose.Focus();
         }
-        #endregion
-
-
-
-
+        #endregion 
     }
 }

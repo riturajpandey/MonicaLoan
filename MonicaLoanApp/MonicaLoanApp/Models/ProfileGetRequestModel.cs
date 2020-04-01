@@ -12,6 +12,7 @@ namespace MonicaLoanApp.Models
     {
         public int responsecode { get; set; }
         public string responsemessage { get; set; }
+        public string profilenumber { get; set; }
         public string loanbalance { get; set; }
         public string duesoon { get; set; }
         public string firstname { get; set; }

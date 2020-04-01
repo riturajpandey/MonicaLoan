@@ -18,6 +18,7 @@ namespace MonicaLoanApp.Views.Help
     {
         //TODO: To define Class level variable...
         protected HelpPageVM HelpVM;
+        int TapCount = 0;
         #region Constructor
         public HelpPage()
         {
@@ -37,9 +38,13 @@ namespace MonicaLoanApp.Views.Help
         /// <param name="e"></param>
         private async void LoanDetail_Tapped(object sender, EventArgs e)
         {
-            var item = (sender as Grid).BindingContext as Staticdata;
-            if (item != null)
-                await Navigation.PushModalAsync(new Views.Help.DebitCardQueries(item));
+            if (TapCount == 0)
+            {
+                TapCount++;
+                var item = (sender as Grid).BindingContext as Staticdata;
+                if (item != null)
+                    await Navigation.PushModalAsync(new Views.Help.DebitCardQueries(item));
+            }
         }
         #endregion
 
@@ -47,6 +52,7 @@ namespace MonicaLoanApp.Views.Help
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            TapCount = 0; 
             Helpers.Constants.PageCount = 0;
             await HelpVM.StaticDataSearch();
         }

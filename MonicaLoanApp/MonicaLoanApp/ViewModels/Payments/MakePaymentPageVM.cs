@@ -241,7 +241,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Currently you have no loans to make payment.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Currently you have no loans to make payment.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -250,7 +250,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -259,7 +259,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -296,7 +296,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -305,7 +305,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -314,7 +314,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -358,7 +358,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                         UserDialogs.Instance.HideLoading();
                                         var alertConfig = new AlertConfig
                                         {
-                                            Title = "Alert", 
+                                            Title = "", 
                                             Message = "Payment created successfully!",   
                                             OkText = "OK",
                                             OnAction = () =>
@@ -371,7 +371,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -380,7 +380,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -389,7 +389,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -405,25 +405,25 @@ namespace MonicaLoanApp.ViewModels.Payments
             if (LoanNumber == "Select loan")
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please select loan.", "Alert", "Ok"); 
+                UserDialogs.Instance.Alert("Please select loan.", "", "Ok"); 
                 return false;
             }
             if (LoanSchedule == "Select schedule")
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please select schedule", "Alert", "Ok"); 
+                UserDialogs.Instance.Alert("Please select schedule", "", "Ok"); 
                 return false;
             }
             if (string.IsNullOrEmpty(Amount))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter amount.", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please enter amount.", "", "Ok");
                 return false; 
             } 
             if(Convert.ToInt32(Amount) > (Convert.ToInt32(LoanAmount)))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Invalid amount", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Invalid amount", "", "Ok");
                 return false;
             }
             return true; 

@@ -58,8 +58,6 @@ namespace MonicaLoanApp.Views.MyAccount
                 AddressVM.State = pckstate.Items[pckstate.SelectedIndex];
             } 
         }
-        #endregion
-
-
+        #endregion 
     }
 }

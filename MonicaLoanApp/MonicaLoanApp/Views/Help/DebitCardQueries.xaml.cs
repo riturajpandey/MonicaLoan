@@ -27,8 +27,7 @@ namespace MonicaLoanApp.Views.Help
             this.BindingContext = DebitCardVM;
             _helpListModel = helpListModel;
             DebitCardVM.key = _helpListModel.key;
-            DebitCardVM.data = _helpListModel.data;
-
+            DebitCardVM.data = _helpListModel.data; 
         }
         #endregion
     }

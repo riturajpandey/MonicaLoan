@@ -98,11 +98,12 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                                                           Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" MaxLength="100"/>
                                     </Grid>
                                 </local:CustomFrameForOpacity>
                                 <!--LoginButton Section-->
-                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Submit" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="5" Margin="5,0,5,0"></local:CustomButton>
+                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding SubmitCommand}" Grid.Row="5" Margin="5,0,5,0"></local:CustomButton>
                             </Grid>
                         </Grid>
                     </ScrollView>

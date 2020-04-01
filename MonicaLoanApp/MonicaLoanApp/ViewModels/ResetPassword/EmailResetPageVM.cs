@@ -61,7 +61,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
             try
             {
                 //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -88,11 +88,9 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                         }
                                         else
                                         {
-                                           await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
+                                           await App.Current.MainPage.DisplayAlert("", requestList.responsemessage, "Ok");
                                         }
-                                    }
-                                    
-
+                                    } 
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>
@@ -100,7 +98,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -109,7 +107,7 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -128,15 +126,15 @@ namespace MonicaLoanApp.ViewModels.ResetPassword
                 UserDialog.Alert("Please enter your email address.");
                 return false;
             }
-            if (Email.Length <= 5 && Email.Length >= 100)
+            if (Email.Length < 6 || Email.Length > 100)
             {
-                UserDialog.Alert("Email should contain at least 5 charcter.");
+                UserDialog.Alert("Email length should be between 6 - 100 charcters.");
                 return false;
             }
             bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {
-                UserDialogs.Instance.Alert("Please enter valid email", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please enter valid email", "", "Ok");
                 return false;
             }
             return true;

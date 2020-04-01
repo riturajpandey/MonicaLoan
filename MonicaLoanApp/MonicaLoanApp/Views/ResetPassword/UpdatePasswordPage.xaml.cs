@@ -16,6 +16,7 @@ namespace MonicaLoanApp.Views.ResetPassword
     public partial class UpdatePasswordPage : ContentPage
     {
         protected UpdatePasswordPageVm NewPasswordVM;
+        int countdown = 60;
 
         #region Constructor
         public UpdatePasswordPage(string Email)
@@ -26,11 +27,57 @@ namespace MonicaLoanApp.Views.ResetPassword
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             NewPasswordVM = new UpdatePasswordPageVm(this.Navigation, Email);
             this.BindingContext = NewPasswordVM;
+
+
+            LblCountDown.Text = countdown.ToString() + " Seconds";
+
+            //To restart countdown...
+            MessagingCenter.Subscribe<string>(this, "StartCountDown", (sender) =>
+            {
+                LblCountDown.Text = countdown.ToString() + " Seconds";
+                GrdCountDown.IsVisible = true;
+                GrdResendLink.IsVisible = false;
+
+                Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
+                {
+                    bool IsRepeat = true;
+                    countdown = countdown - 1;
+                    LblCountDown.Text = countdown.ToString() + " Seconds";
+
+                    if (countdown == 0)
+                    {
+                        IsRepeat = false;
+                        countdown = 60;
+                        GrdCountDown.IsVisible = false;
+                        GrdResendLink.IsVisible = true;
+                    }
+                    return IsRepeat;
+                });
+            });
+        }
+
+        #region Event Handler
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
+            {
+                bool IsRepeat = true;
+                countdown = countdown - 1;
+                LblCountDown.Text = countdown.ToString() + " Seconds";
+
+                if (countdown == 0)
+                {
+                    IsRepeat = false;
+                    countdown = 60;
+                    GrdCountDown.IsVisible = false;
+                    GrdResendLink.IsVisible = true;
+                }
+                return IsRepeat;
+            });
         }
         #endregion
-        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        //{
-        //    Navigation.PopModalAsync();
-        //}
+        #endregion 
     }
 }

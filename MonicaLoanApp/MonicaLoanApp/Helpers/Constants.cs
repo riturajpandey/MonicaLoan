@@ -23,7 +23,12 @@ namespace MonicaLoanApp.Helpers
         public static string PartImageBase64 = string.Empty;
         public static string LoanSubmitSms = string.Empty;
 
+
+        //To maintain Registration constants
+        public static bool IsVerifyToken = false;
+
         //To maintain variable for user get profile data...
+        public static string ProfileNumber = string.Empty;
         public static string UserLoanbalance = string.Empty;
         public static string UserDuebalance = string.Empty;
         public static string UserFirstname = string.Empty;

@@ -14,8 +14,7 @@ namespace MonicaLoanApp.ViewModels.Loans
 {
     public class LoanApplicationPageVM : BaseViewModel
     {
-        public List<string> ContextMenu = new List<string>();
-
+        public List<string> ContextMenu = new List<string>(); 
 
         #region  Constructor
         public LoanApplicationPageVM(INavigation nav)
@@ -246,7 +245,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -255,7 +254,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -264,7 +263,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -301,7 +300,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                         UserDialogs.Instance.HideLoading();
                                         var alertConfig = new AlertConfig
                                         {
-                                            Title = "Alert",
+                                            Title = "",
                                             Message = "Your loan responded successfully!",
                                             OkText = "OK",
                                             OnAction = () =>
@@ -314,7 +313,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -323,7 +322,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -332,7 +331,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)

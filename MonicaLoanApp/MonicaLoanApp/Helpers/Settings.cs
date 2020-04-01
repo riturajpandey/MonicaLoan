@@ -66,6 +66,26 @@ namespace MonicaLoanApp.Helpers
                 AppSettings.AddOrUpdateValue(LoanNumber, value);
             }
         }
+
+
+        #region JSONS
+
+        private const string ProfileData = "ProfileData";
+        private static readonly string ProfileDataDefault = string.Empty;
+
+        public static string GeneralProfileDataJSON
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ProfileData, ProfileDataDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ProfileData, value);
+            }
+        }
+        #endregion
+
         //public static string UserLoanBalance
         //{
         //    get

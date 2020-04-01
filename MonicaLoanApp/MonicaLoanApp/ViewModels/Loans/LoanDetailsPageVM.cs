@@ -13,7 +13,8 @@ namespace MonicaLoanApp.ViewModels.Loans
 {
     public class LoanDetailsPageVM : BaseViewModel
     {
-       
+        public int TapCount = 0;
+
         #region  Constructor
         public LoanDetailsPageVM(INavigation nav)
         {
@@ -146,7 +147,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -155,7 +156,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -178,8 +179,12 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnPlusAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
+            if (TapCount == 0)
+            {
+                TapCount++;
+                IsPageEnable = false;
+                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
+            }
         }
 
         #endregion

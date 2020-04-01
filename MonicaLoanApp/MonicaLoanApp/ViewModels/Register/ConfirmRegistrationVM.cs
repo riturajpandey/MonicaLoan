@@ -21,6 +21,7 @@ namespace MonicaLoanApp.ViewModels.Register
             Email = email;
             FinishCommand = new Command(FinishCommandAsync);
             BckCommand = new Command(BckCommandAsync);
+            ResendCodeCommand = new Command(ResendCodeAsync);
         }
         //For cancel user registration varification...
         private async void BckCommandAsync(object obj)
@@ -53,8 +54,10 @@ namespace MonicaLoanApp.ViewModels.Register
         #region Commands 
         public Command FinishCommand { get; set; }
         public Command BckCommand { get; set; }
+        public Command ResendCodeCommand { get; set; }
 
         #endregion
+
         #region Methods
 
         /// <summary>
@@ -68,7 +71,11 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialog.Alert("Please enter your token.");
                 return false;
             }
-
+            if(RegisterToken.Length <5 || RegisterToken.Length >30)
+            {
+                UserDialog.Alert("Token length should be between 5-30.");
+                return false;
+            }
             return true;
         }
         private async void FinishCommandAsync(object obj)
@@ -79,7 +86,7 @@ namespace MonicaLoanApp.ViewModels.Register
             try
             {
                 //Call AccessRegisterActivate Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -101,12 +108,12 @@ namespace MonicaLoanApp.ViewModels.Register
                                     {
                                         if (requestList.responsecode == 100)
                                         {
-                                            UserDialog.Alert("Congratulations! You are registered successfully.!", "Success", "Ok");
+                                            UserDialog.Alert("Congratulations! You are registered successfully.!", "", "Ok");
                                             App.Current.MainPage = new Views.Login.LoginPage(Email);
                                         }
                                         else
                                         {
-                                             UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "OK");
+                                             UserDialogs.Instance.Alert(requestList.responsemessage, "", "OK");
                                             // await App.Current.MainPage.DisplayAlert("Alert", requestList.responsemessage, "Ok");
                                         }
                                     }
@@ -117,7 +124,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -126,12 +133,69 @@ namespace MonicaLoanApp.ViewModels.Register
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
         }
+
+        /// <summary>
+        /// TODO : To Perform Resend Code Operation...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void ResendCodeAsync(object obj)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        if (_businessCode != null)
+                        {
+                            await _businessCode.AccessPasswordResendCodeApi(new ResendCodeRequestModel()
+                            {
+                                emailaddress = Email,
+                            }, async (objs) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (objs as AccessPasswordChangeResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
+                                        Xamarin.Forms.MessagingCenter.Send<string>("", "StartCountDown");
+                                    }
+                                });
+                            }, (objj) =>
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    var requestList = (obj as AccessPasswordChangeResponseModel);
+                                    if (requestList != null)
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
+                                    }
+                                });
+                            });
+                        }
+                    }).ConfigureAwait(false);
+                }
+                else
+                {
+                    UserDialogs.Instance.Loading().Hide();
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialog.HideLoading();
+            } 
+        } 
         #endregion
     }
 }

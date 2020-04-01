@@ -31,6 +31,8 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            YourLoanBalancePagevm.TapCount1 = 0;
+            YourLoanBalancePagevm.TapCount2 = 0;
             Helpers.Constants.PageCount = 0;
             await YourLoanBalancePagevm.GetProfile();
             //YourLoanBalancePagevm.LoanAmount = "N"+ Helpers.Constants.UserLoanbalance;
@@ -38,7 +40,6 @@ namespace MonicaLoanApp.Views.Loans
             YourLoanBalancePagevm.LoanAmount = String.Format("{0:n0}", Convert.ToInt32(Helpers.Constants.UserLoanbalance));
             YourLoanBalancePagevm.DueAmount = String.Format("{0:n0}", Convert.ToInt32(Helpers.Constants.UserDuebalance));
         }
-        #endregion
-
+        #endregion 
     }
 }

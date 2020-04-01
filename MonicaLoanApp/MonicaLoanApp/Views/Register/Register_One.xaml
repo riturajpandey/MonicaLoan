@@ -106,7 +106,9 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding FirstName}" Keyboard="Text"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry x:Name="TxtFName" Text="{Binding FirstName}" Keyboard="Text"  HorizontalOptions="FillAndExpand" 
+                                                           VerticalOptions="CenterAndExpand" Placeholder="First Name" Style="{StaticResource SecondryEntry}" 
+                                                           Grid.Column="1" MaxLength="30" TextChanged="TxtFName_TextChanged"/>
                                     </Grid>
                                 </Frame>
                                 <!--MiddleName Section-->
@@ -117,7 +119,9 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding MiddleName}" Keyboard="Text" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry x:Name="TxtMName" Text="{Binding MiddleName}" Keyboard="Text" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
+                                                           Placeholder="Middle Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" 
+                                                           MaxLength="30" TextChanged="TxtMName_TextChanged"/>
                                     </Grid>
                                 </Frame>
 
@@ -129,7 +133,9 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="userblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding LastName}" Keyboard="Text" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry x:Name="TxtLName" Text="{Binding LastName}" Keyboard="Text" HorizontalOptions="FillAndExpand" 
+                                                           VerticalOptions="CenterAndExpand" Placeholder="Last Name" Style="{StaticResource SecondryEntry}" 
+                                                           Grid.Column="1" MaxLength="30" TextChanged="TxtLName_TextChanged"/>
                                     </Grid>
                                 </Frame>
                                 <!--Email Section-->
@@ -140,7 +146,8 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="mailblk.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding Email}" Keyboard="Email" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
+                                                           Placeholder="Email Address" Style="{StaticResource SecondryEntry}" Grid.Column="1" MaxLength="100"/>
                                     </Grid>
                                 </Frame>
 
@@ -153,13 +160,14 @@
                                             <ColumnDefinition Width="20"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="lock.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding Password}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
+                                        <local:CustomEntry Text="{Binding NewPassword}" IsPassword="{Binding IsPassword}" HorizontalOptions="FillAndExpand" MaxLength="50"
+                                                           VerticalOptions="CenterAndExpand" Placeholder="Password" Style="{StaticResource SecondryEntry}" Grid.Column="1" />
                                         <Grid Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-5,0,0,0">
                                             <Grid.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding PasswordCommand}"/>
                                             </Grid.GestureRecognizers>
-                                            <Image Source="view_hide_black.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                            <Image Source="view_black.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Image Source="view_black.png" IsVisible="{Binding IsPasswordShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Image Source="view_hide_black.png" IsVisible="{Binding IsPasswordNotShow}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         </Grid>
                                     </Grid>
                                 </Frame>
@@ -175,7 +183,7 @@
                                     </Grid>
                                 </Frame>
                                 <!--LoginButton Section-->
-                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Next" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" Grid.Row="14" Margin="5,0,5,0"></local:CustomButton>
+                                <local:CustomButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="Continue" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" Grid.Row="14" Margin="5,0,5,0"></local:CustomButton>
                             </Grid>
                         </Grid>
                     </ScrollView>
@@ -241,7 +249,8 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="iphone.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <local:CustomEntry Text="{Binding Number}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="e.g. 08091234567" Style="{StaticResource SecondryEntry}" Grid.Column="1"/>
+                                        <local:CustomEntry Text="{Binding Number}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                                                           Placeholder="e.g. 08091234567" Style="{StaticResource SecondryEntry}" Grid.Column="1" MaxLength="15"/>
                                     </Grid>
                                 </Frame>
                                 <!--Gender Section-->
@@ -340,7 +349,8 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="id.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="30"/>
-                                        <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter Account Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" Margin="-10,0,0,0"/>
+                                        <local:CustomEntry Text="{Binding AccountNumber}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
+                                                           Placeholder="Enter Account Number" Style="{StaticResource SecondryEntry}" Grid.Column="1" Margin="-10,0,0,0" MaxLength="10"/>
                                     </Grid>
                                 </Frame>
                                 <!--NextButton Section-->

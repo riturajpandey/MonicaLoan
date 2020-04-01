@@ -16,11 +16,13 @@ namespace MonicaLoanApp.ViewModels.Register
     public class Register_OneVM : BaseViewModel
     {
         //TODO : To Define Local Class Level Variables..
+        private const string _name = @"^(?=.*?[0-9])(?=.*?[#?!@$%^&*-])$";
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
         //private const string _NewPasswordRegex = @"^(?=.*[A-Z|0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Z|0-9\d$@$!%*#?&]{6,}$";
         private const string _NewFrstname = @"^[a-zA-Z]+$";
-       // private const string _NewMiddlename = @"^[a-zA-Z]+$";
+        // private const string _NewMiddlename = @"^[a-zA-Z]+$";
         private const string _NewLastname = @"^[a-zA-Z]+$";
+        private const string _password = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$";
         #region Constructor
         public Register_OneVM(INavigation nav)
         {
@@ -346,10 +348,63 @@ namespace MonicaLoanApp.ViewModels.Register
             }
             else
             {
-                FirstGrid = false;
-                SecondGrid = true;
+                //Call api..
+                try
+                {
+                    //Call AccessRegisterPreValidate Api..  
+                    UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await Task.Run(async () =>
+                        {
+                            if (_businessCode != null)
+                            {
+                                await _businessCode.AccessRegisterPreValidateApi(new AccessRegisterPreValidateRequestModel()
+                                {
+                                    emailaddress = Email,
+                                    bvn = BusinessNumber
+                                },
+                                async (resobj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        var requestList = (resobj as AccessRegisterPreValidateResponseModel);
+                                        if (requestList != null)
+                                        {
+                                            if (requestList.responsemessage == "Validation Successful")
+                                            {
+                                                FirstGrid = false;
+                                                SecondGrid = true;
+                                            }
+                                            else
+                                            {
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "", "Ok");
+                                            }
+                                        }
+                                        UserDialog.HideLoading();
+                                    });
+                                }, (objj) =>
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        UserDialog.HideLoading();
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
+                                    });
+                                });
+                            }
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Loading().Hide();
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
+                    }
+                }
+                catch (Exception ex)
+                { UserDialog.HideLoading(); }
             }
         }
+
         /// <summary>
         /// TODO: Define SecondNextCommand validation...
         /// </summary>
@@ -360,58 +415,59 @@ namespace MonicaLoanApp.ViewModels.Register
             FirstGrid = false;
             SecondGrid = true;
             //Call api..
-            try
-            {
-                //Call AccessRegisterPreValidate Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    await Task.Run(async () =>
-                    {
-                        if (_businessCode != null)
-                        {
-                            await _businessCode.AccessRegisterPreValidateApi(new AccessRegisterPreValidateRequestModel()
-                            {
-                                emailaddress = Email,
-                                bvn = BusinessNumber
-                            },
-                            async (resobj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var requestList = (resobj as AccessRegisterPreValidateResponseModel);
-                                    if (requestList != null)
-                                    {
-                                        if (requestList.responsemessage == "Validation Successful")
-                                        {
-                                            await AccessRegister();
-                                        }
-                                        else
-                                        {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "Ok");
-                                        }
-                                    }
-                                    UserDialog.HideLoading();
-                                });
-                            }, (objj) =>
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
-                                });
-                            });
-                        }
-                    }).ConfigureAwait(false);
-                }
-                else
-                {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
-                }
-            }
-            catch (Exception ex)
-            { UserDialog.HideLoading(); }
+            await AccessRegister();
+            //try
+            //{
+            //    //Call AccessRegisterPreValidate Api..  
+            //    UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
+            //    if (CrossConnectivity.Current.IsConnected)
+            //    {
+            //        await Task.Run(async () =>
+            //        {
+            //            if (_businessCode != null)
+            //            {
+            //                await _businessCode.AccessRegisterPreValidateApi(new AccessRegisterPreValidateRequestModel()
+            //                {
+            //                    emailaddress = Email,
+            //                    bvn = BusinessNumber
+            //                },
+            //                async (resobj) =>
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        var requestList = (resobj as AccessRegisterPreValidateResponseModel);
+            //                        if (requestList != null)
+            //                        {
+            //                            if (requestList.responsemessage == "Validation Successful")
+            //                            {
+            //                                await AccessRegister();
+            //                            }
+            //                            else
+            //                            {
+            //                                UserDialogs.Instance.Alert(requestList.responsemessage, "", "Ok");
+            //                            }
+            //                        }
+            //                        UserDialog.HideLoading();
+            //                    });
+            //                }, (objj) =>
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        UserDialog.HideLoading();
+            //                        UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
+            //                    });
+            //                });
+            //            }
+            //        }).ConfigureAwait(false);
+            //    }
+            //    else
+            //    {
+            //        UserDialogs.Instance.Loading().Hide();
+            //        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{ UserDialog.HideLoading(); }
         }
         /// <summary>
         /// TODO: Define FinishCommand validation...
@@ -436,7 +492,7 @@ namespace MonicaLoanApp.ViewModels.Register
             try
             {
                 //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -472,7 +528,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                         }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
 
                                         }
 
@@ -485,7 +541,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -494,7 +550,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -511,7 +567,7 @@ namespace MonicaLoanApp.ViewModels.Register
             try
             {
                 //Call AccessRegisterActivate Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -546,7 +602,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -555,7 +611,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -611,19 +667,19 @@ namespace MonicaLoanApp.ViewModels.Register
             if (string.IsNullOrEmpty(FirstName))
             {
                 UserDialog.HideLoading();
-                UserDialogs.Instance.Alert("Please enter First Name");
+                UserDialogs.Instance.Alert("Please enter First Name.");
                 return false;
             }
-            if (FirstName.Length >= 30)
+            if (FirstName.Length < 2 || FirstName.Length > 30)
             {
-                UserDialog.Alert("Token should contain less than 20 charcter.");
+                UserDialog.Alert("First name should bebetween 2 to 30 charachters.");
                 return false;
             }
             bool isValid2 = (Regex.IsMatch(FirstName, _NewFrstname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid2)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please use aphabet only");
+                UserDialogs.Instance.Alert("Invalid First name.");
                 return false;
             }
             //if (string.IsNullOrEmpty(MiddleName))
@@ -650,16 +706,16 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter Last Name");
                 return false;
             }
-            if (LastName.Length >= 30)
+            if (LastName.Length < 2 || LastName.Length > 30)
             {
-                UserDialog.Alert("Token should contain less than 20 charcter.");
+                UserDialog.Alert("Last name should bebetween 2 to 30 charachters.");
                 return false;
             }
             bool isValid3 = (Regex.IsMatch(LastName, _NewLastname, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please use aphabet only");
+                UserDialogs.Instance.Alert("Invalid Last Name.");
                 return false;
             }
             if (string.IsNullOrEmpty(Email))
@@ -668,9 +724,9 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter email.");
                 return false;
             }
-            if (Email.Length <= 5 && Email.Length >= 100)
+            if (Email.Length < 6 || Email.Length > 100)
             {
-                UserDialog.Alert("Email should contain at least 5 charcter.");
+                UserDialog.Alert("Email should be between 6 and 100 characters.");
                 return false;
             }
             bool isValid4 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
@@ -686,9 +742,16 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter password.");
                 return false;
             }
-            if (NewPassword.Length <= 6 && NewPassword.Length >= 50)
+            if (NewPassword.Length < 6 || NewPassword.Length > 50)
             {
-                UserDialog.Alert("Password should contain at least 6 charcter.");
+                UserDialog.Alert("Password should be between 6 and 50 characters.");
+                return false;
+            }
+            bool isvalid1 = (Regex.IsMatch(NewPassword, _password, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isvalid1)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Password must contain minimum 6 charachters and at least 1 letter, 1 number and 1 special character.", "", "Ok");
                 return false;
             }
             if (string.IsNullOrEmpty(BusinessNumber))
@@ -697,13 +760,7 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter Bvn Number.");
                 return false;
             }
-            //bool isvalid1 = (Regex.IsMatch(NewPassword, _NewPasswordRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-            //if (!isvalid1)
-            //{
-            //    UserDialogs.Instance.HideLoading();
-            //    UserDialogs.Instance.Alert("Password should contain at least 6 character.");
-            //    return false;
-            //}
+
             UserDialogs.Instance.HideLoading();
             return true;
         }
@@ -712,25 +769,65 @@ namespace MonicaLoanApp.ViewModels.Register
             if (string.IsNullOrEmpty(Number))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter Number.");
+                UserDialogs.Instance.Alert("Please enter Mobile Number.");
                 return false;
             }
             if (Number.Length >= 15)
             {
-                UserDialog.Alert("Number should contain less than 15 charcter.");
+                UserDialog.Alert("Mobile Number should contain less than 15 charcter.");
                 return false;
             }
+
+            if (string.IsNullOrEmpty(Gender))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter your Gender.");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(MaritalStatus))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter your Marrital Status.");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(DateOfBirth) || DateOfBirth == "Date of birth")
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter your Date Of Birth.");
+                return false;
+            }
+
+            var dob = Convert.ToDateTime(DateOfBirth);
+            var age = System.DateTime.Now.Year - dob.Year; 
+            if (age < 18)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("You must be 18 years or above to register.");
+                return false;
+            }
+             
+            if (string.IsNullOrEmpty(Bankcode))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please select Bank.");
+                return false;
+            }
+
             if (string.IsNullOrEmpty(AccountNumber))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Please enter AccountNumber.");
+                UserDialogs.Instance.Alert("Please enter Bank Account Number.");
                 return false;
             }
+
             if (AccountNumber.Length != 10)
             {
-                UserDialog.Alert("AccountNumber should contain exact 10 digit.");
+                UserDialog.Alert("Account Number should contain exact 10 digit.");
                 return false;
             }
+
             UserDialogs.Instance.HideLoading();
             return true;
         }

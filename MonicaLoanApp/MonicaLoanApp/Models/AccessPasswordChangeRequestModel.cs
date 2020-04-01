@@ -15,5 +15,8 @@ namespace MonicaLoanApp.Models
         public int responsecode { get; set; }
         public string responsemessage { get; set; }
     }
-
+    public class ResendCodeRequestModel
+    {
+        public string emailaddress { get; set; } 
+    }
 }

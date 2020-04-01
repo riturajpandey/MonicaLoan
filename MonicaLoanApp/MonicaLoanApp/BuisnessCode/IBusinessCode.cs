@@ -32,6 +32,7 @@ namespace MonicaLoanApp.BuisnessCode
         Task<AccessPasswordReminderResponseModel> AccessPasswordReminderApi(AccessPasswordReminderRequestModel request, Action<object> success, Action<object> failed);
         //StaticDataSearch Api ...
         Task<AccessPasswordChangeResponseModel> AccessPasswordChangeApi(AccessPasswordChangeRequestModel request, Action<object> success, Action<object> failed);
+        Task<AccessPasswordChangeResponseModel> AccessPasswordResendCodeApi(ResendCodeRequestModel request, Action<object> success, Action<object> failed);
         #endregion
 
         #region Logout

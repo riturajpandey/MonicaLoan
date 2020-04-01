@@ -8,6 +8,7 @@ namespace MonicaLoanApp.ViewModels.Loans
     public class LoanPageVM : BaseViewModel
     {
 
+        public int TapCount = 0;
         #region  Constructor
         public LoanPageVM(INavigation nav)
         {
@@ -42,7 +43,11 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// <param name="obj"></param>
         private async void OnPlusAsync(object obj)
         {
-            await Navigation.PushModalAsync(new Views.Loans.LoanDetailsPage());
+            if (TapCount == 0)
+            {
+                TapCount++;
+                await Navigation.PushModalAsync(new Views.Loans.LoanDetailsPage());
+            }
         }
 
         #endregion

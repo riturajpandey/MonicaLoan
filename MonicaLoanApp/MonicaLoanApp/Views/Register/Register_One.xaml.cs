@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -18,6 +19,10 @@ namespace MonicaLoanApp.Views.Register
     {
         //TODO: TO define class level variable
         protected Register_OneVM RegisterOneVM;
+        private const string _name = @"^(?=.*?[0-9])(?=.*?[#?!@$%^&*-])$";
+        private const string _name1 = @"^[0-9*#+]+$";
+        private const string _name3 = @"^[0-9#?!@$%^&*-+_]+$";
+        private const string _name2 = @"^[0-9-!@#$%*?]";
 
         #region constructor
         public Register_One()
@@ -30,6 +35,7 @@ namespace MonicaLoanApp.Views.Register
             this.BindingContext = RegisterOneVM;
         }
         #endregion
+     
         #region EventHandler
         protected async override void OnAppearing()
         {
@@ -37,7 +43,7 @@ namespace MonicaLoanApp.Views.Register
             Helpers.Constants.PageCount = 0;
             // await RegisterOneVM.AccessRegister();
             // await RegisterOneVM.AccessRegisterActivate();
-            await RegisterOneVM.StaticDataSearch();
+            await RegisterOneVM.StaticDataSearch(); 
         }
         #endregion
 
@@ -180,6 +186,44 @@ namespace MonicaLoanApp.Views.Register
         private void PckMaritalStatus_Tapped(object sender, EventArgs e)
         {
             PckMaritalStatus.Focus();
+        }
+
+        private void TxtFName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtFName.Text))
+            {
+                var a = TxtFName.Text[TxtFName.Text.Length - 1].ToString();
+                bool isValid2 = (Regex.IsMatch(TxtFName.Text[TxtFName.Text.Length-1].ToString(), _name3, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                if (isValid2)
+                {
+                    TxtFName.Text = TxtFName.Text.Remove(TxtFName.Text.Length - 1);
+                }
+            }
+        }
+
+        private void TxtMName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtMName.Text))
+            {
+                var a = TxtMName.Text[TxtMName.Text.Length - 1].ToString();
+                bool isValid2 = (Regex.IsMatch(TxtMName.Text[TxtMName.Text.Length - 1].ToString(), _name3, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                if (isValid2)
+                {
+                    TxtMName.Text = TxtMName.Text.Remove(TxtMName.Text.Length - 1);
+                }
+            }
+        }
+        private void TxtLName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtLName.Text))
+            {
+                var a = TxtLName.Text[TxtLName.Text.Length - 1].ToString();
+                bool isValid2 = (Regex.IsMatch(TxtLName.Text[TxtLName.Text.Length - 1].ToString(), _name3, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                if (isValid2)
+                {
+                    TxtLName.Text = TxtLName.Text.Remove(TxtLName.Text.Length - 1);
+                }
+            }
         }
     }
 }

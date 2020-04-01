@@ -20,6 +20,12 @@ namespace MonicaLoanApp.Views.Loans
             LoanVM = new LoanPageVM(this.Navigation);
             this.BindingContext = LoanVM;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoanVM.TapCount = 0; 
+        }
         #endregion
     }
 }

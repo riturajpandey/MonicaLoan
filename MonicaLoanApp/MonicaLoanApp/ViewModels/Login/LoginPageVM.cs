@@ -18,7 +18,10 @@ namespace MonicaLoanApp.ViewModels
     {
         //TODO : To Define Local Class Level Variables..
         private const string _emailRegex = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        private const string _password = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$";
         protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
+        public int TapCount = 0;
+        public int TapCount1 = 0;
 
         #region  Constructor
         /// <summary>
@@ -129,14 +132,14 @@ namespace MonicaLoanApp.ViewModels
 
         #region Methods
 
-        private async void PasswordCommandAsync(object obj) 
+        private async void PasswordCommandAsync(object obj)
         {
-            if(IsPasswordShow == true)
+            if (IsPasswordShow == true)
             {
                 IsPasswordShow = false;
                 IsPasswordNotShow = true;
                 IsPassword = false;
-            } 
+            }
             else
             {
                 IsPasswordNotShow = false;
@@ -151,15 +154,14 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void LoginAsync(object obj)
         {
-            
+
             //Apply LoginValidations...
             if (!await Validate()) return;
-
             //Call api..
             try
             {
                 //Call AccessRegister Api..  
-                UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -168,10 +170,8 @@ namespace MonicaLoanApp.ViewModels
                         {
                             await _businessCode.AccessLoginApi(new LoginRequestModel()
                             {
-
                                 emailaddress = Email,
                                 password = Password,
-
                             },
                             async (aobj) =>
                             {
@@ -190,13 +190,27 @@ namespace MonicaLoanApp.ViewModels
                                             App.Current.MainPage = App.masterDetailPage;
                                             App.masterDetailPage.IsPresented = false;
                                         }
+                                        else if (requestList.responsecode == 802)
+                                        {
+                                            var alertConfig = new AlertConfig
+                                            {
+                                                Title = "",
+                                                Message = requestList.responsemessage,
+                                                OkText = "Ok",
+                                                OnAction = async () =>
+                                                {
+                                                    //TODO : To navigate Back To Login Screen..
+                                                    Helpers.Constants.IsVerifyToken = true;
+                                                    await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage(Email));
+                                                }
+                                            };
+                                            UserDialogs.Instance.Alert(alertConfig);
+                                        }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
                                         }
-
                                     }
-
                                     UserDialog.HideLoading();
                                 });
                             }, (objj) =>
@@ -204,7 +218,7 @@ namespace MonicaLoanApp.ViewModels
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -213,12 +227,11 @@ namespace MonicaLoanApp.ViewModels
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-
         }
 
         /// <summary>
@@ -227,19 +240,24 @@ namespace MonicaLoanApp.ViewModels
         /// <param name="obj"></param>
         private async void ForgotPasswordAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
+            if (TapCount == 0)
+            {
+                TapCount++;
+                await Navigation.PushModalAsync(new Views.ResetPassword.ResetEmailPage());
+            }
         }
-        // 
+
         /// <summary>
         /// TODO: To validate Register Command...
         /// </summary>
         /// <param name="obj"></param>
         private async void RegisterAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.Register.Register_One());
-
+            if (TapCount1 == 0)
+            {
+                TapCount1++;
+                await Navigation.PushModalAsync(new Views.Register.Register_One());
+            }
         }
         /// <summary>
         /// TODO : To Validate User Login Fields...
@@ -255,12 +273,12 @@ namespace MonicaLoanApp.ViewModels
             bool isValid3 = (Regex.IsMatch(Email, _emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
             if (!isValid3)
             {
-                UserDialogs.Instance.Alert("Please enter valid email", "Alert", "Ok");
+                UserDialogs.Instance.Alert("Please enter valid email", "", "Ok");
                 return false;
             }
-            if (Email.Length<= 5 && Email.Length>=100)
+            if (Email.Length < 6 || Email.Length > 100)
             {
-                UserDialog.Alert("Email should contain at least 5 charcter.");
+                UserDialog.Alert("Email length should be between 6 - 100 charcters.");
                 return false;
             }
             if (string.IsNullOrEmpty(Password))
@@ -268,9 +286,15 @@ namespace MonicaLoanApp.ViewModels
                 UserDialog.Alert("Please enter your password.");
                 return false;
             }
-            if (Password.Length <= 6 && Password.Length >= 50)
+            if (Password.Length < 6 || Password.Length > 50)
             {
-                UserDialog.Alert("Password should contain at least 6 charcter.");
+                UserDialog.Alert("Password length should be between 6 - 50 charcters.");
+                return false;
+            } 
+            bool isValid = (Regex.IsMatch(Password, _password, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!isValid)
+            {
+                UserDialogs.Instance.Alert("Password must contain minimum 6 charachters and at least 1 letter, 1 number and 1 special character.", "", "Ok");
                 return false;
             }
             return true;

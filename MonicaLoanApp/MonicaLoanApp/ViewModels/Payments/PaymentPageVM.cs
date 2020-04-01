@@ -12,6 +12,9 @@ namespace MonicaLoanApp.ViewModels.Payments
 {
     public class PaymentPageVM : BaseViewModel
     {
+        public int TapCount = 0;
+        public int TapCount1 = 0;
+
         #region Constructor
         public PaymentPageVM(INavigation nav)
         {
@@ -144,7 +147,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -153,7 +156,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -166,8 +169,11 @@ namespace MonicaLoanApp.ViewModels.Payments
         /// <param name="obj"></param>
         private async void PlusCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
+            if (TapCount == 0)
+            {
+                TapCount++;
+                await Navigation.PushModalAsync(new Views.Payments.PaymentListPage());
+            }
         }
         /// <summary>
         /// TODO: To define PlusCommand for add Payment..
@@ -175,8 +181,11 @@ namespace MonicaLoanApp.ViewModels.Payments
         /// <param name="obj"></param>
         private async void PaymentPlusCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
+            if (TapCount1 == 0)
+            {
+                TapCount1++;
+                await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
+            }
         }
 
         private void MenuCommandAsync(object obj)   

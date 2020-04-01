@@ -23,7 +23,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// TODO: To define class level variable...
         /// </summary>
         protected SubmittedLoanApplicationPopup SubmittedLoanApplicationPopup;
-        public bool IsPhoto = false;
+        public bool IsPhoto = false; 
         #region Constructor
         public LoanApplicationFormVM(INavigation nav)
         {
@@ -320,7 +320,7 @@ namespace MonicaLoanApp.ViewModels.Loans
         /// </summary>
         /// <param name="obj"></param>
         private async void SubmitCommandAsync(object obj)
-        {
+        { 
             //Apply Validations...
             if (!await ValidateLoanDetail()) return; 
             //Call api..
@@ -365,7 +365,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                         }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
 
                                         }
 
@@ -378,7 +378,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             }) ;
                         }
@@ -387,7 +387,7 @@ namespace MonicaLoanApp.ViewModels.Loans
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)

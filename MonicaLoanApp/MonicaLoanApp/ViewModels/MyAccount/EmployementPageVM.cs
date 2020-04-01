@@ -158,7 +158,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             UserDialogs.Instance.HideLoading();
                                             var alertConfig = new AlertConfig
                                             {
-                                                Title = "Alert",
+                                                Title = "",
                                                 Message = "Your employment details updated successfully!",
                                                 OkText = "OK",
                                                 OnAction = () =>
@@ -170,14 +170,14 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                         }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
                                         }
 
                                     }
                                     else
                                     {
                                         UserDialogs.Instance.HideLoading();
-                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                                        UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
                                     }
                                     UserDialog.HideLoading();
                                 });
@@ -186,7 +186,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -195,7 +195,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -265,7 +265,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                         }
                                         else
                                         {
-                                            UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                            UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
                                         }
 
                                     }
@@ -275,7 +275,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     UserDialog.HideLoading();
-                                    UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                    UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                 });
                             });
                         }
@@ -284,7 +284,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 else
                 {
                     UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)

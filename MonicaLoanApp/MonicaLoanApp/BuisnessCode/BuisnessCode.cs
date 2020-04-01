@@ -55,7 +55,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
 
@@ -101,7 +101,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
 
@@ -143,7 +143,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -184,7 +184,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -223,7 +223,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -267,7 +267,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -308,11 +308,52 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
-
+        
+        /// <summary>
+        /// To call AccessPasswordChangeApi...
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="success"></param>
+        /// <param name="failed"></param>
+        /// <returns></returns>
+        public async Task<AccessPasswordChangeResponseModel> AccessPasswordResendCodeApi(ResendCodeRequestModel request, Action<object> success, Action<object> failed) 
+        {
+            AccessPasswordChangeResponseModel resmodel = new AccessPasswordChangeResponseModel();
+            try
+            {
+                var url = string.Format("{0}/api/appconnect/AccessPasswordResendCode", WebServiceDetails.BaseUri);
+                string randomGuid = Guid.NewGuid().ToString();
+                var dic = new Dictionary<string, string>();
+                //dic.Add("Content-Type", "Application/json");
+                dic.Add("randomguid", randomGuid);
+                dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.emailaddress);
+                var result = _apiProvider.Post<AccessPasswordChangeResponseModel, ResendCodeRequestModel>(url, request, dic);
+                var response = result.Result;
+                AccessPasswordChangeResponseModel objres = null;
+                dynamic obj = JsonConvert.DeserializeObject<AccessPasswordChangeResponseModel>(response.RawResult);
+                AccessPasswordChangeResponseModel reg = new AccessPasswordChangeResponseModel();
+                if (response.IsSuccessful != false)
+                {
+                    objres = JsonConvert.DeserializeObject<AccessPasswordChangeResponseModel>(response.RawResult);
+                    success.Invoke(objres);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    failed.Invoke(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
+            }
+            return resmodel;
+        }
 
         #endregion
 
@@ -354,7 +395,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -398,7 +439,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -440,7 +481,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -482,7 +523,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -524,7 +565,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -568,7 +609,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -610,7 +651,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -637,6 +678,7 @@ namespace MonicaLoanApp.BuisnessCode
                 dic.Add("hash", randomGuid + WebServiceDetails.AppKey + request.usertoken + Helpers.Constants.LoginUserSecret);
                 var result = _apiProvider.Post<ProfileGetResponseModel, ProfileGetRequestModel>(url, request, dic);
                 var response = result.Result;
+                Helpers.Settings.GeneralProfileDataJSON = response.RawResult;
                 ProfileGetResponseModel objres = null;
                 dynamic obj = "";
                 ProfileGetResponseModel reg = new ProfileGetResponseModel();
@@ -654,7 +696,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }
@@ -689,7 +731,7 @@ namespace MonicaLoanApp.BuisnessCode
             catch (Exception exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Something went wrong please try again.", "Alert", "OK");
+                UserDialogs.Instance.Alert("Something went wrong please try again.", "", "OK");
             }
             return resmodel;
         }

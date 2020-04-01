@@ -18,6 +18,7 @@ namespace MonicaLoanApp.Views.Loans
     {
         //TODO : To Define class Level Variables...
         protected LoanDetailsPageVM LoanDetailsVM;
+        int TapCount = 0;
 
         #region Constructor
         public LoanDetailsPage()
@@ -36,7 +37,9 @@ namespace MonicaLoanApp.Views.Loans
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            LoanDetailsVM.IsPageEnable = true; 
+            LoanDetailsVM.TapCount = 0;
+            TapCount = 0; 
+            LoanDetailsVM.IsPageEnable = true;
             await LoanDetailsVM.GetAllLoans();
         }
 
@@ -48,9 +51,13 @@ namespace MonicaLoanApp.Views.Loans
         /// <param name="e"></param>
         private async void LoanDetail_Tapped(object sender, EventArgs e)
         {
-            var item = (sender as Grid).BindingContext as AllLoan;    
-            if (item != null) 
-                await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage(item));   
+            if (TapCount == 0)
+            {
+                TapCount++;
+                var item = (sender as Grid).BindingContext as AllLoan;
+                if (item != null)
+                    await Navigation.PushModalAsync(new Views.Loans.LoanApplicationPage(item));
+            }
         }
         #endregion
     }

@@ -11,6 +11,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
 {
     public class MyAccountPageVM : BaseViewModel
     {
+        public int TapCount = 0;
+        public int TapCount1 = 0;
+        public int TapCount2 = 0;
+        public int TapCount3 = 0;
+        public int TapCount4 = 0;
         #region Constructor
         public MyAccountPageVM(INavigation nav)
         {
@@ -126,7 +131,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 try
                 {
                     //Call AccessRegister Api..  
-                    UserDialogs.Instance.ShowLoading("Loading...", MaskType.Clear);
+                    UserDialogs.Instance.ShowLoading("Please Wait…", MaskType.Clear);
                     if (CrossConnectivity.Current.IsConnected)
                     {
                         await Task.Run(async () =>
@@ -152,7 +157,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             }
                                             else
                                             {
-                                                UserDialogs.Instance.Alert(requestList.responsemessage, "Alert", "ok");
+                                                UserDialogs.Instance.Alert(requestList.responsemessage, "", "ok");
                                             }
 
                                         }
@@ -164,7 +169,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                     Device.BeginInvokeOnMainThread(async () =>
                                     {
                                         UserDialog.HideLoading();
-                                        UserDialog.Alert("Something went wrong. Please try again later.", "Alert", "Ok");
+                                        UserDialog.Alert("Something went wrong. Please try again later.", "", "Ok");
                                     });
                                 });
                             }
@@ -173,7 +178,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     else
                     {
                         UserDialogs.Instance.Loading().Hide();
-                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "Alert", "Okay");
+                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                     }
                 }
                 catch (Exception ex)
@@ -191,8 +196,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void BankDetailsCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            if (TapCount == 0)
+            {
+                TapCount++;
+                await Navigation.PushModalAsync(new Views.MyAccount.BankPage());
+            }
         }
         /// <summary>
         /// TODO: To define EmployementCommand.
@@ -200,8 +208,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void EmployementCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
+            if (TapCount1 == 0)
+            {
+                TapCount1++;
+                await Navigation.PushModalAsync(new Views.MyAccount.EmployementPage());
+            }
         }
         /// <summary>
         /// TODO: To define AddressCommand.
@@ -209,8 +220,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void AddressCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            if (TapCount2 == 0)
+            {
+                TapCount2++;
+                await Navigation.PushModalAsync(new Views.MyAccount.AddressPage());
+            }
         }
         /// <summary>
         /// TODO: To define PersonalDetails.
@@ -218,8 +232,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void PersonalDetailsCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            if (TapCount3 == 0)
+            {
+                TapCount3++;
+                await Navigation.PushModalAsync(new Views.MyAccount.Personal_Details());
+            }
         }
 
         /// <summary>
@@ -228,11 +245,14 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private async void AppSettingCommandAsync(object obj)
         {
-            IsPageEnable = false;
-            App.masterDetailPage.IsPresented = false;
-            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.AppSettingPage());
-            App.Current.MainPage = App.masterDetailPage;
-            App.masterDetailPage.IsPresented = false; 
+            if (TapCount4 == 0)
+            {
+                TapCount4++;
+                App.masterDetailPage.IsPresented = false;
+                App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new Views.MyAccount.AppSettingPage());
+                App.Current.MainPage = App.masterDetailPage;
+                App.masterDetailPage.IsPresented = false;
+            }
             //await Navigation.PushModalAsync(new Views.MyAccount.AppSettingPage()); 
         }
 
@@ -242,7 +262,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         /// <param name="obj"></param>
         private void MenuCommandAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = true; 
+            App.masterDetailPage.IsPresented = true;
         }
         #endregion
     }

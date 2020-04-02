@@ -40,7 +40,15 @@ namespace MonicaLoanApp.Views.MyAccount
             BankVM.Bankcode = Helpers.Constants.UserBankcode;
             BankVM.BankName = Helpers.Constants.UserBankname;
             BankVM.BankAccountNumber = Helpers.Constants.UserBankaccountno;
-            BankVM.EnterBVN = Helpers.Constants.UserBvn; 
+
+            if(!string.IsNullOrEmpty(Helpers.Constants.UserBvn))
+            {
+                for(int i =1; i<= Helpers.Constants.UserBvn.Length; i++)
+                {
+                    BankVM.EnterBVN = BankVM.EnterBVN + "x";
+                }
+            }
+            //BankVM.EnterBVN = Helpers.Constants.UserBvn; 
 
             if (!string.IsNullOrEmpty(Helpers.Constants.UserBankname))
             {
@@ -59,6 +67,11 @@ namespace MonicaLoanApp.Views.MyAccount
                 BankVM.BankName = PckBankfrst.Items[PckBankfrst.SelectedIndex];
                 BankVM.Bankcode = bank.key; 
             }
+        }
+
+        private void Bank_Tapped(object sender, EventArgs e)
+        {
+            PckBankfrst.Focus();
         }
     }
 }

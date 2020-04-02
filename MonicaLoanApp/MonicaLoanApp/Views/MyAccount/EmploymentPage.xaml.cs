@@ -47,7 +47,7 @@ namespace MonicaLoanApp.Views.MyAccount
             }
             else
             {
-                EmployementVM.StartDate = "Start date"; 
+                EmployementVM.StartDate = "Job Start Date"; 
             }
 
             if (!string.IsNullOrEmpty(Helpers.Constants.UserEmployername))
@@ -118,6 +118,11 @@ namespace MonicaLoanApp.Views.MyAccount
                 EmployementVM.EmployerName = PckEmployee.Items[PckEmployee.SelectedIndex];
                 EmployementVM.EmployerCode = employee.key; 
             }
+        }
+
+        private void Emp_Tapped(object sender, EventArgs e)
+        {
+            PckEmployee.Focus();
         }
         #endregion
 

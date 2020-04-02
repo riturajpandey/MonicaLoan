@@ -19,9 +19,11 @@ namespace MonicaLoanApp.Helpers
 
         //To maintain variable for image from camera/gallery
         public static string imgFilePath = string.Empty;
+        public static string UserProfilePic = string.Empty;
+
         //To maintain variable for Media picker selected items
         public static string PartImageBase64 = string.Empty;
-        public static string LoanSubmitSms = string.Empty;
+        public static string LoanSubmitSms = string.Empty; 
 
 
         //To maintain Registration constants

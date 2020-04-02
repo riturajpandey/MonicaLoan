@@ -524,6 +524,7 @@ namespace MonicaLoanApp.ViewModels.Register
                                         if (requestList.responsecode == 100)
                                         {
                                             Helpers.Constants.UserToken = requestList.usertoken;
+                                            Helpers.Settings.GeneralUserToken = requestList.usertoken;
                                             await Navigation.PushModalAsync(new Views.Register.ConfirmRegistrationPage(Email));
                                         }
                                         else
@@ -772,9 +773,9 @@ namespace MonicaLoanApp.ViewModels.Register
                 UserDialogs.Instance.Alert("Please enter Mobile Number.");
                 return false;
             }
-            if (Number.Length >= 15)
+            if (Number.Length > 15)
             {
-                UserDialog.Alert("Mobile Number should contain less than 15 charcter.");
+                UserDialog.Alert("Mobile Number should not be more than 15 digit.");
                 return false;
             }
 

@@ -30,7 +30,8 @@ namespace MonicaLoanApp.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
              
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;   
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+            XamEffects.Droid.Effects.Init();
             #endregion
             LoadApplication(new App());
             #region Status Bar

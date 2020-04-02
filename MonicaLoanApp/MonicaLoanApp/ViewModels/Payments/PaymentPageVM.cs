@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Payments
@@ -15,6 +16,7 @@ namespace MonicaLoanApp.ViewModels.Payments
     {
         public int TapCount = 0;
         public int TapCount1 = 0;
+        public List<string> ContextMenu = new List<string>();
 
         #region Constructor
         public PaymentPageVM(INavigation nav)
@@ -23,13 +25,29 @@ namespace MonicaLoanApp.ViewModels.Payments
             MenuCommand = new Command(MenuCommandAsync);
             PlusCommand = new Command(PlusCommandAsync);
             PaymentPlusCommand = new Command(PaymentPlusCommandAsync);
+            ContextMenu.Add("Refresh Payments");
+            ContextMenu.Add("Make Payment");
         }
 
 
         #endregion
 
         #region Properties
-        private bool _IsPageEnable = true; 
+        private bool _IsRefreshing = true;
+        public bool IsRefreshing
+        {
+            get { return _IsRefreshing; }
+            set
+            {
+                if (_IsRefreshing != value)
+                {
+                    _IsRefreshing = value;
+                    OnPropertyChanged("IsRefreshing");
+                }
+            }
+        }
+
+        private bool _IsPageEnable = true;
         public bool IsPageEnable
         {
             get { return _IsPageEnable; }
@@ -43,13 +61,13 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
         }
 
-        private string _PaymentStatus= "No Payments Currently";
+        private string _PaymentStatus = "You have no payments";
         public string PaymentStatus
         {
             get { return _PaymentStatus; }
             set
             {
-                if(_PaymentStatus!= value)
+                if (_PaymentStatus != value)
                 {
                     _PaymentStatus = value;
                     OnPropertyChanged("PaymentStatus");
@@ -62,7 +80,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             get { return _PaymentList; }
             set
             {
-                if(_PaymentList!= value)
+                if (_PaymentList != value)
                 {
                     _PaymentList = value;
                     OnPropertyChanged("PaymentList");
@@ -78,7 +96,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             {
                 if (_IsPaymentAvailable != value)
                 {
-                    _IsPaymentAvailable = value; 
+                    _IsPaymentAvailable = value;
                     OnPropertyChanged("IsPaymentAvailable");
                 }
             }
@@ -92,7 +110,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             {
                 if (_IsPaymentNotAvailable != value)
                 {
-                    _IsPaymentNotAvailable = value; 
+                    _IsPaymentNotAvailable = value;
                     OnPropertyChanged("IsPaymentNotAvailable");
                 }
             }
@@ -100,14 +118,29 @@ namespace MonicaLoanApp.ViewModels.Payments
         #endregion
 
         #region Commands
-        public Command MenuCommand { get; set; } 
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await GetAllPayments();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
+        public Command MenuCommand { get; set; }
         public Command PlusCommand { get; set; }
         public Command PaymentPlusCommand { get; set; }
         #endregion
 
         #region Methods
-        //TODO : To Call Api To Get All Payments...
-        public async Task GetAllPayments()
+
+        public async Task GetPaymentsFromCache()
         {
             if (!string.IsNullOrEmpty(Helpers.Settings.GeneralAllPaymentResponse))
             {
@@ -115,14 +148,36 @@ namespace MonicaLoanApp.ViewModels.Payments
                 var allUserPayment = JsonConvert.DeserializeObject<PaymentSearchResponseModel>(a);
                 if (allUserPayment != null)
                 {
-                    PaymentList = new ObservableCollection<Payment>(allUserPayment.payments);  
+                    PaymentList = new ObservableCollection<Payment>(allUserPayment.payments);
+                    if (PaymentList.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        IsPaymentNotAvailable = false;
+                        IsPaymentAvailable = true;
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        IsPaymentNotAvailable = true;
+                        IsPaymentAvailable = false;
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    IsPaymentNotAvailable = true;
+                    IsPaymentAvailable = false;
                 }
             }
+        }
+
+        //TODO : To Call Api To Get All Payments...
+        public async Task GetAllPayments()
+        {
             //Call api..
             try
             {
-                if (string.IsNullOrEmpty(Helpers.Settings.GeneralAllPaymentResponse))
-                    UserDialogs.Instance.ShowLoading();
+                UserDialogs.Instance.ShowLoading("Please wait...");
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -143,7 +198,7 @@ namespace MonicaLoanApp.ViewModels.Payments
                                         UserDialogs.Instance.HideLoading();
                                         PaymentList = new ObservableCollection<Payment>(requestList);
                                         IsPaymentNotAvailable = false;
-                                        IsPaymentAvailable = true; 
+                                        IsPaymentAvailable = true;
                                     }
                                     else
                                     {
@@ -172,7 +227,7 @@ namespace MonicaLoanApp.ViewModels.Payments
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
-        }  
+        }
 
         /// <summary>
         /// TODO: To define PlusCommand for Navigate page..
@@ -195,13 +250,14 @@ namespace MonicaLoanApp.ViewModels.Payments
             if (TapCount1 == 0)
             {
                 TapCount1++;
+                await Task.Delay(1);
                 await Navigation.PushModalAsync(new Views.Payments.MakePaymentPage());
             }
         }
 
-        private void MenuCommandAsync(object obj)   
+        private void MenuCommandAsync(object obj)
         {
-            App.masterDetailPage.IsPresented = true; 
+            App.masterDetailPage.IsPresented = true;
         }
         #endregion
     }

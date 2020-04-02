@@ -1,6 +1,8 @@
 ﻿using MonicaLoanApp.Models;
 using MonicaLoanApp.Models.Help;
 using MonicaLoanApp.ViewModels.Help;
+using MonicaLoanApp.Views.Loans;
+using MonicaLoanApp.Views.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +57,16 @@ namespace MonicaLoanApp.Views.Help
             TapCount = 0; 
             Helpers.Constants.PageCount = 0;
             await HelpVM.StaticDataSearch();
+        }
+
+        //TODO : To Define Device Back Button Tapped Event...
+        protected override bool OnBackButtonPressed()
+        {
+            App.masterDetailPage.Master = new MenuPage();
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
+            return true;
         }
         #endregion
 

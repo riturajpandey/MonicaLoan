@@ -1,4 +1,6 @@
 ﻿using MonicaLoanApp.ViewModels.MyAccount;
+using MonicaLoanApp.Views.Loans;
+using MonicaLoanApp.Views.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +39,22 @@ namespace MonicaLoanApp.Views.MyAccount
             MyAccountVM.TapCount4 = 0; 
             MyAccountVM.IsPageEnable = true; 
             MyAccountVM.PersonalDetails = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
-            MyAccountVM.Address = Helpers.Constants.UserAddressline1 + "," + Helpers.Constants.UserAddressline2 + "" + Helpers.Constants.UserCity;
-            MyAccountVM.Employement = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
+            MyAccountVM.Address = Helpers.Constants.UserAddressline1;
+
+            if(!string.IsNullOrEmpty(Helpers.Constants.UserAddressline1))
+                MyAccountVM.Address = MyAccountVM.Address + ", " + Helpers.Constants.UserAddressline2 + " " + Helpers.Constants.UserCity;
+            MyAccountVM.Employement = Helpers.Constants.UserEmployername;
             MyAccountVM.BankDetails = Helpers.Constants.UserBankname + " " + Helpers.Constants.UserBankaccountno;
+        }
+
+        //TODO : To Define Device Back Button Tapped Event...
+        protected override bool OnBackButtonPressed()
+        {
+            App.masterDetailPage.Master = new MenuPage();
+            App.masterDetailPage.Detail = new Xamarin.Forms.NavigationPage(new YourLoanBalancePage());
+            App.Current.MainPage = App.masterDetailPage;
+            App.masterDetailPage.IsPresented = false;
+            return true;
         }
     }
 }

@@ -1,7 +1,12 @@
 ﻿using Acr.UserDialogs;
+using MonicaLoanApp.Helpers;
+using MonicaLoanApp.Interfaces;
 using MonicaLoanApp.Models;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +23,58 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         {
             Navigation = nav;
             SaveCommand = new Command(SaveCommandAsync);
+            CameraCommand = new Command(OnCameraAsync);
+            GalleryCommand = new Command(OnGalleryAsync);
+            MediaCommand = new Command(OnMediaAsync);
+            CloseMediaCommand = new Command(OnCloseMediaAsync);
         }
 
 
         #endregion
 
         #region Properties
+
+        private bool _IsCamera;
+        public bool IsCamera
+        {
+            get { return _IsCamera; }
+            set
+            {
+                if (_IsCamera != value)
+                {
+                    _IsCamera = value;
+                    OnPropertyChanged("IsCamera");
+                }
+            }
+        }
+        private string _UserProfileBase64 = string.Empty;
+        public string UserProfileBase64
+        {
+            get { return _UserProfileBase64; }
+            set
+            {
+                if (_UserProfileBase64 != value)
+                {
+                    _UserProfileBase64 = value;
+                    OnPropertyChanged("UserProfileBase64");
+                }
+            }
+        }
+
+        private string _Number;
+        public string Number
+        {
+            get { return _Number; }
+            set
+            {
+                if (_Number != value)
+                {
+                    _Number = value;
+                    OnPropertyChanged("Number");
+                }
+            }
+        }
+
         private bool _IsPageEnable = true;
         public bool IsPageEnable
         {
@@ -107,6 +158,10 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         #endregion
 
         #region Command
+        public Command CameraCommand { get; set; }
+        public Command GalleryCommand { get; set; }
+        public Command MediaCommand { get; set; }
+        public Command CloseMediaCommand { get; set; }
         public Command SaveCommand { get; set; }
         #endregion
 
@@ -118,6 +173,20 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private async void SaveCommandAsync(object obj)
         {
             IsPageEnable = false;
+
+            if (string.IsNullOrEmpty(Number))
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Please enter Mobile Number.");
+                IsPageEnable = true;
+                return ;
+            }
+            if (Number.Length > 15)
+            {
+                UserDialog.Alert("Mobile Number should not be more than 15 digit.");
+                IsPageEnable = true;
+                return ;
+            }
             //Call api..
             try
             {
@@ -131,7 +200,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                             await _businessCode.ProfileSaveApi(new ProfileSaveRequestModel()
                             {
                                 usertoken = Helpers.Settings.GeneralAccessToken,
-                                mobileno = Helpers.Constants.Usermobileno,
+                                mobileno = Number,
                                 gender = Gender,
                                 maritalstatus = MaritalStatus,
                                 bankcode = Helpers.Constants.UserBankcode,
@@ -144,7 +213,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 employeenumber = Helpers.Constants.UserEmployeenumber,
                                 Salary = Helpers.Constants.UserSalary,
                                 Startdate = Helpers.Constants.UserStartdate,
-                                Profilepic = Helpers.Constants.Userprofilepic
+                                Profilepic = UserProfileBase64
                             },
                             async (_obj) =>
                             {
@@ -160,11 +229,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             var alertConfig = new AlertConfig
                                             {
                                                 Title = "",
-                                                Message = "Your personal details updated successfully!", 
+                                                Message = "Your personal details have been successfully updated.", 
                                                 OkText = "OK",
-                                                OnAction = () =>
+                                                OnAction = async() =>
                                                 {
-                                                    App.Current.MainPage = new Views.MyAccount.MyAccountPage();
+                                                    await Navigation.PopModalAsync();
                                                 }
                                             };
                                             UserDialogs.Instance.Alert(alertConfig);
@@ -233,7 +302,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     Helpers.Constants.UserMiddlename = userDetail.middlename;
                     Helpers.Constants.UserLastname = userDetail.lastname;
                     Helpers.Constants.Usermobileno = userDetail.mobileno;
-                    Helpers.Constants.Userprofilepic = userDetail.profilepic;
+                    Helpers.Settings.GeneralProfilePic = userDetail.profilepic;
                     Helpers.Constants.UserMaritalstatus = userDetail.maritalstatus;
                     Helpers.Constants.UserSalary = userDetail.salary;
                     Helpers.Constants.UserStateName = userDetail.statename;
@@ -244,6 +313,8 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     }
                     Helpers.Constants.UserStartdate = userDetail.startdate;
                     Helpers.Constants.Usergender = userDetail.gender;
+                    UserProfileBase64 = userDetail.profilepic;
+                    MessagingCenter.Send<string>("", "LoadApiImage");
                 }
             }
             //Call api..
@@ -289,7 +360,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             Helpers.Constants.UserMiddlename = requestList.middlename;
                                             Helpers.Constants.UserLastname = requestList.lastname;
                                             Helpers.Constants.Usermobileno = requestList.mobileno;
-                                            Helpers.Constants.Userprofilepic = requestList.profilepic;
+                                            Helpers.Settings.GeneralProfilePic = requestList.profilepic;
                                             Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
                                             Helpers.Constants.UserSalary = requestList.salary;
                                             Helpers.Constants.UserStateName = requestList.statename;
@@ -323,12 +394,151 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                 }
                 else
                 {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
+                    //UserDialogs.Instance.Loading().Hide();
+                    //await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
             { UserDialog.HideLoading(); }
+        }
+
+
+        /// <summary>
+        /// TODO : To Camera Action ...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void OnCameraAsync(object obj)
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync
+                                             (Plugin.Permissions.Abstractions.Permission.Camera);
+
+                if (status != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+                    var result = await CrossPermissions.Current.RequestPermissionsAsync(new[] {
+                                                                                  Plugin.Permissions.Abstractions.Permission.Camera });
+                    status = result[Plugin.Permissions.Abstractions.Permission.Camera];
+                }
+
+                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+                    UserProfileBase64 = string.Empty;
+                    if (!CrossMedia.Current.IsCameraAvailable)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.Alert("No camera avaialble.", null, "OK");
+                        return;
+                    }
+                    if (Device.OS == TargetPlatform.Android)
+                        UserDialogs.Instance.ShowLoading("Please Wait…");
+                    var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                    {
+                        Directory = "Sample",
+                        Name = "test.png",
+                    });
+                    if (file == null)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        return;
+                    }
+                    Constants.imgFilePath = file.Path;
+                    string filepath = file.Path;
+                    var ImageByteData = await DependencyService.Get<IMediaService>().ResizeImage(await DependencyService.Get<IMediaService>().GetMediaInBytes(file.Path), 120, 120);
+                    UserProfileBase64 = Convert.ToBase64String(ImageByteData);
+                    Helpers.Settings.GeneralProfilePic = UserProfileBase64;
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        MessagingCenter.Send<string>("", "LoadImage");
+                    });
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        UserDialogs.Instance.Alert("Camera permission denied. Make sure you have given us camera permission, go to settings and enable camera permission for us.", "", "Ok");
+                        UserDialogs.Instance.HideLoading();
+                    });
+                }
+
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            { UserDialogs.Instance.HideLoading(); }
+        }
+
+        /// <summary>
+        /// TODO : To Gallery Action ...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void OnGalleryAsync(object obj)
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync
+                                             (Plugin.Permissions.Abstractions.Permission.Photos);
+
+                if (status != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+                    var result = await CrossPermissions.Current.RequestPermissionsAsync(new[] {
+                                                                                  Plugin.Permissions.Abstractions.Permission.Photos });
+                    status = result[Plugin.Permissions.Abstractions.Permission.Photos];
+                }
+
+                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+
+                    UserProfileBase64 = string.Empty;
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        return;
+                    }
+                     
+                    var file = await CrossMedia.Current.PickPhotoAsync();
+                    if (file == null)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        return;
+                    }
+                    Helpers.Constants.imgFilePath = file.Path;
+                    string filepath = file.Path; 
+
+                    var ImageByteData = await DependencyService.Get<IMediaService>().ResizeImage(await DependencyService.Get<IMediaService>().GetMediaInBytes(file.Path), 120, 120);
+                    UserProfileBase64 = Convert.ToBase64String(ImageByteData);
+                    Helpers.Settings.GeneralProfilePic = UserProfileBase64;
+                     
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        UserDialogs.Instance.HideLoading();
+
+                        MessagingCenter.Send<string>("", "LoadImage");
+                    });
+                }
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        /// <summary>
+        /// TODO : To Open Media Popup Async ...
+        /// </summary>
+        /// <param name="obj"></param>
+        public async void OnMediaAsync()
+        {
+            IsCamera = true;
+        }
+
+        /// <summary>
+        /// TODO : To Open Media Popup Async ...
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void OnCloseMediaAsync(object obj)
+        {
+            IsCamera = false;
         } 
         #endregion
     }

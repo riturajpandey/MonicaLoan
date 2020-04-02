@@ -27,20 +27,26 @@
                         <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Label Text="Debit card queries" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
+                        <Label Text="Help Information" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0"></Label>
                     </Grid>
                     <!--Separator-->
                     <Grid Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource SeparatorGrayColour}" Opacity="0.5"/>
                 </Grid>
             </Control:CustomFrameForOpacity>
             <!--Query Section-->
-            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,50,10,0">
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,10,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="{Binding key}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="17"/>
-                <Label Grid.Row="1" Text="{Binding data}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/>
+                <Label Grid.Row="0" Text="{Binding key}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontAttributes="Bold" FontSize="16"/>
+                <Label Grid.Row="1" Text="{Binding data}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryGrayLable}"/> 
+                <!--<WebView x:Name="MainWebView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                    <WebView.Source>
+                        <HtmlWebViewSource x:Name="detailWebView" Html="{Binding data}"/> 
+                        --><!--<HtmlWebViewSource x:Name="detailWebView"/>--><!--
+                    </WebView.Source>
+                </WebView>-->
             </Grid>
         </Grid>
     </ContentPage.Content>

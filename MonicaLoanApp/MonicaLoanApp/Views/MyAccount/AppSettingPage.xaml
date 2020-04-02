@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              x:Class="MonicaLoanApp.Views.MyAccount.AppSettingPage"
              NavigationPage.HasNavigationBar="False">
@@ -39,16 +40,16 @@
 
                 <!--Settings Section-->
                 <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30,40" ColumnSpacing="0">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30,10" ColumnSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="1"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="1"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="0">
+                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="15" Padding="0,10,0,10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40*"/>
                                 <ColumnDefinition Width="60*"/>
@@ -59,17 +60,17 @@
                             <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Spacing="5">
                                     <Image Source="setting_new.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Version 123456.123" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="14"></Label>
+                                    <Label x:Name="LblVersion" Text="Version 123456.123" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="14"></Label>
                                 </StackLayout>
                             </Grid>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="1" ></Grid>
 
-                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="40,30,0,30" ColumnSpacing="0">
+                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="40,10,0,10" ColumnSpacing="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -77,74 +78,95 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="Notifications" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" FontSize="18"></Label>
+                                <Label Text="Notifications" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SecondryLable}" FontSize="15"></Label>
                             </Grid>
                             <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Switch HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                               IsToggled="True"  ThumbColor="#FFFFFF" OnColor="#491975"/>
+                                <Switch x:Name="SwtchNotification" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                              IsToggled="{Binding IsNotificationOn}" ThumbColor="#FFFFFF" OnColor="#491975" Toggled="NotificationSwitch_Toggled" />
                             </Grid>
 
                             <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="Sound" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="18"></Label>
+                                <Label Text="Sound" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="15"></Label>
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Switch HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                IsToggled="False" ThumbColor="#FFFFFF" OnColor="#491975"/>
+                                <Switch x:Name="SwtchSound" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                              ThumbColor="#FFFFFF" OnColor="#491975" Toggled="SoundSwitch_Toggled" IsToggled="{Binding IsSoundOn}" />
                             </Grid>
 
                             <Grid Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="Vibrate" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="18" ></Label>
+                                <Label Text="Vibrate" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="15" ></Label>
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Switch HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                IsToggled="False" ThumbColor="#FFFFFF" OnColor="#491975"/>
+                                <Switch x:Name="SwtchVibrate" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 ThumbColor="#FFFFFF" OnColor="#491975" Toggled="VibrateSwitch_Toggled" IsToggled="{Binding IsVibrateOn}" />
                             </Grid>
                         </Grid>
 
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="3" ></Grid>
 
-                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,30,0,0" ColumnSpacing="10">
+                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,10,0,0" ColumnSpacing="10">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                  xe:TouchEffect.Color="{StaticResource LightPurpleColor}" xe:Commands.Tap="{Binding ShareCommand}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="32"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Image Source="share.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                                 <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <local:CustomUnderLinedLAbel Text="Tell your friends about us" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>
+                                    <local:CustomUnderLinedLAbel Text="Tell your friends about us" HorizontalOptions="StartAndExpand" 
+                                                                 VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="14" ></local:CustomUnderLinedLAbel>
                                 </Grid>
                             </Grid>
-
-                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                  xe:TouchEffect.Color="{StaticResource LightPurpleColor}" xe:Commands.Tap="{Binding FeedbackCommand}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="32"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="feedback.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </Grid>
+                                <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <local:CustomUnderLinedLAbel Text="Feedback" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                                                                 Style="{StaticResource SmallestLable}" FontSize="14" ></local:CustomUnderLinedLAbel>
+                                </Grid>
+                            </Grid>
+                            
+                            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                  xe:TouchEffect.Color="{StaticResource LightPurpleColor}" xe:Commands.Tap="{Binding PolicyCommand}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="32"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Image Source="view.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                                 <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <local:CustomUnderLinedLAbel Text="Privacy Policy" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>
+                                    <local:CustomUnderLinedLAbel Text="Privacy Policy" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                                                                 Style="{StaticResource SmallestLable}" FontSize="14" ></local:CustomUnderLinedLAbel>
                                 </Grid>
                             </Grid>
 
-                            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                  xe:TouchEffect.Color="{StaticResource LightPurpleColor}" xe:Commands.Tap="{Binding TermsCommand}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="32"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid  Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Image Source="file.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </Grid>
                                 <Grid  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <local:CustomUnderLinedLAbel Text="Terms and Conditions" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="16" ></local:CustomUnderLinedLAbel>
+                                    <local:CustomUnderLinedLAbel Text="Terms and Conditions" HorizontalOptions="StartAndExpand" 
+                                                                 VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" FontSize="14" ></local:CustomUnderLinedLAbel>
                                 </Grid>
                             </Grid>
 

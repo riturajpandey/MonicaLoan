@@ -6,6 +6,7 @@
              xmlns:Control="clr-namespace:MonicaLoanApp.Controls"
               xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.Loans.LoanDetailsPage" NavigationPage.HasNavigationBar="False"
              Title="Loan Details Page">
@@ -92,10 +93,10 @@
                     </Grid>
                 </Grid>
 
-                <Grid  Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
-                    <Grid.GestureRecognizers>
+                <Grid Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="20">
+                    <!--<Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PlusCommand}"/>
-                    </Grid.GestureRecognizers>
+                    </Grid.GestureRecognizers>-->
                     <!--Plus Image Section-->
                     <Control:CustomFrameForOpacity  HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
@@ -103,7 +104,11 @@
                         <Control:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
-                            <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                      xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding PlusCommand}">
+                                <Image Source="plus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
+                            </Grid>
                         </Control:CustomFrameForOpacity>
 
                     </Control:CustomFrameForOpacity>

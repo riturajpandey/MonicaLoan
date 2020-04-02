@@ -143,6 +143,12 @@
             <!--#region Labels -->
             
             <!--Primary Font -->
+            <Style x:Key="NormalLable" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="{DynamicResource Regularfont }" />
+                <Setter Property="TextColor" Value="{StaticResource LargeLblColor}" />
+            </Style>
+            
             <Style x:Key="PrimaryLable" TargetType="Label">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontFamily" Value="{DynamicResource Boldfont }" />

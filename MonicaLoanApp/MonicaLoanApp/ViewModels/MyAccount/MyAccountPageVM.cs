@@ -123,7 +123,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
         private async void logoutCommandAsync(object obj)
         {
             IsPageEnable = false;
-            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to sign out?", null, "No", "Yes");
             var text = (res ? "No" : "Yes");
             if (text == "Yes")
             {

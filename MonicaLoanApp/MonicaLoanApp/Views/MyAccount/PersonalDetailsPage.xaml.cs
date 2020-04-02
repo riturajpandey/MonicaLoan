@@ -29,6 +29,46 @@ namespace MonicaLoanApp.Views.MyAccount
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             PersonalDetailsVM = new Personal_DetailsVM(this.Navigation);
             this.BindingContext = PersonalDetailsVM;
+
+            //To Show Profile Pic
+            MessagingCenter.Subscribe<string>("", "LoadImage", (sender) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(PersonalDetailsVM.UserProfileBase64))
+                        {
+                            imgUserProfile.Aspect = Aspect.AspectFill;
+                            imgUserProfile.Margin = new Thickness(0);
+                            imgUserProfile.Source = Helpers.Constants.imgFilePath;
+                            PersonalDetailsVM.IsCamera = false;
+                        }
+                    }
+                    catch (Exception)
+                    { }
+                });
+            });
+
+            //To Show Profile Pic
+            MessagingCenter.Subscribe<string>("", "LoadApiImage", (sender) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(PersonalDetailsVM.UserProfileBase64))
+                        {
+                            imgUserProfile.Aspect = Aspect.AspectFill;
+                            imgUserProfile.Margin = new Thickness(0);
+                            imgUserProfile.Source = Utilities.Utility.GetImageFromBase64(PersonalDetailsVM.UserProfileBase64);
+                        }
+                    }
+                    catch (Exception)
+                    { }
+                });
+            });
+
         }
         #endregion
 
@@ -112,6 +152,7 @@ namespace MonicaLoanApp.Views.MyAccount
             PersonalDetailsVM.IsPageEnable = true;
             PersonalDetailsVM.FirstName = Helpers.Constants.UserFirstname + " " + Helpers.Constants.UserLastname;
             PersonalDetailsVM.Email = Helpers.Constants.UserEmailAddress;
+            PersonalDetailsVM.Number = Helpers.Constants.Usermobileno;
             if (!string.IsNullOrEmpty(Helpers.Constants.UserDateofbirth))
             {
                 var Day = Helpers.Constants.UserDateofbirth.Substring(0, 2);
@@ -148,9 +189,17 @@ namespace MonicaLoanApp.Views.MyAccount
                 }
                 //PckMaritalStatus.SelectedItem = Helpers.Constants.UserMaritalstatus;  
             }
+            var c = Helpers.Settings.GeneralProfilePic;
+            if (!string.IsNullOrEmpty(Helpers.Settings.GeneralProfilePic)) 
+            {
+                PersonalDetailsVM.UserProfileBase64 = Helpers.Settings.GeneralProfilePic;
+                var p = PersonalDetailsVM.UserProfileBase64;
+                imgUserProfile.Aspect = Aspect.AspectFill;
+                imgUserProfile.Margin = new Thickness(0);
+                imgUserProfile.Source = Utilities.Utility.GetImageFromBase64(PersonalDetailsVM.UserProfileBase64);
+            }
         }
-
-
+         
         private void gender_SelectedIndexChanged(object sender, EventArgs e)
         {
             string gender = PckGender.Items[PckGender.SelectedIndex];
@@ -178,6 +227,16 @@ namespace MonicaLoanApp.Views.MyAccount
             }
 
             //PersonalDetailsVM.MaritalStatus = PckMaritalStatus.Items[PckMaritalStatus.SelectedIndex];
+        }
+
+        private void DropGender_Tapped(object sender, EventArgs e)
+        {
+            PckGender.Focus();
+        }
+
+        private void DropMarritalStatus_Tapped(object sender, EventArgs e)
+        {
+            PckMaritalStatus.Focus();
         }
     }
 }

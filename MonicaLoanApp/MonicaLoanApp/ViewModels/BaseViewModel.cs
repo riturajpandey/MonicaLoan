@@ -185,10 +185,7 @@ namespace MonicaLoanApp.ViewModels
                         }).ConfigureAwait(false);
                     }
                     else
-                    {
-                        UserDialogs.Instance.Loading().Hide();
-                        await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
-                    }
+                    { }
                 }
                 catch (Exception ex)
                 { UserDialog.HideLoading(); }

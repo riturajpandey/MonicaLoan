@@ -9,12 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xam.Plugin;
 using Xamarin.Forms;
 
 namespace MonicaLoanApp.ViewModels.Menu
 {
     public class MenuPageVM : BaseViewModel
     {
+        PopupMenu Popup;
+
         #region CONSTRUCTOR
 
         /// <summary>
@@ -151,7 +154,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         /// <param name="obj"></param>
         private async void OnSignOutAsync(object obj)
         {
-            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to cancel registration varification", null, "No", "Yes");
+            var res = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to sign out?", null, "No", "Yes");
             var text = (res ? "No" : "Yes");
             if (text == "Yes")
             {
@@ -249,7 +252,8 @@ namespace MonicaLoanApp.ViewModels.Menu
                             Helpers.Constants.UserMiddlename = requestList.middlename;
                             Helpers.Constants.UserLastname = requestList.lastname;
                             Helpers.Constants.Usermobileno = requestList.mobileno;
-                            Helpers.Constants.Userprofilepic = requestList.profilepic;
+                            Helpers.Settings.GeneralProfilePic = requestList.profilepic;
+                            var x = Helpers.Settings.GeneralProfilePic;
                             Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
                             Helpers.Constants.UserSalary = requestList.salary;
                             Helpers.Constants.UserStateName = requestList.statename;
@@ -303,7 +307,8 @@ namespace MonicaLoanApp.ViewModels.Menu
                                             Helpers.Constants.UserMiddlename = requestList.middlename;
                                             Helpers.Constants.UserLastname = requestList.lastname;
                                             Helpers.Constants.Usermobileno = requestList.mobileno;
-                                            Helpers.Constants.Userprofilepic = requestList.profilepic;
+                                            Helpers.Settings.GeneralProfilePic = requestList.profilepic;
+                                            var x = Helpers.Settings.GeneralProfilePic;
                                             Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
                                             Helpers.Constants.UserSalary = requestList.salary;
                                             Helpers.Constants.UserStateName = requestList.statename;
@@ -392,7 +397,7 @@ namespace MonicaLoanApp.ViewModels.Menu
         //                                    Helpers.Constants.UserMiddlename = requestList.middlename;
         //                                    Helpers.Constants.UserLastname = requestList.lastname;
         //                                    Helpers.Constants.Usermobileno = requestList.mobileno;
-        //                                    Helpers.Constants.Userprofilepic = requestList.profilepic;
+        //                                    Helpers.Settings.GeneralProfilePic = requestList.profilepic;
         //                                    Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
         //                                    Helpers.Constants.UserSalary = requestList.salary;
         //                                    Helpers.Constants.UserStateName = requestList.statename;

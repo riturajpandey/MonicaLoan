@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MonicaLoanApp.Controls"
              mc:Ignorable="d"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              IsEnabled="{Binding IsPageEnable}"
              x:Class="MonicaLoanApp.Views.MyAccount.MyAccountPage"
              NavigationPage.HasNavigationBar="False">
@@ -24,10 +25,12 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5">
-                            <Grid.GestureRecognizers>
+                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding MenuCommand}">
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding MenuCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                 <!--<Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding MenuCommand}"/>
@@ -56,96 +59,112 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <!--Home-->
-                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding PersonalDetailsCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding PersonalDetailsCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <StackLayout Grid.Column="1" Margin="10,0,0,0">
-                                <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" />
-                                <Label Text="{Binding PersonalDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
+                                <Label Text="Personal Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource NormalLable}" 
+                                       FontAttributes="None" FontSize="15" />
+                                <Label Text="{Binding PersonalDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                                       FontAttributes="None" Style="{StaticResource SmallestLable}" />
                             </StackLayout>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="1" ></Grid>
                         <!--Address Section-->
-                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding AddressCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddressCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="location.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <!--<Label Grid.Column="1" Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                             <StackLayout Grid.Column="1">
-                                <Label Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" FontSize="16" Margin="20,0,0,0"/>
-                                <Label Text="{Binding Address}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0"/>
+                                <Label Text="Address" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource NormalLable}" FontSize="15" Margin="20,0,0,0"/>
+                                <Label Text="{Binding Address}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" Margin="20,0,0,0" LineBreakMode="TailTruncation"/>
                             </StackLayout>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="3" ></Grid>
                         <!--Employement Section-->
-                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding EmployementCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding EmployementCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="profile.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <!--<Label Grid.Column="1" Text="Employement" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                             <StackLayout Grid.Column="1" Margin="10,0,0,0">
-                                <Label Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" />
+                                <Label Text="Employment" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="15" Style="{StaticResource NormalLable}" />
                                 <Label Text="{Binding Employement}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                             </StackLayout>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="5" ></Grid>
                         <!--Bank Details Section-->
-                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding BankDetailsCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BankDetailsCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="bankblue.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                             <!--<Label Grid.Column="1" Text="Bank Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>-->
                             <StackLayout Grid.Column="1" Margin="10,0,0,0">
-                                <Label Text="Bank Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}"/>
+                                <Label Text="Bank Details" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="15" Style="{StaticResource NormalLable}" FontAttributes="Bold"/>
                                 <Label Text="{Binding BankDetails}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource SmallestLable}" />
                             </StackLayout>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="7" ></Grid>
                         <!--setting Section-->
-                        <Grid Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding AppSettingCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AppSettingCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="setting.png" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,-5,0"/>
-                            <Label Grid.Column="1" Text="Your App Settings" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource PrimaryLable}" Margin="20,0,0,0"/>
+                            <Label Grid.Column="1" Text="Your App Settings" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" 
+                                   FontAttributes="Bold" FontSize="15" Style="{StaticResource NormalLable}" Margin="20,0,0,0"/>
                         </Grid>
                         <Grid BackgroundColor="Black" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="1" Grid.Row="9" ></Grid>
                         <!--Sign Out Section-->
-                        <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                              xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding logoutCommand}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding logoutCommand}"/>
-                            </Grid.GestureRecognizers>
+                            </Grid.GestureRecognizers>-->
                             <Image Grid.Column="0" Source="signout.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Sign Out" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="CenterAndExpand" Style="{StaticResource PrimaryLable}" Margin="10,0,0,0"/>
+                            <Label Grid.Column="1" Text="Sign Out" HorizontalOptions="StartAndExpand" FontSize="15" VerticalOptions="CenterAndExpand"
+                                   FontAttributes="Bold" Style="{StaticResource NormalLable}" Margin="10,0,0,0"/>
                         </Grid>
                     </Grid>
                 </ScrollView>

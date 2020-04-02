@@ -23,6 +23,13 @@ namespace MonicaLoanApp.Helpers
         }
 
         #region Setting Constants
+
+        private const string UserToken = "UserToken";
+        private static readonly string UserTokenDefault = string.Empty;
+
+        private const string ProfilePic = "ProfilePic";
+        private static readonly string ProfilePicDefault = string.Empty;
+
         private const string AccessToken = "AccessToken";
         private static readonly string AccessTokenDefault = string.Empty;
 
@@ -43,6 +50,30 @@ namespace MonicaLoanApp.Helpers
 
         private const string AllPaymentResponse = "AllPaymentResponse";
         private static readonly string AllPaymentResponseDefault = string.Empty;
+
+        public static string GeneralProfilePic
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ProfilePic, ProfilePicDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ProfilePic, value);
+            }
+
+        }
+        public static string GeneralUserToken
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserToken, UserTokenDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserToken, value);
+            }
+        }
 
         public static string GeneralAccessToken
         {
@@ -423,6 +454,54 @@ namespace MonicaLoanApp.Helpers
         //    }
         //}
         #endregion
+
+        #region Notification Settings
+        private const string IsNotification = "IsNotification";
+        private static readonly string IsNotificationDefault = string.Empty;
+
+        private const string IsSound = "IsSound";
+        private static readonly string IsSoundDefault = string.Empty;
+
+        private const string IsVibrate = "IsVibrate";
+        private static readonly string IsVibrateDefault = string.Empty;
+
+        public static string GeneralIsNotification
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsNotification, IsNotificationDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsNotification, value);
+            }
+        }
+
+        public static string GeneralIsSound
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsSound, IsSoundDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsSound, value);
+            }
+        }
+
+        public static string GeneralIsVibrate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsVibrate, IsVibrateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsVibrate, value);
+            }
+        }
+        #endregion
+
 
     }
 }

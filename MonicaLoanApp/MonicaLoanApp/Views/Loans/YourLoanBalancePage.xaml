@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-              IsEnabled="{Binding IsPageEnable}"
+             IsEnabled="{Binding IsPageEnable}"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="MonicaLoanApp.Views.Loans.YourLoanBalancePage"
              xmlns:controls="clr-namespace:MonicaLoanApp.Controls"
              NavigationPage.HasNavigationBar="False">
@@ -54,14 +55,17 @@
                     <controls:CustomFrameForOpacity HeightRequest="200" WidthRequest="200" CornerRadius="100" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource LightBlackColor}" BorderColor="{StaticResource LightBlackColor}">
-                        <StackLayout Spacing="3" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <!--Amount Text-->
-                            <Label Text="{Binding DueAmount}" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource AppWhiteColor}" 
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding LoansCommand}">
+                            <StackLayout Spacing="3" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <!--Amount Text-->
+                                <Label Text="{Binding DueAmount}" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource AppWhiteColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <!--Due Soon Text-->
-                            <Label Text="Due Soon" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource LightPurpleColor}" 
+                                <!--Due Soon Text-->
+                                <Label Text="Due Soon" FontFamily="{StaticResource Regularfont}" FontSize="16" TextColor="{StaticResource LightPurpleColor}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
+                            </StackLayout>
+                        </Grid>
                     </controls:CustomFrameForOpacity>
 
                 </controls:CustomFrameForOpacity>
@@ -73,23 +77,34 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--Plus Image Section-->
-                <controls:CustomFrameForOpacity Grid.Column="0" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                <Button Grid.Column="0" HeightRequest="70" WidthRequest="70" CornerRadius="35" ImageSource="plus_black.png"
+                        HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" Padding="0" BorderColor="{StaticResource AppWhiteColor}"
+                        BorderWidth="3" BackgroundColor="{StaticResource SkyBlueColor}" Command="{Binding PlusCommand}"/>
+                <!--<controls:CustomFrameForOpacity Grid.Column="0" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
-                    <d:CustomFrameForOpacity.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                    </d:CustomFrameForOpacity.GestureRecognizers>
-                    <controls:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" xe:TouchEffect.Color="{StaticResource LightPurpleColor}" 
+                              xe:Commands.Tap="{Binding PlusCommand}">
+
+                        --><!--<d:CustomFrameForOpacity.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </d:CustomFrameForOpacity.GestureRecognizers>--><!--
+                        <controls:CustomFrameForOpacity HeightRequest="64" WidthRequest="64" CornerRadius="32" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                                 BackgroundColor="{StaticResource SkyBlueColor}" BorderColor="{StaticResource SkyBlueColor}">
-                        <Image Source="plus_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
-                    </controls:CustomFrameForOpacity>
-                    <controls:CustomFrameForOpacity.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PlusCommand}"/>
-                    </controls:CustomFrameForOpacity.GestureRecognizers>
-                </controls:CustomFrameForOpacity>
+                            <Image Source="plus_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40" WidthRequest="40"/>
+                        </controls:CustomFrameForOpacity>
+                        --><!--<controls:CustomFrameForOpacity.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PlusCommand}"/>
+                        </controls:CustomFrameForOpacity.GestureRecognizers>--><!--
+                    </Grid>
+                </controls:CustomFrameForOpacity>-->
                 <!--Detail Image Section-->
-                <controls:CustomFrameForOpacity Grid.Column="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
+                <Button Grid.Column="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" ImageSource="list.png"
+                        HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="0" BorderColor="{StaticResource AppWhiteColor}"
+                        BorderWidth="3" BackgroundColor="{StaticResource SkyBlueColor}" Command="{Binding ListCommand}"/>
+
+                <!--<controls:CustomFrameForOpacity Grid.Column="1" HeightRequest="70" WidthRequest="70" CornerRadius="35" Padding="0" IsClippedToBounds="True"
                                                  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
                                                 BackgroundColor="{StaticResource AppWhiteColor}" BorderColor="{StaticResource AppWhiteColor}">
                     <d:CustomFrameForOpacity.GestureRecognizers>
@@ -103,7 +118,7 @@
                     <controls:CustomFrameForOpacity.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ListCommand}"/>
                     </controls:CustomFrameForOpacity.GestureRecognizers>
-                </controls:CustomFrameForOpacity>
+                </controls:CustomFrameForOpacity>-->
             </Grid>
         </Grid>
     </Grid>

@@ -89,12 +89,20 @@
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="state.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Image Source="state.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="State_Tapped"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
                                         <local:CustomPicker x:Name="pckstate" ItemsSource="{Binding Statelist}" ItemDisplayBinding="{Binding data}" Title="Select State" SelectedIndexChanged="pckstate_SelectedIndexChanged" VerticalOptions="CenterAndExpand">
 
                                         </local:CustomPicker>
-                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Image Source="down.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="State_Tapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
                                 </Grid>
                             </local:CustomFrameForOpacity>

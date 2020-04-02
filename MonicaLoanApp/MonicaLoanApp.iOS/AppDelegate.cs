@@ -27,7 +27,7 @@ namespace MonicaLoanApp.iOS
             Rg.Plugins.Popup.Popup.Init(); 
             Plugin.InputKit.Platforms.iOS.Config.Init();
             UIApplication.SharedApplication.StatusBarHidden = false;
-
+            XamEffects.iOS.Effects.Init();
             #endregion
             LoadApplication(new App());
             //Popup Menu

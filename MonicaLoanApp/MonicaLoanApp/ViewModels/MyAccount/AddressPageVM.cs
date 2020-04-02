@@ -158,7 +158,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                 employeenumber = Helpers.Constants.UserEmployeenumber,
                                 Salary = Helpers.Constants.UserSalary,
                                 Startdate = Helpers.Constants.UserStartdate,
-                                Profilepic = Helpers.Constants.Userprofilepic
+                                Profilepic = Helpers.Settings.GeneralProfilePic
                             },
                             async (_obj) =>
                             {
@@ -174,11 +174,11 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             var alertConfig = new AlertConfig
                                             {
                                                 Title = "",
-                                                Message = "Your address updated successfully!",
+                                                Message = "Your address has been successfully updated.",
                                                 OkText = "OK",
-                                                OnAction = () =>
+                                                OnAction = async () =>
                                                 {
-                                                    App.Current.MainPage = new Views.MyAccount.MyAccountPage();
+                                                    await Navigation.PopModalAsync();
                                                 }
                                             };
                                             UserDialogs.Instance.Alert(alertConfig);
@@ -247,7 +247,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                     Helpers.Constants.UserMiddlename = userDetail.middlename;
                     Helpers.Constants.UserLastname = userDetail.lastname;
                     Helpers.Constants.Usermobileno = userDetail.mobileno;
-                    Helpers.Constants.Userprofilepic = userDetail.profilepic;
+                    Helpers.Settings.GeneralProfilePic = userDetail.profilepic;
                     Helpers.Constants.UserMaritalstatus = userDetail.maritalstatus;
                     Helpers.Constants.UserSalary = userDetail.salary;
                     Helpers.Constants.UserStateName = userDetail.statename;
@@ -303,7 +303,7 @@ namespace MonicaLoanApp.ViewModels.MyAccount
                                             Helpers.Constants.UserMiddlename = requestList.middlename;
                                             Helpers.Constants.UserLastname = requestList.lastname;
                                             Helpers.Constants.Usermobileno = requestList.mobileno;
-                                            Helpers.Constants.Userprofilepic = requestList.profilepic;
+                                            Helpers.Settings.GeneralProfilePic = requestList.profilepic;
                                             Helpers.Constants.UserMaritalstatus = requestList.maritalstatus;
                                             Helpers.Constants.UserSalary = requestList.salary;
                                             Helpers.Constants.UserStateName = requestList.statename;

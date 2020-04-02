@@ -95,7 +95,7 @@ namespace MonicaLoanApp.ViewModels.Register
                         {
                             await _businessCode.AccessRegisterActivateApi(new AccessRegisterActivateRequestModel()
                             {
-                                usertoken = Constants.UserToken,
+                                usertoken = Settings.GeneralUserToken,
                                 validatetoken = RegisterToken
                             },
                             async (aobj) =>
@@ -109,6 +109,9 @@ namespace MonicaLoanApp.ViewModels.Register
                                         if (requestList.responsecode == 100)
                                         {
                                             UserDialog.Alert("Congratulations! You are registered successfully.!", "", "Ok");
+                                            Helpers.Settings.GeneralIsNotification = "true";
+                                            Helpers.Settings.GeneralIsSound = "true";
+                                            Helpers.Settings.GeneralIsVibrate = "true";
                                             App.Current.MainPage = new Views.Login.LoginPage(Email);
                                         }
                                         else

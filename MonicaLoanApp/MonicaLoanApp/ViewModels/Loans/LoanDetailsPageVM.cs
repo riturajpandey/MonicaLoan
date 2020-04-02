@@ -76,7 +76,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
-        private bool _IsLoansAvailable;
+        private bool _IsLoansAvailable = false;
         public bool IsLoansAvailable
         {
             get { return _IsLoansAvailable; }
@@ -90,7 +90,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             }
         }
 
-        private bool _IsLoansNotAvailable;
+        private bool _IsLoansNotAvailable = true;
         public bool IsLoansNotAvailable
         {
             get { return _IsLoansNotAvailable; }
@@ -116,13 +116,25 @@ namespace MonicaLoanApp.ViewModels.Loans
                 if (allUserLoan != null)
                 {
                     LoanDetailsList = new ObservableCollection<AllLoan>(allUserLoan.loans);
-                } 
+                    if (allUserLoan.loans.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        IsLoansAvailable = true;
+                        IsLoansNotAvailable = false;
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        IsLoansAvailable = false;
+                        IsLoansNotAvailable = true;
+                    }
+                }
             }
             //Call api..
             try
             {
                 if (string.IsNullOrEmpty(Helpers.Settings.GeneralAllLoanResponse))
-                    UserDialogs.Instance.ShowLoading(); 
+                    UserDialogs.Instance.ShowLoading();
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     await Task.Run(async () =>
@@ -166,8 +178,8 @@ namespace MonicaLoanApp.ViewModels.Loans
                 }
                 else
                 {
-                    UserDialogs.Instance.Loading().Hide();
-                    await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
+                    //UserDialogs.Instance.Loading().Hide();
+                    //await UserDialogs.Instance.AlertAsync("No Network Connection found, Please try again!", "", "Okay");
                 }
             }
             catch (Exception ex)
@@ -193,6 +205,7 @@ namespace MonicaLoanApp.ViewModels.Loans
             if (TapCount == 0)
             {
                 TapCount++;
+                await Task.Delay(1);
                 IsPageEnable = false;
                 await Navigation.PushModalAsync(new Views.Loans.LoanApplicationForm());
             }
